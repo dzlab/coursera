@@ -4,186 +4,186 @@
 
 Question 1
 Static datasets are used for production ML modeling.
-- False x
-- True
+- [x] False
+- [ ] True
 
 Question 2
 In production ML, the design priority is fast training.
-- Yes 
-- No x
+- [ ] Yes 
+- [x] No
 
 Question 3
 Developers adhere to modern software development to produce low-maintenance software, and to address project evolution. Select all the key aspects of modern software development (Check all that apply):
 
-- Testability x
-- Best practices x
-- Monitoring x
-- Fast Training
+- [x] Testability
+- [x] Best practices
+- [x] Monitoring
+- [ ] Fast Training
 
 Question 4
 Model-performance needs to be continuously monitored, and new data, ingested and re-trained.
-- Yes x
-- No
+- [x] Yes
+- [ ] No
 
 Question 5
 ML pipeline workflows are almost always DAGs.
 
-- True x
-- False
+- [x] True
+- [ ] False
 
 Question 6
 TensorFlow Extended (TFX) is an end-to-end platform for deploying production ML pipelines.
 
-- No
-- Yes x
+- [ ] No
+- [x] Yes
 
 Question 7
 Production machine learning combines which key disciplines?
 
-- Modern software development x
-- Machine learning development x
-- Software testing
-- Feature selection and engineering
+- [x] Modern software development
+- [x] Machine learning development
+- [ ] Software testing
+- [ ] Feature selection and engineering
 
 Question 8
 What are the typical challenges of a production grade ML system? (Check all that apply)
 
-- Handling continuously changing data. x
-- Optimizing computational resources and costs. x
-- Deploying the model to serve requests.
-- Assessing model performance.
-- Continually operating while in production. x
-- Training the model on real world data.
-- Building integrated ML systems.
+- [x] Handling continuously changing data.
+- [x] Optimizing computational resources and costs.
+- [ ] Deploying the model to serve requests.
+- [ ] Assessing model performance.
+- [x] Continually operating while in production.
+- [ ] Training the model on real world data.
+- [ ] Building integrated ML systems.
 
 Question 9
 Production grade machine learning challenges are addressed by implementing an important concept:
 
-- Machine learning pipelines x
-- Directed Acyclic Graphs (DAGs)
-- Orchestrators
-- Tensorflow Extended (TFX) 
+- [x] Machine learning pipelines
+- [ ] Directed Acyclic Graphs (DAGs)
+- [ ] Orchestrators
+- [ ] Tensorflow Extended (TFX) 
 
 Question 10
 TensorFlow Lite is a deep learning framework to deploy TFX pipelines into:
 
-- Mobile devices x
-- Web browser
-- Servers
+- [x] Mobile devices
+- [ ] Web browser
+- [ ] Servers
 
 ### PRACTICE QUIZ - Data Collection
 
 Question 1
 In ML, data are first-class citizens?
-- Yes x
-- No
+- [x] Yes
+- [ ] No
 
 Question 2
 A data pipeline is a series of data processing steps such as:
 
-- Data collection x
-- Data ingestion
-- Data Analysis
-- Data Preparation x
+- [x] Data collection
+- [ ] Data ingestion
+- [ ] Data Analysis
+- [x] Data Preparation
 
 Question 3
 Is the Data pipeline vital for the success of the production ML system?
 
-- Yes x
-- No
+- [x] Yes
+- [ ] No
 
 Question 4
 What do you apply to maximize predictive signals in your data?
 
-- Data formatting
-- Data coverage
-- Feature engineering x
-- Feature selection
+- [ ] Data formatting
+- [ ] Data coverage
+- [x] Feature engineering
+- [ ] Feature selection
 
 
 Question 5
 Your training data should reflect the diversity and cultural context of the people who will use it. What can be done to mitigate inherent biases in a given data set?
 
-- Collect data from equal proportions from different user groups. x
-- Commit to fairness.
-- Adapt to continuously changing data
-- Engineer better features
+- [x] Collect data from equal proportions from different user groups.
+- [ ] Commit to fairness.
+- [ ] Adapt to continuously changing data
+- [ ] Engineer better features
 
 
 Question 6
 More often than not,  ML systems can fail the users it serves. In this context, what is representational harm?
 
-- The amplification or negative reflection of certain groups stereotypes. x
-- Making predictions and decisions that preclude certain groups from accessing resources or opportunities.
-- Giving skewed outputs more frequently for certain groups of users
-- Inferring prejudicial links between certain demographic traits and user behaviors.
+- [x] The amplification or negative reflection of certain groups stereotypes.
+- [ ] Making predictions and decisions that preclude certain groups from accessing resources or opportunities.
+- [ ] Giving skewed outputs more frequently for certain groups of users
+- [ ] Inferring prejudicial links between certain demographic traits and user behaviors.
 
 
 Question 7
 Accurate labels are necessary to properly train supervised models. Many times, human subjects known as raters perform this labeling effort. What are the main categories of human raters? (check all that apply). 
 
-- Generalists x
-- Subject matter experts x
-- Your users x
-- Loggers
-- Aggregators
-- Classifiers
+- [x] Generalists
+- [x] Subject matter experts
+- [x] Your users
+- [ ] Loggers
+- [ ] Aggregators
+- [ ] Classifiers
 
 ### PRACTICE QUIZ - Data Labeling
 
 Which factors substantially complicate production machine learning? (Check all that apply)
 
-- Model Retraining driven by model improvements
-- Ground truth that changes slowly 
-- Labeling through Weak Supervision x
-- Model Retraining driven by declining model performance. x
+- [ ] Model Retraining driven by model improvements
+- [ ] Ground truth that changes slowly 
+- [x] Labeling through Weak Supervision
+- [x] Model Retraining driven by declining model performance.
 
 Direct Labeling is one of the methods used in production ML to label data. About it we can say that: 
 
-- It captures strong label signals x
-- It can be applied very often in many scenarios
-- It needs to match prediction results with their corresponding original inference request. x
-- With it, obtained labels don’t adapt quickly to world changes
+- [x] It captures strong label signals
+- [ ] It can be applied very often in many scenarios
+- [x] It needs to match prediction results with their corresponding original inference request.
+- [ ] With it, obtained labels don’t adapt quickly to world changes
 
 A cardiologist labeling MRI images is a typical example of Direct Labeling.
-- True
-- False x
+- [ ] True
+- [x] False
 
 ### PRACTICE QUIZ - Issues in Training Data
 
 Question 1
 What formula represents a dataset shift?
 
-- Ptrain(y|x)≠Pserve(y|x) and Ptrain(x)=Pserve(x)
-- Ptrain(y|x)=Pserve(y|x) and Ptrain(x)≠Pserve(x)
-- P_{train}(y,x) \neq P_{serve}(y,x)P  x
+- [ ] $Ptrain(y|x)≠Pserve(y|x)$ and $Ptrain(x)=Pserve(x)$
+- [ ] $Ptrain(y|x)=Pserve(y|x)$ and $Ptrain(x)≠Pserve(x)$
+- [x] $P_{train}(y,x) \neq P_{serve}(y,x)P$
 
 
 What measure is typically used to determine the degree of data drift?
 
-- Chebyshev distance (L-infinity) x
-- Euclidean distance (L2)
-- Manhattan distance (L1)
-- Hamming distance
+- [x] Chebyshev distance (L-infinity)
+- [ ] Euclidean distance (L2)
+- [ ] Manhattan distance (L1)
+- [ ] Hamming distance
 
 Distribution skew occurs when the distribution of the training dataset is significantly different from the distribution of the serving dataset, and is typically caused by: (check all that apply). 
 
-- A data source that provides some feature values is modified between training and serving time.
-- Occurs when serving and training data don’t conform to the same schema. For example, int32 != float.
-- Trend, seasonality, changes in data over time. x
-- Faulty sampling method that selects a sample for training which is not representative of serving data distribution.
-- There is different logic for generating features between training and serving. For example, if you apply some transformation only in one of the two code paths.
-- Different data sources for training and serving data. x
+- [ ] A data source that provides some feature values is modified between training and serving time.
+- [ ] Occurs when serving and training data don’t conform to the same schema. For example, int32 != float.
+- [x] Trend, seasonality, changes in data over time.
+- [ ] Faulty sampling method that selects a sample for training which is not representative of serving data distribution.
+- [ ] There is different logic for generating features between training and serving. For example, if you apply some transformation only in one of the two code paths.
+- [x] Different data sources for training and serving data.
 
 
 TensorFlow Data Validation (TFDV) helps TFX users maintain the health of their ML pipelines. TFDV can analyze training and serves data to:
 
-- Compute descriptive statistics. x
-- Detect data anomalies. x
-- Perform feature selection.
-- Deploy pipeline to a mobile application.
-- Perform feature engineering.
-- Infer a schema. x
+- [x] Compute descriptive statistics.
+- [x] Detect data anomalies.
+- [ ] Perform feature selection.
+- [ ] Deploy pipeline to a mobile application.
+- [ ] Perform feature engineering.
+- [x] Infer a schema.
 
 ### Week 1 Optional References
 Week 1: Collecting, Labeling and Validating Data 
