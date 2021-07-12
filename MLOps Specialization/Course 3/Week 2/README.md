@@ -159,44 +159,44 @@ If you wish to dive more deeply into dimensionality reduction techniques, feel f
 #### PRACTICE QUIZ - Dimensionality Reduction
 Question 1: Fill in the blanks with the correct answer according to the descriptions in the boxes below: 
 
-- 1. Data mining. 2. Dimensionality reduction.
-- 1. Dimensionality reduction. 2. Data Science.
-- 1. Data Science. 2. Data mining.
-- 1. Data mining. 2. Data Science. x
+- [ ] 1. Data mining. 2. Dimensionality reduction.
+- [ ] 1. Dimensionality reduction. 2. Data Science.
+- [ ] 1. Data Science. 2. Data mining.
+- [x] 1. Data mining. 2. Data Science.
 
 Question 2: What does the X value represent? 
 
-- The number of features that reaches the maximum classification error.
-- The cursed number of dimensions.
-- The worst number of features for making predictions.
-- The optimal number of features. x
+- [ ] The number of features that reaches the maximum classification error.
+- [ ] The cursed number of dimensions.
+- [ ] The worst number of features for making predictions.
+- [x] The optimal number of features.
 
 
-Question 2: One of the following is not considered as a high-dimensionality impact:
+Question 3: One of the following is not considered as a high-dimensionality impact:
 
-- The possibility of more correlated features is greater.
-- Smaller hypothesis space. x
-- Higher runtimes and system requirements
-- Solutions take longer to reach global optimum
+- [ ] The possibility of more correlated features is greater.
+- [x] Smaller hypothesis space.
+- [ ] Higher runtimes and system requirements
+- [ ] Solutions take longer to reach global optimum
 
 Question 4: What is the output of the code line: `count_params(model_n.trainable_variables)`
 
-- Number of dimensions for Model n.
-- Number of classes for Model n. 
-- Number of testing parameters for Model n.
-- Number of training parameters for Model n. x
+- [ ] Number of dimensions for Model n.
+- [ ] Number of classes for Model n. 
+- [ ] Number of testing parameters for Model n.
+- [x] Number of training parameters for Model n.
 
 Question 5: The amount of training data available, the complexity of decision surface and the classifier type define the number of ____________ to be used
 
-- Spaces
-- Models.
-- Datasets.
-- Features. x
+- [ ] Spaces
+- [ ] Models.
+- [ ] Datasets.
+- [x] Features.
 
 Question 6: Classification subspaces allows to minimize separation among classes, while regression subspaces are used for maximizing correlation between projected data and response variable
 
-- False x
-- True
+- [x] False
+- [ ] True
 
 
 ### Quantization and Pruning
@@ -268,46 +268,46 @@ If you wish to dive more deeply into pruning, feel free to check out these optio
 #### PRACTICE QUIZ - Quantization and Pruning
 Question 1: Today, due to the developments in machine learning research and mobile and edge devices, there exists a wide range of alternatives to deploy a machine learning solution locally.
 
-- No
-- Yes x
+- [ ] No
+- [x] Yes
 
 Question 2: Which of the following are reasons for Improving mobile & IoT business with ML?
 
-- Strengthened security. x
-- Eliminate risk.
-- Automating operational efficiency.
-- Improving user experience with data. x
+- [x] Strengthened security.
+- [ ] Eliminate risk.
+- [ ] Automating operational efficiency.
+- [x] Improving user experience with data.
 
 Question 3: ML Kit brings Google's machine learning expertise to mobile developers. With this tool, you can  __________________ .
 
-- use a pre-trained model. x
-- use to access cloud-based web services. x
-- use it to customize your models
-- use it to train your model on-device.
+- [x] use a pre-trained model.
+- [x] use to access cloud-based web services.
+- [ ] use it to customize your models
+- [ ] use it to train your model on-device.
 
 Question 4: In per-tensor quantization weights are represented by int8 two’s complement values in the range _____________ with zero-point _____________
 
-- [-127, 127], in range [-128, 127]. 
-- [-128, 127], equal to 0
-- [-127, 127], equal to 0 x
-- [-128, 127], in range [-128, 127]. 
+- [ ] [-127, 127], in range [-128, 127]. 
+- [ ] [-128, 127], equal to 0
+- [x] [-127, 127], equal to 0
+- [ ] [-128, 127], in range [-128, 127]. 
 
 
 Question 5: Quantization squeezes a small range of floating-point values into a fixed number. What impact is there on the behavior of the model?
 
-- You can have changes in transformations and operation. x
-- You can have change layer weights and activations networks x
-- You can increase precision as a result of the optimization process.
-- You can decrease the interpretability of the ML model
+- [x] You can have changes in transformations and operation.
+- [x] You can have change layer weights and activations networks
+- [ ] You can increase precision as a result of the optimization process.
+- [ ] You can decrease the interpretability of the ML model
 
 Question 6: One such family of optimizations known as pruning aims to remove neural network connections, increasing the number of parameters involved in the computation.
 
-- Yes
-- No x
+- [ ] Yes
+- [x] No
 
 Question 7: Which ones of the following describe the benefits of applying sparsity with a pruning routine?
 
-- Method perform well at a large scale
-- Gain speedups in CPU and some ML accelerators x
-- Better storage and/or transmission x
-- Can be used in tandem with quantization to get additional benefits
+- [ ] Method perform well at a large scale
+- [x] Gain speedups in CPU and some ML accelerators
+- [x] Better storage and/or transmission
+- [ ] Can be used in tandem with quantization to get additional benefits
