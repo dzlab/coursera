@@ -67,38 +67,38 @@ If you wish to dive more deeply into  high-performance modeling, feel free to ch
 #### PRACTICE QUIZ - High-Performance Modeling
 Question 1: In the model parallelism, the models are replicated into different devices (GPU) and trained on data batches.
 
-- No x
-- Yes
+- [x] No
+- [ ] Yes
 
 Question 2: Which ones of the following are terminologies used often in the world of distributed computing?
 
-- Worker x
-- Device
-- Copy
-- Mirrored Variable
+- [x] Worker
+- [ ] Device
+- [ ] Copy
+- [ ] Mirrored Variable
 
 Question 3: The pipeline performance can be optimized through parallelizing data extraction and transformation. 
 
-- False
-- True x
+- [ ] False
+- [x] True
 
 Question 4: TensorFlow offers techniques to optimize pipeline performance like prefetching, parallelizing data extraction and transformation, caching and reducing memory. Those techniques could be used from the sklearn.decomposition API.
 
-- True
-- False x
+- [ ] True
+- [x] False
 
 
 Question 5: As important developments in both model growth and hardware improvement have been made, parallelism becomes an alternative of greater importance. 
 
-- True x
-- False
+- [x] True
+- [ ] False
 
 Question 6: The _______ library uses synchronous mini-batch gradient descent for training in a distributed way. 
 
-- Pandas
-- GPipe x
-- Scikit-learn
-- Scipy
+- [ ] Pandas
+- [x] GPipe
+- [ ] Scikit-learn
+- [ ] Scipy
 
 
 ### Knowledge Distillation
@@ -131,43 +131,43 @@ If you wish to dive more deeply into knowledge distillation, feel free to check 
 #### PRACTICE QUIZ - Knowledge Distillation
 Question 1: The goal of knowledge distillation is optimizing the network implementation:
 
-- False x
-- True
+- [x] False
+- [ ] True
 
 Question 2: In knowledge distillation, the teacher will be trained using a  _________.
 
-- A Standard objective function x
-- A Soft Target
-- K-L divergence
-- GoogLeNet
+- [x] A Standard objective function
+- [ ] A Soft Target
+- [ ] K-L divergence
+- [ ] GoogLeNet
 
 Question 3: DistilBERT is a bigger version of BERT with a modified architecture, but the same number of layers. 
 
-- Yes
-- No x
+- [ ] Yes
+- [x] No
 
 Question 4: In knowledge distillation, the “teacher” network is deployed in production as it is able to mimic the complex feature relationships of the “student” network  
 
-- True
-- False x
+- [ ] True
+- [x] False
 
 Question 5: For a multi-class classification problem, which ones of the following statements are true regarding the training cost functions of the “student” and the “teacher” networks ? (Select all that apply)
 
 
-- They both share the same cost functions
-- The teacher network is trained to maximize its accuracy and the the student network uses a cost function to output the same classes as the teacher network 
-- The teacher network is trained to maximize its accuracy and the the student network uses a cost function to approximate the probability distributions of the predictions of the teacher network x
-- Soft targets encode more information about the knowledge learned by the teacher than its output class prediction per example x
+- [ ] They both share the same cost functions
+- [ ] The teacher network is trained to maximize its accuracy and the the student network uses a cost function to output the same classes as the teacher network 
+- [x] The teacher network is trained to maximize its accuracy and the the student network uses a cost function to approximate the probability distributions of the predictions of the teacher network
+- [x] Soft targets encode more information about the knowledge learned by the teacher than its output class prediction per example
 
 Question 6: When the softmax temperature ____, the soft targets defined by the teacher network become less informative
 
-- increases
-- decreases x
-- is equal to 1
+- [ ] increases
+- [x] decreases
+- [ ] is equal to 1
 
 Question 7: Generally, knowledge distillation is done by blending two loss functions and involves several hyperparameters. Here, L_h is the cross-entropy loss from the hard labels and LKL is the Kullback–Leibler divergence loss from the teacher labels. Which of the following statements are correct about the hyperparameters of knowledge distillation? (Select all that apply)
 
-- In case of heavy data augmentation after training the teacher network, the alpha hyperparameter should be high in the student network loss function
-- When computing the the "standard" loss between the student's predicted class probabilities and the ground-truth “hard” labels, we use a value of the softmax temperature T equal to 1  x
-- When computing the the "standard" loss between the student's predicted class probabilities and the ground-truth “hard” labels, we use the same value of the softmax temperature T to compute the softmax on the teacher’s logits
-- In case of heavy data augmentation after training the teacher network, the alpha hyperparameter should be low in the student network loss function
+- [ ] In case of heavy data augmentation after training the teacher network, the alpha hyperparameter should be high in the student network loss function
+- [x] When computing the the "standard" loss between the student's predicted class probabilities and the ground-truth “hard” labels, we use a value of the softmax temperature T equal to 1  x
+- [ ] When computing the the "standard" loss between the student's predicted class probabilities and the ground-truth “hard” labels, we use the same value of the softmax temperature T to compute the softmax on the teacher’s logits
+- [ ] In case of heavy data augmentation after training the teacher network, the alpha hyperparameter should be low in the student network loss function
