@@ -20,23 +20,23 @@
 
 Question 1: What is weak supervision useful for?
 
-- Taking advantage of input from experts in the field. x
-- Managing training datasets by hand labeling.
-- Creating and structuring training datasets through programming. x
+- [x] Taking advantage of input from experts in the field.
+- [ ] Managing training datasets by hand labeling.
+- [x] Creating and structuring training datasets through programming.
 
 Question 2: Which of the following statements about labeling techniues is true?
 
-- Active Learning shouldn’t be used on imbalanced datasets
-- Label propagation is a technique used in semi-supervised algorithms based on the similarity of different data points. x
-- Active Learning doesn’t require the feedback from a ML model to select the next data points to label.
-- Direct Labeling is slow and expensive compared to other labeling techniques
+- [ ] Active Learning shouldn’t be used on imbalanced datasets
+- [x] Label propagation is a technique used in semi-supervised algorithms based on the similarity of different data points.
+- [ ] Active Learning doesn’t require the feedback from a ML model to select the next data points to label.
+- [ ] Direct Labeling is slow and expensive compared to other labeling techniques
 
 Question 3: Weak Supervision is one of the methods used in production ML to label data. Which of the following statements are true about it?
 
-- It uses generative models to determine weights for supervision sources x
-- Weak Supervision is more expensive than Human Labeling.
-- Weak supervision allows sampling data intelligently for labeling
-- Weak supervision uses heuristics or labelling functions instead of deterministic labels. x
+- [x] It uses generative models to determine weights for supervision sources 
+- [ ] Weak Supervision is more expensive than Human Labeling.
+- [ ] Weak supervision allows sampling data intelligently for labeling
+- [x] Weak supervision uses heuristics or labelling functions instead of deterministic labels.
 
 ### Data Augmentation
 - It generates artificial data by creating new examples which are variants of the original data
@@ -57,19 +57,19 @@ def augment(x, height, width, num_channels):
 #### PRACTICE QUIZ - Data Augmentation
 Question 1: Which of the following statements are true on data augmentation? (Check all that apply).
 
-- Data Augmentation should be applied at serving time.
-- tf.image offers a set of functions to augment image data. x
-- Data Augmentation always helps improving the performance of ML models.
+- [ ] Data Augmentation should be applied at serving time.
+- [x] tf.image offers a set of functions to augment image data.
+- [ ] Data Augmentation always helps improving the performance of ML models.
 
 Question 2: Data augmentation is a strategy to significantly increase the data set available for training models without having to collect new data.
 
-- Yes x
-- No
+- [x] Yes
+- [ ] No
 
 Question 3: Data augmentation is a technique that allows us to increase our training data set to improve accuracy and avoid overfitting.
 
-- True x
-- False
+- [x] True
+- [ ] False
 
 ### Preprocessing Different Data Types
 TF Transform examples
@@ -98,21 +98,21 @@ Papers
 
 Question 1: Visualizing an audio signal in the time domain usually reveals very little information on its spectral content. Which graphical representation displays the amplitude changes for each frequency as a function of time?
 
-- Short-Time Fourier Transform.
-- Spectrogram. x
-- librosa
-- Feature normalization
+- [ ] Short-Time Fourier Transform.
+- [x] Spectrogram.
+- [ ] librosa
+- [ ] Feature normalization
 
 Question 2: What would be a striking caveat or shortcoming of interpreting a video just as a series of images? 
 
-- Considering that all subsequent frames are correlated.
-- Unnecessarily increasing the dimensionality of the dataset.
-- Hindering classifier accuracy.
-- Losing the semantic context coming from the sequence of events. x
+- [ ] Considering that all subsequent frames are correlated.
+- [ ] Unnecessarily increasing the dimensionality of the dataset.
+- [ ] Hindering classifier accuracy.
+- [x] Losing the semantic context coming from the sequence of events.
 
 Question 3: In the analysis of the weather time series data set you saw that the samples were acquired at a rate of 6 samples per hour. You also know that weather changes typically occur on a much slower time scale. What is a valid sampling strategy to make predictions into the future for this specific case?
 
-- Omitting samples.
-- Windowing and omitting samples. x
-- Use one sample at a time to make predictions.
-- Upsampling by interpolation.
+- [ ] Omitting samples.
+- [x] Windowing and omitting samples.
+- [ ] Use one sample at a time to make predictions.
+- [ ] Upsampling by interpolation.
