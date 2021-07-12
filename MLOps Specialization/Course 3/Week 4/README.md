@@ -28,20 +28,20 @@ TensorBoard https://blog.tensorflow.org/2019/12/introducing-tensorboarddev-new-w
 #### PRACTICE QUIZ - Model Analysis
 1; In many instances it is necessary to understand how the model is working internally. This is very useful when you are experimenting with new architectures to understand how data is flowing internally within each layer of the model. This can help you adjust and iterate on your model architecture to improve performance and efficiency. Which of the following is a correct approach to understand the inner workings of a given model?
 
-- Black box evaluation
-- Model introspection x
-- Performance metrics
-- Optimization objective
+- [ ] Black box evaluation
+- [x] Model introspection
+- [ ] Performance metrics
+- [ ] Optimization objective
 
 2: TensorBoard is an example of a tool for black-box evaluation.
 
-- False
-- True x
+- [ ] False
+- [x] True
 
 3: Performance metrics are independent of the kind of task done.
 
-- False x
-- True
+- [x] False
+- [ ] True
 
 ### Advanced Model Analysis and Debugging
 #### Introduction to TensorFlow Model Analysis
@@ -297,43 +297,43 @@ If you wish to dive more deeply into model remediation and fairness, feel free t
 #### PRACTICE QUIZ - Model Analysis and Debugging
 Question 1: When evaluating an ML model during training the goal is to improve top-level metrics such as overall accuracy. This information is used to decide whether the model is doing well or not, but it doesn't show how well it does on individual parts of the data. Which technique is extremely helpful to address this shortcoming?
 
-- Streaming metrics
-- TensorFlow Metric Analysis (TFMA)
-- Apache Beam
-- Data Slicing [x]
+- [ ] Streaming metrics
+- [ ] TensorFlow Metric Analysis (TFMA)
+- [ ] Apache Beam
+- [x] Data Slicing
 
 Question 2: Streaming metrics are approximations to full-pass performance metrics computed on __________. 
 
-- the full validation data set.
-- the full data set
-- slices of data
-- mini-batches of data [x]
+- [ ] the full validation data set.
+- [ ] the full data set
+- [ ] slices of data
+- [x] mini-batches of data
 
 Question 3: A recent credit card loyalty program offered by a big technology company has been labeled as “sexist”, a clear example of algorithm based social discrimination. Let’s examine a user complaint on Twitter: “My wife and I filed joint tax returns, live in a community-property state, and have been married for a long time. Yet the black box algorithm thinks I deserve 20x the credit limit she does. No appeals work.” These and other similar claims have triggered a full-blown investigation by the New York State Department of Financial Services. Which of the reviewed techniques in lecture could have been implemented to prevent this embarrassing problem?
 
-- Data slicing
-- Model debugging [x]
-- Residual analysis
-- Model robustness
+- [ ] Data slicing
+- [x] Model debugging
+- [ ] Residual analysis
+- [ ] Model robustness
 
 Question 4: State of the art convolutional neural networks can be fooled to misclassify craftily noise corrupted images with changes that are completely imperceptible to the human eye, as illustrated by the following picture:
 
 What type of analysis can help us detect and prevent these types of scenarios?
 
-- Adversarial attack
-- Sensitivity analysis [x]
-- Residual Analysis
-- Dimensionality reduction
+- [ ] Adversarial attack
+- [x] Sensitivity analysis
+- [ ] Residual Analysis
+- [ ] Dimensionality reduction
 
 Question 5: A performance-metric gap between two or more groups could be a sign that an ML model may have unfair skews. Therefore, is achieving performance equality (on fairness indicators) across groups a definite sign that a model is fair?
 
-- No [x]
-- Yes
+- [x] No
+- [ ] Yes
 
 Question 6: After a model has been deployed, is it usually feasible to perform residual analysis?
 
-- No [x]
-- Yes
+- [x] No
+- [ ] Yes
 
 
 ### Continuous Evaluation and Monitoring
@@ -415,14 +415,14 @@ Question 1: Many ML models suffer from declining predicting capabilities over ti
 
 Question 2: Statistical process control is a technique that detects concept drift assuming that the errors follow a binomial distribution. Would the system trigger an alarm if $p_{t}=\sigma_{t}=0.3p$ and $p_{min}=\sigma_{min}=0.12p $
 
-- No
+- [ ] No
 - [x] Yes
 
 Question 3: In sequential analysis you detect concept drift by calculating the negative predictive value, precision, recall, and specificity of the system based on a standard contingency table. If the data is stationary these quantities should not change over time. This analysis is tedious as it requires recomputing all these metrics each time we get a new sample. Which of the following approaches is usually implemented to overcome this problem? 
 
 - [x] Incremental update rule
-- Monte Carlo sampling
-- Recursive computation and caching
+- [ ] Monte Carlo sampling
+- [ ] Recursive computation and caching
 - [ ] Adaptive windowing
 
 
@@ -431,21 +431,21 @@ Question 4: Drift detection techniques in unsupervised settings typically suffer
 - [x] PCA (Principal components analysis)
 - [ ] SVD (Singular Value Decomposition)
 - [x] NMF (Non Negative Matrix Factorization)
-- K-means 
+- [ ] K-means 
 
 Question 5: In unsupervised settings, clustering is a very useful method to detect novelty in your data. In this method, you cluster the incoming batches of data to one of the known classes. If you observe that the features of the new data are lying far away from the classes of known features, you can term it as an emerging concept. The downside of this method is that it detects only __________ drift and not ___________ changes.
 
 - [x] cluster-based, population-based.
-- cluster-based, feature
-- feature, cluster-based
-- population-based, cluster-based
+- [ ] cluster-based, feature
+- [ ] feature, cluster-based
+- [ ] population-based, cluster-based
 
 
 Question 6: It is a sad truth that most of the machine learning models are trained with a fixed set of stationary data. It is very likely that in this process you may have slightly biased your model in favor of your limited data at training. Consequently, as time progresses, your ML model's performance will deteriorate with time. Monitoring helps prevent this performance decay in which ways? (Check all that apply)
 
 - [ ] By retraining your model constantly
-- Reduces false alarm rates
-- By performing dimensionality reduction
+- [ ] Reduces false alarm rates
+- [ ] By performing dimensionality reduction
 - [x] Allows you to identify distribution changes close to the classification boundaries
-- Allows you to establish ground truth labels
-- Identify regions in latent space where the model performs poorly
+- [ ] Allows you to establish ground truth labels
+- [ ] Identify regions in latent space where the model performs poorly
