@@ -42,40 +42,40 @@ We can calculate PPV and NPV on an example as follows:
 In some studies, you may have to compute the Positive predictive value (PPV) from the sensitivity, specificity and prevalence.  Note that reviewing this reading will help you answer one of the quizzes at the end of this week!
 
 ##### Rewriting PPV
-PPV = P(pos | \hat{pos})
+<img src="https://render.githubusercontent.com/render/math?math=PPV = P(pos | \hat{pos})">
 
 (pospos is "actually positive" and \hat{pos} is "predicted positive").
 
 By Bayes rule, this is 
 
- PPV = \frac{P(\hat{pos} | pos) \times P(pos)}{P(\hat{pos})}
+<img src="https://render.githubusercontent.com/render/math?math=PPV = \frac{P(\hat{pos} | pos) \times P(pos)}{P(\hat{pos})}">
 
 ##### For the numerator:
-Sensitivity = P(\hat{pos} | pos).  Recall that sensitivity is how well the model predicts actual positive cases as positive.
+<img src="https://render.githubusercontent.com/render/math?math=Sensitivity = P(\hat{pos} | pos)">.  Recall that sensitivity is how well the model predicts actual positive cases as positive.
 
-Prevalence = P(pos)Prevalence=P(pos).  Recall that prevalence is how many actual positives there are in the population.
+<img src="https://render.githubusercontent.com/render/math?math=Prevalence = P(pos)Prevalence=P(pos)">.  Recall that prevalence is how many actual positives there are in the population.
 
 ##### For the denominator:
-P(\hat{pos}) = TruePos + FalsePos.  In other words, the model's positive predictions are the sum of when it correctly predicts positive and incorrectly predicts positive.
+<img src="https://render.githubusercontent.com/render/math?math=P(\hat{pos}) = TruePos + FalsePos">.  In other words, the model's positive predictions are the sum of when it correctly predicts positive and incorrectly predicts positive.
 
 The true positives can be written in terms of sensitivity and prevalence.
 
-TruePos = P(\hat{pos} | pos) \times P(pos), and you can use substitution to get 
+<img src="https://render.githubusercontent.com/render/math?math=TruePos = P(\hat{pos} | pos) \times P(pos)">, and you can use substitution to get 
 
-TruePos = Sensitivity \times Prevalence
+<img src="https://render.githubusercontent.com/render/math?math=TruePos = Sensitivity \times Prevalence">
 
 The false positives can also be written in terms of specificity and prevalence:
 
-FalsePos = P(\hat{pos} | neg) \times P(neg)
+<img src="https://render.githubusercontent.com/render/math?math=FalsePos = P(\hat{pos} | neg) \times P(neg)">
 
-1 - specificity = P(\hat{pos} | neg )
+<img src="https://render.githubusercontent.com/render/math?math=1 - specificity = P(\hat{pos} | neg )">
 
-1 - prevalence = P(neg)1−prevalence=P(neg)
+<img src="https://render.githubusercontent.com/render/math?math=1 - prevalence = P(neg)1−prevalence=P(neg)">
 
 ##### PPV rewritten:
 If you substitute these into the PPV equation, you'll get
 
-PPV = \frac{sensitivity \times prevalence}{sensitivity \times prevalence + (1 - specificity) \times (1 - prevalence)}
+<img src="https://render.githubusercontent.com/render/math?math=PPV = \frac{sensitivity \times prevalence}{sensitivity \times prevalence + (1 - specificity) \times (1 - prevalence)}">
 
 ## How does varying the threshold affect evaluation metrics?
 
@@ -191,7 +191,7 @@ Question 8: You want to measure the proportion of people with high blood pressur
 
 HINT: Please watch the video "Confidence interval" to help you answer this question.
 
-- [ ] If you repeated this sampling, the true proportion would be in the confidence interval about 90% of the time
+- [x] If you repeated this sampling, the true proportion would be in the confidence interval about 90% of the time
 - [ ] There is a 5% chance that the true mean is less than 50%
 - [ ] With 90% probability, the proportion of people with high blood pressure is between 50% and 60%
 - [ ] If we repeated this sampling, the middle of the confidence interval would be 55%, 90% of the time
@@ -200,5 +200,5 @@ Question 9: One experiment calculates a confidence interval using 1000 samples, 
 
 - [ ] Not enough information
 - [ ] 1,000 samples
-- [ ] 10,000 samples
+- [x] 10,000 samples
 - [ ] Cannot say with confidence
