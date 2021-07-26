@@ -116,41 +116,72 @@ In practice, we don't compute the confidence intervals for many samples. We only
 
 ## Week 2 Quiz
 ### Evaluating machine learning models
-Question 1: What is the sensitivity and specificity of a pneumonia model that always outputs positive?  In other words, the models says that every patient has the disease.
+#### Question 1: 
+What is the sensitivity and specificity of a pneumonia model that always outputs positive?  In other words, the models says that every patient has the disease.
 
 - [ ] sensitivity = 0.0, specificity = 1.0
 - [ ] sensitivity = 0.5,  specificity = 0.5
 - [ ] sensitivity  = 1.0, specificity = 1.0
 - [x] sensitivity = 1.0, specificity = 0.0
 
-Question 2: In some studies, you may have to compute the Positive predictive value (PPV) from the sensitivity, specificity and prevalence.  
+> Correct
+> - Sensitivity tells us how good the model is at correctly identifying those patients who actually have the disease and label them as having the disease.
+> - Specificity tells us how good the model is at correctly identifying the healthy patients as not having the disease.
+> A sensitivity of 1 would mean that the model identifies all the diseased patients as having the disease, and does not identify any healthy patients as healthy. This is what the model is doing in this example.
+
+
+#### Question 2:
+In some studies, you may have to compute the Positive predictive value (PPV) from the sensitivity, specificity and prevalence.  
 
 Given a sensitivity = 0.9, specificity = 0.8, and prevalence = 0.2, what is the PPV (positive predictive value)? 
 
 HINT: please check the reading item "Calculating PPV in terms of sensitivity, specificity and prevalence"
 
+<img src="https://render.githubusercontent.com/render/math?math=PPV=\frac{sensitivity \times prevalence}{sensitivity \times prevalence+(1−specificity) \times (1−prevalence)}">
+
 - [ ] 0.02
 - [ ] 0.18
 - [ ] 0.9
-- [ ] 0.53
+- [x] 0.53
 
-Question 3: If sensitivity = 0.9, specificity = 0.8, and prevalence = 0.2, then what is the accuracy? 
+#### Question 3:
+If sensitivity = 0.9, specificity = 0.8, and prevalence = 0.2, then what is the accuracy? 
 
 Hint: You can watch the video "Sensitivity, Specificity and Prevalence" to find the equation.
 
-- [ ] 0.82
+
+The equation for accuracy is:
+
+Accuracy=(Sensitivity×Prevalence)+(Specificity×(1−Prevalence))
+So accuracy = (0.9*0.2) + (0.8*0.8) = 0.82
+- [x] 0.82
 - [ ] 0.44
 - [ ] 0.52
 - [ ] 0.75
 
-Question 4: What is the sensitivity and specificity of a model which randomly assigns a score between 0 and 1 to each example (with equal probability) if we use a threshold of 0.7?  
+> Correct
+The equation for accuracy is:
+
+<img src="https://render.githubusercontent.com/render/math?math=Accuracy=(Sensitivity×Prevalence)+(Specificity×(1−Prevalence))">
+So accuracy = (0.9*0.2) + (0.8*0.8) = 0.82
+
+#### Question 4:
+What is the sensitivity and specificity of a model which randomly assigns a score between 0 and 1 to each example (with equal probability) if we use a threshold of 0.7?  
 
 - [ ] Not enough information to answer the question.
 - [ ] Sensitivity = 0.5, Specificity = 0.5
-- [ ] Sensitivity = 0.3, Specificity = 0.7
+- [x] Sensitivity = 0.3, Specificity = 0.7
 - [ ] Sensitivity = 0.7, Specificity = 0.3
 
-Question 5: What is the PPV and sensitivity associated with the following confusion matrix?  
+> Let's review the equations for sensitivity and specificity:
+
+> Sensitivity=TPTP+FN
+> Specificity=TNTN+FP
+> Given that the output of the model has a range from 0 to 1 and the threshold for assigning a positive prediction is  0.7, we can assume that 70% of the time we are predicting negative and the remaining 30% positive.  
+
+
+#### Question 5:
+What is the PPV and sensitivity associated with the following confusion matrix?  
 
 Recall that 
 
@@ -164,12 +195,27 @@ Sensitivity = \text{How many actual positives are predicted positive?}
 |Disease Positive	|30	|20|
 |Disease Negative	|70	|10|
 
-- [ ] PPV = 0.3,  Sensitivity = 0.6
+- [x] PPV = 0.3,  Sensitivity = 0.6
 - [ ] PPV = 0.4, Sensitivity = 0.2
 - [ ] Not enough information is given
 - [ ] PPV = 0.6, Sensitivity = 0.33
 
-Question 6: You have a model such that the lowest score for a positive example is higher than the maximum score for a negative example. What is its ROC AUC?  
+Correct
+<img src="https://render.githubusercontent.com/render/math?math=PPV = P( pos| \hat{pos})">
+
+<img src="https://render.githubusercontent.com/render/math?math=PPV = \frac{TP}{TP + FP}">
+
+<img src="https://render.githubusercontent.com/render/math?math=PPV = \frac{30}{30 + 70} = 0.3">
+
+<img src="https://render.githubusercontent.com/render/math?math=Sensitivity = P(predict positive | actual positive)">
+
+<img src="https://render.githubusercontent.com/render/math?math=Sensitivity = \frac{TP}{TP+FN}">
+ 
+
+<img src="https://render.githubusercontent.com/render/math?math=Sensitivity = \frac{30}{30 + 20} = 0.6">
+
+#### Question 6:
+You have a model such that the lowest score for a positive example is higher than the maximum score for a negative example. What is its ROC AUC?  
 
 HINT 1: watch the video “Varying the threshold”.
 
@@ -177,17 +223,24 @@ HINT 2: draw a number line and choose values for the score that is the lowest pr
 
 - [ ] 0.52
 - [ ] 0.82
-- [ ] 1.0
+- [x] 1.0
 - [ ] Not enough information is given
 
-Question 7: For every specificity, as we vary the threshold, the sensitivity of model 1 is at least as high as model 2. Which of the following must be true? 
+> What kind of specificity (ability to identify negative examples) will this model have when the threshold is any value above the highest score for a negative example?
+> What kind of sensitivity (ability to identify positive examples) will this model have when the threshold is any value below the lowest score for a positive example?
+
+#### Question 7:
+For every specificity, as we vary the threshold, the sensitivity of model 1 is at least as high as model 2. Which of the following must be true? 
 
 - [ ] The accuracy of model 2 is higher than model 1
 - [ ] The ROC of model 2 is higher than model 1
 - [ ] None of the above
-- [ ] The ROC of model 1 is at least as high as model 2
+- [x] The ROC of model 1 is at least as high as model 2
 
-Question 8: You want to measure the proportion of people with high blood pressure in a population. You sample 1000 people and find that 55% have high blood pressure with a 90% confidence interval of (50%, 60%). What is the correct interpretation of this result?  
+> If model 1 performs at least as well on sensitivity and specificity relative to model 2, then we don't expect model 2 to have a better performance than model 1 on the accuracy metric.  Also, recall that the accuracy metric requires the choice of a specific threshold.
+
+#### Question 8:
+You want to measure the proportion of people with high blood pressure in a population. You sample 1000 people and find that 55% have high blood pressure with a 90% confidence interval of (50%, 60%). What is the correct interpretation of this result?  
 
 HINT: Please watch the video "Confidence interval" to help you answer this question.
 
@@ -196,9 +249,18 @@ HINT: Please watch the video "Confidence interval" to help you answer this quest
 - [ ] With 90% probability, the proportion of people with high blood pressure is between 50% and 60%
 - [ ] If we repeated this sampling, the middle of the confidence interval would be 55%, 90% of the time
 
-Question 9: One experiment calculates a confidence interval using 1000 samples, and the another computes it using 10000 samples. Which interval do you expect to be tighter (assume they use the normal approximation)?  
+
+> Correct
+> Confidence intervals are created so that 90% of the time you repeat the experiment, the interval will contain the true parameter value.
+
+
+#### Question 9:
+One experiment calculates a confidence interval using 1000 samples, and the another computes it using 10000 samples. Which interval do you expect to be tighter (assume they use the normal approximation)?  
 
 - [ ] Not enough information
 - [ ] 1,000 samples
 - [x] 10,000 samples
 - [ ] Cannot say with confidence
+
+> Correct
+> When we’re using a normal approximation, the width of our confidence interval depends on the variance of the normal distribution. Recall that the variance of each sample is identical, but the variance of the average is divided by n. Therefore since dividing by a larger number makes a quantity smaller, the variance of the average of 10000 samples should be less than that for 1000 samples, so the second confidence interval should be tighter.
