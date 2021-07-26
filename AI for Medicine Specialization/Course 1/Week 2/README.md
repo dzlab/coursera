@@ -56,7 +56,7 @@ By Bayes rule, this is
 <img src="https://render.githubusercontent.com/render/math?math=Prevalence = P(pos)">.  Recall that prevalence is how many actual positives there are in the population.
 
 ##### For the denominator:
-<img src="https://render.githubusercontent.com/render/math?math=P(\hat{pos}) = TruePos \plus FalsePos">.  In other words, the model's positive predictions are the sum of when it correctly predicts positive and incorrectly predicts positive.
+<img src="https://render.githubusercontent.com/render/math?math=P(\hat{pos}) = TruePos \add FalsePos">.  In other words, the model's positive predictions are the sum of when it correctly predicts positive and incorrectly predicts positive.
 
 The true positives can be written in terms of sensitivity and prevalence.
 
