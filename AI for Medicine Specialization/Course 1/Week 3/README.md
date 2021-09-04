@@ -29,3 +29,11 @@ We break up the 3D MRI volume into many 2D slices. Each one of these slices is p
 ![image](https://user-images.githubusercontent.com/1645304/132103552-db1bb336-4430-4ca1-9ac0-4eff0478e8f1.png)
 
 The drawback with this 2D approach is that we might lose important 3D context. For instance, if there is a tumor in one slice, there is likely to be a tumor in the slices right adjacent to it. Since we're passing in slices one at a time into the network, the network is not able to learn this useful context. 
+
+#### 3D Segmentation approach
+The size of the MRI volume makes it impossible to pass it in all at once into the model (due to the required memory and computation).
+Instead, we break up the 3D MRI volume into many 3D sub volumes, each has some width, height, and depth context. Then like in the 2D approach, we can feed in the sub volumes now one at a time into the model and then aggregate them at the end to form a segmentation map for the whole volume.
+
+The 3D approach capture some context in all of the width, height, and depth mentions but has similar drawback as the 2D approach.
+
+The disadvantage with this 3D approach is that we might still lose important spatial cortex. For instance, if there is a tumor in one sub volume, there is likely to be a tumor in the sub volumes around it too. Since we're passing in sub volumes one at a time into the network, the network will not be able to learn this possibly useful context.
