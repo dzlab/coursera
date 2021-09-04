@@ -218,3 +218,18 @@ Which of the following is an example of a prospective study?
 
 > Correct
 > A prospective study is the application of a model to data that is not historical.
+
+## Summary of AI for Medical Diagnosis
+### Citations
+Week 1 and Week 2
+- Chest X Ray 8 Dataset [link](https://arxiv.org/abs/1705.02315)
+- CheXNeXt [link](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002686)
+- Dermatology [link](https://www.nature.com/articles/nature21056)
+- Ophthalmology [link](https://www.ncbi.nlm.nih.gov/pubmed/27898976)
+- Pathology [link](https://jamanetwork.com/journals/jama/fullarticle/2665774)
+
+Week 3
+- Data - decathlon 10 challenge [link](https://decathlon-10.grand-challenge.org/)
+- Decathlon 10 paper (contains brief background on CT — see task_01 (brain tumour))  [link](https://arxiv.org/pdf/1902.09063.pdf)
+- 3D U-Net [link](https://arxiv.org/abs/1606.06650)
+- U-Net [link](https://arxiv.org/abs/1505.04597)
