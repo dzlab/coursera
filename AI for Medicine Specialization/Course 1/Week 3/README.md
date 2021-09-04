@@ -37,3 +37,5 @@ Instead, we break up the 3D MRI volume into many 3D sub volumes, each has some w
 The 3D approach capture some context in all of the width, height, and depth mentions but has similar drawback as the 2D approach.
 
 The disadvantage with this 3D approach is that we might still lose important spatial cortex. For instance, if there is a tumor in one sub volume, there is likely to be a tumor in the sub volumes around it too. Since we're passing in sub volumes one at a time into the network, the network will not be able to learn this possibly useful context.
+
+### 2D U-Net and 3D U-Net
