@@ -70,3 +70,41 @@ The soft dice loss will measure the error between our prediction map, P, and our
 - Then we take 1 minus this fraction, such that a higher loss corresponds to a small overlap and a low loss corresponds to a high overlap.
 
 The advantage of the soft dice loss is that it works well in the presence of imbalanced data. This is especially important in our task of brain tumor segmentation, when a very small fraction of the brain will be tumor regions.
+
+![image](https://user-images.githubusercontent.com/1645304/132105481-61dbaf94-6b39-4432-a948-ab8d98b3d32f.png)
+
+We can plug in these values into the soft dice loss for this particular example as 1- 2 times 2.2/2.47 + 3, which is 1- 4.4/5.47. And this comes out to approximately 0.2, which is the loss with this particular prediction, and with this particular ground truth, for this example.
+
+## Practical considerations
+
+### Different Populations and Diagnostic Technology
+Challenges and opportunities to make these systems part of routine medical practice.
+
+One of the main challenges with applying AI algorithms in the clinic, is achieving reliable generalization due to vary of reasons:
+
+- Let's say we developed our chest x-ray model on US data and want to deploy somewhere else. In India, the patient population might have x-rays that looked different than what the model has been trained on. As a very concrete example, **tuberculosis** is quite prevalent in India, but unlikely to be as prevalent in the hospitals where we've trained our model in the US.
+- Let's say we've been able to measure the model performance on data collected from a few countries over a few years, but MRI technology is not standard across the globe and across time. The latest scanners have much higher **resolution** than older scanners. Before we apply the segmentation model in a new hospital, we'd want to make sure that the model is able to generalize to the resolution of the scanner at the hospital.
+
+### External validation
+To be able to measure the generalization of a model on a population that it hasn't seen, we want to be able to evaluate on a test set from the new population. This is called external validation. External validation can be contrasted with internal validation, when the test set is drawn from the same distribution as the training set for the model.
+![image](https://user-images.githubusercontent.com/1645304/132105676-0b436e26-4b13-44c8-8641-5b99b93eebf0.png)
+
+If we find that we're not generalizing to the new population, then we could get a few more samples from the new population to create a small training and validation set and then fine-tune the model on this new data.
+![image](https://user-images.githubusercontent.com/1645304/132105706-b2112166-5a75-455a-b103-cbd76ae7ab4f.png)
+
+In retrospective data, there are often steps taken to process and clean the data, but in the real-world, the model has to work with the raw data. For example, the traineing data set on has been filtered to only include frontal x-rays, where the x-ray is taken from the front or the back of the patient. However, in the real-world, it is also common to take a fraction of the x-rays from the side of the patient. These are called lateral x-rays.
+![image](https://user-images.githubusercontent.com/1645304/132105760-ed8270b1-92f6-4e7d-99c3-4a860fdc80c5.png)
+
+### Measuring Patient outcomes
+Another challenge for the real-world deployment of AI models is that we need metrics to reflect clinical application.
+
+- One approach to this challenge includes **decision curve analysis**, which can help quantify the net benefit of using a model to guide patient care.
+- Another approach is to see what happens in the setting of a **randomized control trial** where we compare patient outcomes for patients on whom the AI algorithm is applied versus those on whom the AI algorithm is not applied.
+
+In the real world, we would want to analyze the effect of the model not just overall, but also on subgroups of the population. This would include patients of different ages, sex, and socioeconomic status. This allows us to find key algorithmic blind spots or unintended biases.
+
+For example, skin cancer classifiers that can achieve a performance level comparable to dermatologists when used on light skin patients have previously underperformed on images of darker skin tones.
+![image](https://user-images.githubusercontent.com/1645304/132105909-50b91a45-c78b-4884-aa65-b3f178b1369c.png)
+
+
+Finally one of the major challenges and opportunities to applying AI medical models in the real world is achieving a better understanding of how these algorithms will interact with the decision-making of clinicians. It is difficult and often impossible to understand the inner workings of models to understand how and why they make a certain decision.
