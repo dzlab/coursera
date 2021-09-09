@@ -70,3 +70,29 @@ Nowadays, developers aim to minimize latency and maximize throughput in customer
 - [x] Multi-model serving
 - [x] Optimizing inference models
 - [ ] Stress testing
+
+### Reading: Ungraded Labs - Best Practices
+As you progress through this course you will see that the majority of ungraded labs are hosted in our [public repo](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public) and are meant to be run in your local machine using a terminal. 
+
+Some of them do not require you to have a cloned version of the repo but some do. For this reason, we encourage you to clone the repo right away. For the labs that rely on files within the repo, the best way to follow along is to read its documentation from your browser while working on the cloned version of the repo on your local machine.
+
+To clone the repo, use the following command:
+```
+git clone https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public.git
+```
+or for cloning via SSH use:
+```
+git clone git@github.com:https-deeplearning-ai/machine-learning-engineering-for-production-public.git
+```
+
+If you are unsure which method to use, go for the first one.
+
+
+Have fun in the ungraded labs! 
+
+### Reading: Ungraded Lab - Introduction to Docker
+During this lab you will get a high level overview of Docker and some instructions to install it on your local machine.
+
+Follow this [link](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week1-ungraded-labs/C4_W1_Lab_1_Docker_Intro.md) to start the lab!
+
+## Introduction to Model Serving Infrastructure
