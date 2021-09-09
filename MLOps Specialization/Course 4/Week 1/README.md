@@ -35,3 +35,38 @@ We can scale the infrastructure used to meet these thresholds of response time a
 #### Balance Cost, Latency and Throughput
 there are tactics you can use to try to minimize any impact on your customer while you attempt to control cost. These may include reducing costs by sharing assets like GPU's, using multiple models to increase throughput, and perhaps even exploring optimizing your models.
 ![image](https://user-images.githubusercontent.com/1645304/132611481-1584eb6f-7d03-47ce-8bbf-b108884c8030.png)
+
+### Quiz: Introduction to Model Serving
+
+**Question 1**
+
+What are the three key components we should consider when serving an ML Model in a production environment? (Select all that apply)
+
+- [x] A model
+- [x] An interpreter
+- [ ] An orchestrator
+- [x] Input Data
+
+**Question 2**
+
+What happens after a while in operation to an offline-trained model dealing with new real-live data?
+
+- [x] The model becomes stale.
+- [ ] The model abruptly forgets all previously learned information.
+- [ ] The model adapts to new patterns.
+
+**Question 3**
+
+In applications that are not user-facing, is throughput more critical than latency for customer satisfaction?
+
+- [ ] No, because users might complain that the app is too slow.
+- [x] Yes, in this case, we are concerned with maximizing throughput with the lowest CPU usage.
+
+**Question 4**
+
+Nowadays, developers aim to minimize latency and maximize throughput in customer-facing applications. However, in doing so, infrastructure scales and costs increase. So, what strategies can developers implement to balance cost and customer satisfaction? (Select all that apply)
+
+- [x] GPU sharing
+- [x] Multi-model serving
+- [x] Optimizing inference models
+- [ ] Stress testing
