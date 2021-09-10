@@ -171,3 +171,89 @@ One example is MobileNets, and these are models that are specifically designed f
 ![image](https://user-images.githubusercontent.com/1645304/132788489-aa4d674c-ca9e-4edc-bb83-56fee5347bc2.png)
 
 ### Improving Prediction Latency and Reducing Resource Costs
+
+#### Other strategies to improve prediction latency and reduce resource costs
+- **TensorFlow Lite benchmarking tool** has a built-in profiler that can then show you per operator profiling statistics. This can help with understanding performance bottlenecks and identifying which operators dominate the compute time.
+- **Model optimization** which aims to create smaller models that are generally faster and more energy-efficient. This is especially important for deployments on mobile devices. TensorFlow Lite supports multiple optimization techniques such as quantization.
+- increase the number of interpreter threads to speed up the execution of apps but will use more resources and power.
+
+
+![image](https://user-images.githubusercontent.com/1645304/132794164-8b3e59f5-12e4-47c3-beb8-df887009de78.png)
+
+#### Web Applications for users
+You can go the other route and deploy a model to a server through a web application. The model is wrapped as an API service in this approach, and most serving infrastructures and languages have web frameworks that can help you to achieve this. 
+![image](https://user-images.githubusercontent.com/1645304/132794498-4356ddaf-f95c-4e82-bfea-362396e1ed3f.png)
+
+#### Serving systems for easy deployment
+Model servers can manage model deployment and eliminate the need for putting models into custom web applications. They also make it easy to update a rollback models, load, and unload models on demand or when resources are required, and manage multiple versions of models. 
+
+![image](https://user-images.githubusercontent.com/1645304/132794677-a02198d7-e834-411d-8bd9-f6c5d0a6ccdd.png)
+
+#### Clipper
+- Clipper helps you deploy a wide range of models built in frameworks like Cafe, TensorFlow, and Scikit-learn. Its overall aim is to be model agnostic.
+- Clipper includes a standard rest interface, so this makes it easy for you to integrate with production applications.
+- Clipper wraps your models in Docker containers if you want, for cluster and resource management.
+- It also helps you set service level objectives for reliable latencies.
+
+![image](https://user-images.githubusercontent.com/1645304/132794884-170575c8-fd76-4b13-8a80-c58c42b0b1db.png)
+
+#### TensorFlow Serving
+- TensorFlow Serving makes it easy to deploy new algorithms in experiments while keeping the same server architecture and APIs.
+- TensorFlow Serving provides out of the box integration with TensorFlow models, but it can also be extended to serve other types of models and data.
+- TensorFlow Serving offers both the REST and gRPC protocols, gRPC is often more efficient than REST.
+- It has a **version manager** that can easily load and rollback different versions of the same model and it allows clients to select which version to use for each request.
+- TensorFlow Serving has demonstrated performance of up to 100,000 requests per second per core.
+
+![image](https://user-images.githubusercontent.com/1645304/132794999-1ef41ab8-a72e-4cea-8c00-a42af761e450.png)
+
+#### Advantages of Serving with Managed Service
+![image](https://user-images.githubusercontent.com/1645304/132795227-d76990f3-2991-4964-b4e3-935b0fd2a427.png)
+
+### Creating and deploying models to AI Prediction Platform
+
+### Reading: Optional: Build, train, and deploy an XGBoost model on Cloud AI Platform
+This is an optional exercise and will mirror what was shown in the previous screencast. It requires a Google Cloud Platform (GCP) account and we placed instructions in the document in case you don't have one yet. If you can't set up an account at the moment, don't worry because you will still use the same tools in some of the course assignments. You'll be given free use of GCP in those labs. This is mainly here for reference to introduce model serving in the cloud.
+
+[Click here to view the tutorial!](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week1-ungraded-labs/C4_W1_Optional_Lab_1_XGBoost_CAIP/C4_W1_Optional_Lab_1.md)
+
+### Quiz: Introduction to Model Serving Infrastructure
+
+**1. Question 1**
+
+Why do models become more complex?
+
+- [ ] To cut down costs.
+- [ ] To reduce GPU usage.
+- [x] To increase accuracy.
+- [ ] To minimize latency.
+
+**2. Question 2**
+
+What is the difference between optimizing and satisficing metrics?
+
+- [ ] Optimizing metrics assess model complexity while satisficing metrics evaluate operation costs.
+- [ ] Optimizing metrics reflect operational constraints while satisficing metrics deal with model precision.
+- [x] Optimizing metrics measure the model's predictive effectiveness while satisficing metrics estimate the speed of its prediction latency.
+
+**3. Question 3**
+
+Which of the following are NoSQL solutions for implementing caching and feature lookup? (Select all that apply)
+
+- [ ] Amazon RDS
+- [x] Google Cloud Memorystore
+- [x] Google Cloud Firestore
+- [x] Amazon DynamoDB
+
+**4. Question 4**
+
+True Or False: The main advantage of deploying a model in a large data center accessed by a remote call is that you can disregard costs in favor of model complexity.
+
+- [x] False
+- [ ] True
+
+**5. Question 5**
+
+True Or False: You should always opt for on-device inference whenever possible.
+
+- [x] False
+- [ ] True
