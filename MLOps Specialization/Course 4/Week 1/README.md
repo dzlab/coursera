@@ -137,3 +137,37 @@ You may need caches to retrieve data with low latency (e.g. real time prediction
 #### NoSQL Databases: Caching and Feature Lookup
 You have to carefully choose from the different available offerings based on your requirements and then balance that with your budget constraints.
 ![image](https://user-images.githubusercontent.com/1645304/132787007-4cb499fb-ee57-4272-bdd7-b90c0b3a41c7.png)
+
+### Deployment Options
+#### Model Deployments
+- A centralized model in a data center that's access via a remote call.
+- distributed instances of the model to users so they can use it locally such as a mobile or embedded system. 
+
+#### Running in huge Data Centers
+Costs and efficiency are important at any scale, companies like Google constantly look for ways to improve resource utilization and reduce costs in applications in data centers.
+![image](https://user-images.githubusercontent.com/1645304/132787602-58ab5c03-465d-47a4-9498-087dd1ff726f.png)
+
+#### Constrained Environment: Mobile Phone
+- At most one GPU, which is shared by a number of applications.
+- limited GPU available and using it can lead to battery draining quickly or makes the phone too hot because of complex operations in your ML model. 
+- Storage limitation since users don't appreciate large apps using up storage on their phones. 
+
+![image](https://user-images.githubusercontent.com/1645304/132787767-4c9aa93b-8f71-4cb0-a50f-a4f708a95483.png)
+
+
+#### Restrictions in a Constrained Environment
+You may choose to deploy a model to a server and then expose it through a REST API so that we can use it for inference in our app. This might not be feasible to deploy a model to a server in environments where prediction latency is super-important or when a network connection may not always be available (a.g. autonomuous vehicule).
+
+![image](https://user-images.githubusercontent.com/1645304/132788175-cc6327bf-368b-4eab-894d-dfd61138155b.png)
+
+
+#### Prediction Latency is Almost Always important
+
+![image](https://user-images.githubusercontent.com/1645304/132788422-b5589af2-8458-455b-8017-707af5cb44b3.png)
+
+
+#### Choose Best Model for the Task
+One example is MobileNets, and these are models that are specifically designed for computer vision on mobile devices. All the work in performing trade-offs for the best mobile model had been done for you already and you can build on this.
+![image](https://user-images.githubusercontent.com/1645304/132788489-aa4d674c-ca9e-4edc-bb83-56fee5347bc2.png)
+
+### Improving Prediction Latency and Reducing Resource Costs
