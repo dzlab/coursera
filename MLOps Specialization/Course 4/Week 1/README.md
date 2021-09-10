@@ -96,3 +96,44 @@ During this lab you will get a high level overview of Docker and some instructio
 Follow this [link](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week1-ungraded-labs/C4_W1_Lab_1_Docker_Intro.md) to start the lab!
 
 ## Introduction to Model Serving Infrastructure
+
+### Introduction to Model Serving Infrastructure
+#### Optimizing Models for Serving
+More complex model architectures including more and more features. And this often results in longer prediction latencies and but hopefully a boost in prediction accuracy.
+![image](https://user-images.githubusercontent.com/1645304/132785673-a2b43268-240a-4688-b3ee-0d66920c8670.png)
+
+#### As Model Complexity Increases Cost Increases
+As models become more complex with more features. The resource requirements increase for every part of the training and serving infrastructure, increased resource requirements means increased costs.
+And increased hardware requirements management of larger model registries and this results in a higher support and maintenance burden.
+![image](https://user-images.githubusercontent.com/1645304/132785757-fba38cd2-0f6c-4f20-9a4d-a750912723ba.png)
+
+#### Balancing Cost and Complexity
+The Challenge for ML practitionners is to balance complexity and cost.
+
+#### Optimizing and Satisficing Metrics
+- model's optimizing metric reflects the model's predictive effectiveness and this includes things like accuracy, precision, recall, and so on.
+- Models gating metric reflects an operational constraint that the model has to satisfy, such as prediction latency.
+
+![image](https://user-images.githubusercontent.com/1645304/132785999-7090f30d-1f60-415e-a6d6-00ecff9b6bcf.png)
+
+One approach is to:
+1. Specify the serving infrastructure, CPU, GPU and all that. And then 
+2. Start increasing your model complexity to improve your model's predictive power until you hit one or more of your gating metrics on that infrastructure.
+3. Assess the results and either accept the model as it is or work to improve accuracy and or reduce complexity or make the decision to increase the specifications of the serving infrastructure.
+![image](https://user-images.githubusercontent.com/1645304/132786329-8faf7696-0a09-40ce-8184-a1396aef0c6b.png)
+
+#### Use of Accelerators in Serving Infrastructure
+These decisions can have a significant effect on your projects budget. 
+- GPUs tend to be optimized for parallel through pot and they are often used in training infrastructure. 
+- TP use as well as being useful in training have advantages for large complex models and large batch sizes, especially during inference.
+
+![image](https://user-images.githubusercontent.com/1645304/132786550-b21be0c6-6129-4d5f-890e-74ca56ea303d.png)
+
+#### Maintaining Input Feature Lookup
+You may need caches to retrieve data with low latency (e.g. real time prediction) as you cannot wait many seconds for retrieving data from the database. And this has cost implications.
+![image](https://user-images.githubusercontent.com/1645304/132786952-caf1880a-5697-4cd5-8a45-fffdb34f443a.png)
+
+
+#### NoSQL Databases: Caching and Feature Lookup
+You have to carefully choose from the different available offerings based on your requirements and then balance that with your budget constraints.
+![image](https://user-images.githubusercontent.com/1645304/132787007-4cb499fb-ee57-4272-bdd7-b90c0b3a41c7.png)
