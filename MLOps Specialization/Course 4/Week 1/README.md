@@ -413,3 +413,13 @@ What is the advantage of using the tensorflow-model-server-universal binary to i
 - [ ] It is a Fully optimized server.
 - [x] It works on most of the machines.
 - [ ] It includes platform specific instruction sets.
+
+### Ungraded Lab - Tensorflow Serving with Docker
+During this lab you will get a first look at using Tensorflow Serving in your local machine with help from Docker.
+
+Follow this [link](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week1-ungraded-labs/C4_W1_Lab_2_TFS_Docker.md) to start the lab!
+
+### Ungraded Lab - Serve a model with TensorFlow Serving
+During this lab you will get to see more of the internals and features of Tensorflow Serving by serving a real model.
+
+Follow this [link](https://colab.research.google.com/github/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week1-ungraded-labs/C4_W1_Lab_3_TFS.ipynb) to start the lab!
