@@ -395,3 +395,21 @@ for i in range(3):
 plt.show()
 ```
 ![image](https://user-images.githubusercontent.com/1645304/133005490-3d2f7dde-2445-463a-a779-865dd1567ea7.png)
+
+### TensorFlow Serving
+
+**1. Question 1**
+
+What is the most straightforward way of installing TensorFlow Serving?
+
+- [x] Using Docker Images
+- [ ] Building it from source
+- [ ] Using Available Binaries
+
+**2. Question 2**
+
+What is the advantage of using the tensorflow-model-server-universal binary to install TensorFlow Serving over the tensorflow-model-server binary?
+
+- [ ] It is a Fully optimized server.
+- [x] It works on most of the machines.
+- [ ] It includes platform specific instruction sets.
