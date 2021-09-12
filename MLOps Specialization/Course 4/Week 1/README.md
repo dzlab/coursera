@@ -257,3 +257,141 @@ True Or False: You should always opt for on-device inference whenever possible.
 
 - [x] False
 - [ ] True
+
+## Installing TensorFlow Serving
+
+### Installing TensorFlow Serving
+
+#### Install TensorFlow Serving
+Pull docker images
+the easiest and most recommended method
+```
+$ docker pull tensorflow/serving
+```
+
+the easiest to get GPU support with TF Serving
+```
+$ docker pull tensorflow/serving:latest-gpu
+```
+
+Using binaries
+![image](https://user-images.githubusercontent.com/1645304/132997534-beb44dd3-a902-42c4-90f5-bbe1f6960108.png)
+
+Building from source
+- See the complete documentation https://www.tensorflow.org/tfx/serving/setup#building_from_source
+
+Install using Aptitude (apt-get) on a Debian-based Linux system
+```
+$ echo "deb http://storage.googleapis.com/tensorflow-serving-apt stable tensorflow-model-server tensorflow-model-server-universal" | tee /etc/apt/sources.list.d/tensorflow-serving.list && curl https://storage.googleapis.com/tensorflow-serving-apt/tensorflow-serving.release.pub.gpg | apt-key add -
+$ apt update
+$ apt-get install tensorflow-model-server
+```
+#### Import the MNIST Dataset
+```python
+mnist = tf.keras.datasets.mnist
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+# Scale the values of the arrays below to be between 0.0 and 1.0
+train_images = train_images / 255.0
+test_images = test_images / 255.0
+
+# Reshape the arrays below by adding channel of with 1
+train_images = train_images.reshape(train_images.shape[0], 28, 28, 1)
+test_images = test_images.reshape(test_images.shape[0], 28, 28, 1)
+print("train_images.shape: {}, of {}".format(train_images.shape, train_images.dtype))
+print("test_images.shape: {}, of {}".format(test_images.shape, test_images.dtype))
+
+# train_images.shape: (60000, 28, 28, 1), of float64
+# test_images.shape: (10000, 28, 28, 1), of float64
+```
+
+#### Look at a Sample image
+```python
+idx = 42
+
+plt.imshow(test_images[idx].reshape(28, 28), cmp=plt.cm.binary)
+plt.title("True label: {}".format(test_labels[idx]), fontdict={"size": 16})
+plt.show()
+```
+
+![image](https://user-images.githubusercontent.com/1645304/133000918-6a067925-eba0-4f80-bad3-2a581fe74aeb.png)
+
+#### Build a model
+```python
+# Create a model
+model = tf.keras.Sequential([
+  tf.keras.layers.Conv2D(input_shape(28, 28, 1), filters=8, kernel_size=3, strides=2, activation='relu', name='Conv1'),
+  tf.keras.layers.Flatten(),
+  tf.keras.layers.Dense(10, activation=tf.nn.Softmax, name='Softmax')
+])
+model.summary()
+```
+
+#### Train the Model
+```python
+# Configure the model for training
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+epochs = 5
+
+# Train the model
+history = model.fit(train_images, train_labels, epochs=epochs)
+```
+
+#### Evaluate the Model
+```python
+# Evaluate the model on the test images
+results_eval = model.evaluate(test_images, test_labels, verbose=0)
+
+for metric, value in zip(model.metric_names, results_eval):
+  print(metric + ': {:.3}'.format(value))
+
+# loss: 0.098
+# accuracy: 0.969
+```
+
+#### Save the Model
+```python
+MODEL_DIR = tempfile.gettempdir()
+version = 1
+export_path = os.path.join(MODEL_DIR, str(version))
+
+if os.path.isdir(export_path):
+  print("Already saved a model, cleaning up")
+  !rm -r {export_path}
+  
+model.save(export_path, save_format="tf")
+
+print("export_path = {}".format(export_path))
+!ls -l {export_path}
+```
+
+#### Launch the Saved Model
+```python
+os.environ['MODEL_DIR'] = MODEL_DIR
+
+%%bash --bg
+nohup tensorflow_model_server --rest_api_port=8501 --model_name=digits_model --model_base_path="${MODEL_DIR}" > server.log 2>&1
+!tail server.log
+```
+
+#### Send an Inference Request
+```python
+data = json.dumps({"signature_name": "serving_default", "instance": test_images[0:3].tolist()})
+headers = {"content-type": "application/json"}
+json_response = requests.post('http://localhost:8501/v1/models/digits_model:predict', data=data, headers=headers)
+predictions = json.loads(json_response.text)['predictions']
+```
+
+#### Plot Predictions
+```
+plt.figure(figsize=(10, 15))
+
+for i in range(3):
+  plt.subplot(1, 3, i+1)
+  plt.imshow(test_images[i].reshape(28, 28), cmap=plt.cm.binary)
+  plt.axis('off')
+  color = 'green if np.argmax(predications[i]) == test_labels[i] else 'red'
+  plt.title('Predictions: {}\n True Label: {}'.format(np.argmax(predictions[i]), test_labels[i]), color=color)
+
+plt.show()
+```
+![image](https://user-images.githubusercontent.com/1645304/133005490-3d2f7dde-2445-463a-a779-865dd1567ea7.png)
