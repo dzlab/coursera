@@ -124,3 +124,71 @@ Popular Container Orchestration Tools:
 
 #### ML Workflow on Kubernetes - Kubeflow
 ![image](https://user-images.githubusercontent.com/1645304/133018496-46f1e926-59be-41ef-8bbe-e5470e065762.png)
+
+
+### Reading Learn about scaling with boy bands
+In the next few minutes you’ll learn about horizontal and vertical scaling. Before going into that, here’s a fun case study on managing scale. 
+
+In this extreme case a famous boy band called ‘One Direction’ hosted a 10-hour live stream on YouTube, where they instructed fans to go visit a web site with a quiz on it every 10 minutes. This led to a really interesting pattern in scalability where the application would have zero usage for the vast majority of the time, but then, every 10 minutes may have hundreds of thousands of people hitting it. 
+
+It’s a complex problem to solve when it comes to scaling. It could be very expensive to operate. Using smart scaling strategies, Sony Music and Google solved this problem very inexpensively. Laurence isn’t allowed to share how much it cost for the cloud services, but, when he and several of the other engineers went out for celebration drinks after the success of the project, the bar bill was more expensive than the cloud bill. (And they didn’t drink a lot!) 
+
+Check out the talk about how scaling worked for this system here: https://www.youtube.com/watch?v=aIxNm5Eed_8
+
+Learn about the event and the app here: https://www.computerweekly.com/news/2240228060/Sony-Music-Google-cloud-One-Directions-1D-Day-event-platform-services
+
+### Reading Explore Kubernetes and KubeFlow
+In the videos we explored Kubernetes and KubeFlow, and before going further, I strongly recommend that you have a play with them to see how they work. 
+
+#### Kubernetes
+First is Kubernetes. The site is https://kubernetes.io/, and at the top of the page, there’s a big friendly button that says ‘Learn Kubernetes Basics’:
+
+
+Click on this, and you’ll be taken to: https://kubernetes.io/docs/tutorials/kubernetes-basics/
+
+From here you can go through a lesson to create a cluster, deploy and app, scale it, update it and more. It’s interactive, fun, and worth a couple of hours of your time to really get into how Kubernetes works.
+
+You may also want to check this [video](https://youtu.be/H06qrNmGqyE) tutorial out. 
+
+#### KubeFlow
+For KubeFlow, visit: https://www.kubeflow.org/, and at the top of the page, there’s a Get Started button.
+
+
+Click on it to go to the tutorials. It doesn’t have the nice interactive tutorials that Kubernetes has, but, if you can, try to at least install KubeFlow on one of the deployment options listed on this page – even if it’s just your development machine. If you find it tricky to follow, don't worry because you will have an ungraded lab next week that will walk you through installing Kubeflow Pipelines (one of the Kubeflow components) in Kubernetes. In the meantime, you can watch [this playlist](https://www.youtube.com/watch?v=dC659IsHNyg&list=PLIivdWyY5sqLS4lN75RPDEyBgTro_YX7x&index=3&ab_channel=GoogleCloudTech) particularly video #5 on Kubeflow Pipelines to get a short intro to this toolkit.
+
+
+### Quiz: Scaling Infrastructure
+**1.Question 1**
+
+Why is managing scale paramount when serving a sophisticated model? (Select all that apply)
+
+- [ ] The changes in the dynamic environment in which the model operates may cause the model to drift.
+- [x] The high volumes of requests to the model for inference can overwhelm the server.
+- [ ] The costs of training deep neural networks with billions of operations on massive datasets are high.
+- [x] The number of parameters increases considerably in more extensive and more sophisticated networks.
+
+**2. Question 2**
+
+True or False: The elasticity of vertical scaling allows to upgrade the hardware resources without taking the app offline.
+
+- [x] False
+- [ ] True
+
+**3. Question 3**
+
+How do containers become lighter and more flexible than virtual machines?
+
+- [ ] By running the apps on a bin/library within an operating system that does not run on hardware.
+- [x] By using the same operating system for all partitions.
+- [ ] By having a hypervisor managing multiple instances of operating systems and apps.
+
+### Reading Ungraded Lab: Intro to Kubernetes
+In this lab, you will get more hands-on practice with Kubernetes in preparation for this week's graded assignment. If you haven't already, please clone the public repo. You can do so with the following commands:
+```
+git clone https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public
+```
+After that, please navigate to `course4/week2-ungraded-labs/C4_W2_Lab_2_Intro_to_Kubernetes/` then read the root `README.md` with your favorite Markdown reader. Alternatively, you can just clone the repo then just go [here](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/tree/main/course4/week2-ungraded-labs/C4_W2_Lab_2_Intro_to_Kubernetes) to use Github's built-in Markdown viewer. Either way, that README file will contain the instructions on how to run the lab in your machine. 
+
+In case you run into any issues, remember to post it in Discourse so mentors and course staff can assist. 
+
+Happy learning!
