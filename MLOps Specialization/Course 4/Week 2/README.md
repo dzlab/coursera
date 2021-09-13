@@ -85,3 +85,42 @@ In the TorchServe architecture, where does the actual inference take place?
 During this lab you will work with FastAPI and Docker to deploy a Dockerized version of your model while learning important concepts for container-based applications.
 
 Follow this [link](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week2-ungraded-labs/C4_W2_Lab_1_FastAPI_Docker/README.md) to start the lab!
+
+## Scaling Infrastructure
+
+### Scaling Infrastructure
+#### Why is Scaling Important?
+- The larger and more sophisticated the network, the more parameters that need to be tuned and fine-tuned. Large networks have many millions of parameters that need to be learned.
+- When you deploy your model to a server. Huge volumes of requests to the server for inference can overwhelm it. The ability to scale the runtime inference, as well as the training is vital.
+
+#### Vertical Scaling / Scale Up
+![image](https://user-images.githubusercontent.com/1645304/133012188-36139d7f-b015-4522-a5e2-42cc10c09686.png)
+
+#### Horizontal Scaling / Scale out
+![image](https://user-images.githubusercontent.com/1645304/133012246-019f840f-cf59-4917-bfbe-7cc0ef7d2462.png)
+
+#### Why Horizontal vs Vertical Scaling
+![image](https://user-images.githubusercontent.com/1645304/133012297-d532dad9-400f-4856-9e37-7b9c762d05e4.png)
+
+There are lots of vendors offering cloud platforms that allow you to scale horizontally. Keep an eye out for three things:
+Can I manually scale? What happens if I say I only want any instances of a VM, for example. Can I autoscale? What happens if I want my app to automatically spin up and down based on demand? What does latency and costs look like? Finally, how aggressive is the system at spinning up and down based on my need? Then of course, the next question arises, and that is, how can I manage my additional VMs to ensure that they have the content on them that I want? For machine learning, there might be a lot of dependencies, access to data, permissions, and many other configurable items.
+
+|Typical System Architecture|Virtual Machine (VM) Architecture|Containers Architecture|
+|-|-|-|
+|![image](https://user-images.githubusercontent.com/1645304/133013939-2d0aef86-0690-40ca-a1b3-74af6b206f46.png)|![image](https://user-images.githubusercontent.com/1645304/133016233-4aef2ec3-2ab4-4777-a403-c7483cbd0fb0.png)|![image](https://user-images.githubusercontent.com/1645304/133016294-8e9d3c10-28af-479d-9831-2824109fe76e.png)|
+
+#### Containers Advantges
+![image](https://user-images.githubusercontent.com/1645304/133017474-c3ae79ae-52b8-43ba-982a-38e18f10b7de.png)
+
+#### Docker: Container Runtime
+![image](https://user-images.githubusercontent.com/1645304/133017510-410bbac8-8784-41c9-87cb-85c616219b50.png)
+
+#### Enter Container Orchestration
+![image](https://user-images.githubusercontent.com/1645304/133017565-9635b2b6-2d85-434f-a4a9-62a8cc021d7b.png)
+
+Popular Container Orchestration Tools:
+- Kubernetes
+- Docker Swarm
+
+#### ML Workflow on Kubernetes - Kubeflow
+![image](https://user-images.githubusercontent.com/1645304/133018496-46f1e926-59be-41ef-8bbe-e5470e065762.png)
