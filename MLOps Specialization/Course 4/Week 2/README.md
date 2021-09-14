@@ -192,3 +192,38 @@ After that, please navigate to `course4/week2-ungraded-labs/C4_W2_Lab_2_Intro_to
 In case you run into any issues, remember to post it in Discourse so mentors and course staff can assist. 
 
 Happy learning!
+
+## Online Inference
+
+### Online Inference
+#### Online Inference
+![image](https://user-images.githubusercontent.com/1645304/133178615-311202f5-a638-42a0-b16c-0f2c83e133ab.png)
+
+#### Optimizing ML Inference
+**Latency** is how long does it take for the data to be passed to the server, for the inference to execute and then for the response to be handled. From the users perspective, it's the delay between their action and the response of the app. It's not just the inference, you could have a poorly designed app that has a fabulous model and if latency is introduced by the transport of the data or even the rendering of the results, the user will see a delay.
+![image](https://user-images.githubusercontent.com/1645304/133178684-45208998-5fe6-43bc-806c-cd72d9ae2d84.png)
+
+**Throughput** measured in requests managed per unit time is often more important for non customer facing systems like intensive data processing apps.
+![image](https://user-images.githubusercontent.com/1645304/133178906-0597df61-de92-4727-ade4-6b8cd4c61ef2.png)
+
+**Cost** Most budgets aren't unlimited, so work that you do to make latency and throughput as efficient as possible. There are multiple costs in your system:
+- Hardware but also things like
+- engineering and testing time and effort?
+- Software licenses,
+- opportunity costs for slow updates and
+- lost costs for new applications.
+![image](https://user-images.githubusercontent.com/1645304/133179080-e8c1b36d-57a2-4034-a60b-7b4e0685eb5b.png)
+
+#### Inference Optimization
+1. **Infrastructure**  The first is the infrastructure used to serve the models and handle the user input and output. This can be scaled with additional or more powerful hardware as well as containerized a virtualized environments like the ones we presented earlier this week.
+2. **Model Architecture** The second of course, is to understand your model architecture and the metrics was trained and tested with. Often there's a trade off between inference speed and accuracy, If a 99% accurate model is 10 times slower than a 98% accurate model, is it really worth the extra cost?
+3. **Model Compilation** If you know the hardware on which you're going to deploy the model You can refine your model graph and inference runtime to reduce memory consumption and latency. For example with a post training step that consists of creating a model artifact and a model execution runtime that's adapted to the underlying support hardware. 
+![image](https://user-images.githubusercontent.com/1645304/133179729-29324a7a-5ec4-43bd-ba7d-bf2a0aadba39.png)
+
+#### Additional Optimization
+There is lot hitting to the database, an optimization to consider is to cashe frequent data in something faster than a typical data store. But faster the storage, the more expensive it is, so there's a trade off here and it may not be feasible for all of your data to be in such a store. If you can find that trade off for how many to put in there, you can maximize for latency while minimizing your extra costs.
+![image](https://user-images.githubusercontent.com/1645304/133180103-ce5db3b0-6c11-4bdf-b70a-5c4193ee688d.png)
+
+#### NoSQL Databases Caching and Feature Lookup
+Fast data cashing is usually achieved using NoSQL databases on memory cashing. 
+![image](https://user-images.githubusercontent.com/1645304/133180369-b65dfb1e-f2ce-4133-88d4-eb49e25b73f9.png)
