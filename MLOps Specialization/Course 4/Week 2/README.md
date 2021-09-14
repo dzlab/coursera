@@ -227,3 +227,33 @@ There is lot hitting to the database, an optimization to consider is to cashe fr
 #### NoSQL Databases Caching and Feature Lookup
 Fast data cashing is usually achieved using NoSQL databases on memory cashing. 
 ![image](https://user-images.githubusercontent.com/1645304/133180369-b65dfb1e-f2ce-4133-88d4-eb49e25b73f9.png)
+
+### Quiz Online Inference
+**1. Question 1**
+
+What are the main features of prediction from online inference? (Select all that apply)
+
+- [x] They are generated in real-time upon request.
+- [x] They are based on a single data observation at runtime.
+- [x] They can be made at any time of the day on demand.
+- [ ] They are produced for all the data points at once.
+
+**2. Question 2**
+
+In which area of online inference is a model artifact and model run created to reduce memory consumption and latency?
+
+- [ ] Infrastructure
+- [ ] Model Architecture
+- [x] Model Compilation
+
+**3. Question 3**
+
+True or False: Fast data caching using NoSQL databases is a cheap way of optimizing inference.
+
+- [ ] True
+- [x] False
+
+### Reading Ungraded Lab - Latency testing with Docker Compose and Locust
+During this lab you will work with Docker Compose and Locust to perform load testing on the servers you coded in the previous ungraded lab.
+
+Follow this [link](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week2-ungraded-labs/C4_W2_Lab_3_Latency_Test_Compose/README.md) to start the lab!
