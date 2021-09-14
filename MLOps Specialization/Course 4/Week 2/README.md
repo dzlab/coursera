@@ -257,3 +257,205 @@ True or False: Fast data caching using NoSQL databases is a cheap way of optimiz
 During this lab you will work with Docker Compose and Locust to perform load testing on the servers you coded in the previous ungraded lab.
 
 Follow this [link](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week2-ungraded-labs/C4_W2_Lab_3_Latency_Test_Compose/README.md) to start the lab!
+
+## Data Preprocessing
+
+### Data Preprocessing
+We explored hardware and container strategies, model architectures, and things like caching in your app to make sure that data access doesn't become a bottleneck. But there are other places where you can optimize. 
+
+#### Data Preprocessing and Inference
+The observation data being passed into the system may be in one format but that's not necessarily the same format that the model was designed to take in. For example, a language model where the observation is a sentence that the user typed and is stored as a string. The model is designed to classify that text to see if it's toxic. NLP models like this are trained on input vectors where words are transformed into a high dimensional vector and sentences are sequences of these vectors.
+
+![image](https://user-images.githubusercontent.com/1645304/133183212-c84cfe5c-97f9-4174-843b-2b22de32ec62.png)
+
+#### Preprocessing Operations Needed Before Inference
+![image](https://user-images.githubusercontent.com/1645304/133183584-372d5a66-996c-41b2-9135-fc361ecc3f69.png)
+
+#### Processing After Obtaining Predictions
+Post processing of data is everything in pre processing can apply but usually in reverse. For example, in a smart reply app, the model may give a few predictions about what the best next sentences could be and these may be a sequence of vectors representing words in a sentence, but not the sentence itself. Your app will need to convert these into a string before returning them to the user.
+
+![image](https://user-images.githubusercontent.com/1645304/133183713-7a7143f3-60a8-40ec-94cc-d8fa3d92bbda.png)
+
+### Reading: Data preprocessing
+Apache Beam is a product that gives you a unified programming model that lets you implement batch and streaming data processing jobs on any execution engine. It’s ideally suited for data preprocessing!
+
+Go to https://beam.apache.org/get-started/try-apache-beam/ to try Apache Beam in a Colab so you can get a handle on how the APIs work. Make sure you try it in Python as well as Java by using the tabs at the top. 
+
+Note: You can click the `Run in Colab` button below the code snippet to launch Colab. In the Colab menu bar, click `Runtime > Change Runtime type` then select `Python 3` before running the code cells. You can get more explanations on the WordCount example [here](https://beam.apache.org/get-started/wordcount-example) and you can use the [Beam Programming Guide](https://beam.apache.org/documentation/programming-guide/) as well to look up any of the concepts.
+
+You can learn about TensorFlow Transform here: https://www.tensorflow.org/tfx/transform/get_started . It also uses Beam style pipelines but has modules optimized for preprocessing Tensorflow datasets.
+
+### Quiz: Data Preprocessing
+**1. Question 1**
+
+True or False: Data values that differ significantly from other observations are dealt with at the end of the preprocessing process.
+
+- [ ] True x
+- [x] False
+
+**2. Question 2**
+
+In which step you transform a given set of input features to generate a new set of more powerful features for prediction?
+
+- [x] Feature Construction
+- [ ] Feature Tuning
+- [ ] Feature Selection
+
+**3. Question 3**
+
+Which of the following are classic uses of Representation Transformations? (Select all that apply)
+
+- [x] One-hot encoding
+- [x] Vectorization
+- [ ] Normalization
+- [x] Change data format for the model
+
+## Batch Inference Scenarios
+
+### Batch Inference Scenarios
+
+#### Batch Inference
+In ML model can provide predictions in batches which will be applied to a use case at sometime in the future. Prediction based on batch inference is when your ML model is used in a batch scoring job for a large number of data points where predictions are not required or not feasible to generate in real-time. I
+
+![image](https://user-images.githubusercontent.com/1645304/133187131-ab5c9caf-28c8-4613-9d4a-b36b172c73e1.png)
+
+#### Advantages of Batch Inference
+- You can use complex machine learning models in order to improve the accuracy of your predictions since there's no constraint on inference time.
+- Caching of predictions like this is usually not required.
+- Batch inference can also wait for data retrieval to make predictions since the predictions are not available in real-time.
+ 
+![image](https://user-images.githubusercontent.com/1645304/133187282-66de83e1-2bf6-4fdc-b329-130e73e341a9.png)
+
+
+#### Limitations of Batch Inference
+Batch influence also has a few disadvantages:
+- Predictions cannot be made available for real-time purposes.
+- Update latency of predictions can be hours or sometimes even days.
+- Predictions are often made using old data.
+
+This is problematic in certain scenarios. Suppose a service like a movie streaming one generates recommendations at night. If a new user signs up they may not be able to see personalized recommendations right away. To get around this, the system is designed to show recommendations from other users:
+- in a similar demographic like the same age bracket or
+- maybe the same geolocation as a new user.
+
+![image](https://user-images.githubusercontent.com/1645304/133187571-1818ed49-b966-4dbe-ab66-2cee2e11a145.png)
+
+#### Important Metrics to Optimize
+You should always aim to increase the throughput in batch predictions rather than the latency. When data is available in batches the model should be able to process large volumes of data at a time. As throughput increases the latency with which each prediction is generated increases also. But this is not a big concern in batch prediction systems since predictions need not be available immediately. Predictions are usually stored for later use and hence, latency can be compromised.
+
+![image](https://user-images.githubusercontent.com/1645304/133188002-e5d9b35d-6c13-4b73-b72a-dfb3171b3911.png)
+
+Throughput of an ML model or Production System processing data in batches can be increased by:
+- usage of hardware accelerators like GPUs, TPUs and all that.
+- Also increase the number of servers or workers in which the model is deployed.
+- Load several instances of the models and multiple workers to increase the throughput. 
+
+![image](https://user-images.githubusercontent.com/1645304/133188131-8fe43818-8b00-4d7e-9273-51400e3ef6a1.png)
+
+#### Use Case - Product Recommendation
+New product recommendations on an e-commerce site can be generated on a recurring schedule then caching these predictions for easy retrieval. This can save inference costs since you don't need to guarantee the same latency as real-time inference needs to have.
+You can also use more predictions to train more complex models since you don't have the constraint of prediction latency. This helps personalization to a greater degree but using delayed data that may not include new information about the user.
+
+![image](https://user-images.githubusercontent.com/1645304/133188239-63b90b4f-54bd-485b-beb1-f949dc82c5e2.png)
+
+#### Use Case - Sentiment Analysis
+Based on the users reviews, usually in text format, you might want to predict if a review was positive, neutral or negative. Systems that analyze user sentiment for your products or services based on customer reviews can make use of a batch prediction on a recurring schedule. Some systems might generate products sentiments on a weekly basis, for example. Real-time prediction is not needed in this case since the customers and stakeholders are not waiting to complete an action in real time based on the predictions. Sentiment predictions can be used for improvements of services or products over time. As you can see, it's not really a real-time business process. 
+
+![image](https://user-images.githubusercontent.com/1645304/133188624-4c5fa01e-6acf-4da5-9d01-292c0be314ea.png)
+
+#### Use Case - Demand Forecasting
+You can use batch predictions for models that estimate the demand for your products perhaps on a daily basis for inventory and ordering optimization. It can be modeled as a time series problem since you're predicting future demand based on historical data. Since batch predictions have minimal latency constraints, time series models like AROMA, SARIMA or an RNN can be used.
+
+![image](https://user-images.githubusercontent.com/1645304/133189142-530cba5c-1272-403c-9cfe-800a0132e80e.png)
+
+### Quiz: Batch inference scenarios
+**1. Question 1**
+
+Which of the following are advantages of batch inference?
+
+- [ ] You achieve shorter latency of predictions.
+- [x] You can wait for data retrieval to make predictions since they are not made available in real time.
+- [x] You don’t need caching strategies so costs decrease.
+- [x] You can use complex machine learning models to improve accuracy since there is no constraint on inference time.
+
+**2. Question 2**
+
+True or False: The most important metric to optimize while performing batch predictions is throughput.
+
+- [ ] False
+- [x] True
+
+**3. Question 3**
+How can you save inference costs when generating recommendations on e-commerce?
+
+- [ ] Generating them every time a user logs in.
+- [x] Generating them on a schedule.
+- [ ] Using hardware accelerators.
+
+## Batch Processing with ETL
+
+### Batch Processing with ETL
+
+#### Data Processing - Batch and Streaming
+![image](https://user-images.githubusercontent.com/1645304/133190610-f1406ba5-7ec0-49ac-b0a0-1bdbad50ba09.png)
+
+#### ETL on data
+![image](https://user-images.githubusercontent.com/1645304/133190666-6299fa61-af0d-4f0b-9fed-357cb214de0a.png)
+
+#### ETL Pipelines
+![image](https://user-images.githubusercontent.com/1645304/133190737-46a27af1-7485-42b8-916e-59b887262bcd.png)
+
+#### Distributed Processing
+![image](https://user-images.githubusercontent.com/1645304/133190775-fae14455-e760-4fd4-ac04-c2d8c980fe55.png)
+
+#### ETL Pipeline components Batch Processing
+![image](https://user-images.githubusercontent.com/1645304/133190823-076c1930-a708-4a13-9cbb-88fb143edecf.png)
+
+#### ETL Pipeline components Streaming Processing
+![image](https://user-images.githubusercontent.com/1645304/133190910-a763316f-067a-463f-8857-58ab8197dff5.png)
+
+### Reading: Machine Learning with Apache Beam and TensorFlow
+This optional lab will show you how to preprocess, train, and make batch predictions on a machine learning model using Apache Beam and Tensorflow Transform. To prevent costs of using Cloud resources, you will just run the entire pipeline in Colab. We linked the original article which gives the option to run in GCP in case you want to give it a shot afterwards. 
+
+[Click here to launch Colab!](https://colab.research.google.com/github/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week2-ungraded-labs/C4_W2_Lab_4_ETL_Beam/C4_W2_Lab_4_Apache_Beam_and_Tensorflow.ipynb)
+
+### Quiz: Batch Processing with ETL
+**1. Question 1**
+
+What is the purpose of ETL pipelines?
+
+- [x] To extract data from data sources, transforming, and loading it into an output destination.
+- [ ] To codify and automate the workflow it takes to produce a machine learning model.
+- [ ] To make batch predictions.
+
+**2. Question 2**
+
+True or False: In distributed processing, latency increases because data is split into chunks and parallely processed by multiple workers.
+
+- [x] False
+- [ ] True
+
+**3. Question 3**
+
+Which of the following engines perform ETL on data? (Select all that apply)
+
+- [ ] Data Lake
+- [x] Google Cloud DataFlow
+- [x] Apache Beam
+- [x] Apache spark
+
+### Graded External Tool: Autoscaling TensorFlow model deployments with TF Serving and Kubernetes
+In this assignment, you will use TensorFlow Serving and Google Cloud Kubernetes Engine (GKE) to configure a high-performance, autoscalable serving system for TensorFlow models. More concretely, you will:
+
+1. Create a GKE cluster and deploy a model.
+
+2. Download the model files to a storage bucket.
+
+3. Create Kubernetes ConfigMap that points to the location of the model in the storage bucket.
+
+4. Create Kubernetes Deployment using a standard TensorFlow Serving image from Docker Hub.
+
+5. Create Kubernetes Service to expose the deployment through a load balancer.
+
+6. Configure Horizontal Pod Autoscaler.
+
+7. Test the model.
