@@ -86,5 +86,28 @@ Learn more about experiment tracking by checking this two resources out:
 |-|-|
 |![image](https://user-images.githubusercontent.com/1645304/133364578-f205f1c6-9851-47f5-9616-e08ca32f31a1.png)|![image](https://user-images.githubusercontent.com/1645304/133364703-cd6e915e-0007-438b-838a-1a80fcd9920e.png)|
 
+#### Growing Need for ML in Products and Services
+![image](https://user-images.githubusercontent.com/1645304/133364971-3acd6a75-cfbf-490f-a8f6-c4fb129a29dd.png)
+All of this drives an evolution of product focused engineering practices for ML, which is the basis for the development of MLOps.
 
+#### Key problems affecting ML efforts today
+![image](https://user-images.githubusercontent.com/1645304/133365170-b35fa897-ca08-4a80-83f2-2210bb51e198.png)
 
+#### Bridging ML and IT with MLOps
+![image](https://user-images.githubusercontent.com/1645304/133365417-5a6ee8ac-3b19-4019-a061-8b99937a9399.png)
+
+#### ML Solution Lifecycle
+![image](https://user-images.githubusercontent.com/1645304/133365589-d41d10fd-0b79-4788-bb71-88312eac6ab3.png)
+
+#### Standardizing ML processes with MLOps
+new practice for collaboration and communication between data scientists and operation professionals which is known as MLOps.
+
+![image](https://user-images.githubusercontent.com/1645304/133365820-5abbc6bb-1e77-45bb-8ec3-e7d8ae194abf.png)
+
+MLOps provides capabilities that will help you:
+- build, deploy and manage machine learning models that are critical for ensuring the integrity of business processes. It also provides a consistent and reliable means to move models from development to production by managing the ML Lifecycle.
+- Models generally need to be iterated and versioned. To deal with an emerging set of requirements, the models change based on further training or real world data that's closer to the current reality. MLOps also includes creating versions of models as needed and maintaining model version history.
+- And as the real world and its data continuously change, it's critical that you manage model decay. With MLOps you can ensure that by monitoring and managing the model results continuously, you can make sure that accuracy, performance and other objectives and key requirements are acceptable.
+- MLOps platforms also generally provide capabilities to audit compliance, access control, governance testing and validation and change and access logs. The logged information can include details related to access control like who is publishing models, why modifications are done and when models were deployed or used in production. You also need to secure your models from both attacks and unauthorized access.
+- MLOps solutions can provide some functionality to protect models from being corrupted by infected data, being made on unavailable by denial of service contracts or being inappropriately accessed by unauthorized users.
+- Once you've made sure your models are secure, trustable and good to go, it's often a good practice to establish a platform where they can be easily discovered by your team. MLOps can do that by providing model catalogs for models produced as well as a searchable model marketplace. These model discovery solutions will provide information to track the data origination, significance, model architecture and history and other metadata for a particular model.
