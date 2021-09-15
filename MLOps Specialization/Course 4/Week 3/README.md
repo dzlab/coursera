@@ -59,3 +59,32 @@ TensorBoard is an amazing tool for analyzing your training, which makes it very 
 
 ![image](https://user-images.githubusercontent.com/1645304/133360376-df7dd16c-fe02-4f78-b334-aa6c83c7aed9.png)
 
+#### Organizing model development
+![image](https://user-images.githubusercontent.com/1645304/133360552-f23dc202-1064-4a9f-a104-8a43cc563cf4.png)
+
+#### Tooling for teams
+Tooling, which enables sharing can really help. For example, if you can use the experiment management tool provided by Neptune AI to send a link that shares a comparison of the experiments. It makes it easy for you and your team to track and review progress, discuss problems and inspire new ideas. 
+![image](https://user-images.githubusercontent.com/1645304/133360700-527b3a19-b2ac-4ba9-a075-541361dd4077.png)
+Vertex TensorBoard and similar cloud based tools can also offer significant advantages. 
+![image](https://user-images.githubusercontent.com/1645304/133360817-ad62e4b9-74bc-466d-b318-302a9a975570.png)
+
+#### Experiments are iterative in nature
+
+![image](https://user-images.githubusercontent.com/1645304/133364243-74817a64-4582-4533-bda9-45fc509d9bd9.png)
+
+### Reading: Experiment Tracking
+Learn more about experiment tracking by checking this two resources out:
+
+1. Machine Learning Experiment Tracking - [link](https://towardsdatascience.com/machine-learning-experiment-tracking-93b796e501b0)
+2. Machine Learning Experiment Management: How to Organize Your Model Development Process - [link](https://neptune.ai/blog/experiment-management)
+
+### Introduction to MLOps
+
+#### Data Scientists vs. Software Engineers
+
+|Data Scientists|Software Engineers|
+|-|-|
+|![image](https://user-images.githubusercontent.com/1645304/133364578-f205f1c6-9851-47f5-9616-e08ca32f31a1.png)|![image](https://user-images.githubusercontent.com/1645304/133364703-cd6e915e-0007-438b-838a-1a80fcd9920e.png)|
+
+
+
