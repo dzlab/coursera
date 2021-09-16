@@ -111,3 +111,39 @@ MLOps provides capabilities that will help you:
 - MLOps platforms also generally provide capabilities to audit compliance, access control, governance testing and validation and change and access logs. The logged information can include details related to access control like who is publishing models, why modifications are done and when models were deployed or used in production. You also need to secure your models from both attacks and unauthorized access.
 - MLOps solutions can provide some functionality to protect models from being corrupted by infected data, being made on unavailable by denial of service contracts or being inappropriately accessed by unauthorized users.
 - Once you've made sure your models are secure, trustable and good to go, it's often a good practice to establish a platform where they can be easily discovered by your team. MLOps can do that by providing model catalogs for models produced as well as a searchable model marketplace. These model discovery solutions will provide information to track the data origination, significance, model architecture and history and other metadata for a particular model.
+
+### Quiz: ML Experiments Management and Workflow Automation
+**1. Question 1**
+
+Is debugging in ML different from debugging in software engineering?
+
+- [x] Yes, debugging in ML is fundamentally different from debugging in software engineering.
+- [ ] No, debugging in ML and software engineering aim for the same goals.
+
+**2. Question 2**
+
+Which of the following tools allow you to track experiments with notebooks? (Select all that apply)
+
+- [x] Nbdime
+- [x] Jupytext
+- [ ] nbQA
+- [x] Nbconvert
+
+**3. Question 3**
+
+Which of the following are some good tools for Data Versioning?
+
+- [x] Neptune
+- [ ] OpenRefine
+- [x] Pachyderm
+- [x] Delta Lake
+
+**4. Question 4**
+
+What are the main objectives of DevOps? (Select all that apply)
+
+- [x] Increasing deployment velocity.
+- [ ] Delivering software functionalities through automated deployments.
+- [x] Ensuring dependable releases of high-quality software.
+- [x] Shortening the systems development life cycle.
+
