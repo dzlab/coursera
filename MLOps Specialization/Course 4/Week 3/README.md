@@ -147,3 +147,26 @@ What are the main objectives of DevOps? (Select all that apply)
 - [x] Ensuring dependable releases of high-quality software.
 - [x] Shortening the systems development life cycle.
 
+## MLOps Methodology
+
+### MLOps Level 0
+#### What defines an MLOps process' maturity?
+![image](https://user-images.githubusercontent.com/1645304/133537215-979b4456-2370-4364-ad97-b89b3cfcd7ab.png)
+
+Triggers for automated model training and deployment can be calendar events, messaging or monitoring events, as well as changes in data, model training code and application code or detected model decay.
+
+#### MLOps level 0: Manual process
+- Manual, script-driven, interactive (jupyter) steps
+- Disconnection between ML and operations
+- Less frequent releases, so no CI/CD
+
+How do you scale?
+- Deployment and lack of active performance monitoring
+
+![image](https://user-images.githubusercontent.com/1645304/133537587-235c2785-04b5-44d3-979b-c9a5771fbe8c.png)
+
+#### Challenges for MLOps level 0
+
+![image](https://user-images.githubusercontent.com/1645304/133537833-457df1ea-2243-4fe3-b05b-5359fb889834.png)
+
+
