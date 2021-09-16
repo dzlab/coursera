@@ -303,3 +303,28 @@ Not Trigger. In MLOps, it's common to retrain your model when new data is availa
 Not Feature Store. A feature store lets you discover and reuse available feature sets. You can also serve up-to-date feature values from the feature store and avoid training-serving skew. However, it's not designed for contingencies.
 Incorrect
 Not Model Registry. The Model Registry component is a centralized model store, set of APIs, and UI, to collaboratively manage the MLOps lifecycle. It provides model lineage, model versioning, stage transitions, and annotations, but it won't resume execution if interrupted.
+
+### Reading: Ungraded Lab: Developing TFX Custom Components
+In this lab, you will practice some of the methods discussed in building TFX components. Namely, you will develop a custom component to filter a dataset, then reuse the standard CsvExampleGen to make another custom component. Please click on the link below to start the lab.
+
+[Launch Colab!](https://colab.research.google.com/github/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week3-ungraded-labs/C4_W3_Lab_2_TFX_Custom_Components.ipynb)
+
+### Graded External Tool: TFX on Google Cloud AI Platform Pipelines
+Tensorflow Extended (TFX) is Google's end-to-end platform for training and deploying TensorFlow models into production. TFX pipelines orchestrate ordered runs of a sequence of components for scalable, high-performance machine learning tasks in a directed graph.
+
+In this assignment, you will use the following tools and services to deploy and run a TFX pipeline on Google Cloud that automates the development and deployment of a TensorFlow 2.3 Classifer to predict forest cover from cartographic data:
+
+1. The TFX CLI utility to build and deploy a TFX pipeline.
+
+2. A hosted AI Platform Pipeline instance (Kubeflow Pipelines) for TFX pipeline orchestration.
+
+3. Dataflow jobs for scalable, distributed data processing for TFX components.
+
+4. An AI Platform Training job for model training and flock management for parallel tuning trials.
+
+5. AI Platform Prediction as a model server destination for blessed pipeline model versions.
+
+6. CloudTuner and AI Platform Vizier for advanced model hyperparameter tuning using the Vizier algorithm.
+
+7. You will then create and monitor pipeline runs using the TFX CLI as well as the KFP UI.
+
