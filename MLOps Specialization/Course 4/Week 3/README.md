@@ -260,5 +260,46 @@ The last step is to plug the new custom component into a TFX pipeline.
 
 ![image](https://user-images.githubusercontent.com/1645304/133543881-5ee56a5c-2b66-4ff9-88f5-e631004e84c9.png)
 
+### Reading: Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build
+To learn more about MLOps using TFX please check this [document](https://cloud.google.com/architecture/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build) out.
 
+### Quiz: MLOps Methodology
 
+**1. Question 1**
+
+What determines the maturity of the MLOps process?
+
+- [ ] The standard pattern for MLOps building.
+- [ ] The accuracy of the deployed model.
+- [ ] The technical scenario for MLOps implementation.
+- [x] The level of automation of ML pipelines.
+
+**2. Question 2**
+
+True Or False: At the basic level of maturity, or level 0, tracking or logging are required to detect model performance degradation and other model behavioral drifts.
+
+- [x] False
+- [ ] True
+
+**3. Question 3**
+
+What steps do you need to introduce into the ML pipeline to move towards MLOps maturity level one? (Select all that apply)
+
+- [x] Automated Data Validation
+- [ ] Automated Theorem Proving
+- [x] Automated Model Validation
+- [ ] Dependently Typed Programming
+
+**4. Question 4**
+
+In case of an interruption, what key component of the pipeline allows you to resume execution seamlessly?
+
+- [x] Metadata Store
+- [ ] Models Registry
+- [ ] Trigger
+- [ ] Feature Store
+
+Not Trigger. In MLOps, it's common to retrain your model when new data is available. Once programmatically scheduled, the trigger runs the pipeline when more data is added, but it won't resume execution if the process is interrupted.
+Not Feature Store. A feature store lets you discover and reuse available feature sets. You can also serve up-to-date feature values from the feature store and avoid training-serving skew. However, it's not designed for contingencies.
+Incorrect
+Not Model Registry. The Model Registry component is a centralized model store, set of APIs, and UI, to collaboratively manage the MLOps lifecycle. It provides model lineage, model versioning, stage transitions, and annotations, but it won't resume execution if interrupted.
