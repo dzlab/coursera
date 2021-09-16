@@ -169,4 +169,95 @@ How do you scale?
 
 ![image](https://user-images.githubusercontent.com/1645304/133537833-457df1ea-2243-4fe3-b05b-5359fb889834.png)
 
+### MLOps Levels 1&2
+#### MLOps Levels 1: ML pipeline automation
+
+![image](https://user-images.githubusercontent.com/1645304/133540304-d3c52d88-31c3-4d23-b98e-674bcfe634e3.png)
+
+Notice here that since the steps of the experimentation are orchestrated, the transition between steps is automated. That enables you to rapidly iterate on your experiments, and makes it easier to move the whole pipeline to production.
+
+![image](https://user-images.githubusercontent.com/1645304/133540429-fb60ff77-6820-460a-b955-6a2771bbd6a5.png)
+
+![image](https://user-images.githubusercontent.com/1645304/133540504-037ee19f-afac-4d33-b01c-24ebbfcd35cb.png)
+
+
+An optional additional component for level one MLOps is a feature store. A feature store is a centralized repository where you standardize the definition, storage, and access of features for training and serving. Ideally, a feature store will provide an API for both high throughput batch serving and low latency, real time serving for the feature values, and support both training and serving workloads. A feature store helps you in many ways. First of all, it lets you discover and reuse available feature sets instead of recreating the same or similar feature sets, avoiding having similar features that have different definitions by maintaining features and their related metadata. Moreover, you can potentially serve up to date feature values from the feature store, and avoid training serving skew by using the feature store as a data source for experimentation, continuous training, and online serving. This approach makes sure that the features used for training are the same ones used during serving. For example, when it comes to experimentation, data scientists can get an offline extract from the feature store to run their experiments. For continuous training, the automated training pipeline can fetch a batch of the up to date feature values of the data set. For online prediction, the prediction service can fetch feature values such as customer demographic features, product features, and current session aggregation features.
+
+#### MLOps level 2 CI/CD pipeline automation
+This diagram presents one of the current architectures, which is focused on enabling rapid and reliable update of the pipelines in production. This requires robust automated CICD to enable your data scientists and ML engineers to rapidly explore new ideas around feature engineering, model architecture, and hyperparameters.
+
+These MLOps setup includes components like source code control, test and build services, deployment services, a model registry, a feature store, a metadata store, and a pipeline orchestrator.
+
+![image](https://user-images.githubusercontent.com/1645304/133541453-701febd8-ede4-4b51-a37c-f8e34a73ca3b.png)
+
+![image](https://user-images.githubusercontent.com/1645304/133541680-be332f4d-6e41-41a3-ac18-4af611e16364.png)
+
+### Reading: MLOps Resources
+If you want to learn more about MLOps check this [blog](https://neptune.ai/blog/mlops-what-it-is-why-it-matters-and-how-to-implement-it-from-a-data-scientist-perspective) out, and visit this curated [list](https://github.com/visenger/awesome-mlops) of references  for more information, ideas, and tools.
+
+### Reading: Ungraded Lab: Intro to Kubeflow Pipelines
+In this lab, you will familiarize yourself with Kubeflow Pipelines, a platform for building and organizing machine learning workflows. You will be using this as well in the Qwiklabs this week so it's good to practice using it. Please click on the link below to start the lab.
+
+[Launch Colab!](https://colab.research.google.com/github/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week3-ungraded-labs/C4_W3_Lab_1_Intro_to_KFP/C4_W3_Lab_1_Kubeflow_Pipelines.ipynb)
+
+### Developing Components for an Orchestrated Workflow
+
+#### Orchestrate your ML workflows with TFX
+![image](https://user-images.githubusercontent.com/1645304/133542336-78e1ab7e-6e36-4cd4-aea1-1a7be905f8a5.png)
+
+
+#### Hello TFX
+The components in orange are a training pipeline and the ones in green are an inference pipeline for doing batch inference
+![image](https://user-images.githubusercontent.com/1645304/133542430-7f41d924-318d-4d7d-8866-0bf5f516f720.png)
+
+#### Anatomy of a TFX Component
+
+![image](https://user-images.githubusercontent.com/1645304/133542613-6bc0e571-50b7-4574-b066-690cf9af3fcd.png)
+
+#### TFX components at runtime
+![image](https://user-images.githubusercontent.com/1645304/133542840-d504a3d4-2338-46f4-bb28-b0dfc1a1d747.png)
+
+#### Python function-based components
+In this style you write a function that is decorated and annotated with type hints. The type hints describe the InputArtifacts, OutputArtifacts and parameters of your component.
+![image](https://user-images.githubusercontent.com/1645304/133543001-9d0a66ad-e3b5-405d-bd5d-be4781529ae8.png)
+
+#### Container-based components
+Container-based components are backed by containerized command line arguments or programs rather. And in some ways are similar to creating a Docker file. To create one, you need to specify a Docker container image that includes your components dependencies. Then you call the create container component function and pass the component definition, including the components, inputs, outputs and parameters.
+
+![image](https://user-images.githubusercontent.com/1645304/133543030-a8c64f06-bad9-4002-8edf-fdf027e425ee.png)
+
+
+There are other parts of the configuration, like the container image name and optionally the image tag. Finally, for the body of the component, you have the command parameter which defines the container entry point command line. As with docker files this isn't executed within a shell unless you specify that in your command line.
+
+![image](https://user-images.githubusercontent.com/1645304/133543139-c32142ee-92c3-48c5-8f39-d30cbcf31f7d.png)
+
+This approach is the most suitable for including non-python code in your pipeline or for building Python components with complex runtime environments or dependencies.
+
+#### Fully custom components
+![image](https://user-images.githubusercontent.com/1645304/133543391-9f4de4ea-1ba2-40e3-bbbd-a8b6d5e6187f.png)
+
+
+#### Defining input and output specifications
+![image](https://user-images.githubusercontent.com/1645304/133543454-92844261-fbcc-4480-beef-c7dd797772d9.png)
+
+#### Implement the executor
+![image](https://user-images.githubusercontent.com/1645304/133543531-7f5d978f-559c-490b-9b39-cdd15e898f2b.png)
+
+![image](https://user-images.githubusercontent.com/1645304/133543574-fcd8b2d3-d5f9-4285-b56f-d74a97da2afe.png)
+
+
+#### Make the component pipeline-compatible
+First you need to make the component class a subclass of base_component.BaseComponent or a different component if you're extending an existing component. And next you assign class variables, SPEC_CLASS and executor spec with a component spec and executor classes respectively, that you just defined. The final step to completing the custom component is to finish implementing the init, which will initialize the component. Here you define the constructor function by using the arguments to the function to construct an instance of the component spec class and invoke the super function with that value along with an optional name.
+
+![image](https://user-images.githubusercontent.com/1645304/133543638-37bc6663-1538-4883-962c-e8f48e7df41e.png)
+
+#### Completing the component class
+![image](https://user-images.githubusercontent.com/1645304/133543746-933e06cf-13d6-4610-86c0-234a2084e40f.png)
+
+#### Assemble into a TFX pipeline
+The last step is to plug the new custom component into a TFX pipeline.
+![image](https://user-images.githubusercontent.com/1645304/133543779-0960e372-4787-43f2-a618-7282e03fb3db.png)
+
+![Uploading image.png…]()
+
 
