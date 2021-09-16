@@ -258,6 +258,7 @@ First you need to make the component class a subclass of base_component.BaseComp
 The last step is to plug the new custom component into a TFX pipeline.
 ![image](https://user-images.githubusercontent.com/1645304/133543779-0960e372-4787-43f2-a618-7282e03fb3db.png)
 
-![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/1645304/133543881-5ee56a5c-2b66-4ff9-88f5-e631004e84c9.png)
+
 
 
