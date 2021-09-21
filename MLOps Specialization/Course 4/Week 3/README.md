@@ -328,3 +328,36 @@ In this assignment, you will use the following tools and services to deploy and 
 
 7. You will then create and monitor pipeline runs using the TFX CLI as well as the KFP UI.
 
+## Model Management and Deployment Infrastructure
+
+### Managing Model Versions
+#### Why versioning ML models?
+In normal software development, especially with teams, organizations rely on version control software to help teams manage and control changes to their code. But imagine if you didn't have that.
+- How would you enable multiple developers to stay in sync?
+- How do you roll back when there are problems?
+- How would you do continuous integration?
+ 
+Well, just like with software development, when you're developing models, you have all of these needs and more.
+
+![image](https://user-images.githubusercontent.com/1645304/134100481-2efeb795-ca19-440f-9825-a43d68ebacc3.png)
+
+#### How ML Models are versioned?
+![image](https://user-images.githubusercontent.com/1645304/134100572-11b7ce39-e7fb-45f7-b562-9fb44518da2d.png)
+
+#### A Model Versioning Proposal
+
+I'd like to focus on how to retrieve older models, leverage model lineage, and use model registries to simplify production workflow. 
+![image](https://user-images.githubusercontent.com/1645304/134100701-22df271d-b2a3-427f-8012-50c472c551fb.png)
+
+
+#### Retrieving older models
+You may have an intuition that for an ML framework to retrieve older models, the framework has to be internally versioning the models through some versioning technique.
+![image](https://user-images.githubusercontent.com/1645304/134100736-26a9537e-31b1-4f9f-9a68-a75309164863.png)
+
+
+#### What is model lineage?
+One technique is by making use of model lineage. Model lineage is a set of relationships among the artifacts that resulted in the trained model. To build model artifacts, you have to be able to track the code that builds them and the data, including pre-processing operations that the model was trained and tested with. ML orchestration frameworks like TFX will store this model lineage for many reasons including recreating different versions of the model when necessary. Note that model lineage usually only includes those artifacts and operations that were part of model training. Post-training artifacts and operations are usually not part of the lineage.
+![image](https://user-images.githubusercontent.com/1645304/134100844-8da34ecc-c046-4c1a-9cdf-4fba41d39b74.png)
+
+
+ 
