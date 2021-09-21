@@ -360,4 +360,70 @@ One technique is by making use of model lineage. Model lineage is a set of relat
 ![image](https://user-images.githubusercontent.com/1645304/134100844-8da34ecc-c046-4c1a-9cdf-4fba41d39b74.png)
 
 
- 
+#### What is model registry?
+![image](https://user-images.githubusercontent.com/1645304/134101009-5bf5375b-d454-401e-968c-85efac3f5ebf.png)
+
+#### Metadata stored by model registry
+![image](https://user-images.githubusercontent.com/1645304/134101080-d8b49aab-4c29-416a-bb70-93db68d06624.png)
+
+#### Capabilities Enabled by Model Registries
+![image](https://user-images.githubusercontent.com/1645304/134101371-63b2222a-848d-4e7d-8e5c-b617f825f13c.png)
+
+#### Examples of Model Registries
+![image](https://user-images.githubusercontent.com/1645304/134101428-eab66d9f-ac12-48ad-882f-1a9f60dd7319.png)
+
+
+### Reading: Ungraded Lab - Model Versioning with TF Serving
+During this lab you will see how you can use Tensorflow Serving to host different versions of your models either by numerical versioning or by using labels.
+
+Follow this [link](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week3-ungraded-labs/C4_W3_Lab_3_TFS_Model_Versioning/README.md) to start the lab!
+
+### Reading: ML Model Management
+Take a deeper dive into managing ML model versions by checking this [blog](https://neptune.ai/blog/machine-learning-model-management) out.
+
+### Continuous Delivery
+
+#### What is Continuous Integration (CI)
+![image](https://user-images.githubusercontent.com/1645304/134101620-22150b2b-70ac-4c0c-8cfc-2e3d6c06dfa9.png)
+
+
+#### What is Continous Delivery (CD)
+![image](https://user-images.githubusercontent.com/1645304/134101667-914346e2-bb1b-41b7-9b15-331457c514fa.png)
+
+
+#### CI/CD Infrastructure
+![image](https://user-images.githubusercontent.com/1645304/134101790-acffd76f-061b-4585-b657-3e4cdd4ae397.png)
+
+
+#### Unit Testing in CI
+![image](https://user-images.githubusercontent.com/1645304/134103423-0741bf0d-e29a-4314-8d9b-cf17a6c339cd.png)
+
+
+#### Unit Testing Input Data
+Unit testing for data is not the same as performing data validation on your raw features. It's primarily concerned with the results of your feature engineering. You can write unit tests to check if engineered features are calculated correctly. It includes tests to check whether they are scaled or normalized correctly. One hot vector values are correct and embedding are generated and used correctly, etc. And you will also do tests to confirm if columns and data are the correct types in the right range, not empty and so forth.
+
+![image](https://user-images.githubusercontent.com/1645304/134103510-f21d0d62-93a3-4de6-a125-b61e922c6aaa.png)
+
+
+#### Unit Testing Model Performance
+![image](https://user-images.githubusercontent.com/1645304/134103649-52b26b41-c2d8-4556-b6db-91e82e6c68a5.png)
+
+
+#### ML Unit Testing Considerations
+![image](https://user-images.githubusercontent.com/1645304/134103762-b2e604d2-6e18-4383-b5f4-179afebec65b.png)
+
+
+#### Infrastructure validation
+![image](https://user-images.githubusercontent.com/1645304/134103869-167d24ca-aa92-454f-8d23-5201ada1cf02.png)
+
+
+### Reading: Ungraded Lab - CI/CD pipelines with GitHub Actions
+During this lab you will work with GitHub Actions to configure and run your own CI/CD pipelines to unit test the webserver you coded in a previous ungraded lab.
+
+Follow this [link](https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public/blob/main/course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/README.md) to start the lab!
+
+### Reading: Continuous Delivery
+Explore this [website](https://continuousdelivery.com/) to learn more about continuous delivery.
+
+
+### Progressive Delivery
