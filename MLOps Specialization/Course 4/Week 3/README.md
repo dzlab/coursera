@@ -427,3 +427,97 @@ Explore this [website](https://continuousdelivery.com/) to learn more about cont
 
 
 ### Progressive Delivery
+
+#### Progressive Delivery
+an improvement over CI/CD. It includes many modern software and development processes including canary deployments, A/B testing, bandits, and observability. It focuses on gradually rolling out new features in order to limit potential negative impact and gauge user response to new product features.
+![image](https://user-images.githubusercontent.com/1645304/134271113-f4ba44b4-f57b-476e-b989-afa34c5a326a.png)
+
+#### Complex Model Deployment Scenarios
+![image](https://user-images.githubusercontent.com/1645304/134271174-6d79c731-630d-4e9e-a05f-4db070e3265a.png)
+
+#### Blue/Green deployment
+A simple form of progressive delivery is blue/green deployment where there are two production serving environments. Requests flow through a load balancer which directs traffic to the currently live environment which is called blue. Meanwhile, a new version is deployed to the green environment which acts as a staging setup where a series of tests are conducted to ensure performance and functionality. After passing the tests, traffic is directed to the green deployment. If there are any problems, traffic can be moved back to blue. This means that there's no downtime during deployment, rollback is easy, and there is a high degree of reliability, and it includes smoke testing before going live. 
+
+![image](https://user-images.githubusercontent.com/1645304/134271273-e5cf2837-129d-46d7-86c5-6db61dc6cbd4.png)
+
+
+#### Canary deployment
+similar to a blue/green deployment, but instead of switching the entire incoming traffic from blue to green all at once, traffic is switched gradually. As traffic begins to use the new version, the performance of the new version is monitored. If necessary, the deployment can be stopped and reversed with no downtime and minimal exposure of users to the new version. Eventually, all the traffic is being served using the new version.
+
+![image](https://user-images.githubusercontent.com/1645304/134271437-55292e93-79e2-4421-a906-18bf997f3652.png)
+
+#### Live Experimentation
+Progressive deployment is closely related to live experimentation. Live experimentation is used to test models to measure the actual business results delivered or data as closely associated with business results as you can actually measure.
+
+![image](https://user-images.githubusercontent.com/1645304/134271545-2ffaa469-7384-43b8-8726-1c3f44c7786d.png)
+
+#### Live Experimentation: A/B Testing
+One simple form of live experimentation is A/B testing. In A/B testing, you have at least two different models or perhaps n different models and you compare the business results between them to select the model that gives the best business performance.
+
+![image](https://user-images.githubusercontent.com/1645304/134271678-5e4e9eb0-498d-4e30-913b-336546ebe54a.png)
+
+![image](https://user-images.githubusercontent.com/1645304/134271759-d87da599-1714-4104-aa3e-215cdc7fd1ca.png)
+
+
+#### Live Experimentation: Multi-Armed Bandit (MAB)
+An even more advanced approach is multi-armed bandits. The multi-armed bandit approach is similar to A/B testing but uses ML to test or to learn rather from test results which are gathered during the test. As it learns which models are performing better, it dynamically routes more and more requests to the winning models. What this means is that eventually, all of the requests will be routed to a single model or smaller group of similarly performing models. One of the major benefits of that is that it minimizes the use of low-performing models by not waiting for the end of the test to select the winner. The multi-arm bandit approach is a reinforcement learning architecture which balances exploration and exploitation.
+
+![image](https://user-images.githubusercontent.com/1645304/134271910-79487762-9d1d-42b6-955b-6f18466e23a1.png)
+
+#### Live Experimentation: Contextual Bandit
+An even more advanced approach is contextual bandit. The contextual bandit algorithm is an extension of the multi-arm bandit approach where you also factor in the customer's environment or other context of the request when choosing a bandit. The context affects how reward is associated with each bandit, so as contexts change, the model should learn to adapt its bandit choice. For example, consider recommending clothing choices to people in different climates. A customer in a hot climate will have a very different context than a customer in a cold climate. Not only do you want to find the maximum reward, you also want to reduce the reward loss when you're exploring different bandits. When judging the performance of a model, the metric that measures the reward loss is called regret which is the difference between the cumulative reward from the optimal policy and the model's cumulative sum of rewards over time. The lower the regret, the better the model. Contextual bandits helps with minimizing regret.
+
+![image](https://user-images.githubusercontent.com/1645304/134272133-8da5401f-2bf2-4cc1-96e8-28aedfc6a353.png)
+
+### Reading: Progressive Delivery
+Explore more about progressive delivery with Kubernetes operators allowing for minimum downtime and easy rollbacks in this [documentation](https://codefresh.io/docs/docs/ci-cd-guides/progressive-delivery/).
+
+### Quiz: Model Management and Deployment Infrastructure
+
+**1- Question 1**
+
+When does the minor version number increase in the MAJOR.MINOR.PIPELINE approach of model versioning?
+
+- [ ] When you make incompatible API changes.
+- [x] When we’ve improved the model's output.
+- [ ] When you make backward-compatible bug fixes. x
+- [ ] When we have an incompatible data change.
+
+**2- Question 2**
+
+Which well known product uses pipeline execution versioning?
+
+
+- [ ] Google Cloud AI Prediction
+- [ ] Microsoft Azure AI
+- [x] TensorFlow Extended
+
+**3- Question 3**
+
+What are some non-standard ML Unit Testing Considerations? (Select all that apply)
+
+
+- [ ] Code Coverage
+- [x] Mocking
+- [ ] Uniqueness
+- [x] Data Coverage
+
+ 
+**4- Question 4**
+
+Which of the following is true about the comparison between canary and blue-green deployment?
+
+
+- [x] Canary is cheaper than a blue-green deployment because it does not require two production environments.
+- [ ] Blue-green deployment is more complex, slower, and harder to implement than canary deployment.
+- [ ] Canary deployment is riskier than blue-green deployment because it shifts all user traffic at once.
+
+### Graded External Tool: Implementing Canary Releases of TensorFlow model deployments with Kubernetes and Istio
+In this assignment, you will use Istio on Google Kubernetes Engine (GKE) and TensorFlow Serving to create canary deployments of TensorFlow machine learning models. More concretely, you will:
+
+1. Prepare a GKE cluster with the Istio add-on for TensorFlow Serving.
+
+2. Create a canary release of a TensorFlow model deployment.
+
+3. Configure various traffic splitting strategies.
+
