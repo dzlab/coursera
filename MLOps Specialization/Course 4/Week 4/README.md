@@ -32,3 +32,11 @@ Unlike a pure software system, there are two additional components to consider i
 Code and config also take on additional complexity and sensitivity in an ML system due to two aspects, entanglement and configuration. Entanglement, and no, I'm not referring here to quantum entanglement, refers to the issue where changing anything, changes everything. Here, you need to be careful with feature engineering and features selection and understand your model sensitivity. Configuration can also be an issue because model hyper parameters, versions and features are often controlled in a system config and the slightest error here can cause radically different model behavior that won't be picked up with traditional software tests. Again, requiring additional very specialist monitoring.
 
 ![image](https://user-images.githubusercontent.com/1645304/134276086-d335e71f-5b40-497e-9bfe-e45af8e38563.png)
+
+### Observability in ML
+#### What is observability?
+Observability measures how well you can infer the internal states of a system by just knowing the inputs and outputs. For ML, this means monitoring and analyzing the prediction requests and the generated predictions from your models. Observability isn't a new concept, it actually comes from control system theory where it has been well established for decades. In control system theory, observability and controllability are closely linked. You can only control a system to the extent that you can observe it. Looking at an ML-based product or service, this maps to the idea that controlling the accuracy of the results overall, usually across different versions of the model, requires observability. This also adds to the importance of model interpretability. 
+
+![image](https://user-images.githubusercontent.com/1645304/134441421-4b95d74b-a400-4c61-87d1-5dfd05108f2e.png)
+
+#### Complexity of observing modern systems
