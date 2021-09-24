@@ -167,10 +167,10 @@ In service based architectures, Dapper style tracing works by propagating tracin
 
 ![image](https://user-images.githubusercontent.com/1645304/134609337-dd3bbe7a-9ad0-44e5-a75f-f3909cc1f632.png)
 
-#### Reading: Monitoring Machine Learning Models in Production
+### Reading: Monitoring Machine Learning Models in Production
 Check this [resource](https://christophergs.com/machine%20learning/2020/03/14/how-to-monitor-machine-learning-models/) out to learn more about ML monitoring and logging.
 
-#### Quiz: Model Monitoring and Logging
+### Quiz: Model Monitoring and Logging
 
 **1. Question 1**
 
@@ -208,3 +208,13 @@ What are the advantages of Logging for ML Monitoring? (Select all that apply)
 - [x] Logs are easy to generate.
 - [x] Logs provide valuable insight.
 
+### Graded External Tool: Data Loss Prevention: Qwik Start - JSON
+The Data Loss Prevention API provides programmatic access to a powerful detection engine for personally identifiable information (PII) and other privacy-sensitive data in unstructured data streams.
+
+In this assignment, you will:
+
+1. Create a service account key.
+
+2. Set up a JSON file and send it to the Data Loss Prevention API, to inspect a string of data for sensitive information.
+
+3. Redact any sensitive information that was found.
