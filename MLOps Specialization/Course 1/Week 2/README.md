@@ -2,7 +2,7 @@
 
 Selecting and Training a Model
 
-
+## Quiz: Selecting and Training a Model
 Question 1
 Which of these is a more accurate description of a data-centric approach to ML development?
 - [ ] Holding the training data fixed, work to improve your neural network’s architecture to do well on the problem.
@@ -18,7 +18,7 @@ Say you have an algorithm that diagnoses illnesses from medical X-rays, and achi
 Question 3
 Which of these statements about establishing a baseline are accurate? Check all that apply.
 - [ ] Open-source software should not be used to establish a baseline, since the performance of a good open source implementation might be too good and thus too hard to beat. 
-- [ ] It can be established based on an older ML system
+- [x] It can be established based on an older ML system
 - [x] For unstructured data problems, using human-level performance as the baseline can give an estimate of the irreducible error/Bayes error and what performance is reasonable to achieve.
 - [x] Human level performance (HLP) is generally more effective for establishing a baseline on unstructured data problems (such as images and audio) than structured data problems
 
@@ -27,10 +27,12 @@ On a speech recognition problem, say you run the sanity-check test of trying to 
 
 - [ ] Create a training set of this example repeated 100 times to force the algorithm to learn to fit this example well.
 - [ ] Train the algorithm on a larger dataset to help it to fit the data better.
-- [x] Use data augmentation on this one audio clip to make sure the algorithm hears a variety of examples of “today’s weather” to fit this phrase better.
-- [ ] Debug the code/algorithm/hyperparameters to make it pass this sanity-check test first, before moving to larger datasets.
+- [ ] Use data augmentation on this one audio clip to make sure the algorithm hears a variety of examples of “today’s weather” to fit this phrase better.
+- [x] Debug the code/algorithm/hyperparameters to make it pass this sanity-check test first, before moving to larger datasets.
 
-References
+> No, your algorithm should be able to overfit to a single training example. If it's unable to do so, there must be an error in the implementation. First debug the error, then add more data! 
+
+## References
 Week 2: Select and Train Model
 If you wish to dive more deeply into the topics covered this week, feel free to check out these optional references. You won’t have to read these to complete this week’s practice quizzes.
 
@@ -38,11 +40,11 @@ If you wish to dive more deeply into the topics covered this week, feel free to 
 - Error analysis - https://techcommunity.microsoft.com/t5/azure-ai/responsible-machine-learning-with-error-analysis/ba-p/2141774
 - Experiment tracking - https://neptune.ai/blog/ml-experiment-tracking
 
-Papers
+## Papers
 - Brundage, M., Avin, S., Wang, J., Belfield, H., Krueger, G., Hadfield, G., … Anderljung, M. (n.d.). Toward trustworthy AI development: Mechanisms for supporting verifiable claims∗. Retrieved May 7, 2021http://arxiv.org/abs/2004.07213v2
 - Nakkiran, P., Kaplun, G., Bansal, Y., Yang, T., Barak, B., & Sutskever, I. (2019). Deep double descent: Where bigger models and more data hurt. Retrieved from http://arxiv.org/abs/1912.02292
 
-Modeling challenges
+## Quiz Modeling challenges
 Question 1
 You are working on a binary classification ML algorithm that detects whether a patient has a specific disease. In your dataset, 98% of the training examples (patients) don’t have the disease, so the dataset is very skewed. Accuracy on both positive and negative classes is important. You read a research paper claiming to have developed a system that achieves 95% on ____ metric. What metric would give you the most confidence they’ve built a useful and non-trivial system? (Select one) 
 
