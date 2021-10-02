@@ -9,6 +9,87 @@ If you wish to dive more deeply into the topics covered this week, feel free to 
 Geirhos, R., Janssen, D. H. J., Schutt, H. H., Rauber, J., Bethge, M., & Wichmann, F. A. (n.d.). Comparing deep neural networks against humans: object recognition when the signal gets weaker∗. Retrieved May 7, 2021, from Arxiv.org website: https://arxiv.org/pdf/1706.06969.pdf
 
 
+## Quiz: Data Definition and Baseline
+
+Question 1
+Which of these statements do you agree with regarding structured vs. unstructured data problems?
+- [ ] It is generally easier for humans to label data and to apply data augmentation on structured data than unstructured data. 
+- [ ] It is generally easier for humans to label data on unstructured data, and easier to apply data augmentation on structured data.
+- [ ] It is generally easier for humans to label data on structured data, and easier to apply data augmentation on unstructured data.
+- [x] It is generally easier for humans to label data and to apply data augmentation on unstructured data than structured data.
+
+
+Question 2
+Take speech recognition. Some labelers transcribe with “...” (as in, “Um… today’s weather”) whereas others do so with commas “,”. Human-level performance (HLP) is measured according to how well one transcriber agrees with another. You work with the team and get everyone to consistently use commas “,”. What effect will this have on HLP?
+
+- [ ] HLP will decrease.
+- [ ] HLP will stay the same.
+- [x] HLP will increase.
+
+Question 3
+Take a phone visual inspection problem. Suppose even a human inspector looking at an image cannot tell if there is a scratch. If however the same inspector were to look at the phone directly (rather than an image of the phone) then they can clearly tell if there is a scratch. Your goal is to build a system that gives accurate inspection decisions for the factory (not publish a paper). What would you do?
+
+- [ ] Get a big dataset of many training examples, since this is a challenging problem that will require a big dataset to do well on. 
+- [x] Try to improve their imaging (camera/lighting) system to improve the quality or clarity of the input images x.
+- [ ] Try to improve the consistency of the labels, y.
+- [ ] Carefully measure HLP on this problem (which will be low) to make sure the algorithm can match HLP.
+
+Question 4
+You are building a system to detect cats. You ask labelers to please “use bounding boxes to indicate the position of cats.” Different labelers label as follows:
+What is the most likely cause of this?
+
+- [ ] Labelers have not had enough coffee. 
+- [ ] Lazy labelers. 
+- [ ] That this should have been posed as a segmentation rather than a detection task. 
+- [x] Ambiguous labeling instructions.
+
+Question 5
+You are building a visual inspection system. HLP is measured according to how well one inspector agrees with another. Error analysis finds:
+It might be worth checking for label consistency on both scratch and discoloration defects. But if you had to pick one to start with, which would you pick?
+
+- [x] It is more promising to check (and potentially improve) label consistency on discoloration defects than scratch defects, since HLP is lower on discoloration and thus there’s more room for improvement.
+- [ ] It is more promising to check (and potentially improve) label consistency on scratch defects than discoloration defects, since HLP is higher on scratch defects and thus it’s more reasonable to expect high consistency.
+
+Question 6
+To implement the data iteration loop effectively, the key is to take all the time that’s needed to construct the right dataset first, so that all development can be done on that dataset without needing to spend time to update the data.
+
+- [ ] True
+- [x] False
+
+Question 7
+You have a data pipeline for product recommendations that (i) cleans data by removing duplicate entries and spam, (ii) makes predictions. An engineering team improves the system used for step (i). If the trained model for step (ii) remains the same, what can we confidently conclude about the performance of the overall system?
+
+- [ ] It's not possible to say - it may perform better or worse.
+- [x] It will get worse because stage (ii) is now experiencing data/concept drift.
+- [ ] It will definitely improve since the data is now more clean.
+- [ ] It will get worse because changing an earlier stage in a data pipeline always results in worse performance of the later stages.
+
+Question 8
+What is the primary goal of building a PoC (proof of concept) system?
+
+- [ ] To build a robust deployment system.
+- [ ] To collect sufficient data to build a robusts system for deployment.
+- [ ] To select the most appropriate ML architecture for a task.
+- [x] To check feasibility and help decide if an application is workable and worth deploying.
+
+Question 9
+MLOps tools can store meta-data to keep track of data provenance and lineage. What do the terms data provenance and lineage mean?
+ 
+- [x] Data provenance refers to where the data comes from, and data lineage the sequence of processing steps applied to it.
+- [ ] Data provenance refers to the sequence of processing steps applied to a dataset, and data lineage refers to where the data comes from.
+- [ ] Data provenance refers data pipeline, and data lineage refers to the age of the data (i.e., how recently was it collected).
+- [ ] Data provenance refers the input x, and data lineage refers to the output y.
+
+Question 10
+You are working on phone visual inspection, where the task is to use an input image, x, to classify defects, y. You have stored meta-data for your entire ML system, such as which the factory each image came from. Which of the following are reasonable uses of meta-data?
+
+- [ ] As an alternative to having to comment your code.
+- [ ] As another input provided to human labelers (in addition to the image x) to boost HLP.
+- [x] Keeping track of data provenance and lineage.
+- [x] To suggest tags or to generate insights during error analysis.
+
+
+
 ### PRACTICE QUIZ
 Practice Quiz • 10 MIN10 minutes
 Scoping (optional)
