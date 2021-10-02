@@ -251,12 +251,16 @@ True Or False: The main advantage of deploying a model in a large data center ac
 - [x] False
 - [ ] True
 
+> Google constantly looks for ways to improve its resource utilization and reduce costs in its applications and data centers.
+
 **5. Question 5**
 
 True Or False: You should always opt for on-device inference whenever possible.
 
-- [x] False
-- [ ] True
+- [ ] False
+- [x] True
+
+> Even though there are exceptions, you should always opt for on-device inference whenever possible.
 
 ## Installing TensorFlow Serving
 
