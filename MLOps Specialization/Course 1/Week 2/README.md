@@ -56,15 +56,20 @@ You are working on a binary classification ML algorithm that detects whether a p
 Question 2
 On the previous problem above with 98% positive examples, if your algorithm is print(“1”) (i.e., it says everyone has the disease). Which of these statements is true?
 
-- [x] The algorithm achieves 0% precision.
-- [ ] The algorithm achieves 100% recall.
+- [ ] The algorithm achieves 0% precision.
+- [x] The algorithm achieves 100% recall.
 - [ ] The algorithm achieves 100% precision.
 - [ ] The algorithm achieves 0% recall.
 
+> precision is the number of True Positives / (True Positives + False Positives).
+> Remember, recall is the number of True Positives / (True Positives + False Negatives).
+
 Question 3
 True or False? During error analysis, each example should only be assigned one tag. For example, in a speech recognition application you may have the tags: “car noise”, “people noise” and “low bandwidth”. If you encounter an example with both car noise and low bandwidth audio, you should use your judgement to assign just one of these two tags rather than apply both tags. 
-- [ ] False
-- [x] True
+- [x] False
+- [ ] True
+
+>  You can have as many tags as you want when you do error analysis. Having an accurate understanding of where your errors are coming from is an important part of error analysis, and necessary to identify where there is room for improvement and prioritize solutions.
 
 Question 4
 You are building a visual inspection system. Error analysis finds:
@@ -79,18 +84,17 @@ Based on this, what is the more promising type of defect to work on?
 - [x] Scratch defects, because the gap to HLP is higher and thus there’s more room for improvement.
 - [ ] Work on both classes equally because they are each 50% of the data. 
 
-5.
-Question 5
+5. Question 5
 You’re considering applying data augmentation to a phone visual inspection problem. Which of the following statements are true about data augmentation? (Select all that apply)
 
-1 point
 
 - [ ] Data augmentation should distort the input sufficiently to make sure they are hard to classify by humans as well. 
 - [x] GANs can be used for data augmentation.
 - [ ] Data augmentation should try to generate more examples in the parts of the input space where the algorithm is already doing well and there’s no need for improvement.
 - [x] Data augmentation should try to generate more examples in the parts of the input space where you’d like to see improvement in the algorithm’s performance.
 
-Data Definition and Baseline
+
+## Quiz: Data Definition and Baseline
 
 Question 1
 Which of these statements do you agree with regarding structured vs. unstructured data problems?
