@@ -4,6 +4,30 @@
 Summary of compute option features
 ![image](https://user-images.githubusercontent.com/1645304/135768028-ed245a0a-d201-401b-8612-e6355fb7c4f0.png)
 
+### Availability, Reliability, and Scalability of Infrastructure
+When we design systems, we need to consider three nonfunctional requirements: availability, reliability, and scalability.
+- **Availability** is defined as the ability of a user to access a resource at a specific time. Availability is usually measured as the percentage of time that a system is operational.
+- **Reliability**, the probability that a system will meet service-level objectives for some duration of time. Reliability is often measured as the mean time between failures.
+- **Scalability** is the ability of a system to handle increases in workload by adding resources to the system as needed. It implies that:
+  - As workload increases, resources will be available to process that workload.
+  - As workload decreases, the amount of allo- cated resources will decrease to a level sufficient to meet the workload plus some marginal extra capacity.
+
+### Making Compute Resources Available, Reliable, and Scalable
+employ clusters of machines or virtual machines with load balancers and autoscalers to distribute workload and adjust the size of the cluster to meet demand.
+
+#### Compute Engine
+- Managed instance groups (MIGs): MIGs are defined using a template. Templates include specifications for the machine type, boot disk image or container image, labels, and other instance properties. All members of a MIG are identical. When an instance in a MIG fails, it is replaced with an identically configured VM.
+- Load balancers direct traffic only to responsive instances
+  - Global load balancers: HTTP(S) Load Balancing, SSL Proxy, and TCP Proxy.
+  - Regional load balancers are Network TCP/UDP, Internal TCP/UDP, and Internal HTTP(S)
+- Instance groups can be either:
+  - Zonal instance groups, all instances are created in the same zone.
+  - Regional instance groups place instances in multiple zones in the same region. higher availability because the MIG could withstand a zone-level failure
+- Autoscalers add and remove instances according to workload. Uses a policy that specifies the criteria for adjusting the size of the group:
+  - CPU utilization and other metrics collected by Stackdriver,
+  - load-balancing capacity, and
+  - the number of messages in a queue.
+
 
 ## Resources
 - The Data Dossier by Linux Academy https://lucid.app/lucidchart/0ca44a63-4ea4-4d78-8367-2465512d21be/view
