@@ -28,6 +28,13 @@ employ clusters of machines or virtual machines with load balancers and autoscal
   - load-balancing capacity, and
   - the number of messages in a queue.
 
+#### Kubernetes Engine
+Kubernetes deploys containers in an abstraction known as a pod. When pods fail, they are replaced much like failed instances in a managed instance group.
+
+Nodes in Kubernetes Engine belong to a pool, and with the autorepair fea- ture turned on, failed nodes will be reprovisioned automatically.
+When using Kubernetes Engine, you can specify:
+- whether the endpoint for accessing the cluster is zonal or regional (cluster accessible even if there is a failure in a zone).
+- A high availability cluster configuration that replicates master and worker nodes across multiple zones.
 
 ## Resources
 - The Data Dossier by Linux Academy https://lucid.app/lucidchart/0ca44a63-4ea4-4d78-8367-2465512d21be/view
