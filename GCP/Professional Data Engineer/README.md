@@ -4,3 +4,17 @@
 - The Data Dossier by Linux Academy https://lucid.app/lucidchart/0ca44a63-4ea4-4d78-8367-2465512d21be/view
 - https://github.com/sathishvj/awesome-gcp-certifications/blob/master/professional-data-engineer.md
 - https://sathishvj.medium.com/notes-from-my-google-cloud-professional-data-engineer-exam-530d11966aa0
+
+(390 Questions) Google cloud Professional Data Engineer Dumps 2020 by SkillCertPro
+
+Google Cloud Professional Data Engineer Exam Practice Questions and Dumps: Exam Study Guide for Professional Data Engineer Latest Version (Paperback)
+
+https://www.gratisexam.com/google-certification/
+
+https://towardsdatascience.com/how-i-passed-google-professional-data-engineer-exam-in-2020-2830e10658b6
+
+https://www.coursera.org/collections/googlecloud-cert-discount
+
+https://github.com/GoogleCloudPlatform/training-data-analyst
+
+https://www.coursera.org/professional-certificates/gcp-data-engineering
