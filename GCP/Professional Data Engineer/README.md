@@ -14,6 +14,7 @@ https://www.gratisexam.com/google-certification/
 https://towardsdatascience.com/how-i-passed-google-professional-data-engineer-exam-in-2020-2830e10658b6
 
 https://www.coursera.org/collections/googlecloud-cert-discount
+https://www.coursera.org/promo/google-cloud-free-courses-2021
 
 https://github.com/GoogleCloudPlatform/training-data-analyst
 
