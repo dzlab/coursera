@@ -278,3 +278,15 @@ Stay up to date with the latest resources on migrating your workloads to the clo
 - [Cloud SQL Documentation](https://cloud.google.com/sql/) + [release blog](https://cloud.google.com/blog/products/databases/)
 - [Dataproc Documentation](https://cloud.google.com/dataproc/)  +  [release blog](https://cloud.google.com/blog/products/dataproc)
 
+## Predict Visitor Purchases Using BigQuery ML
+
+### Lab: Predicting Visitor Purchases with a Classification Model with BigQuery ML
+In this lab, you learn to perform the following tasks:
+
+- Use BigQuery to find public datasets
+- Query and explore the ecommerce dataset
+- Create a training and evaluation dataset to be used for batch prediction
+- Create a classification (logistic regression) model in BQML
+- Evaluate the performance of your machine learning model
+- Predict and rank the probability that a visitor will make a purchase
+
