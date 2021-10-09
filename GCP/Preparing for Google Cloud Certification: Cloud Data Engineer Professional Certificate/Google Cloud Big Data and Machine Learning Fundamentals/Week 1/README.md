@@ -820,3 +820,13 @@ In ML, a row of data is called a(n) ________ and a column of data is called a(n)
 2.instance or observation
 3.feature
 
+### Reading: Module Resources
+- [Cloud Pub/Sub Documentation](https://cloud.google.com/pubsub/) + [release blog](https://cloud.google.com/pubsub/docs/release-notes)
+- [Cloud Dataflow Documentation](https://cloud.google.com/dataflow/) + [release blog](https://cloud.google.com/blog/products/data-analytics/) + [templates](https://cloud.google.com/dataflow/docs/guides/templates/provided-templates)
+- [Data Studio Documentation](https://developers.google.com/datastudio/)
+- [Blog: Using Google Sheets with BigQuery](https://cloud.google.com/blog/products/g-suite/connecting-bigquery-and-google-sheets-to-help-with-hefty-data-analysis)
+- [BigQuery - Scheduling queries](https://cloud.google.com/bigquery/docs/scheduling-queries)
+- [BigQuery ML - Creating a k-means clustering model](https://cloud.google.com/bigquery-ml/docs/kmeans-tutorial)
+- [Blog Post: Building a data science team](https://towardsdatascience.com/how-to-hire-a-machine-learning-team-b8055fff57f)
+- [Blog Post:  Ten roles for your data science team](https://hackernoon.com/top-10-roles-for-your-data-science-team-e7f05d90d961)
+
