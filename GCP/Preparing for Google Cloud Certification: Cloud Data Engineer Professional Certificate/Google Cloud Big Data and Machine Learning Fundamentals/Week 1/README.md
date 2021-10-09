@@ -272,3 +272,9 @@ Cloud SQL and Cloud Dataproc offer familiar tools (MySQL and Hadoop/Pig/Hive/Spa
 
 
 ### Reading: Module Resources
+Stay up to date with the latest resources on migrating your workloads to the cloud:
+
+- [Migrating Hadoop to Google Cloud](https://cloud.google.com/solutions/migration/hadoop/hadoop-gcp-migration-overview)
+- [Cloud SQL Documentation](https://cloud.google.com/sql/) + [release blog](https://cloud.google.com/blog/products/databases/)
+- [Dataproc Documentation](https://cloud.google.com/dataproc/)  +  [release blog](https://cloud.google.com/blog/products/dataproc)
+
