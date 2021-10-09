@@ -746,3 +746,77 @@ ORDER BY
   predicted_will_buy_on_return_visit DESC;
 ```
 </details>
+
+### Quiz Module Review
+**1. Question 1**
+
+Which of the below are the core services that make up BigQuery? (choose the correct 2)
+
+- [x] Query service
+- [ ] Storage service x
+- [ ] Data Optimization service x
+- [ ] Machine Learning service x
+
+**2. Question 2**
+
+You want to know how many rows are in the BigQuery Public Dataset on San Francisco Bike Shares. What could you do?
+
+
+- [x] In the BigQuery Web UI, find the table and click the details tab and view the rows.
+- [x] Run the below query:
+```
+SELECT
+COUNT(*) AS total_trips
+FROM
+`bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+```
+- [ ] Run the below query:
+```
+SELECT
+SUM(*) AS total_trips
+FROM
+`bigquery-public-data.san_francisco_bikeshare.bikeshare_trips`
+```
+
+**3. Question 3**
+
+True or False: You can query a Google Spreadsheet directly from BigQuery without loading it in first.
+
+- [x] True
+- [ ] False
+
+**4. Question 4**
+You have a taxi service data schema that has three columns:
+
+- ride_id
+- ride_timestamp
+- ride_status
+
+You want to use BigQuery for reporting but you don't want to split your table into multiple sub-tables. What native features of BigQuery data types should you explore? (check all that apply)
+
+- [ ] Consider making ride_timestamp an ARRAY of timestamp values so each ride_id row in your table could still be unique and easy to report off of.
+- [x] Consider adding lat / long geographic data points as new columns and using GIS Functions to quickly plot the distances your fleet has travelled.
+- [ ] Consider renaming the ride_id column to 'label' so you can use it in a BigQuery ML model to predict the ride_id of the next ride.
+
+**5. Question 5**
+
+Complete the following
+
+In ML, a row of data is called a(n) ________ and a column of data is called a(n) _______. We mark one or more columns as ________ which we know for historical data and are trying to predict for future data.
+
+
+- [ ]
+1.instance or observation
+2.labels
+3.feature
+
+- [x] 
+1.instance or observation
+2.feature
+3. Labels
+
+- [ ] 
+1.labels
+2.instance or observation
+3.feature
+
