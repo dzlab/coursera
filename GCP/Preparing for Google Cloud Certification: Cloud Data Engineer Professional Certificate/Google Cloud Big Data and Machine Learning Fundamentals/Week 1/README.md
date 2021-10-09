@@ -200,4 +200,75 @@ dfToSave = sqlContext.createDataFrame(allPredictions, schema)
 
 ### Quiz: Module Review
 
+**1. Question 1**
+
+Complete the following:
+
+You should feed your machine learning model your _______ and not your _______. It will learn those for itself!
+
+- [ ] if/then statements, data
+- [x] data, rules
+- [ ] rules, data
+
+**2. Question 2**
+
+True or False: Cloud SQL is a big data analytics warehouse
+
+- [ ] True
+- [x] False
+
+**3. Question 3**
+
+True or False: If you are migrating your Hadoop workload to the cloud, you must first rewrite all your Spark jobs to be compliant with the cloud.
+
+- [ ] True
+- [x] False
+
+
+**4. Question 4**
+
+You are thinking about migrating your Hadoop workloads to the cloud and you have a few workloads that are fault-tolerant (they can handle interruptions of individual VMs gracefully). What are some architecture considerations you should explore in the cloud? Choose all that apply
+
+
+- [x] Use PVMs or Preemptible Virtual Machines
+- [x] Migrate your storage from on-cluster HDFS to off-cluster Google Cloud Storage (GCS)
+- [x] Consider having multiple Cloud Dataproc instances for each priority workload and then turning them down when not in use
+
+
+**5. Question 5**
+
+Google Cloud Storage is a good option for storing data that:
+
+(Select the2 correct options below).
+
+- [ ] Is ingested in real-time from sensors and other devices and supports SQL-based queries
+- [x] May be required to be read at some later time (i.e. load a CSV file into BigQuery)
+- [x] May be imported from a bucket into a Hadoop cluster for analysis
+- [ ] Will be accessed frequently and updated constantly with new transactions from a front-end and needs to be stored in a relational database
+
+
+**6. Question 6**
+
+Relational databases are a good choice when you need:
+
+- [ ] Fast queries on terabytes of data
+- [ ] Streaming, high-throughput writes
+- [x] Transactional updates on relatively small datasets
+- [ ] Aggregations on unstructured data
+
+
+**7. Question 7**
+Cloud SQL and Cloud Dataproc offer familiar tools (MySQL and Hadoop/Pig/Hive/Spark). What is the value-add provided by Google Cloud Platform?
+
+(Select the 2 correct options below )
+
+
+- [ ] Google-proprietary extensions and bug fixes to MySQL, Hadoop, and so on
+- [x] Fully-managed versions of the software offer no-ops
+- [x] Running it on Google infrastructure offers reliability and cost savings
+- [ ] It’s the same API, but Google implements it better
+
+
+
+
 ### Reading: Module Resources
