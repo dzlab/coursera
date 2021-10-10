@@ -37,15 +37,26 @@ export BUCKET=${PROJECT_ID}-ml
 #### Create a Cloud SQL instance
 Enter the following commands to create a Cloud SQL instance:
 ```
-gcloud sql instances create taxi \
+$ gcloud sql instances create taxi \
     --tier=db-n1-standard-1 --activation-policy=ALWAYS
+WARNING: Starting with release 233.0.0, you will need to specify either a region or a zone to create an instance.
+Creating Cloud SQL instance...working   
+Creating Cloud SQL instance...done.    
+Created [https://sqladmin.googleapis.com/sql/v1beta4/projects/qwiklabs-gcp-00-6dc7000c66b4/instances/taxi].
+NAME: taxi
+DATABASE_VERSION: MYSQL_5_7
+LOCATION: us-central1-c
+TIER: db-n1-standard-1
+PRIMARY_ADDRESS: 34.134.212.213
+PRIVATE_ADDRESS: -
+STATUS: RUNNABLE
 ```
 This will take a few minutes to complete.
 
 Set a root password for the Cloud SQL instance:
 ```
-gcloud sql users set-password root --host % --instance taxi \
- --password Passw0rd
+$ gcloud sql users set-password root --host % --instance taxi --password Passw0rd
+Updating Cloud SQL user...done.  
 ```
 When prompted for the password type `Passw0rd` and press enter this will update root password.
 
@@ -55,14 +66,23 @@ export ADDRESS=$(wget -qO - http://ipecho.net/plain)/32
 ```
 Whitelist the Cloud Shell instance for management access to your SQL instance.
 ```
-gcloud sql instances patch taxi --authorized-networks $ADDRESS
+$ gcloud sql instances patch taxi --authorized-networks $ADDRESS
+When adding a new IP address to authorized networks, make sure to also
+ include any IP addresses that have already been authorized.
+Otherwise, they will be overwritten and de-authorized.
+
+Do you want to continue (Y/n)?  Y
+
+The following message will be used for the patch API method.
+{"name": "taxi", "project": "qwiklabs-gcp-00-6dc7000c66b4", "settings": {"ipConfiguration": {"authorizedNetworks": [{"value": "34.82.190.146/32"}]}}}
+Patching Cloud SQL instance...done.     
+Updated [https://sqladmin.googleapis.com/sql/v1beta4/projects/qwiklabs-gcp-00-6dc7000c66b4/instances/taxi].
 ```
 When prompted press **Y** to accept the change.
 
 Get the IP address of your Cloud SQL instance by running:
 ```
-MYSQLIP=$(gcloud sql instances describe \
-taxi --format="value(ipAddresses.ipAddress)")
+$ MYSQLIP=$(gcloud sql instances describe taxi --format="value(ipAddresses.ipAddress)")
 ```
 Check the variable MYSQLIP:
 ```
@@ -72,8 +92,22 @@ you should get an IP address as an output.
 
 Create the taxi trips table by logging into the `mysql` command line interface.
 ```
-mysql --host=$MYSQLIP --user=root \
-      --password --verbose
+$ mysql --host=$MYSQLIP --user=root --password --verbose
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 59
+Server version: 5.7.34-google (Google)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Reading history-file /home/student_02_f57edb69be5d/.mysql_history
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
 ```
 
 When prompted for a password enter `Passw0rd`. Paste the following content into the command line to create the schema for the `trips` table:
@@ -103,18 +137,44 @@ create table trips (
 ```
 In the `mysql` command line interface check the import by entering the following commands:
 ```
-describe trips;
+mysql> describe trips;
+--------------
+describe trips
+--------------
+
++---------------------+-------------+------+-----+---------+-------+
+| Field               | Type        | Null | Key | Default | Extra |
++---------------------+-------------+------+-----+---------+-------+
+| vendor_id           | varchar(16) | YES  |     | NULL    |       |
+| pickup_datetime     | datetime    | YES  |     | NULL    |       |
+| dropoff_datetime    | datetime    | YES  |     | NULL    |       |
+| passenger_count     | int(11)     | YES  |     | NULL    |       |
+| trip_distance       | float       | YES  |     | NULL    |       |
+| rate_code           | varchar(16) | YES  |     | NULL    |       |
+| store_and_fwd_flag  | varchar(16) | YES  |     | NULL    |       |
+| payment_type        | varchar(16) | YES  |     | NULL    |       |
+| fare_amount         | float       | YES  |     | NULL    |       |
+| extra               | float       | YES  |     | NULL    |       |
+| mta_tax             | float       | YES  |     | NULL    |       |
+| tip_amount          | float       | YES  |     | NULL    |       |
+| tolls_amount        | float       | YES  |     | NULL    |       |
+| imp_surcharge       | float       | YES  |     | NULL    |       |
+| total_amount        | float       | YES  |     | NULL    |       |
+| pickup_location_id  | varchar(16) | YES  |     | NULL    |       |
+| dropoff_location_id | varchar(16) | YES  |     | NULL    |       |
++---------------------+-------------+------+-----+---------+-------+
+17 rows in set (0.04 sec)
 ```
 
 Query the `trips` table:
 ```
-select distinct(pickup_location_id) from trips;
+mysql> select distinct(pickup_location_id) from trips;
 ```
 This will return an empty set as there is no data in the database yet.
 
 Exit the `mysql` interactive console:
 ```
-exit
+mysql> exit
 ```
 
 #### Add data to Cloud SQL instance
@@ -122,19 +182,28 @@ Now you'll copy the New York City taxi trips CSV files stored on Cloud Storage l
 
 Run the following in the command line:
 ```
-gsutil cp gs://cloud-training/OCBL013/nyc_tlc_yellow_trips_2018_subset_1.csv trips.csv-1
-gsutil cp gs://cloud-training/OCBL013/nyc_tlc_yellow_trips_2018_subset_2.csv trips.csv-2
+$ gsutil cp gs://cloud-training/OCBL013/nyc_tlc_yellow_trips_2018_subset_1.csv trips.csv-1
+Copying gs://cloud-training/OCBL013/nyc_tlc_yellow_trips_2018_subset_1.csv...
+/ [1 files][850.3 KiB/850.3 KiB]
+Operation completed over 1 objects/850.3 KiB.
+
+$ gsutil cp gs://cloud-training/OCBL013/nyc_tlc_yellow_trips_2018_subset_2.csv trips.csv-2
+Copying gs://cloud-training/OCBL013/nyc_tlc_yellow_trips_2018_subset_2.csv...
+/ [1 files][849.8 KiB/849.8 KiB]
+Operation completed over 1 objects/849.8 KiB.
 ```
 Import the CSV file data into Cloud SQL using `mysql`:
 ```
-mysqlimport --local --host=$MYSQLIP --user=root --password \
---ignore-lines=1 --fields-terminated-by=',' bts trips.csv-*
+$ mysqlimport --local --host=$MYSQLIP --user=root --password --ignore-lines=1 --fields-terminated-by=',' bts trips.csv-*
+Enter password:
+bts.trips: Records: 10018  Deleted: 0  Skipped: 0  Warnings: 0
+bts.trips: Records: 10006  Deleted: 0  Skipped: 0  Warnings: 0
 ```
 When prompted for a password enter `Passw0rd`.
 
 Connect to the `mysql` interactive console:
 ```
-mysql --host=$MYSQLIP --user=root  --password
+$ mysql --host=$MYSQLIP --user=root  --password
 ```
 When prompted for a password enter `Passw0rd`.
 
@@ -143,31 +212,50 @@ Whenever data is imported from a source it's always important to check for data 
 
 In the `mysql` interactive console select the database:
 ```
-use bts;
+mysql> use bts;
 ```
 Query the `trips` table for unique pickup location regions:
 ```
-select distinct(pickup_location_id) from trips;
+mysql> select distinct(pickup_location_id) from trips;
+159 rows in set (0.06 sec)
 ```
 
 This should return 159 unique ids. Let's start by digging into the `trip_distance` column. Enter the following query into the console:
 ```
-select
+mysql> select
   max(trip_distance),
   min(trip_distance)
 from
   trips;
++--------------------+--------------------+
+| max(trip_distance) | min(trip_distance) |
++--------------------+--------------------+
+|                 85 |                  0 |
++--------------------+--------------------+
+1 row in set (0.05 sec)
 ```
 One would expect the trip distance to be greater than 0 and less than, say 1000 miles. The maximum trip distance returned of 85 miles seems reasonable but the minimum trip distance of 0 seems buggy. How many trips in the dataset have a trip distance of 0?
 
 ```
-select count(*) from trips where trip_distance = 0;
+mysql> select count(*) from trips where trip_distance = 0;
++----------+
+| count(*) |
++----------+
+|      155 |
++----------+
+1 row in set (0.05 sec)
 ```
 
 There are 155 such trips in the database. These trips warrant further exploration. You'll find that these trips have non-zero payment amounts associated with them. Perhaps these are fraudulent transactions? Let's see if we can find more data that doesn't meet our expectations. We expect the `fare_amount` column to be positive. Enter the following query to see if this is true in the database:
 
 ```
-select count(*) from trips where fare_amount < 0;
+mysql> select count(*) from trips where fare_amount < 0;
++----------+
+| count(*) |
++----------+
+|       14 |
++----------+
+1 row in set (0.05 sec)
 ```
 
 There should be 14 such trips returned. Again, these trips warrant further exploration. There may be a reasonable explanation for why the fares take on negative numbers. However, it's up to the data engineer to ensure there are no bugs in the data pipeline that would cause such a result.
@@ -175,13 +263,22 @@ There should be 14 such trips returned. Again, these trips warrant further explo
 Finally, let's investigate the `payment_type` column.
 
 ```
-select
+mysql> select
   payment_type,
   count(*)
 from
   trips
 group by
   payment_type;
++--------------+----------+
+| payment_type | count(*) |
++--------------+----------+
+| 1            |    13863 |
+| 2            |     6016 |
+| 3            |      113 |
+| 4            |       32 |
++--------------+----------+
+4 rows in set (0.05 sec)
 ```
 
 The results of the query indicate that there are four different payment types, with:
