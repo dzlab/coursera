@@ -2,6 +2,125 @@
 
 ## Introduction to Data Engineering
 
+### Lab: Using BigQuery to do Analysis
+In this lab you analyze 2 different public datasets, run queries on them, separately and then combined, to derive interesting insights.
+
+#### Explore bicycle rental data
+
+```sql
+SELECT
+  MIN(start_station_name) AS start_station_name,
+  MIN(end_station_name) AS end_station_name,
+  APPROX_QUANTILES(tripduration, 10)[OFFSET (5)] AS typical_duration,
+  COUNT(tripduration) AS num_trips
+FROM
+  `bigquery-public-data.new_york_citibike.citibike_trips`
+WHERE
+  start_station_id != end_station_id
+GROUP BY
+  start_station_id,
+  end_station_id
+ORDER BY
+  num_trips DESC
+LIMIT
+  10
+```
+Look at the result and try to determine what this query does ? (Hint: typical duration for the 10 most common one-way rentals)
+
+
+run the below to find another interesting fact: total distance travelled by each bicycle in the dataset. Note that the query limits the results to only top 5.
+```sql
+WITH
+  trip_distance AS (
+SELECT
+  bikeid,
+  ST_Distance(ST_GeogPoint(s.longitude,
+      s.latitude),
+    ST_GeogPoint(e.longitude,
+      e.latitude)) AS distance
+FROM
+  `bigquery-public-data.new_york_citibike.citibike_trips`,
+  `bigquery-public-data.new_york_citibike.citibike_stations` as s,
+  `bigquery-public-data.new_york_citibike.citibike_stations` as e
+WHERE
+  start_station_id = s.station_id
+  AND end_station_id = e.station_id )
+SELECT
+  bikeid,
+  SUM(distance)/1000 AS total_distance
+FROM
+  trip_distance
+GROUP BY
+  bikeid
+ORDER BY
+  total_distance DESC
+LIMIT
+  5
+```
+#### Explore the weather dataset
+
+
+```
+SELECT
+  wx.date,
+  wx.value/10.0 AS prcp
+FROM
+  `bigquery-public-data.ghcn_d.ghcnd_2015` AS wx
+WHERE
+  id = 'USW00094728'
+  AND qflag IS NULL
+  AND element = 'PRCP'
+ORDER BY
+  wx.date
+```
+This query will return rainfall (in mm) for all days in 2015 from a weather station in New York whose id is provided in the query (the station corresponds to NEW YORK CNTRL PK TWR )
+
+#### Find correlation between rain and bicycle rentals
+How about joining the bicycle rentals data against weather data to learn whether there are fewer bicycle rentals on rainy days?
+
+Click COMPOSE NEW QUERY and run the following query :
+```sql
+WITH bicycle_rentals AS (
+  SELECT
+    COUNT(starttime) as num_trips,
+    EXTRACT(DATE from starttime) as trip_date
+  FROM `bigquery-public-data.new_york_citibike.citibike_trips`
+  GROUP BY trip_date
+),
+rainy_days AS
+(
+SELECT
+  date,
+  (MAX(prcp) > 5) AS rainy
+FROM (
+  SELECT
+    wx.date AS date,
+    IF (wx.element = 'PRCP', wx.value/10, NULL) AS prcp
+  FROM
+    `bigquery-public-data.ghcn_d.ghcnd_2015` AS wx
+  WHERE
+    wx.id = 'USW00094728'
+)
+GROUP BY
+  date
+)
+SELECT
+  ROUND(AVG(bk.num_trips)) AS num_trips,
+  wx.rainy
+FROM bicycle_rentals AS bk
+JOIN rainy_days AS wx
+ON wx.date = bk.trip_date
+GROUP BY wx.rainy
+```
+Now you can see the results of joining the bicycle rental dataset with a weather dataset that comes from a completely different source.
+
+Running the query yields that, yes, New Yorkers ride the bicycle 47% fewer times when it rains.
+
+#### Summary
+In this lab you did ad-hoc queries on two datasets. You were able to query the data without setting up any clusters, creating any indexes, etc. You were also able to mash up the two datasets and get some interesting insights. All without ever leaving your browser!
+
+
+
 ### Quiz
 **1. Question 1**
 
