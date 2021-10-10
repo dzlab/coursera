@@ -151,4 +151,13 @@ Cloud SQL and Cloud Dataproc offer familiar tools (MySQL and Hadoop/Pig/Hive/Spa
 
 ## Deriving Insights from Unstructured Data using Machine Learning
 ### Lab: Classifying Images of Clouds in the Cloud with AutoML Vision
+In this lab, you will experiment with pre-built models so there's no coding. First we'll start with the pre-trained Vision API where we don't need to bring our own data and then we'll progress into AutoML for more sophisticated custom labelling that we need.
+
+What you learn
+In this lab, you learn how to:
+- Setup API key for ML Vision API
+- Invoke the pretrained ML Vision API to classify images
+- Review label predictions from Vision API
+- Train and evaluate custom AutoML Vision image classification model
+- Predict with AutoML on new image
 
