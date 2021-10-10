@@ -161,3 +161,13 @@ In this lab, you learn how to:
 - Train and evaluate custom AutoML Vision image classification model
 - Predict with AutoML on new image
 
+### Quiz: Module Review
+**1. Question 1**
+
+If you have an image classification task for identifying whether a car is present in a photo or not, which solution should you try first?
+
+
+- [ ] Try a custom model in TensorFlow first
+- [ ] Try a custom model in BQML first
+- [ ] Try AutoML Vision first
+- [x] Try the Cloud Vision API first
