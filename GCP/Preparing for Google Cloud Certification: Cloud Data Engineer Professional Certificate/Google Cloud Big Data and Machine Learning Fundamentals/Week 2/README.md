@@ -171,3 +171,8 @@ If you have an image classification task for identifying whether a car is presen
 - [ ] Try a custom model in BQML first
 - [ ] Try AutoML Vision first
 - [x] Try the Cloud Vision API first
+
+### Reading: Module Resources
+- AutoML Vision documentation https://cloud.google.com/vision/automl/docs/
+- Vision API documentation https://cloud.google.com/vision/#resources
+- ML on GCP Coursera course (learn TensorFlow) https://www.coursera.org/specializations/machine-learning-tensorflow-gcp
