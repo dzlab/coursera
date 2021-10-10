@@ -753,7 +753,7 @@ ORDER BY
 Which of the below are the core services that make up BigQuery? (choose the correct 2)
 
 - [x] Query service
-- [ ] Storage service x
+- [x] Storage service
 - [ ] Data Optimization service x
 - [ ] Machine Learning service x
 
@@ -794,7 +794,7 @@ You have a taxi service data schema that has three columns:
 
 You want to use BigQuery for reporting but you don't want to split your table into multiple sub-tables. What native features of BigQuery data types should you explore? (check all that apply)
 
-- [ ] Consider making ride_timestamp an ARRAY of timestamp values so each ride_id row in your table could still be unique and easy to report off of.
+- [x] Consider making ride_timestamp an ARRAY of timestamp values so each ride_id row in your table could still be unique and easy to report off of.
 - [x] Consider adding lat / long geographic data points as new columns and using GIS Functions to quickly plot the distances your fleet has travelled.
 - [ ] Consider renaming the ride_id column to 'label' so you can use it in a BigQuery ML model to predict the ride_id of the next ride.
 
