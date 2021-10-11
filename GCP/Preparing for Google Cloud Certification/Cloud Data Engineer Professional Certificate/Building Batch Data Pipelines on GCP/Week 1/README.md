@@ -295,6 +295,118 @@ You will see exactly the same output as you did when the file was loaded and run
 
 #### Part 3: Deploy Spark Jobs
 ##### Optimize Spark jobs to run on Job specific clusters.
+You now create a standalone Python file, that can be deployed as a Cloud Dataproc Job, that will perform the same functions as this notebook. To do this you add magic commands to the Python cells in a copy of this notebook to write the cell contents out to a file. You will also add an input parameter handler to set the storage bucket location when the Python script is called to make the code more portable.
+
+1. In the De-couple-storage Jupyter Notebook menu, click File and select Make a Copy.
+2. When the copy opens, click the De-couple-storage-Copy1 and rename it to PySpark-analysis-file.
+3. Open the Jupyter tab for De-couple-storage.
+4. Click File and then Save and checkpoint to save the notebook.
+5. Click File and then Close and Halt to shutdown the notebook.
+
+If you are prompted to confirm that you want to close the notebook click Leave or Cancel.
+
+6. Switch back to the PySpark-analysis-file Jupyter Notebook tab in your browser, if necessary.
+7. Click the first cell at the top of the notebook.
+8. Click Insert and select Insert Cell Above.
+9. Paste the following library import and parameter handling code into this new first code cell:
+
+```
+%%writefile spark_analysis.py
+import matplotlib
+matplotlib.use('agg')
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--bucket", help="bucket for input and output")
+args = parser.parse_args()
+BUCKET = args.bucket
+```
+
+The `%%writefile spark_analysis.py` Jupyter magic command creates a new output file to contain your standalone python script. You will add a variation of this to the remaining cells to append the contents of each cell to the standalone script file.
+
+This code also imports the matplotlib module and explicitly sets the default plotting backend via `matplotlib.use('agg')` so that the plotting code runs outside of a Jupyter notebook.
+
+10. For the remaining cells insert `%%writefile -a spark_analysis.py` at the start of each Python code cell. These are the five cells labelled In `[x]`.
+```
+%%writefile -a spark_analysis.py
+```
+For example the next cell should now look as follows.
+
+```
+%%writefile -a spark_analysis.py
+from pyspark.sql import SparkSession, SQLContext, Row
+spark = SparkSession.builder.appName("kdd").getOrCreate()
+sc = spark.sparkContext
+data_file = "gs://{}/kddcup.data_10_percent.gz".format(BUCKET)
+raw_rdd = sc.textFile(data_file).cache()
+#raw_rdd.take(5)
+```
+
+1. Repeat this step, inserting %%writefile -a spark_analysis.py at the start of each code cell until you reach the end.
+2. In the last cell, where the Pandas bar chart is plotted remove the %matplotlib inline magic command.
+
+> Note: You must remove this inline matplotlib Jupyter magic directive or your script will fail when you run it.
+
+Make sure you have selected the last code cell in the notebook then, in the menu bar, click Insert and select Insert Cell Below.
+
+Paste the following code into the new cell.
+```
+%%writefile -a spark_analysis.py
+ax[0].get_figure().savefig('report.png');
+```
+
+5. Add another new cell at the end of the notebook and paste in the following:
+```python
+%%writefile -a spark_analysis.py
+import google.cloud.storage as gcs
+bucket = gcs.Client().get_bucket(BUCKET)
+for blob in bucket.list_blobs(prefix='sparktodp/'):
+    blob.delete()
+bucket.blob('sparktodp/report.png').upload_from_filename('report.png')
+```
+
+6. Add a new cell at the end of the notebook and paste in the following:
+```python
+%%writefile -a spark_analysis.py
+connections_by_protocol.write.format("csv").mode("overwrite").save(
+    "gs://{}/sparktodp/connections_by_protocol".format(BUCKET))
+```
+
+##### Test Automation
+You now test that the PySpark code runs successfully as a file by calling the local copy from inside the notebook, passing in a parameter to identify the storage bucket you created earlier that stores the input data for this job. The same bucket will be used to store the report data files produced by the script.
+
+1. In the PySpark-analysis-file notebook add a new cell at the end of the notebook and paste in the following:
+```python
+BUCKET_list = !gcloud info --format='value(config.project)'
+BUCKET=BUCKET_list[0]
+print('Writing to {}'.format(BUCKET))
+!/opt/conda/miniconda3/bin/python spark_analysis.py --bucket=$BUCKET
+```
+
+This code assumes that you have followed the earlier instructions and created a Cloud Storage Bucket using your lab Project ID as the Storage Bucket name. If you used a different name modify this code to set the BUCKET variable to the name you used.
+
+2. Add a new cell at the end of the notebook and paste in the following:
+
+```
+!gsutil ls gs://$BUCKET/sparktodp/**
+```
+
+This lists the script output files that have been saved to your Cloud Storage bucket.
+
+3. To save a copy of the Python file to persistent storage, add a new cell and paste in the following:
+```
+!gsutil cp spark_analysis.py gs://$BUCKET/sparktodp/spark_analysis.py
+```
+
+4. Click Cell and then Run All to run all of the cells in the notebook.
+
+If the notebook successfully creates and runs the Python file you should see output similar to the following for the last two cells. This indicates that the script has run to completion saving the output to the Cloud Storage bucket you created earlier in the lab.
+
+![image](https://user-images.githubusercontent.com/1645304/136723510-85f48777-6fcb-4492-8dad-53d5602d5096.png)
+
+> Note: The most likely source of an error at this stage is that you did not remove the matplotlib directive in In [7]. Recheck that you have modified all of the cells as per the instructions above, and have not skipped any steps.
+
+##### Run the Analysis Job from Cloud Shell.
+
 
 ### Quiz
 
