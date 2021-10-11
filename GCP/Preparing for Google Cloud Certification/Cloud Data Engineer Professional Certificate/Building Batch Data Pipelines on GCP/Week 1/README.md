@@ -46,7 +46,7 @@ Configure and start a Cloud Dataproc cluster
 
 1. In the GCP Console, on the Navigation menu, in the Big Data section, click Dataproc.
 2. Click Create Cluster.
-3. Enter sparktodp for Cluster Name.
+3. Enter `sparktodp` for Cluster Name.
 4. In the Versioning section, click Change and select 2.0 (Debian 10, Hadoop 3.2, Spark 3.1).
 
 This version includes Python3 which is required for the sample code used in this lab.
@@ -77,6 +77,37 @@ gsutil -m cp ~/training-data-analyst/quests/sparktobq/*.ipynb $DP_STORAGE/notebo
 ```
 
 #### Log in to the Jupyter Notebook
+As soon as the cluster has fully started up you can connect to the Web interfaces. Click the refresh button to check as it may be deployed fully by the time you reach this stage.
+
+1. On the Dataproc Clusters page wait for the cluster to finish starting and then click the name of your cluster to open the Cluster details page.
+2. Click Web Interfaces.
+3. Click the Jupyter link to open a new Jupyter tab in your browser.
+
+This opens the Jupyter home page. Here you can see the contents of the `/notebooks/jupyter` directory in Cloud Storage that now includes the sample Jupyter notebooks used in this lab.
+
+4. Under the Files tab, click the GCS folder and then click 01_spark.ipynb notebook to open it.
+5. Click Cell and then Run All to run all of the cells in the notebook.
+6. Page back up to the top of the notebook and follow as the notebook completes runs each cell and outputs the results below them.
+
+You can now step down through the cells and examine the code as it is processed so that you can see what the notebook is doing. In particular pay attention to where the data is saved and processed from.
+
+The first code cell fetches the source data file, which is an extract from the KDD Cup competition from the Knowledge, Discovery, and Data (KDD) conference in 1999. The data relates to computer intrusion detection events.
+
+```
+!wget https://archive.ics.uci.edu/ml/machine-learning-databases/kddcup99-mld/kddcup.data_10_percent.gz
+```
+
+In the second code cell, the source data is copied to the default (local) Hadoop file system.
+```
+!hadoop fs -put kddcup* /
+```
+
+In the third code cell, the command lists contents of the default directory in the cluster's HDFS file system.
+```
+!hadoop fs -ls /
+```
+
+#### Reading in data
 
 ### Quiz
 
