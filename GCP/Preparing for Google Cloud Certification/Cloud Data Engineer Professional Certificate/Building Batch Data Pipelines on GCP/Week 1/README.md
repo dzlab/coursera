@@ -406,6 +406,47 @@ If the notebook successfully creates and runs the Python file you should see out
 > Note: The most likely source of an error at this stage is that you did not remove the matplotlib directive in In [7]. Recheck that you have modified all of the cells as per the instructions above, and have not skipped any steps.
 
 ##### Run the Analysis Job from Cloud Shell.
+1. Switch back to your Cloud Shell and copy the Python script from Cloud Storage so you can run it as a Cloud Dataproc Job.
+```
+gsutil cp gs://$PROJECT_ID/sparktodp/spark_analysis.py spark_analysis.py
+```
+
+2. Create a launch script.
+```
+nano submit_onejob.sh
+```
+3. Paste the following into the script:
+```
+#!/bin/bash
+gcloud dataproc jobs submit pyspark \
+       --cluster sparktodp \
+       --region us-central1 \
+       spark_analysis.py \
+       -- --bucket=$1
+```
+4. Press CTRL+X then Y and Enter key to exit and save.
+5. Make the script executable:
+
+```
+chmod +x submit_onejob.sh
+```
+6. Launch the PySpark Analysis job:
+```
+./submit_onejob.sh $PROJECT_ID
+```
+
+7. In the Cloud Console tab navigate to the Dataproc > Clusters page if it is not already open.
+8. Click Jobs.
+9. Click the name of the job that is listed. You can monitor progress here as well as from the Cloud shell. Wait for the Job to complete successfully.
+10. Navigate to your storage bucket and note that the output report, /sparktodp/report.png has an updated time-stamp indicating that the stand-alone job has completed successfully.
+
+The storage bucket used by this Job for input and output data storage is the bucket that is used just the Project ID as the name.
+
+11. Navigate back to the Dataproc > Clusters page.
+12. Select the sparktodp cluster and click Delete. You don't need it any more.
+13. Click CONFIRM.
+14. Close the Jupyter tabs in your browser.
+
 
 
 ### Quiz
