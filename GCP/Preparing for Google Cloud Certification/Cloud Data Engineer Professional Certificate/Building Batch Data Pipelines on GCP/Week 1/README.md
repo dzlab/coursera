@@ -12,6 +12,72 @@ Which of the following is the ideal use case for Extract and Load (EL)
 - [ ] When you want to integrate with continuous integration / continuous delivery (CI/CD) systems and perform unit testing on all components.
 
 ## Executing Spark on Cloud Dataproc
+
+### Lab: Running Apache Spark jobs on Cloud Dataproc
+#### Overview
+In this lab you will learn how to migrate Apache Spark code to Cloud Dataproc. You will follow a sequence of steps progressively moving more of the job components over to GCP services:
+
+Run original Spark code on Cloud Dataproc (Lift and Shift)
+
+Replace HDFS with Cloud Storage (cloud-native)
+
+Automate everything so it runs on job-specific clusters (cloud-optimized)
+
+#### Objectives
+In this lab you will learn how to:
+
+- Migrate existing Spark jobs to Cloud Dataproc
+- Modify Spark jobs to use Cloud Storage instead of HDFS
+- Optimize Spark jobs to run on Job specific clusters
+
+What will you use?
+- Cloud Dataproc
+- Apache Spark
+
+#### Scenario
+You are migrating an existing Spark workload to Cloud Dataproc and then progressively modifying the Spark code to make use of GCP native features and services.
+
+#### Part 1: Lift and Shift
+Migrate existing Spark jobs to Cloud Dataproc
+
+You will create a new Cloud Dataproc cluster and then run an imported Jupyter notebook that uses the cluster's default local Hadoop Distributed File system (HDFS) to store source data and then process that data just as you would on any Hadoop cluster using Spark. This demonstrates how many existing analytics workloads such as Jupyter notebooks containing Spark code require no changes when they are migrated to a Cloud Dataproc environment.
+
+Configure and start a Cloud Dataproc cluster
+
+1. In the GCP Console, on the Navigation menu, in the Big Data section, click Dataproc.
+2. Click Create Cluster.
+3. Enter sparktodp for Cluster Name.
+4. In the Versioning section, click Change and select 2.0 (Debian 10, Hadoop 3.2, Spark 3.1).
+
+This version includes Python3 which is required for the sample code used in this lab.
+5. Click Select.
+6. In the Components > Component gateway section, select Enable component gateway.
+7. Under Optional components, Select Jupyter Notebook.
+8. Click Create.
+
+The cluster should start in a couple of minutes. You can proceed to the next step without waiting for the Cloud Dataproc Cluster to fully deploy.
+
+#### Clone the source repository for the lab
+In the Cloud Shell you clone the Git repository for the lab and copy the required notebook files to the Cloud Storage bucket used by Cloud Dataproc as the home directory for Jupyter notebooks.
+
+1. To clone the Git repository for the lab enter the following command in Cloud Shell:
+```
+git -C ~ clone https://github.com/GoogleCloudPlatform/training-data-analyst
+```
+2. To locate the default Cloud Storage bucket used by Cloud Dataproc enter the following command in Cloud Shell:
+
+```
+export DP_STORAGE="gs://$(gcloud dataproc clusters describe sparktodp --region=us-central1 --format=json | jq -r '.config.configBucket')"
+```
+
+3. To copy the sample notebooks into the Jupyter working folder enter the following command in Cloud Shell:
+
+```
+gsutil -m cp ~/training-data-analyst/quests/sparktobq/*.ipynb $DP_STORAGE/notebooks/jupyter
+```
+
+#### Log in to the Jupyter Notebook
+
 ### Quiz
 
 **1. Question 1**
