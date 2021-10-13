@@ -462,6 +462,8 @@ When the run_dataproc_hadoop process is complete, go to Navigation menu > Cloud 
 
 6. Once all the steps are complete in the DAG, each step has a dark green border. Additionally the Dataproc cluster that was created is now deleted.
 
+![image](https://user-images.githubusercontent.com/1645304/137207603-104d7e2c-6af6-4ea6-95e4-d22b4139880d.png)
+
 #### Next steps
 - Check out when Cloud Composer was presented at NEXT 18 in San Francisco: https://www.youtube.com/watch?v=GeNFEtt-D4k
 - To see the value of a variable, run the Airflow CLI sub-command [variables](https://airflow.apache.org/docs/apache-airflow/stable/cli-and-env-variables-ref.html#variables) with the get argument or use the [Airflow web interface](https://cloud.google.com/composer/docs/quickstart#variables-ui).
