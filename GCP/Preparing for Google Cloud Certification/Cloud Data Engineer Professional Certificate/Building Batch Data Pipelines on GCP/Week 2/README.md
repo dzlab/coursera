@@ -75,6 +75,101 @@ gsutil mb gs://$BUCKET-temp
 7. Select ny-taxi-2018-sample.csv. The data is loaded into the Wrangler screen in row/column form.
 
 #### Task 3: Cleaning the data
+Now, you will perform some transformations to parse and clean the taxi data.
+
+1. To the left of the body column, click the Down arrow.
+2. Click Parse > CSV, select Set first row as header and then click Apply. The data splits into multiple columns.
+3. Because the body column isn't needed anymore, click the Down arrow next to the body column and choose Delete column.
+4. You'll notice that all of the column types have been loaded in as String. Click the Down arrow next to the trip_distance column, select Change data type and then click on Float. Repeat for the total_amount column.
+5. If you look at the data closely, you may find some anomalies, such as negative trip distances. You can avoid those negative values by filtering out in Wrangler. Click the Down arrow next to the trip_distance column and select Filter. Click if Custom condition and input >0.0
+6. Click on Apply.
+
+#### Task 4: Creating the pipeline
+Basic data cleansing is now complete and you've run transformations on a subset of your data. You can now create a batch pipeline to run transformations on all your data.
+
+Cloud Data Fusion translates your visually built pipeline into an Apache Spark or MapReduce program that executes transformations on an ephemeral Cloud Dataproc cluster in parallel. This enables you to easily execute complex transformations over vast quantities of data in a scalable, reliable manner, without having to wrestle with infrastructure and technology.
+
+1. On the upper-right side of the Google Cloud Fusion UI, click Create a Pipeline.
+2. In the dialog that appears, select Batch pipeline.
+3. In the Data Pipelines UI, you will see a GCSFile source node connected to a Wrangler node. The Wrangler node contains all the transformations you applied in the Wrangler view captured as directive grammar. Hover over the Wrangler node and select Properties.
+4. At this stage, you can apply more transformations by clicking the Wrangle button. Delete the extra column by pressing the red trashcan icon beside its name. To close the Wrangler tool click the X button in the top right corner.
+
+#### Task 5: Adding a data source
+The taxi data contains several cryptic columns such as `pickup_location_id`, that aren't immediately transparent to an analyst. You are going to add a data source to the pipeline that maps the `pickup_location_id` column to a relevant location name. The mapping information will be stored in a BigQuery table.
+
+1. In a separate tab, [open the BigQuery UI in the GCP Console](https://console.cloud.google.com/bigquery). Click Done on the 'Welcome to BigQuery in the Cloud Console' launch page.
+2. In the Explorer section of the BigQuery UI, click the three dots beside your GCP Project ID (it will start with qwiklabs).
+3. On the menu that appears click the Create dataset link.
+4. In the Dataset ID field type in trips.
+5. Click on Create dataset.
+6. To create the desired table in the newly created dataset, navigate to More > Query Settings. This process will ensure you can access your table from Cloud Data Fusion.
+7. Select the item for Set a destination table for query results. Also, under Table name input zone_id_mapping. Click Save.
+8. Enter the following query in the Query Editor and then click Run:
+```sql
+SELECT
+  zone_id,
+  zone_name,
+  borough
+FROM
+  `bigquery-public-data.new_york_taxi_trips.taxi_zone_geom`
+```
+You can see that this table contains the mapping from zone_id to its name and borough.
+9. Now, you will add a source in your pipeline to access this BigQuery table. Return to tab where you have Cloud Data Fusion open, from the Plugin palette on the left, select BigQuery from the Source section. A BigQuery source node appears on the canvas with the two other nodes.
+10. Hover over the new BigQuery source node and click Properties.
+11. To configure the Reference Name, enter zone_mapping, which is used to identify this data source for lineage purposes. The BigQuery Dataset and Table configurations are the Dataset and Table you setup in BigQuery a few steps earlier: trips and zone_id_mapping. For Temporary Bucket Name input the name of your project followed by "-temp", which corresponds to the bucket you created in Task 2.
+12. To populate the schema of this table from BigQuery, click Get Schema. The fields will appear on the right side of the wizard.
+13. To close the BigQuery Properties window click the X button in the top right corner.
+
+#### Task 6: Joining two sources
+Now you can join the two data sources—taxi trip data and zone names—to generate more meaningful output.
+
+1. Under the Analytics section in the Plugin Palette, choose Joiner. A Joiner node appears on the canvas.
+2. To connect the Wrangler node and the BigQuery node to the Joiner node: Drag a connection arrow > on the right edge of the source node and drop on the destination node.
+3. To configure the Joiner node, which is similar to a SQL JOIN syntax:
+- Click Properties of Joiner.
+- Leave the label as Joiner.
+- Change the Join Type to Inner
+- Set the Join Condition to join the pickup_location_id column in the Wrangler node to the zone_id column in the BigQuery node.
+- To generate the schema of the resultant join, click Get Schema.
+- In the Output Schema table on the right, remove the zone_id and pickup_location_id fields by hitting the red garbage can icon.
+- Close the window by clicking the X button in the top right corner.
+
+#### Task 7: Storing the output to BigQuery
+You will store the result of the pipeline into a BigQuery table. Where you store your data is called a sink.
+
+1. In the Sink section of the Plugin Palette, choose BigQuery.
+2. Connect the Joiner node to the BigQuery node. Drag a connection arrow > on the right edge of the source node and drop on the destination node.
+3. Open the BigQuery node by hovering on it and then clicking Properties. You will next configure the node as shown below. You will use a configuration that's similar to the existing BigQuery source. Provide bq_insert for the Reference Name field and then use trips for the Dataset and the name of your project followed by "-temp" as Temporary Bucket Name. You will write to a new table that will be created for this pipeline execution. In Table field, enter trips_pickup_name.
+4. Close the window by clicking the X button in the top right corner.
+
+#### Task 8: Deploying and running the pipeline
+At this point you have created your first pipeline and can deploy and run the pipeline.
+
+1. Name your pipeline in the upper left corner of the Data Fusion UI and click Save.
+2. Now you will deploy the pipeline. In the upper-right corner of the page, click Deploy.
+3. On the next screen click Run to start processing data.
+4. When you run a pipeline, Cloud Data Fusion provisions an ephemeral Cloud Dataproc cluster, runs the pipeline, and then tears down the cluster. This could take a few minutes. You can observe the status of the pipeline transition from Provisioning to Starting and from Starting to Running to Succeeded during this time.
+
+![image](https://user-images.githubusercontent.com/1645304/137187341-b649e549-9ceb-4345-8a48-e9548b443b93.png)
+
+![datafusion](https://user-images.githubusercontent.com/1645304/137188900-0208a7e7-8813-4636-9ab6-785cd9dc6a58.gif)
+
+
+> Note: The pipeline can take 10-15 minutes to get succeeded.
+
+#### Task 9: Viewing the results
+To view the results after the pipeline runs:
+
+1. Return to the tab where you have BigQuery open. Run the query below to see the values in the trips_pickup_name table.
+```sql
+SELECT
+  *
+FROM
+  `trips.trips_pickup_name`
+```
+
+BQ RESULTS
+
 
 
 
