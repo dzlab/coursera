@@ -17,6 +17,7 @@ https://towardsdatascience.com/how-i-passed-google-professional-data-engineer-ex
 https://github.com/GoogleCloudPlatform/training-data-analyst
 
 - **Qwiklabs Quest** Engineer Data in Google Cloud - [link](https://www.qwiklabs.com/quests/132)
+- Data Engineer learning path -[link](https://cloud.google.com/training/data-engineering-and-analytics#data-engineer-learning-path)
 
 ### Coursera
 - https://www.coursera.org/collections/googlecloud-cert-discount
