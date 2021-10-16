@@ -230,7 +230,7 @@ Operation completed over 4 objects/16.7 KiB.
 2. Edit the Dataflow pipeline in `grepc.py`. In the Cloud Shell code editor navigate to the directory `/training-data-analyst/courses/data_analysis/lab2/python` in and edit the file `grepc.py`.
 
 ```
-$ vi ~/training-data-analyst/courses/data_analysis/lab2/python/grep.py
+$ vi ~/training-data-analyst/courses/data_analysis/lab2/python/grepc.py
 ```
 
 3. Replace PROJECT and BUCKET with your Project ID and Bucket name. Here are easy ways to retrieve the values:
