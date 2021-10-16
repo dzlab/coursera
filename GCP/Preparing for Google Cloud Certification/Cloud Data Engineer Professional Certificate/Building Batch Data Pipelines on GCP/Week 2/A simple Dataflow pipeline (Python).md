@@ -65,3 +65,28 @@ echo $BUCKET
 
 You can use `$BUCKET` in Cloud Shell commands. And if you need to enter the bucket name `<your-bucket>` in a text field in Console, you can quickly retrieve the name with `echo $BUCKET`.
 
+## Task 2. Open Dataflow project
+The goal of this lab is to become familiar with the structure of a Dataflow project and learn how to execute a Dataflow pipeline. You will need to update some files to install Apache Beam. Apache Beam is an open source platform for executing data processing workflows.
+
+1. Return to the browser tab containing Cloud Shell. In Cloud Shell navigate to the directory for this lab:
+```
+cd ~/training-data-analyst/courses/data_analysis/lab2/python
+```
+2. Install the necessary dependencies for Python dataflow:
+```
+sudo ./install_packages.sh
+```
+3. Verify that you have the right version of pip. (It should be > 8.0):
+```
+pip3 -V
+```
+If not, open a new Cloud Shell tab and it should pick up the updated version of pip.
+
+Use refresh explorer icon in Cloud Shell editor to view the local copy of the repository.
+If at any time during the DataFlow labs you are logged out of Cloud Shell due to inactivity, when you login the in-memory elements of Apache Beam will be lost. So you will need to reissue these commands before proceeding:
+
+```
+cd ~/training-data-analyst/courses/data_analysis/lab2/python
+
+sudo ./install_packages.sh
+```
