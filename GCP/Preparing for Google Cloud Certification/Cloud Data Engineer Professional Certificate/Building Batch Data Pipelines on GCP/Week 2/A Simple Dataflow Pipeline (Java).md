@@ -45,11 +45,40 @@ If you don't have a bucket, you can follow these instructions to create a bucket
 BUCKET="<your unique bucket name (Project ID)>"
 echo $BUCKET
 ```
-You can use $BUCKET in Cloud Shell commands. And if you need to enter the bucket name <your-bucket> in a text field in Console, you can quickly retrieve the name with echo $BUCKET.
+You can use $BUCKET in Cloud Shell commands. And if you need to enter the bucket name `<your-bucket>` in a text field in Console, you can quickly retrieve the name with echo $BUCKET.
 
 ### Verify that Dataflow API is enabled for this project
 1. Return to the browser tab for Console. In the top search bar, enter Dataflow API. This will take you to the page, Navigation menu > APIs & Services > Dashboard > Dataflow API.
 It will either show a status information or it will give you the option to Enable the API.
 
 2. If necessary, Enable the API.
+
+![image](https://user-images.githubusercontent.com/1645304/137596466-7cb23235-533e-44c7-851c-4ca074e6d98b.png)
+
+## Task 2. Create a new Dataflow project
+The goal of this lab is to become familiar with the structure of a Dataflow project and learn how to execute a Dataflow pipeline. You will use the powerful build tool [Maven](https://maven.apache.org/) to create a new Dataflow project.
+
+1. Return to the browser tab containing Cloud Shell. In Cloud Shell navigate to the directory for this lab:
+```
+cd ~/training-data-analyst/courses/data_analysis/lab2
+```
+2. Copy and paste the following Maven command:
+```
+mvn archetype:generate \
+  -DarchetypeArtifactId=google-cloud-dataflow-java-archetypes-starter \
+  -DarchetypeGroupId=com.google.cloud.dataflow \
+  -DgroupId=com.example.pipelinesrus.newidea \
+  -DartifactId=newidea \
+  -Dversion="[1.0.0,2.0.0]" \
+  -DinteractiveMode=false
+```
+- What directory has been created?
+- What package has been created inside the src directory?
+
+3. Examine the Maven command that was used to create the lab code:
+```
+cat ~/training-data-analyst/courses/data_analysis/lab2/create_mvn.sh
+```
+- What directory will get created?
+- What package will get created inside the src directory?
 
