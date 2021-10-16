@@ -82,3 +82,29 @@ cat ~/training-data-analyst/courses/data_analysis/lab2/create_mvn.sh
 - What directory will get created?
 - What package will get created inside the src directory?
 
+## Task 3. Pipeline filtering
+In the Cloud Shell code editor navigate to the directory `/training-data-analyst/courses/data_analysis/lab2`.
+
+Then select the path `javahelp/src/main/java/com/google/cloud/training/dataanalyst/javahelp/` and view the file `Grep.java`.
+
+Alternatively, you could view the file with nano editor. Do not make any changes to the code.
+```
+cd ~/training-data-analyst/courses/data_analysis/lab2/javahelp/src/main/java/com/google/cloud/training/dataanalyst/javahelp/
+nano Grep.java
+```
+Can you answer these questions about the file Grep.java?
+
+- What files are being read?
+- What is the search term?
+- Where does the output go?
+
+There are three apply statements in the pipeline:
+
+- What does the first apply() do?
+- What does the second apply() do?
+- Where does its input come from?
+- What does it do with this input?
+- What does it write to its output?
+- Where does the output go to?
+- What does the third apply() do?
+
