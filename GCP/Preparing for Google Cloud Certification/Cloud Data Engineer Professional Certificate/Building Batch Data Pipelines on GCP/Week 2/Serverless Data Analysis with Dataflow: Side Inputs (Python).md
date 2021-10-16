@@ -141,7 +141,12 @@ cd ~/training-data-analyst/courses/data_analysis/lab2/python
 
 3. Execute the pipeline locally by typing the following into Cloud Shell.
 ```
-python3 JavaProjectsThatNeedHelp.py --bucket $BUCKET --project $DEVSHELL_PROJECT_ID --DirectRunner
+$ python3 JavaProjectsThatNeedHelp.py --bucket $BUCKET --project $DEVSHELL_PROJECT_ID --DirectRunner
+JavaProjectsThatNeedHelp.py:163: BeamDeprecationWarning: BigQuerySource is deprecated since 2.25.0. Use ReadFromBigQuery instead.
+  bigqcollection = p | 'ReadFromBQ' >> beam.io.Read(beam.io.BigQuerySource(project=project,query=get_java_query))
+/usr/local/lib/python3.7/dist-packages/apache_beam/io/gcp/bigquery.py:1881: BeamDeprecationWarning: options is deprecated since First stable release. References to <pipeline>.options will not be supported
+  temp_location = pcoll.pipeline.options.view_as(
+WARNING:apache_beam.io.gcp.bigquery_tools:Dataset qwiklabs-gcp-00-7acfe915a416:temp_dataset_44a9e2233edb49878c0af7ee3ba22c07 does not exist so we will create it as temporary with location=US
 ```
 
 > Note: Please ignore the warning if any and move forward.
@@ -155,7 +160,7 @@ JavaProjectsThatNeedHelp.py:163: BeamDeprecationWarning: BigQuerySource is depre
   bigqcollection = p | 'ReadFromBQ' >> beam.io.Read(beam.io.BigQuerySource(project=project,query=get_java_query))
 /usr/local/lib/python3.7/dist-packages/apache_beam/io/gcp/bigquery.py:1881: BeamDeprecationWarning: options is deprecated since First stable release. References to <pipeline>.options will not be supported
   temp_location = pcoll.pipeline.options.view_as(
-WARNING:apache_beam.io.gcp.bigquery_tools:Dataset qwiklabs-gcp-00-4844b6de667d:temp_dataset_098da2cd13584b6b8b00e6af09cb40aa does not exist so we will create it as temporary with location=US
+WARNING:root:Make sure that locally built Python SDK docker image has Python 3.7 interpreter.
 ```
 
 > Note: Please ignore the warning if any and move forward.
