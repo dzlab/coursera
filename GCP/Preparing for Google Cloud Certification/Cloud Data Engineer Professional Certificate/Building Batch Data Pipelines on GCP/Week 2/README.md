@@ -480,9 +480,10 @@ Cloud Data Fusion is the ideal solution when you need
 - [ ] a data warehousing solution
 - [ ] to resuse spark pipelines
 
-## Data Processing with Cloud Dataflow
+## Running batch processing pipelines on Cloud Dataflow
 
-### Quiz
+### Quiz: Data Processing with Cloud Dataflow
+
 **1. Question 1**
 
 Which of the following statements are true?
