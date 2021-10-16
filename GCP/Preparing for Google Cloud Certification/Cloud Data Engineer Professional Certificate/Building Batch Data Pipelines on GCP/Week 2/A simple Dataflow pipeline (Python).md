@@ -224,6 +224,9 @@ Copying file://../javahelp/src/main/java/com/google/cloud/training/dataanalyst/j
 Operation completed over 4 objects/16.7 KiB.
 ```
 
+![image](https://user-images.githubusercontent.com/1645304/137578316-bad5d300-30f5-485a-b6f2-3bd5e2c827fb.png)
+
+
 2. Edit the Dataflow pipeline in `grepc.py`. In the Cloud Shell code editor navigate to the directory `/training-data-analyst/courses/data_analysis/lab2/python` in and edit the file `grepc.py`.
 
 ```
