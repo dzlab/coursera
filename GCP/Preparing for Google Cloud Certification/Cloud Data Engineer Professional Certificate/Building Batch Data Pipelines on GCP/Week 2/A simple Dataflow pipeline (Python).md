@@ -269,3 +269,5 @@ Alternatively, you could download the file in Cloud Shell and view it:
 gsutil cp gs://$BUCKET/javahelp/output* .
 cat output*
 ```
+
+![image](https://user-images.githubusercontent.com/1645304/137578608-03ab5d90-1a78-4c36-a51f-9d6c57b8f678.png)
