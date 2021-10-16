@@ -91,4 +91,42 @@ Which of the following delivery methods is ideal for subscribers needing close t
 - [x] Push Delivery
 
 
+## Cloud Dataflow capabilities for streaming data
+
+### Quiz: Cloud Dataflow Streaming Features
+**1. Question 1**
+
+The Dataflow models provides constructs that map to the four questions that are relevant in any out-of-order data processing pipeline:
+
+|Questions|Constructs|
+|-|-|
+|__ 1. What results are calculated?|A. Answered via Event-time windowing|
+|__ 2. Where in event time are results calculated?|B. Answered via transformations|
+|__ 3. When in processing time are results materialized?|C. Answered via Accumulation modes|
+|__ 4. How do refinements of results relate?|D. Answered via Watermarks, triggers, and allowed lateness.|
+
+- [ ]
+  - A
+  - D
+  - C
+  - B
+
+- [ ]
+  - B
+  - A
+  - D
+  - C
+
+- [ ]
+  - C
+  - A
+  - D
+  - B
+
+- [ ] x
+  - D
+  - B
+  - A
+  - C
+
 
