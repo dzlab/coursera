@@ -173,3 +173,47 @@ Example successful completion:
 [INFO] ------------------------------------------------------------------------
 ```
 
+## Task 5: Explore the pipeline
+This Dataflow pipeline reads messages from a Pub/Sub topic, parses the JSON of the input message, produces one main output and writes to BigQuery.
+
+1. Return to the browser tab for Console. On the Navigation menu ( 7a91d354499ac9f1.png), click Dataflow and click on your job to monitor progress.
+Example:
+
+![image](https://user-images.githubusercontent.com/1645304/137613390-1d8625d6-7a72-4f62-a8f0-31af5ad4ce26.png)
+
+> Note: If Dataflow Job got failed, run the command ./run_oncloud.sh $DEVSHELL_PROJECT_ID $BUCKET AverageSpeeds again.
+
+2. After the pipeline is running, click on the Navigation menu ( 7a91d354499ac9f1.png), click Pub/Sub > Topics.
+
+3. Examine the line for Topic name for the topic sandiego.
+
+4. Return to the Navigation menu ( 7a91d354499ac9f1.png), click Dataflow and click on your job.
+
+5. Compare the code in the Github browser tab, AverageSpeeds.java and the pipeline graph on the page for your Dataflow job.
+
+6. Find the GetMessages pipeline step in the graph, and then find the corresponding code in the AverageSpeeds.java file. This is the pipeline step that reads from the Pub/Sub topic. It creates a collection of Strings - which corresponds to Pub/Sub messages that have been read.
+
+- Do you see a subscription created?
+- How does the code pull messages from Pub/Sub?
+
+7. Find the Time Window pipeline step in the graph and in code. In this pipeline step we create a window of a duration specified in the pipeline parameters (sliding window in this case). This window will accumulate the traffic data from the previous step until end of window, and pass it to the next steps for further transforms.
+
+- What is the window interval?
+- How often is a new window created?
+
+8. Find the BySensor and AvgBySensor pipeline steps in the graph, and then find the corresponding code snippet in the AverageSpeeds.java file. This BySensor does a grouping of all events in the window by sensor id, while AvgBySensor will then compute the mean speed for each grouping.
+
+9. Find the ToBQRow pipeline step in the graph and in code. This step simply creates a "row" with the average computed from previous step together with the lane information.
+
+> In practice, other actions could be taken in the ToBQRow step. For example, it could compare the calculated mean against a predefined threshold and log the results of the comparison in Cloud Logging.
+
+10. Find the BigQueryIO.Write in both the pipeline graph and in the source code. This step writes the row out of the pipeline into a BigQuery table. Because we chose the WriteDisposition.WRITE_APPEND write disposition, new records will be appended to the table.
+
+11. Return to the BigQuery web UI tab. Refresh your browser.
+
+12. Find your project name and the demos dataset you created. The small arrow to the left of the dataset name demos should now be active and clicking on it will reveal the average_speeds table.
+
+13. It will take several minutes before the average_speeds table appears in BigQuery.
+
+Example:
+![image](https://user-images.githubusercontent.com/1645304/137613410-6cb91110-d905-4d4f-83b5-9a4b405f2028.png)
