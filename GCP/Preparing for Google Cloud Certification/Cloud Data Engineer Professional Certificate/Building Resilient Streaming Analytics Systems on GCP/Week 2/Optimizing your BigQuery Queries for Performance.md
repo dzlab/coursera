@@ -302,3 +302,541 @@ Make sure to reserve this memory in the same region as the dataset you are query
 
 A primary use case for BI Engine is for tables that are accessed from dashboard tools such as Google Data Studio. By providing memory allocation for a BI Engine reservation, we can make dashboards that rely on a BigQuery backend much more responsive.
 
+## Efficient joins
+Joining two tables requires data coordination and is subject to limitations imposed by the communication bandwidth between slots. If it is possible to avoid a join, or reduce the amount of data being joined, do so.
+
+### Denormalization
+One way to improve the read performance and avoid joins is to give up on storing data efficiently, and instead add redundant copies of data. This is called denormalization.
+
+1. Thus, instead of storing the bicycle station latitudes and longitudes separately from the cycle hire information, we could create a denormalized table:
+```sql
+CREATE OR REPLACE TABLE
+  mydataset.london_bicycles_denorm AS
+SELECT
+  start_station_id,
+  s.latitude AS start_latitude,
+  s.longitude AS start_longitude,
+  end_station_id,
+  e.latitude AS end_latitude,
+  e.longitude AS end_longitude
+FROM
+  `bigquery-public-data`.london_bicycles.cycle_hire AS h
+JOIN
+  `bigquery-public-data`.london_bicycles.cycle_stations AS s
+ON
+  h.start_station_id = s.id
+JOIN
+  `bigquery-public-data`.london_bicycles.cycle_stations AS e
+ON
+  h.end_station_id = e.id
+```
+
+Then, all subsequent queries will not need to carry out the join because the table will contain the necessary location information for all trips. In this case, you are trading off storage and reading more data against the computational expense of a join. It is quite possible that the cost of reading more data from disk will outweigh the cost of the join -- you should measure whether denormalization brings performance benefits.
+
+### Avoid self-joins of large tables
+Self-joins happen when a table is joined with itself. While BigQuery supports self-joins, they can lead to performance degradation if the table being joined with itself is very large. In many cases, you can avoid the self-join by taking advantage of SQL features such as aggregation and window functions.
+
+1. Let’s look at an example. One of the BigQuery public datasets is the dataset of baby names published by the US Social Security Administration. It is possible to query the dataset to find the most common male names in 2015 in the state of Massachusetts (Make sure your query is running in the US region by selecting **More > Query settings > Processing location**):
+```sql
+SELECT
+  name,
+  number AS num_babies
+FROM
+  `bigquery-public-data`.usa_names.usa_1910_current
+WHERE
+  gender = 'M'
+  AND year = 2015
+  AND state = 'MA'
+ORDER BY
+  num_babies DESC
+LIMIT
+  5
+```
+
+![image](https://user-images.githubusercontent.com/1645304/137641366-9f3e742d-dbd2-42f1-b020-ab7cb2b9f104.png)
+
+2. Similarly, query the dataset to find the most common female names in 2015 in the state of Massachusetts:
+
+![image](https://user-images.githubusercontent.com/1645304/137641397-1c271d7f-6cd7-4ac3-9aa5-338c4d1fb778.png)
+
+3. What are the most common names assigned to both male and female babies in the country over all the years in the dataset? A naive way to solve this problem involves reading the input table twice and doing a self-join:
+```sql
+WITH
+male_babies AS (
+SELECT
+  name,
+  number AS num_babies
+FROM
+  `bigquery-public-data`.usa_names.usa_1910_current
+WHERE
+  gender = 'M' ),
+female_babies AS (
+SELECT
+  name,
+  number AS num_babies
+FROM
+  `bigquery-public-data`.usa_names.usa_1910_current
+WHERE
+  gender = 'F' ),
+both_genders AS (
+SELECT
+  name,
+  SUM(m.num_babies) + SUM(f.num_babies) AS num_babies,
+  SUM(m.num_babies) / (SUM(m.num_babies) + SUM(f.num_babies)) AS frac_male
+FROM
+  male_babies AS m
+JOIN
+  female_babies AS f
+USING
+  (name)
+GROUP BY
+  name )
+SELECT
+  *
+FROM
+  both_genders
+WHERE
+  frac_male BETWEEN 0.3
+  AND 0.7
+ORDER BY
+  num_babies DESC
+LIMIT
+  5
+```
+
+This took 74 seconds and yielded:
+
+![image](https://user-images.githubusercontent.com/1645304/137641419-f10c8b1f-817e-4c6c-9fc9-594b86a1242a.png)
+
+To add insult to injury, the answer is also wrong -- as much as we like the name Jordan, the entire US population is only 300 million, so there cannot have been 982 million babies with that name. The self-JOIN unfortunately joins across state and year boundaries.
+
+4. A faster, more elegant (and correct!) solution is to recast the query to read the input only once and avoid the self-join completely.
+```sql
+WITH
+all_babies AS (
+SELECT
+  name,
+  SUM(
+  IF
+    (gender = 'M',
+      number,
+      0)) AS male_babies,
+  SUM(
+  IF
+    (gender = 'F',
+      number,
+      0)) AS female_babies
+FROM
+  `bigquery-public-data.usa_names.usa_1910_current`
+GROUP BY
+  name ),
+both_genders AS (
+SELECT
+  name,
+  (male_babies + female_babies) AS num_babies,
+  SAFE_DIVIDE(male_babies,
+    male_babies + female_babies) AS frac_male
+FROM
+  all_babies
+WHERE
+  male_babies > 0
+  AND female_babies > 0 )
+SELECT
+  *
+FROM
+  both_genders
+WHERE
+  frac_male BETWEEN 0.3
+  AND 0.7
+ORDER BY
+  num_babies DESC
+LIMIT
+  5
+```
+
+This took only 2.4 seconds, a 30x speedup.
+
+### Reduce data being joined
+It is possible to carry out the query above with an efficient join as long as we reduce the amount of data being joined by grouping the data by name and gender early on:
+
+1. Try the following query:
+```sql
+WITH
+all_names AS (
+SELECT
+  name,
+  gender,
+  SUM(number) AS num_babies
+FROM
+  `bigquery-public-data`.usa_names.usa_1910_current
+GROUP BY
+  name,
+  gender ),
+male_names AS (
+SELECT
+  name,
+  num_babies
+FROM
+  all_names
+WHERE
+  gender = 'M' ),
+female_names AS (
+SELECT
+  name,
+  num_babies
+FROM
+  all_names
+WHERE
+  gender = 'F' ),
+ratio AS (
+SELECT
+  name,
+  (f.num_babies + m.num_babies) AS num_babies,
+  m.num_babies / (f.num_babies + m.num_babies) AS frac_male
+FROM
+  male_names AS m
+JOIN
+  female_names AS f
+USING
+  (name) )
+SELECT
+  *
+FROM
+  ratio
+WHERE
+  frac_male BETWEEN 0.3
+  AND 0.7
+ORDER BY
+  num_babies DESC
+LIMIT
+  5
+```
+
+The early grouping served to trim the data early in the query, before the query performs a JOIN. That way, shuffling and other complex operations only executed on the much smaller data and remain quite efficient. The query above finished in 2 seconds and returned the correct result.
+
+### Use a window function instead of a self-join
+Suppose you wish to find the duration between a bike being dropped off and it being rented again, i.e., the duration that a bicycle stays at the station. This is an example of a dependent relationship between rows. It might appear that the only way to solve this is to join the table with itself, matching the end_date of one trip against the start_date of the next. (Make sure your query is running in the `EU` region by selecting **More > Query settings > Processing location**)
+
+1. You can, however, avoid a self-join by using a window function:
+```sql
+SELECT
+  bike_id,
+  start_date,
+  end_date,
+  TIMESTAMP_DIFF( start_date, LAG(end_date) OVER (PARTITION BY bike_id ORDER BY start_date), SECOND) AS time_at_station
+FROM
+  `bigquery-public-data`.london_bicycles.cycle_hire
+LIMIT
+  5
+```
+
+![image](https://user-images.githubusercontent.com/1645304/137641472-c0225483-5938-46b2-99b9-ae730a1daa06.png)
+
+Notice that the first row has a `null` for `time_at_station` since we don’t have a timestamp for the previous dropoff. After that, the `time_at_station` tracks the difference between the previous dropoff and the current pickup.
+
+2. Using this, we can compute the average time that a bicycle is unused at each station and rank stations by that measure:
+```sql
+WITH
+unused AS (
+  SELECT
+    bike_id,
+    start_station_name,
+    start_date,
+    end_date,
+    TIMESTAMP_DIFF(start_date, LAG(end_date) OVER (PARTITION BY bike_id ORDER BY start_date), SECOND) AS time_at_station
+  FROM
+    `bigquery-public-data`.london_bicycles.cycle_hire )
+SELECT
+  start_station_name,
+  AVG(time_at_station) AS unused_seconds
+FROM
+  unused
+GROUP BY
+  start_station_name
+ORDER BY
+  unused_seconds ASC
+LIMIT
+  5
+```
+
+![image](https://user-images.githubusercontent.com/1645304/137641530-e9ace503-8fb0-415f-828e-0215382ef07c.png)
+
+### Join with precomputed values
+Sometimes, it can be helpful to precompute functions on smaller tables, and then join with the precomputed values rather than repeat an expensive calculation each time.
+
+For example, suppose we wish to find the pair of stations between which our customers ride bicycles at the fastest pace. To compute the pace (minutes per kilometer) at which they ride, we need to divide the duration of the ride by the distance between stations.
+
+1. We could create a denormalized table with distances between stations and then compute the average pace:
+```sql
+WITH
+  denormalized_table AS (
+  SELECT
+    start_station_name,
+    end_station_name,
+    ST_DISTANCE(ST_GeogPoint(s1.longitude,
+        s1.latitude),
+      ST_GeogPoint(s2.longitude,
+        s2.latitude)) AS distance,
+    duration
+  FROM
+    `bigquery-public-data`.london_bicycles.cycle_hire AS h
+  JOIN
+    `bigquery-public-data`.london_bicycles.cycle_stations AS s1
+  ON
+    h.start_station_id = s1.id
+  JOIN
+    `bigquery-public-data`.london_bicycles.cycle_stations AS s2
+  ON
+    h.end_station_id = s2.id ),
+  durations AS (
+  SELECT
+    start_station_name,
+    end_station_name,
+    MIN(distance) AS distance,
+    AVG(duration) AS duration,
+    COUNT(*) AS num_rides
+  FROM
+    denormalized_table
+  WHERE
+    duration > 0
+    AND distance > 0
+  GROUP BY
+    start_station_name,
+    end_station_name
+  HAVING
+    num_rides > 100 )
+SELECT
+  start_station_name,
+  end_station_name,
+  distance,
+  duration,
+  duration/distance AS pace
+FROM
+  durations
+ORDER BY
+  pace ASC
+LIMIT
+  5
+```
+
+The above query invokes the geospatial function `ST_DISTANCE` once for each row in the `cycle_hire` table (24 million times), takes 14.7 seconds and processes 1.9 GB.
+
+![image](https://user-images.githubusercontent.com/1645304/137641552-5e66d599-db92-4b72-b011-a2c6910b9e5c.png)
+
+2. Alternately, we can use the `cycle_stations` table to precompute the distance between every pair of stations (this is a self-join) and then join it with the reduced-size table of average duration between stations:
+```sql
+WITH
+  distances AS (
+  SELECT
+    a.id AS start_station_id,
+    a.name AS start_station_name,
+    b.id AS end_station_id,
+    b.name AS end_station_name,
+    ST_DISTANCE(ST_GeogPoint(a.longitude,
+        a.latitude),
+      ST_GeogPoint(b.longitude,
+        b.latitude)) AS distance
+  FROM
+    `bigquery-public-data`.london_bicycles.cycle_stations a
+  CROSS JOIN
+    `bigquery-public-data`.london_bicycles.cycle_stations b
+  WHERE
+    a.id != b.id ),
+  durations AS (
+  SELECT
+    start_station_id,
+    end_station_id,
+    AVG(duration) AS duration,
+    COUNT(*) AS num_rides
+  FROM
+    `bigquery-public-data`.london_bicycles.cycle_hire
+  WHERE
+    duration > 0
+  GROUP BY
+    start_station_id,
+    end_station_id
+  HAVING
+    num_rides > 100 )
+SELECT
+  start_station_name,
+  end_station_name,
+  distance,
+  duration,
+  duration/distance AS pace
+FROM
+  distances
+JOIN
+  durations
+USING
+  (start_station_id,
+    end_station_id)
+ORDER BY
+  pace ASC
+LIMIT
+  5
+```
+
+The recast query with the more efficient joins takes only 8.2 seconds, a 1.8x speedup and processes 554 MB, a nearly 4x reduction in cost.
+
+![image](https://user-images.githubusercontent.com/1645304/137641591-a507e2ae-b7fb-48d1-a54e-8abd4d95f56a.png)
+
+## Avoid overwhelming a worker
+Some operations (e.g. ordering) have to be carried out on a single worker. Having to sort too much data can overwhelm a worker’s memory and result in a “resources exceeded” error. Avoid overwhelming the worker with too much data. As the hardware in Google data centers is upgraded, what “too much” means in this context expands over time. Currently, this is on the order of one GB.
+
+### Limiting large sorts
+1. Let’s say that we wish to go through the rentals and number them 1, 2, 3, etc. in the order that the rental ended. We could do that using the ROW_NUMBER() function
+```sql
+SELECT
+  rental_id,
+  ROW_NUMBER() OVER(ORDER BY end_date) AS rental_number
+FROM
+  `bigquery-public-data.london_bicycles.cycle_hire`
+ORDER BY
+  rental_number ASC
+LIMIT
+  5
+```
+![image](https://user-images.githubusercontent.com/1645304/137641688-19ed4c04-43d0-42c5-b8e4-9d850df1fd19.png)
+
+
+It takes 34.5 seconds to process just 372 MB because it needs to sort the entirety of the London bicycles dataset on a single worker. Had we processed a larger dataset, it would have overwhelmed that worker.
+
+2. We might want to consider whether it is possible to limit the large sorts and distribute them. Indeed, it is possible to extract the date from the rentals and then sort trips within each day:
+```sql
+WITH
+  rentals_on_day AS (
+  SELECT
+    rental_id,
+    end_date,
+    EXTRACT(DATE
+    FROM
+      end_date) AS rental_date
+  FROM
+    `bigquery-public-data.london_bicycles.cycle_hire` )
+SELECT
+  rental_id,
+  rental_date,
+  ROW_NUMBER() OVER(PARTITION BY rental_date ORDER BY end_date) AS rental_number_on_day
+FROM
+  rentals_on_day
+ORDER BY
+  rental_date ASC,
+  rental_number_on_day ASC
+LIMIT
+  5
+```
+
+![image](https://user-images.githubusercontent.com/1645304/137641698-4d4c48dd-1dc7-4818-91e2-4e3030b39c94.png)
+
+This takes 15.1 seconds (a 2x speedup) because the sorting can be done on just a single day of data at a time.
+
+### Data skew
+The same problem of overwhelming a worker (in this case, overwhelm the memory of the worker) can happen during an ARRAY_AGG with GROUP BY if one of the keys is much more common than the others.
+
+1. Because there are more than 3 million GitHub repositories and the commits are well distributed among them, this query succeeds (make sure you execute the query in the US processing center):
+```sql
+SELECT
+  repo_name,
+  ARRAY_AGG(STRUCT(author,
+      committer,
+      subject,
+      message,
+      trailer,
+      difference,
+      encoding)
+  ORDER BY
+    author.date.seconds)
+FROM
+  `bigquery-public-data.github_repos.commits`,
+  UNNEST(repo_name) AS repo_name
+GROUP BY
+  repo_name
+```
+
+Note, while this query will succeed, it can take upwards of 15 minutes to do so. If you understand the query, move on in the lab.
+
+2. Most of the people using GitHub live in only a few time zones, so grouping by the timezone fails -- we are asking a single worker to sort a significant fraction of 750GB:
+```sql
+SELECT
+  author.tz_offset,
+  ARRAY_AGG(STRUCT(author,
+      committer,
+      subject,
+      message,
+      trailer,
+      difference,
+      encoding)
+  ORDER BY
+    author.date.seconds)
+FROM
+  `bigquery-public-data.github_repos.commits`
+GROUP BY
+  author.tz_offset
+```
+![image](https://user-images.githubusercontent.com/1645304/137641849-57c4cab1-1750-4a55-b6f1-274730da79e7.png)
+
+3. If you do require sorting all the data, use more granular keys (i.e. distribute the group’s data over more workers) and then aggregate the results corresponding to the desired key. For example, instead of grouping only by the time zone, it is possible to group by both timezone and repo_name and then aggregate across repos to get the actual answer for each timezone:
+```sql
+SELECT
+  repo_name,
+  author.tz_offset,
+  ARRAY_AGG(STRUCT(author,
+      committer,
+      subject,
+      message,
+      trailer,
+      difference,
+      encoding)
+  ORDER BY
+    author.date.seconds)
+FROM
+  `bigquery-public-data.github_repos.commits`,
+  UNNEST(repo_name) AS repo_name
+GROUP BY
+  repo_name,
+  author.tz_offset
+```
+
+Note, while this query will succeed, it can take upwards of 15 minutes to do so. If you understand the query, move on in the lab.
+
+## Approximate aggregation functions
+BigQuery provides fast, low-memory approximations of aggregate functions. Instead of using COUNT(DISTINCT …), we can use APPROX_COUNT_DISTINCT on large data streams when a small statistical uncertainty in the result is tolerable.
+
+### Approximate count
+1. We can find the number of unique GitHub repositories using:
+``sql
+SELECT
+  COUNT(DISTINCT repo_name) AS num_repos
+FROM
+  `bigquery-public-data`.github_repos.commits,
+  UNNEST(repo_name) AS repo_name
+```
+
+![image](https://user-images.githubusercontent.com/1645304/137641884-f1b24fce-3e7b-4e13-9984-bae92eedb8ec.png)
+
+
+The above query takes 8.3 seconds to compute the correct result of 3347770.
+
+2. Using the approximate function:
+```sql
+SELECT
+  APPROX_COUNT_DISTINCT(repo_name) AS num_repos
+FROM
+  `bigquery-public-data`.github_repos.commits,
+  UNNEST(repo_name) AS repo_name
+```
+
+![image](https://user-images.githubusercontent.com/1645304/137641889-89c48e43-f055-4991-b7b6-aaadf963bc44.png)
+
+takes 3.9 seconds (a 2x speedup) and returns an approximate result of 3399473, which overestimates the correct answer by 1.5%.
+
+The approximate algorithm is much more efficient than the exact algorithm only on large datasets and is recommended in use-cases where errors of approximately 1% are tolerable. Before using the approximate function, measure on your use case!
+
+Other available approximate functions include APPROX_QUANTILES to compute percentiles, APPROX_TOP_COUNT to find the top elements and APPROX_TOP_SUM to compute top elements based on the sum of an element.
+
+## Congratulations!
+You've learned about a number of techniques to potentially improve your query performance. While considering some of these techniques, remember the legendary computer scientist Donald Knuth's quote, "Premature optimization is the root of all evil."
+
+### Next steps / Learn More
+- Google Cloud Platform [documentation for optimizing query performance](https://cloud.google.com/bigquery/docs/best-practices-performance-overview).
+- BigQuery [best practices for controlling costs](best practices for controlling costs).
