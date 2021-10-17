@@ -111,7 +111,7 @@ The Dataflow models provides constructs that map to the four questions that are 
   - C
   - B
 
-- [ ]
+- [x]
   - B
   - A
   - D
@@ -123,7 +123,7 @@ The Dataflow models provides constructs that map to the four questions that are 
   - D
   - B
 
-- [ ] x
+- [ ]
   - D
   - B
   - A
