@@ -423,6 +423,9 @@ A Notification channels page will open in new tab.
 
 7. Now, select your Display name and click OK.
 
+![image](https://user-images.githubusercontent.com/1645304/137614077-2746e7b7-279c-47a7-b7e5-0204edddec5d.png)
+
+
 8. Click Next.
 
 9. Set Alert name as MyAlertPolicy.
@@ -435,4 +438,62 @@ A Notification channels page will open in new tab.
 12. On the Cloud Monitoring tab, click on Alerting > Policies.
 
 13. Every time an alert is triggered by a Metric Threshold condition, an Incident and a corresponding Event are created in Monitoring. If you specified a notification mechanism in the alert (email, SMS, pager, etc), you will also receive a notification.
+
+## Task 13: Set up dashboards
+You can easily build dashboards with the most relevant Dataflow-related charts with Cloud Monitoring Dashboards.
+
+1. In the left pane, click Dashboards.
+
+2. Click +Create Dashboard.
+
+3. For New Dashboard Name, type My Dashboard.
+
+4. Click Line Chart.
+
+5. In the Resource box, type Dataflow Job.
+
+6. In the Metric field, select the System Lag.
+
+7. In the Filters panel, click + Add Filter.
+
+8. Select project_id in Label field, then select or type your GCP project ID in the Value field.
+
+9. Click Done.
+
+Example:
+
+![image](https://user-images.githubusercontent.com/1645304/137614126-fc37e3ce-4bae-4d35-889a-d43e0ec26cf2.png)
+
+You can add more charts to the dashboard, if you would like, for example, Pub/Sub publish rates on the topic, or subscription backlog (which is a signal to the Dataflow auto-scaler).
+
+![image](https://user-images.githubusercontent.com/1645304/137614163-77ebad5b-c76e-47e5-b2ab-2158ac3823cf.png)
+
+## Task 14: Launch another streaming pipeline
+1. Return to training-vm SSH terminal, if you see messages that say INFO: Publishing then the script is still running. Press CRTL+C to stop it. Then issue the command to start the script again.
+
+2. Examine the CurrentConditions.java application. Do not make any changes to the code.
+```
+cd ~/training-data-analyst/courses/streaming/process/sandiego/src/main/java/com/google/cloud/training/dataanalyst/sandiego
+cat CurrentConditions.java
+```
+
+3. Copy-and-paste the following URL into a browser tab to view the source code on Github.
+```
+https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/streaming/process/sandiego/src/main/java/com/google/cloud/training/dataanalyst/sandiego/CurrentConditions.java
+```
+
+What does the script do?
+
+4. Run the CurrentConditions.java code in a new Dataflow pipeline; this script is simpler in the sense that it does not do many transforms like AverageSpeeds. The results will be used in the next lab to build dashboards and run some transforms (functions) while retrieving data from BigQuery.
+
+5. In the other training-vm SSH terminal, enter the following:
+```
+cd ~/training-data-analyst/courses/streaming/process/sandiego
+./run_oncloud.sh $DEVSHELL_PROJECT_ID $BUCKET CurrentConditions
+```
+
+6. Return to the browser tab for Console. On the Navigation menu ( 7a91d354499ac9f1.png), click Dataflow and click on the new pipeline job. Confirm that the pipeline job is listed and verify that it is running without errors.
+
+7. It will take several minutes before the current_conditions table appears in BigQuery.
+
 
