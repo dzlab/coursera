@@ -237,6 +237,8 @@ Click Done.
 
 1. In the left pane the first item in the list will be Query history. On your initial visit to the page the query history should appear on the bottom right underneath the Query editor pane. If it is not loaded click the Query history link.
 
+![image](https://user-images.githubusercontent.com/1645304/137639012-6b33dd6a-867f-411e-a4f0-8a860842f8c7.png)
+
 2. The list of queries is displayed with the most recent queries first. Click on any Query to view details on the query such as Job ID and Bytes Processed.
 
 ![image](https://user-images.githubusercontent.com/1645304/137638936-cfe58f10-73c5-4646-ab82-4323d2d32c45.png)
