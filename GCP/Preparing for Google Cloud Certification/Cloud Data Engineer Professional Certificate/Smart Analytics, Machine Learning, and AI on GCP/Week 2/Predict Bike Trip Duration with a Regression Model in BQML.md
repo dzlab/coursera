@@ -185,3 +185,72 @@ SELECT * FROM ML.EVALUATE(MODEL `bike_model.model`)
 
 The mean absolute error is 1025 seconds or about 17 minutes. This means that we should expect to be able to predict the duration of bicycle rentals with an average error of about 17 minutes.
 
+## Improving the model through feature engineering
+
+### Combine days of week
+There are other ways that we could have chosen to represent the features that we have. For example, recall that when we explored the relationship between dayofweek and the duration of rentals, we found that durations were longer on weekends than on weekdays. Therefore, instead of treating the raw value of dayofweek as a feature, we can employ this insight by fusing several dayofweek values into the weekday category
+
+1. Build a BigQuery ML model with the combined days of week feature using the following query:
+```sql
+CREATE OR REPLACE MODEL
+  bike_model.model_weekday
+OPTIONS
+  (input_label_cols=['duration'],
+    model_type='linear_reg') AS
+SELECT
+  duration,
+  start_station_name,
+IF
+  (EXTRACT(dayofweek
+    FROM
+      start_date) BETWEEN 2 AND 6,
+    'weekday',
+    'weekend') AS dayofweek,
+  CAST(EXTRACT(hour
+    FROM
+      start_date) AS STRING) AS hourofday
+FROM
+  `bigquery-public-data`.london_bicycles.cycle_hire
+```
+
+2. To see the metrics for this model, enter the following query into the BigQuery editor window:
+```sql
+SELECT * FROM ML.EVALUATE(MODEL `bike_model.model_weekday`)
+```
+
+This model results in a mean absolute error of 966 seconds which is less than the 1025 seconds for the original model. Improvement!
+
+### Bucketize hour of day
+Based on the relationship between hourofday and the duration, we can experiment with bucketizing the variable into 4 bins; (-inf,5), [5,10), [10,17), and [17,inf).
+
+1. Build a BigQuery ML model with the bucketized hour of day, and combined days of week features using the query below:
+```sql
+CREATE OR REPLACE MODEL
+  bike_model.model_bucketized
+OPTIONS
+  (input_label_cols=['duration'],
+    model_type='linear_reg') AS
+SELECT
+  duration,
+  start_station_name,
+IF
+  (EXTRACT(dayofweek
+    FROM
+      start_date) BETWEEN 2 AND 6,
+    'weekday',
+    'weekend') AS dayofweek,
+  ML.BUCKETIZE(EXTRACT(hour
+    FROM
+      start_date),
+    [5, 10, 17]) AS hourofday
+FROM
+  `bigquery-public-data`.london_bicycles.cycle_hire
+```
+
+2. To see the metrics for this model, enter the following query into the BigQuery editor window:
+```sql
+SELECT * FROM ML.EVALUATE(MODEL `bike_model.model_bucketized`)
+```
+
+This model results in a mean absolute error of 904 seconds which is less than the 966 seconds for the weekday-weekend model. Further improvement!
+
