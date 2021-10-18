@@ -254,3 +254,78 @@ SELECT * FROM ML.EVALUATE(MODEL `bike_model.model_bucketized`)
 
 This model results in a mean absolute error of 904 seconds which is less than the 966 seconds for the weekday-weekend model. Further improvement!
 
+## Make predictions
+Our best model contains several data transformations. Wouldn’t it be nice if BigQuery could remember the sets of transformations we did at the time of training and automatically apply them at the time of prediction? It can, using the TRANSFORM clause!
+
+In this case, the resulting model requires just the start_station_name and start_date to predict the duration. The transformations are saved and carried out on the provided raw data to create input features for the model. The main advantage of placing all preprocessing functions inside the TRANSFORM clause is that clients of the model do not have to know what kind of preprocessing has been carried out.
+
+1. Build a BigQuery ML model with the TRANSFORM clause that incorporates the bucketized hour of day, and combined days of week features using the query below:
+```sql
+CREATE OR REPLACE MODEL
+  bike_model.model_bucketized TRANSFORM(* EXCEPT(start_date),
+  IF
+    (EXTRACT(dayofweek
+      FROM
+        start_date) BETWEEN 2 AND 6,
+      'weekday',
+      'weekend') AS dayofweek,
+    ML.BUCKETIZE(EXTRACT(HOUR
+      FROM
+        start_date),
+      [5, 10, 17]) AS hourofday )
+OPTIONS
+  (input_label_cols=['duration'],
+    model_type='linear_reg') AS
+SELECT
+  duration,
+  start_station_name,
+  start_date
+FROM
+  `bigquery-public-data`.london_bicycles.cycle_hire
+```
+
+2. With the TRANSFORM clause in place, enter this query to predict the duration of a rental from Park Lane right now (your result will vary):
+```sql
+SELECT
+  *
+FROM
+  ML.PREDICT(MODEL bike_model.model_bucketized,
+    (
+    SELECT
+      'Park Lane , Hyde Park' AS start_station_name,
+      CURRENT_TIMESTAMP() AS start_date) )
+```
+
+![image](https://user-images.githubusercontent.com/1645304/137667981-86b8411d-1a83-4299-ac5a-221105a41fe8.png)
+
+3. To make batch predictions on a sample of 100 rows in the training set use the query:
+```sql
+SELECT
+  *
+FROM
+  ML.PREDICT(MODEL bike_model.model_bucketized,
+    (
+    SELECT
+      start_station_name,
+      start_date
+    FROM
+      `bigquery-public-data`.london_bicycles.cycle_hire
+    LIMIT
+      100) )
+```
+
+
+## Examine model weights
+A linear regression model predicts the output as a weighted sum of its inputs. Often times, the weights of the model need to be utilized in a production environment.
+
+1. Examine (or export) the weights of your model using the query below:
+```sql
+SELECT * FROM ML.WEIGHTS(MODEL bike_model.model_bucketized)
+```
+
+Note, numeric features get a single weight, while categorical features get a weight for each possible value. For example, the dayofweek feature has the following weights:
+
+![image](https://user-images.githubusercontent.com/1645304/137668031-9af08e31-0a97-45d4-88e1-7405b2592806.png)
+
+This means that if the day is a weekday, the contribution of this feature to the overall predicted duration is 1709 seconds (the weights that provide the optimal performance are not unique, so you might get a different value).
+
