@@ -54,10 +54,24 @@ In the beginning of 2018, one of the airlines promised to use newer faster airpl
 
 ### First Query
 Create a query that produces the average trip time for trips originating from the airport in Frankfurt, Germany (FRA) and destined for the airport in Kuala Lumpur, Malaysia (KUL), and group the results by airline. The resulting average times should be similar.
+```sql
+select airline, avg(minutes)
+from `qwiklabs-gcp-00-b02752ce4b2f.JasmineJasper.triplog`
+where origin='FRA' and destination='KUL'
+group by airline
+```
 
 ### Second Query
 Create a query that produces the average trip time for trips originating from London Heathrow Airport, United Kingdom (LHR) and destined for the airport in Kuala Lumpur, Malaysia (KUL), and group the results by airline, and order them from lowest to highest. The resulting average times should reveal whether the airline, PlanePeople Air, kept its promise to use faster airplanes from Heathrow Airport.
 
+```sql
+select airline, avg(minutes) as average_trip
+from `qwiklabs-gcp-00-b02752ce4b2f.JasmineJasper.triplog`
+where origin='LHR' and destination='KUL'
+group by airline
+order by average_trip
+```
+
 ### Answer the following two questions:
-Did the airline keep its promise?
-If the answer was yes, how fast was the trip from LHR to KUL on average?
+- Did the airline keep its promise?
+- If the answer was yes, how fast was the trip from LHR to KUL on average?
