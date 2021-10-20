@@ -264,4 +264,30 @@ An application has the following data requirements. 1. It requires strongly cons
 - [x] Cloud SQL
 - [ ] Memorystore
 
+## Resources
+### Reading: Exam Tips #7
+#### Review of tips
+TIP 1: Create your own custom preparation plan using the resources in this course.
+
+TIP 2: Use the Exam Guide outline to help identify what to study.
+
+TIP 3: Product and technology knowledge.
+
+TIP 4: This course has touchstone concepts for self-evaluation, not technical training. Seek training if needed.
+
+TIP 5: Problem solving is the key skill.
+
+TIP 6: Practice evaluating your confidence in your answers.
+
+TIP 7: Practice case evaluation and creating proposed solutions.
+
+Tip 8: Use what you know and what you don't know to identify correct and incorrect answers.
+
+Tip 9: Review or rehearse labs to refresh your experience
+
+Tip 10: Prepare!
+
+Good luck!!
+
+
 
