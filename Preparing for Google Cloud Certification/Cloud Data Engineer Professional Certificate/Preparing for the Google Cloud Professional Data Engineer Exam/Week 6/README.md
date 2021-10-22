@@ -18,7 +18,8 @@ Storage of JSON files with occasionally changing schema, for ANSI SQL queries.
 
 - [ ] Store in BigQuery. Provide format files for data load and update them as needed.
 - [ ] Store in BigQuery. Select "Automatically detect" in the Schema section.
-- [x] Store in Cloud Storage. Link data as temporary tables in BigQuery and turn on the "Automatically detect" option in the Schema section of BigQuery.
+- [ ] Store in Cloud Storage. Link data as temporary tables in BigQuery and turn on the "Automatically detect" option in the Schema section of BigQuery.
+> **Incorrect**: This is not correct because you should not use Cloud Storage for this scenario: it is cumbersome and doesn't add value.
 - [ ] Store in Cloud Storage. Link data as permanent tables in BigQuery and turn on the "Automatically detect" option in the Schema section of BigQuery.
 
 **2. Question 2**
@@ -26,7 +27,8 @@ Storage of JSON files with occasionally changing schema, for ANSI SQL queries.
 Low-cost one-way one-time migration of two 100-TB file servers to Google Cloud; data will be frequently accessed and only from Germany.
 
 - [ ] Use Transfer Appliance. Transfer to a Cloud Storage Standard bucket.
-- [x] Use Transfer Appliance. Transfer to a Cloud Storage Nearline bucket.
+- [ ] Use Transfer Appliance. Transfer to a Cloud Storage Nearline bucket.
+> **Incorrect:** This is not correct because you should not use a  Nearline storage bucket for frequently accessed data. 
 - [ ] Use Storage Transfer Service. Transfer to a Cloud Storage Standard bucket.
 - [ ] Use Storage Transfer Service. Transfer to a Cloud Storage Coldline bucket.
 
@@ -38,8 +40,8 @@ Cost-effective backup to Google Cloud of multi-TB databases from another cloud i
 - [ ] Use Transfer Appliance. Transfer to Cloud Storage Nearline bucket.
 - [ ] Use Transfer Appliance. Transfer to Cloud Storage Coldline bucket.
 - [ ] Use Storage Transfer Service. Transfer to Cloud Storage Nearline bucket.
-- [x] Use Storage Transfer Service. Transfer to Cloud Storage Coldline bucket.
-
+- [ ] Use Storage Transfer Service. Transfer to Cloud Storage Coldline bucket.
+> **Incorrect:** This is not correct because you should not use Coldline if you want to access the files monthly.
 
 **4. Question 4**
 
@@ -48,6 +50,7 @@ Cost-effective backup to Google Cloud of multi-TB databases from another cloud i
 - [ ] Capture data in BigQuery. Develop a BigQuery API custom application to query the dataset and display device outlier data.
 - [ ] Capture data in BigQuery. Use the BigQuery console to query the dataset and display device outlier data.
 - [x] Capture data in Cloud Bigtable. Use the Cloud Bigtable cbt tool to display device outlier data.
+> **Correct:** This is correct because the data type, volume, and query pattern best fit Cloud Bigtable capabilities.
 - [ ] Capture data in Cloud Bigtable. Install and use the HBase shell for Cloud Bigtable to query the table for device outlier data.
 
 
@@ -58,6 +61,7 @@ Event data in CSV format to be queried for individual values over time windows. 
 - [ ] Use Cloud Storage. Write a Dataprep job to split the data into partitioned tables.
 - [ ] Use Cloud Bigtable. Design short and wide tables, and use a new column for each single event version.
 - [x] Use Cloud Bigtable. Design tall and narrow tables, and use a new row for each single event version.
+> **Correct:** This is correct because it is a recommended best practice. Use Cloud Bigtable and this schema for this scenario. Cloud Storage would have cheaper STORAGE costs than Cloud Bigtable, but we want to **minimize QUERY costs**.
 - [ ] Use Cloud Storage. Join the raw file data with a BigQuery log table.
 
 
@@ -68,6 +72,7 @@ Customer wants to maintain investment in an existing Apache Spark code data pipe
 - [ ] BigQuery
 - [ ] Dataflow
 - [x] Dataproc
+> **Correct:** This is correct because Dataproc is a managed Hadoop service and runs Apache Spark applications.
 - [ ] Dataprep
 
 
@@ -77,6 +82,7 @@ Host a deep neural network machine learning model on Google Cloud. Run and monit
 
 - [ ] Use AI Platform to host your model. Monitor the status of the Operation object for 'error' results.
 - [x] Use AI Platform to host your model. Monitor the status of the Jobs object for 'failed' job states.
+> **Correct:** This is correct because of the requirement to host an ML DNN. AI Platform for Tensorflow can handle DNNs. Google recommends monitoring Jobs, not Operations.
 - [ ] Use a Google Kubernetes Engine cluster to host your model. Monitor the status of the Jobs object for 'failed' job states.
 - [ ] Use a Google Kubernetes Engine cluster to host your model. Monitor the status of the Operation object for 'error' results.
 
@@ -88,6 +94,7 @@ Cost-effective way to run non-critical Apache Spark jobs on Dataproc?
 - [ ] Set up a cluster in high availability mode with high-memory machine types. Add 10 additional local SSDs.
 - [ ] Set up a cluster in high availability mode with default machine types. Add 10 additional preemptible worker nodes.
 - [x] Set up a cluster in standard mode with high-memory machine types. Add 10 additional preemptible worker nodes.
+> **Correct:** This is correct because Spark and high-memory machines only need the standard mode. Also, use preemptible nodes because you want to save money and this is not mission-critical.
 - [ ] Set up a cluster in standard mode with the default machine types. Add 10 additional local SSDs.
 
 
@@ -101,6 +108,7 @@ Promote a Cloud Bigtable solution with a lot of data from development to product
 - [ ] Export the data from your current Cloud Bigtable instance to Cloud Storage. Create a new Cloud Bigtable Production instance type with at least 3 nodes. Select the HDD storage type. Import the data into the new instance from Cloud Storage.
 - [x] Export the data from your current Cloud Bigtable instance to Cloud Storage. Create a new Cloud Bigtable Production instance type with at least 3 nodes. Select the SSD storage type. Import the data into the new instance from Cloud Storage.
 
+> **Incorrect:** This is not correct because creating a new Cloud Bigtable instance is extraneous and not needed to export; you can upgrade in place for nodes, but the storage type cannot be changed.
 
 **10. Question 10**
 
@@ -111,6 +119,7 @@ As part of your backup plan, you want to be able to restore snapshots of Compute
 - [ ] Use the snapshots to create replacement disks. Use the disks to create instances as needed.
 - [x] Use the snapshots to create replacement instances as needed.
 
+> **Correct:** This is correct because the scenario asks how to recreate instances. You can create an instance directly from a snapshot without restoring to disk first.
 
 **11. Question 11**
 
@@ -118,6 +127,8 @@ You want to minimize costs to run Google Data Studio reports on BigQuery queries
 
 - [ ] Set up the report to use the Owner's credentials to access the underlying data in BigQuery, and direct the users to view the report only once per business day (24-hour period).
 - [x] Set up the report to use the Owner's credentials to access the underlying data in BigQuery, and verify that the 'Enable cache' checkbox is selected for the report.
+> **Correct:** This is correct because you must set Owner credentials to use the 'enable cache' option in BigQuery. It is also a Google best practice to use the ‘enable cache’ option when the business scenario calls for using prefetch caching. 1) Report must use Owner's Credentials. 2) You don't need to tell the users not to use the report, you need to tell the system to use Query and Pre-fetch caching to cut down on BigQuery jobs.
+
 - [ ] Set up the report to use the Viewer's credentials to access the underlying data in BigQuery, and also set it up to be a 'view-only' report.
 - [ ] Set up the report to use the Viewer's credentials to access the underlying data in BigQuery, and verify that the 'Enable cache' checkbox is not selected for the report.
 
@@ -129,6 +140,7 @@ A Data Analyst is concerned that a BigQuery query could be too expensive.
 - [ ] Use the LIMIT clause to limit the number of values in the results.
 - [ ] Use the SELECT clause to limit the amount of data in the query. Partition data by date so the query can be more focused.
 - [x] Set the Maximum Bytes Billed, which will limit the number of bytes processed but still run the query if the number of bytes requested goes over the limit.
+> **Incorrect:** This is not correct because if the query contains too many bytes, the job will fail and not be run.
 - [ ] Use GROUP BY so the results will be grouped into fewer output values.
 
 
@@ -138,6 +150,7 @@ BigQuery data is stored in external CSV files in Cloud Storage; as the data has 
 
 - [ ] Import the data into BigQuery for better performance.
 - [x] Request more slots for greater capacity to improve performance.
+> **Incorrect:** This is incorrect because a slot is a measure of processing power, and the bottleneck is in the data access, not the data processing.
 - [ ] Divide the data into partitions based on date.
 - [ ] Time to move to Cloud Bigtable; it is faster in all cases.
 
@@ -150,13 +163,14 @@ Source data is streamed in bursts and must be transformed before use.
 - [ ] Ingest data to Cloud Storage. Use Dataproc for ETL.
 - [ ] Use Pub/Sub to buffer the data, and then use BigQuery for ETL.
 - [x] Use Pub/Sub to buffer the data, and then use Dataflow for ETL.
-
+> **Correct:** This is correct because the unpredictable data requires a buffer
 
 **15. Question 15**
 
 Calculate a running average on streaming data that can arrive late and out of order.
 
 - [x] Use Pub/Sub and Dataflow with Sliding Time Windows.
+> **Correct:** This is correct because together, Pub/Sub and Dataflow can provide a solution.
 - [ ] Use Pub/Sub and Google Data Studio.
 - [ ] Pub/Sub can guarantee timely arrival and order.
 - [ ] Use Dataflow's built-in timestamps for ordering and filtering.
@@ -167,6 +181,8 @@ Calculate a running average on streaming data that can arrive late and out of or
 Testing a Machine Learning model with validation data returns 100% correct answers.
 
 - [x] The model is working extremely well, indicating the hyperparameters are set correctly.
+> **Incorrect:** This is not correct because the 100% accuracy is an indicator of an overfit model. It may mean your validation data has gotten mixed in with your training data.
+
 - [ ] The model is overfit. There is a problem.
 - [ ] The model is underfit. There is a problem.
 - [ ] The model is perfectly fit. You do not need to continue training.
@@ -176,6 +192,7 @@ Testing a Machine Learning model with validation data returns 100% correct answe
 A client is using Cloud SQL database to serve infrequently changing lookup tables that host data used by applications. The applications will not modify the tables. As they expand into other geographic regions they want to ensure good performance. What do you recommend?
 
 - [x] Migrate to Cloud Spanner
+> **Incorrect:** This is not correct because there is no mention of a scale issue requiring a larger database or globally consistent transactions.
 - [ ] Read replicas
 - [ ] Instance high availability configuration
 - [ ] Replicate from an external server
@@ -188,6 +205,7 @@ A client wants to store files from one location and retrieve them from another l
 - [ ] Default encryption should be sufficient
 - [ ] Client-side encryption
 - [x] Customer-Supplied Encryption Keys (CSEK)
+> **Incorrect:** The specific requirement is that the file cannot be decrypted in the cloud. This feature simply makes decryption more private and secure. So it is not the best solution because it does not satisfy the business requirements stated in the question.
 - [ ] Customer Managed Encryption Keys (CMEK)
 
 
@@ -197,6 +215,7 @@ Three Google Cloud services commonly used together in data engineering solutions
 
 - [ ] Dataproc, Cloud SQL, BigQuery
 - [x] Pub/Sub, Dataflow, BigQuery
+> **Correct:** Correct. Pub/Sub provides messaging, Dataflow is used for ETL and data transformation, and BigQuery is used for interactive queries.
 - [ ] Pub/Sub,Google Kubernetes Engine, Spanner
 - [ ] Bigtable, Dataproc, Cloud Spanner
 
@@ -206,6 +225,7 @@ Three Google Cloud services commonly used together in data engineering solutions
 What is AVRO used for?
 
 - [x] Serialization and de-serialization of data so that it can be transmitted and stored while maintaining an object structure.
+> **Correct:** This is correct. AVRO is a serialization / de-serialization standard.
 - [ ] AVRO is an encryption method. AVRO-256 is a 256-bit key standard.
 - [ ] AVRO is a file type usually specified with `*.avr` and a common format for spreadsheets.
 - [ ] AVRO is a numerical type in SQL that stores a 38 digit value with 9 digit decimal representation. It avoids rounding errors in financial calculations.
@@ -222,6 +242,7 @@ Select the services that should be used to replace the icons with the number "1"
 
 - [ ] IoT Core, Datastore
 - [x] Pub/Sub, Storage
+> **Incorrect:** This is not correct because Pub/Sub does not do device management.
 - [ ] IoT Core, Pub/Sub
 - [ ] App Engine, IoT Core
 
@@ -233,6 +254,7 @@ A company wants to connect cloud applications to an Oracle database in its data 
 - [ ] Implement a high-throughput Cloud VPN connection
 - [ ] Cloud Router with VPN
 - [x] Dedicated Interconnect
+> **Incorrect:** This is not correct. Direct Interconnect is useful for data from 10 Gbps to 80 Gbps. An ISP could offer a 99% SLA, but the max 9 Gbps requirement means this solution would not be optimal.
 - [ ] Partner Interconnect
 
 **23. Question 23**
@@ -240,6 +262,7 @@ A company wants to connect cloud applications to an Oracle database in its data 
 A client has been developing a pipeline based on PCollections using local programming techniques and is ready to scale up to production. What should they do?
 
 - [x] They should use the Dataflow Cloud Runner.
+> **Correct:** This is correct. The PCollection indicates it is a Dataflow pipeline. And the Cloud Runner will enable the pipeline to scale to production levels.
 - [ ] They should upload the pipeline to Dataproc.
 - [ ] They should use the local version of runner.
 - [ ] Import the pipeline into BigQuery.
@@ -252,6 +275,7 @@ A company has migrated their Hadoop cluster to the cloud and is now using  Datap
 - [ ] Upgrade to the latest version of HDFS. Change the settings in Hadoop components to optimize for the different kinds of work in the mix.
 - [ ] Find more jobs to run so the cluster utilizations will cost-justify the expense.
 - [x] Store persistent data off-cluster. Start a cluster for one kind of work then shut it down when it is not processing data.
+> **Correct:** This is correct. Storing persistent data off the cluster allows the cluster to be shut down when not processing data. And it allows separate clusters to be started per job or per kind of work, so tuning is less important.
 - [ ] Migrate from Dataproc to an open source Hadoop Cluster hosted on Compute Engine, because this is the only way to get all the Hadoop customizations needed for efficiency.
 
 
@@ -262,6 +286,7 @@ An application has the following data requirements. 1. It requires strongly cons
 - [ ] BigQuery
 - [ ] Cloud Bigtable
 - [x] Cloud SQL
+> **Correct:** This is correct. Cloud SQL supports strongly consistent transactions. And the size requirements will fit with a Cloud SQL instance.
 - [ ] Memorystore
 
 ## Resources
