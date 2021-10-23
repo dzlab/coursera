@@ -19,6 +19,9 @@ https://github.com/GoogleCloudPlatform/training-data-analyst
 - **Qwiklabs Quest** Engineer Data in Google Cloud - [link](https://www.qwiklabs.com/quests/132)
 - Data Engineer learning path -[link](https://cloud.google.com/training/data-engineering-and-analytics#data-engineer-learning-path)
 
+### Cheatsheet
+- Data Engineering on GCP Cheatsheet - [link](https://github.com/ml874/Data-Engineering-on-GCP-Cheatsheet)
+
 ### Coursera
 - https://www.coursera.org/collections/googlecloud-cert-discount
 - https://www.coursera.org/promo/google-cloud-free-courses-2021
