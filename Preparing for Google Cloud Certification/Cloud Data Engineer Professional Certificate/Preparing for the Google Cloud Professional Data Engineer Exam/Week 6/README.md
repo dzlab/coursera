@@ -17,7 +17,7 @@ Good luck!
 Storage of JSON files with occasionally changing schema, for ANSI SQL queries.
 
 - [ ] Store in BigQuery. Provide format files for data load and update them as needed.
-- [ ] Store in BigQuery. Select "Automatically detect" in the Schema section.
+- [x] Store in BigQuery. Select "Automatically detect" in the Schema section.
 > **Correct:** This is correct because of the requirement to support occasionally (schema) changing JSON files and aggregate ANSI SQL queries: you need to use BigQuery, and it is quickest to use 'Automatically detect' for schema changes.
 - [ ] Store in Cloud Storage. Link data as temporary tables in BigQuery and turn on the "Automatically detect" option in the Schema section of BigQuery.
 > **Incorrect**: This is not correct because you should not use Cloud Storage for this scenario: it is cumbersome and doesn't add value.
@@ -40,7 +40,7 @@ Cost-effective backup to Google Cloud of multi-TB databases from another cloud i
 
 - [ ] Use Transfer Appliance. Transfer to Cloud Storage Nearline bucket.
 - [ ] Use Transfer Appliance. Transfer to Cloud Storage Coldline bucket.
-- [ ] Use Storage Transfer Service. Transfer to Cloud Storage Nearline bucket.
+- [x] Use Storage Transfer Service. Transfer to Cloud Storage Nearline bucket.
 > **Correct:** This is correct because you will need to access your backup data monthly to test your disaster recovery process, so you should use a Nearline bucket; also because you will be performing ongoing, regular data transfers, so you should use Storage Transfer Service.
 - [ ] Use Storage Transfer Service. Transfer to Cloud Storage Coldline bucket.
 > **Incorrect:** This is not correct because you should not use Coldline if you want to access the files monthly.
@@ -107,10 +107,10 @@ Promote a Cloud Bigtable solution with a lot of data from development to product
 
 
 - [ ] Change your Cloud Bigtable instance type from Development to Production, and set the number of nodes to at least 3. Verify that the storage type is HDD.
-- [ ] Change your Cloud Bigtable instance type from Development to Production, and set the number of nodes to at least 3. Verify that the storage type is SSD.
+- [x] Change your Cloud Bigtable instance type from Development to Production, and set the number of nodes to at least 3. Verify that the storage type is SSD.
 > **Correct:** This is correct because Cloud Bigtable allows you to 'scale in place,' which meets your requirements for this scenario.
 - [ ] Export the data from your current Cloud Bigtable instance to Cloud Storage. Create a new Cloud Bigtable Production instance type with at least 3 nodes. Select the HDD storage type. Import the data into the new instance from Cloud Storage.
-- [x] Export the data from your current Cloud Bigtable instance to Cloud Storage. Create a new Cloud Bigtable Production instance type with at least 3 nodes. Select the SSD storage type. Import the data into the new instance from Cloud Storage.
+- [ ] Export the data from your current Cloud Bigtable instance to Cloud Storage. Create a new Cloud Bigtable Production instance type with at least 3 nodes. Select the SSD storage type. Import the data into the new instance from Cloud Storage.
 
 > **Incorrect:** This is not correct because creating a new Cloud Bigtable instance is extraneous and not needed to export; you can upgrade in place for nodes, but the storage type cannot be changed.
 
@@ -144,8 +144,9 @@ You want to minimize costs to run Google Data Studio reports on BigQuery queries
 A Data Analyst is concerned that a BigQuery query could be too expensive.
 
 - [ ] Use the LIMIT clause to limit the number of values in the results.
-- [ ] Use the SELECT clause to limit the amount of data in the query. Partition data by date so the query can be more focused.
-- [x] Set the Maximum Bytes Billed, which will limit the number of bytes processed but still run the query if the number of bytes requested goes over the limit.
+- [x] Use the SELECT clause to limit the amount of data in the query. Partition data by date so the query can be more focused.
+> **Correct:** This is correct. SELECT limits the input data.
+- [ ] Set the Maximum Bytes Billed, which will limit the number of bytes processed but still run the query if the number of bytes requested goes over the limit.
 > **Incorrect:** This is not correct because if the query contains too many bytes, the job will fail and not be run.
 - [ ] Use GROUP BY so the results will be grouped into fewer output values.
 
@@ -155,9 +156,10 @@ A Data Analyst is concerned that a BigQuery query could be too expensive.
 BigQuery data is stored in external CSV files in Cloud Storage; as the data has increased, the query performance has dropped.
 
 - [ ] Import the data into BigQuery for better performance.
-- [x] Request more slots for greater capacity to improve performance.
+- [ ] Request more slots for greater capacity to improve performance.
 > **Incorrect:** This is incorrect because a slot is a measure of processing power, and the bottleneck is in the data access, not the data processing.
 - [ ] Divide the data into partitions based on date.
+> **Incorrect:** This might improve performance by focusing the query to a date-range if the data was already imported into a dataset.
 - [ ] Time to move to Cloud Bigtable; it is faster in all cases.
 
 
@@ -186,10 +188,12 @@ Calculate a running average on streaming data that can arrive late and out of or
 
 Testing a Machine Learning model with validation data returns 100% correct answers.
 
-- [x] The model is working extremely well, indicating the hyperparameters are set correctly.
+- [ ] The model is working extremely well, indicating the hyperparameters are set correctly.
 > **Incorrect:** This is not correct because the 100% accuracy is an indicator of an overfit model. It may mean your validation data has gotten mixed in with your training data.
 
-- [ ] The model is overfit. There is a problem.
+- [x] The model is overfit. There is a problem.
+> **Correct:** This is correct. The 100% accuracy is an indicator that the validation data may have somehow gotten mixed in with the training data. You will need new validation data to generate recognizable errors.
+
 - [ ] The model is underfit. There is a problem.
 - [ ] The model is perfectly fit. You do not need to continue training.
 
@@ -197,9 +201,10 @@ Testing a Machine Learning model with validation data returns 100% correct answe
 
 A client is using Cloud SQL database to serve infrequently changing lookup tables that host data used by applications. The applications will not modify the tables. As they expand into other geographic regions they want to ensure good performance. What do you recommend?
 
-- [x] Migrate to Cloud Spanner
+- [ ] Migrate to Cloud Spanner
 > **Incorrect:** This is not correct because there is no mention of a scale issue requiring a larger database or globally consistent transactions.
-- [ ] Read replicas
+- [x] Read replicas
+> **Correct:** This is correct. A read replica will increase the availability of the service and can be located closer to the users in the new geographies.
 - [ ] Instance high availability configuration
 - [ ] Replicate from an external server
 
@@ -210,10 +215,10 @@ A client wants to store files from one location and retrieve them from another l
 
 - [ ] Default encryption should be sufficient
 - [ ] Client-side encryption
-- [x] Customer-Supplied Encryption Keys (CSEK)
+- [ ] Customer-Supplied Encryption Keys (CSEK)
 > **Incorrect:** The specific requirement is that the file cannot be decrypted in the cloud. This feature simply makes decryption more private and secure. So it is not the best solution because it does not satisfy the business requirements stated in the question.
-- [ ] Customer Managed Encryption Keys (CMEK)
-
+- [x] Customer Managed Encryption Keys (CMEK)
+> **Incorrect:** Not correct. The file can still be decrypted while hosted in the cloud.
 
 **19. Question 19**
 
@@ -260,9 +265,9 @@ A company wants to connect cloud applications to an Oracle database in its data 
 
 - [ ] Implement a high-throughput Cloud VPN connection
 - [ ] Cloud Router with VPN
-- [x] Dedicated Interconnect
+- [ ] Dedicated Interconnect
 > **Incorrect:** This is not correct. Direct Interconnect is useful for data from 10 Gbps to 80 Gbps. An ISP could offer a 99% SLA, but the max 9 Gbps requirement means this solution would not be optimal.
-- [ ] Partner Interconnect
+- [x] Partner Interconnect
 > **Correct:** This is correct. Partner Interconnect is useful for data up to 10 Gbps and is offered by ISPs with SLAs.
 
 **23. Question 23**
