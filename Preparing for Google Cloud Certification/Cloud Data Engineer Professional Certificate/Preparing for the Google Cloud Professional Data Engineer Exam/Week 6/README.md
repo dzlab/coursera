@@ -18,6 +18,7 @@ Storage of JSON files with occasionally changing schema, for ANSI SQL queries.
 
 - [ ] Store in BigQuery. Provide format files for data load and update them as needed.
 - [ ] Store in BigQuery. Select "Automatically detect" in the Schema section.
+> **Correct:** This is correct because of the requirement to support occasionally (schema) changing JSON files and aggregate ANSI SQL queries: you need to use BigQuery, and it is quickest to use 'Automatically detect' for schema changes.
 - [ ] Store in Cloud Storage. Link data as temporary tables in BigQuery and turn on the "Automatically detect" option in the Schema section of BigQuery.
 > **Incorrect**: This is not correct because you should not use Cloud Storage for this scenario: it is cumbersome and doesn't add value.
 - [ ] Store in Cloud Storage. Link data as permanent tables in BigQuery and turn on the "Automatically detect" option in the Schema section of BigQuery.
@@ -40,6 +41,7 @@ Cost-effective backup to Google Cloud of multi-TB databases from another cloud i
 - [ ] Use Transfer Appliance. Transfer to Cloud Storage Nearline bucket.
 - [ ] Use Transfer Appliance. Transfer to Cloud Storage Coldline bucket.
 - [ ] Use Storage Transfer Service. Transfer to Cloud Storage Nearline bucket.
+> **Correct:** This is correct because you will need to access your backup data monthly to test your disaster recovery process, so you should use a Nearline bucket; also because you will be performing ongoing, regular data transfers, so you should use Storage Transfer Service.
 - [ ] Use Storage Transfer Service. Transfer to Cloud Storage Coldline bucket.
 > **Incorrect:** This is not correct because you should not use Coldline if you want to access the files monthly.
 
@@ -49,6 +51,7 @@ Cost-effective backup to Google Cloud of multi-TB databases from another cloud i
 
 - [ ] Capture data in BigQuery. Develop a BigQuery API custom application to query the dataset and display device outlier data.
 - [ ] Capture data in BigQuery. Use the BigQuery console to query the dataset and display device outlier data.
+> **Incorrect:** This is not correct because you do not need to use BigQuery for the query pattern in this scenario. The focus is on a single action (identify outliers), not interactive analysis. And the speed of the data is more suited to Cloud Bigtable.
 - [x] Capture data in Cloud Bigtable. Use the Cloud Bigtable cbt tool to display device outlier data.
 > **Correct:** This is correct because the data type, volume, and query pattern best fit Cloud Bigtable capabilities.
 - [ ] Capture data in Cloud Bigtable. Install and use the HBase shell for Cloud Bigtable to query the table for device outlier data.
@@ -58,10 +61,10 @@ Cost-effective backup to Google Cloud of multi-TB databases from another cloud i
 
 Event data in CSV format to be queried for individual values over time windows. Which storage and schema to minimize query costs?
 
-- [ ] Use Cloud Storage. Write a Dataprep job to split the data into partitioned tables.
-- [ ] Use Cloud Bigtable. Design short and wide tables, and use a new column for each single event version.
-- [x] Use Cloud Bigtable. Design tall and narrow tables, and use a new row for each single event version.
+- [x] Use Cloud Storage. Write a Dataprep job to split the data into partitioned tables.
 > **Correct:** This is correct because it is a recommended best practice. Use Cloud Bigtable and this schema for this scenario. Cloud Storage would have cheaper STORAGE costs than Cloud Bigtable, but we want to **minimize QUERY costs**.
+- [ ] Use Cloud Bigtable. Design short and wide tables, and use a new column for each single event version.
+- [ ] Use Cloud Bigtable. Design tall and narrow tables, and use a new row for each single event version.
 - [ ] Use Cloud Storage. Join the raw file data with a BigQuery log table.
 
 
@@ -105,6 +108,7 @@ Promote a Cloud Bigtable solution with a lot of data from development to product
 
 - [ ] Change your Cloud Bigtable instance type from Development to Production, and set the number of nodes to at least 3. Verify that the storage type is HDD.
 - [ ] Change your Cloud Bigtable instance type from Development to Production, and set the number of nodes to at least 3. Verify that the storage type is SSD.
+> **Correct:** This is correct because Cloud Bigtable allows you to 'scale in place,' which meets your requirements for this scenario.
 - [ ] Export the data from your current Cloud Bigtable instance to Cloud Storage. Create a new Cloud Bigtable Production instance type with at least 3 nodes. Select the HDD storage type. Import the data into the new instance from Cloud Storage.
 - [x] Export the data from your current Cloud Bigtable instance to Cloud Storage. Create a new Cloud Bigtable Production instance type with at least 3 nodes. Select the SSD storage type. Import the data into the new instance from Cloud Storage.
 
@@ -116,6 +120,7 @@ As part of your backup plan, you want to be able to restore snapshots of Compute
 
 - [ ] Export the snapshots to Cloud Storage. Create disks from the exported snapshot files. Create images from the new disks.
 - [ ] Export the snapshots to Cloud Storage. Create images from the exported snapshot files.
+> **Incorrect:** This is not correct because you don't need to export the snapshot to use it.
 - [ ] Use the snapshots to create replacement disks. Use the disks to create instances as needed.
 - [x] Use the snapshots to create replacement instances as needed.
 
@@ -130,6 +135,7 @@ You want to minimize costs to run Google Data Studio reports on BigQuery queries
 > **Correct:** This is correct because you must set Owner credentials to use the 'enable cache' option in BigQuery. It is also a Google best practice to use the ‘enable cache’ option when the business scenario calls for using prefetch caching. 1) Report must use Owner's Credentials. 2) You don't need to tell the users not to use the report, you need to tell the system to use Query and Pre-fetch caching to cut down on BigQuery jobs.
 
 - [ ] Set up the report to use the Viewer's credentials to access the underlying data in BigQuery, and also set it up to be a 'view-only' report.
+> **Incorrect:** This is not correct because a cache auto-expires every 12 hours; a prefetch cache is only for data sources that use the Owner's credentials (not the Viewer's credentials).
 - [ ] Set up the report to use the Viewer's credentials to access the underlying data in BigQuery, and verify that the 'Enable cache' checkbox is not selected for the report.
 
 
@@ -244,6 +250,7 @@ Select the services that should be used to replace the icons with the number "1"
 - [x] Pub/Sub, Storage
 > **Incorrect:** This is not correct because Pub/Sub does not do device management.
 - [ ] IoT Core, Pub/Sub
+> **Correct:** This is correct because device data captured by IoT Core gets published to Pub/Sub.
 - [ ] App Engine, IoT Core
 
 
@@ -256,6 +263,7 @@ A company wants to connect cloud applications to an Oracle database in its data 
 - [x] Dedicated Interconnect
 > **Incorrect:** This is not correct. Direct Interconnect is useful for data from 10 Gbps to 80 Gbps. An ISP could offer a 99% SLA, but the max 9 Gbps requirement means this solution would not be optimal.
 - [ ] Partner Interconnect
+> **Correct:** This is correct. Partner Interconnect is useful for data up to 10 Gbps and is offered by ISPs with SLAs.
 
 **23. Question 23**
 
