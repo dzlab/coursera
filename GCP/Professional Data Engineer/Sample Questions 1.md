@@ -46,5 +46,5 @@ After all I would recommend to read overviews of all database products as there 
 **Recommended read:** [Migration from MySQL to Cloud SQL | Solutions | Google Cloud](https://cloud.google.com/solutions/migrating-mysql-to-cloudsql-concept)
 
 
-### Choosing Google Database products
+## Choosing Google Database products
 ![image](https://user-images.githubusercontent.com/1645304/139313574-ecce8c9a-1c0e-4e46-b927-5280244610e1.png)
