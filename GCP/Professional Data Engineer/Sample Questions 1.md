@@ -48,3 +48,31 @@ After all I would recommend to read overviews of all database products as there 
 
 ## Choosing Google Database products
 ![image](https://user-images.githubusercontent.com/1645304/139313574-ecce8c9a-1c0e-4e46-b927-5280244610e1.png)
+
+### Example:
+Your database is 500 GB in size. The data is semi-structured and does not need full atomicity. You need to process transactions in a point-of-sale application on Google Cloud Platform? You need to account for exponential user growth, but you do not want to deal with managing your infrastructure overhead?
+
+Use **Datastore**
+
+### Example:
+Data is more than 1 Tb and low latency required (also you probably don’t care about costs):
+
+Use **BigTable**
+
+### Example:
+Low latency not required and/or need to run ANSI SQL analytics and do it economically? Need to easily load data from CSV and JSON for later inspection with SQL?
+
+Use **BigQuery**. Cloud Datastore supports JSON and SQL-like queries but cannot easily ingest CSV files. Cloud SQL can read from CSV but not easily convert from JSON. Cloud Bigtable does not support SQL-like queries.
+
+### Example:
+You are designing a relational data repository on Google Cloud to grow as needed. The data will be transactionally consistent and added from any location in the world. You want to monitor and adjust node count for input traffic, which can spike unpredictably.
+
+Use **Cloud Spanner**
+
+### Example:
+You need strongly consistent transactions? Data less than 500 Gb? The data does not need to be streaming or real-time?
+
+Use **Cloud SQL**
+
+### Pay attention to:
+**High Availability and Performances** and things like **failover and read replicas**.
