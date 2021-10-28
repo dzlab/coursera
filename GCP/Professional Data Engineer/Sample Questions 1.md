@@ -4,19 +4,22 @@
 
 Case studies and Best practice questions. There will be a lot of them.
 
-**Example 1:** You are monitoring GCP Operations (formerly Stackdriver) metrics which show that your Bigtable instance’s storage utilization is approaching 70% per node. What do you do?
+### Example 1
+**Question:** You are monitoring GCP Operations (formerly Stackdriver) metrics which show that your Bigtable instance’s storage utilization is approaching 70% per node. What do you do?
 
 **Answer**: Add additional nodes to the cluster to increase storage processing capacity. Even though Cloud Bigtable table data is stored in Google Colossus, a cluster needs to be sized appropriately so that nodes have enough resources to process the total storage in use. When instance storage utilization reaches 70% per node, additional nodes should be added.
 
 **Read:** [Quotas & limits | Cloud Bigtable Documentation | Google Cloud](https://cloud.google.com/bigtable/quotas#storage-per-node)
 
-**Example 2:** Your organization has just recently started using Google Cloud. Everyone in the company has access to all datasets in BigQuery, using it as they see fit without documenting their use cases. You need to implement a formal security policy, but need to first determine what everyone has been doing in BigQuery. What is your first step to do so?
+### Example 2
+**Question:** Your organization has just recently started using Google Cloud. Everyone in the company has access to all datasets in BigQuery, using it as they see fit without documenting their use cases. You need to implement a formal security policy, but need to first determine what everyone has been doing in BigQuery. What is your first step to do so?
 
 **Answer:** Use Stackdriver Logging to review data access. Stackdriver Logging will record the audit logs of jobs and queries of each individual user’s actions. Query slots won’t work because they measure BigQuery performance and resource usage, but gives no visibility to individual user activity. You will not be able to view user activity via billing records. IAM policies are applied to datasets, but not individual tables inside each dataset. Furthermore, IAM policies show who has permissions to resources, but not their activity.
 
 **Read:** [BigQuery documentation | Google Cloud](https://cloud.google.com/bigquery/docs)
 
-**Example 3:** Your security team have decided that your Dataproc cluster must be isolated from the public internet and not have any public IP addresses. How can you achieve this?
+### Example 3
+**Question:** Your security team have decided that your Dataproc cluster must be isolated from the public internet and not have any public IP addresses. How can you achieve this?
 
 **Answer:** Using the — no-address flag will prevent public IPs from being assigned to nodes in a Cloud Dataproc cluster. However, Private Google Access is still required for the subnet to access certain GCP APIs.
 
@@ -31,3 +34,17 @@ Explore what Google recommends as best practice
 - Cloud Storage: https://cloud.google.com/storage/docs/best-practices
 
 After all I would recommend to read overviews of all database products as there will be a lot of questions about them: https://cloud.google.com/products/databases
+
+## Designing data processing systems
+
+### Example
+
+**Question:** A customer has a 400GB MySQL database running in a datacentre. What would be the best approach for migrating this database to GCP?
+
+**Answer:** Create a Cloud SQL for MySQL 2nd generation instance and migrate the data. For a MySQL database of this size, a Cloud SQL for MySQL instance would be the recommended approach. Using Compute Engine adds additional operational overhead. Postgres and Spanner would not be suitable migration hosts for a MySQL database.
+
+**Recommended read:** [Migration from MySQL to Cloud SQL | Solutions | Google Cloud](https://cloud.google.com/solutions/migrating-mysql-to-cloudsql-concept)
+
+
+### Choosing Google Database products
+![image](https://user-images.githubusercontent.com/1645304/139313574-ecce8c9a-1c0e-4e46-b927-5280244610e1.png)
