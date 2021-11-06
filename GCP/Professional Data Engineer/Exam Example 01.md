@@ -1,5 +1,5 @@
 # Exam A
-**QUESTION 1**
+## QUESTION 1
 You are deploying 10,000 new Internet of Things devices to collect temperature data in your warehouses globally. You need to process, store and analyze these very large datasets in real time. What should you do?
 - [ ] A. Send the data to Google Cloud Datastore and then export to BigQuery.
 - [ ] B. Send the data to Google Cloud Pub/Sub, stream Cloud Pub/Sub to Google Cloud Dataflow, and store the data in Google BigQuery.
@@ -10,7 +10,7 @@ You are deploying 10,000 new Internet of Things devices to collect temperature d
 + Correct Answer: B Section: (none) Explanation
 ```
 
-**QUESTION 2**
+## QUESTION 2
 
 You have spent a few days loading data from comma-separated values (CSV) files into the Google BigQuery table CLICK_STREAM. The column DT stores the epoch time of click events. For convenience, you chose a simple schema where every field is treated as the STRING type. Now, you want to compute web session durations of users who visit your site, and you want to change its data type to the TIMESTAMP. You want to minimize the migration effort without making future queries computationally expensive. What should you do?
 - [ ] A. Delete the table CLICK_STREAM, and then re-create it such that the column DT is of the TIMESTAMP type. Reload the data.
@@ -24,7 +24,7 @@ You have spent a few days loading data from comma-separated values (CSV) files i
 Explanation/Reference:
 ```
 
-**QUESTION 3**
+## QUESTION 3
 
 You want to use Google Stackdriver Logging to monitor Google BigQuery usage. You need an instant notification to be sent to your monitoring tool when new data is appended to a certain table using an insert job, but you do not want to receive notifications for other tables. What should you do?
 - [ ] A. Make a call to the Stackdriver API to list all logs, and apply an advanced filter.
@@ -37,7 +37,7 @@ You want to use Google Stackdriver Logging to monitor Google BigQuery usage. You
 Explanation/Reference:
 ```
 
-**QUESTION 4**
+## QUESTION 4
 
 You are working on a sensitive project involving private user data. You have set up a project on Google Cloud Platform to house your work internally. An external consultant is going to assist with coding a complex transformation in a Google Cloud Dataflow pipeline for your project. How should you maintain users’ privacy?
 - [ ] A. Grant the consultant the Viewer role on the project.
@@ -51,7 +51,7 @@ You are working on a sensitive project involving private user data. You have set
 Explanation/Reference:
 ```
 
-**QUESTION 5**
+## QUESTION 5
 
 You are building a model to predict whether or not it will rain on a given day. You have thousands of input features and want to see if you can improve training speed by removing some features while having a minimum effect on model accuracy. What can you do?
 - [ ] A. Eliminate features that are highly correlated to the output labels.
@@ -64,7 +64,7 @@ You are building a model to predict whether or not it will rain on a given day. 
 Explanation/Reference:
 ```
 
-**QUESTION 6**
+## QUESTION 6
 
 Your company is performing data preprocessing for a learning algorithm in Google Cloud Dataflow. Numerous data logs are being are being generated during this step, and the team wants to analyze them. Due to the dynamic nature of the campaign, the data is growing exponentially every hour.
 The data scientists have written the following code to read the data for a new key features in the logs.
@@ -85,7 +85,7 @@ Correct Answer: D Section: (none)
  Explanation Explanation/Reference:
 ```
 
-**QUESTION 7**
+## QUESTION 7
 
 Your company is streaming real-time sensor data from their factory floor into Bigtable and they have noticed extremely poor performance. How should the row key be redesigned to improve Bigtable performance on queries that populate real-time dashboards?
 - [ ] A. Use a row key of the form `<timestamp>`.
@@ -98,7 +98,7 @@ Correct Answer: D Section: (none) Explanation
 Explanation/Reference:
 ```
 
-**QUESTION 8**
+## QUESTION 8
 
 Your company’s customer and order databases are often under heavy load. This makes performing analytics against them difficult without harming operations. The databases are in a MySQL cluster, with nightly backups taken using mysqldump. You want to perform analytics with minimal impact on operations. What should you do?
 - [ ] A. Add a node to the MySQL cluster and build an OLAP cube there.
@@ -111,7 +111,7 @@ Correct Answer: C Section: (none) Explanation
 Explanation/Reference:
 ```
 
-**QUESTION 9**
+## QUESTION 9
 
 You have Google Cloud Dataflow streaming pipeline running with a Google Cloud Pub/Sub subscription as the source. You need to make an update to the code that https://www.gratisexam.com/
 will make the new Cloud Dataflow pipeline incompatible with the current version. You do not want to lose any data when making this update. What should you do?
@@ -125,7 +125,7 @@ Correct Answer: D Section: (none) Explanation
 Explanation/Reference:
 ```
 
-**QUESTION 10**
+## QUESTION 10
 
 Your company is running their first dynamic campaign, serving different offers by analyzing real-time data during the holiday season. The data scientists are collecting terabytes of data that rapidly grows every hour during their 30-day campaign. They are using Google Cloud Dataflow to preprocess the data and collect the feature (signals) data that is needed for the machine learning model in Google Cloud Bigtable. The team is observing suboptimal performance with reads and writes of their initial load of 10 TB of data. They want to improve this performance while minimizing cost. What should they do?
 - [ ] A. Redefine the schema by evenly distributing reads and writes across the row space of the table.
@@ -136,7 +136,7 @@ Your company is running their first dynamic campaign, serving different offers b
 Correct Answer: A Section: (none) Explanation
 Explanation/Reference:
 
-**QUESTION 11**
+## QUESTION 11
 
 Your software uses a simple JSON format for all messages. These messages are published to Google Cloud Pub/Sub, then processed with Google Cloud Dataflow to create a real-time dashboard for the CFO. During testing, you notice that some messages are missing in the dashboard. You check the logs, and all messages are being published to Cloud Pub/Sub successfully. What should you do next?
 - [ ] A. Check the dashboard application to see if it is not displaying correctly.
@@ -211,5 +211,240 @@ We have grown so quickly that our inability to upgrade our infrastructure is rea
 We need to organize our information so we can more easily understand where our customers are and what they are shipping.
 
 **CTO Statement**
+IT has never been a priority for us, so as our data has grown, we have not invested enough in our technology. I have a good staff to manage IT, but they are so busy managing our infrastructure that I cannot get them to do the things that really matter, such as organizing our data, building the analytics, and figuring out how to implement the CFO’ s tracking technology.
+
+**CFO Statement**
+
+Part of our competitive advantage is that we penalize ourselves for late shipments and deliveries. Knowing where out shipments are at all times has a direct correlation to our bottom line and profitability. Additionally, I don’t want to commit capital to building out a server environment.
+
+Flowlogistic wants to use Google BigQuery as their primary analysis system, but they still have Apache Hadoop and Spark workloads that they cannot move to BigQuery. Flowlogistic does not know how to store the data that is common to both workloads. What should they do?
+- [ ] A. Store the common data in BigQuery as partitioned tables.
+- [ ] B. Store the common data in BigQuery and expose authorized views.
+- [ ] C. Store the common data encoded as Avro in Google Cloud Storage.
+- [ ] D. Store he common data in the HDFS storage for a Google Cloud Dataproc cluster.
+
+```diff
+Correct Answer: B Section: (none) Explanation
+Explanation/Reference:
+```
+
+## QUESTION 13
+**Flowlogistic Case Study**
+
+**Company Overview**
+Flowlogistic is a leading logistics and supply chain provider. They help businesses throughout the world manage their resources and transport them to their final destination. The company has grown rapidly, expanding their offerings to include rail, truck, aircraft, and oceanic shipping.
+
+**Company Background**
+
+The company started as a regional trucking company, and then expanded into other logistics market. Because they have not updated their infrastructure, managing and tracking orders and shipments has become a bottleneck. To improve operations, Flowlogistic developed proprietary technology for tracking shipments in real time at the parcel level. However, they are unable to deploy it because their technology stack, based on Apache Kafka, cannot support the processing volume. In addition, Flowlogistic wants to further analyze their orders and shipments to determine how best to deploy their resources.
+
+**Solution Concept**
+
+Flowlogistic wants to implement two concepts using the cloud:
+- Use their proprietary technology in a real-time inventory-tracking system that indicates the location of their loads
+- Perform analytics on all their orders and shipment logs, which contain both structured and unstructured data, to determine how best to deploy resources, which markets to expand info. They also want to use predictive analytics to learn earlier when a shipment will be delayed.
+
+**Existing Technical Environment**
+
+Flowlogistic architecture resides in a single data center:
+
+Databases
+- 8 physical servers in 2 clusters
+  - SQL Server – user data, inventory, static data 3 physical servers
+  - Cassandra – metadata, tracking messages
+- 10 Kafka servers – tracking message aggregation and batch insert
+
+Application servers – customer front end, middleware for order/customs 60 virtual machines across 20 physical servers
+  - Tomcat – Java services
+  - Nginx – static content
+  - Batch servers
+
+Storage appliances
+- iSCSI for virtual machine (VM) hosts
+- Fibre Channel storage area network (FC SAN) – SQL server storage
+- Network-attached storage (NAS) image storage, logs, backups
+
+10 Apache Hadoop /Spark servers - Core Data Lake
+- Data analysis workloads
+
+20 miscellaneous servers
+- Jenkins, monitoring, bastion hosts,
+
+**Business Requirements**
+- Build a reliable and reproducible environment with scaled panty of production.
+- Aggregate data in a centralized Data Lake for analysis
+- Use historical data to perform predictive analytics on future shipments
+- Accurately track every shipment worldwide using proprietary technology
+- Improve business agility and speed of innovation through rapid provisioning of new resources Analyze and optimize architecture for performance in the cloud
+- Migrate fully to the cloud if all other requirements are met
+
+**Technical Requirements**
+- Handle both streaming and batch data
+- Migrate existing Hadoop workloads
+- Ensure architecture is scalable and elastic to meet the changing demands of the company.
+- Use managed services whenever possible
+- Encrypt data flight and at rest
+- Connect a VPN between the production data center and cloud environment
+
+**SEO Statement**
+We have grown so quickly that our inability to upgrade our infrastructure is really hampering further growth and efficiency. We are efficient at moving shipments around the world, but we are inefficient at moving data around.
+We need to organize our information so we can more easily understand where our customers are and what they are shipping.
+
+**CTO Statement**
+IT has never been a priority for us, so as our data has grown, we have not invested enough in our technology. I have a good staff to manage IT, but they are so busy managing our infrastructure that I cannot get them to do the things that really matter, such as organizing our data, building the analytics, and figuring out how to implement the CFO’ s tracking technology.
+
+**CFO Statement**
+Part of our competitive advantage is that we penalize ourselves for late shipments and deliveries. Knowing where out shipments are at all times has a direct correlation to our bottom line and profitability. Additionally, I don’t want to commit capital to building out a server environment.
+
+Flowlogistic’s management has determined that the current Apache Kafka servers cannot handle the data volume for their real-time inventory tracking system. You need to build a new system on Google Cloud Platform (GCP) that will feed the proprietary tracking software. The system must be able to ingest data from a variety of global sources, process and query in real-time, and store the data reliably. Which combination of GCP products should you choose?
+- [ ] A. Cloud Pub/Sub, Cloud Dataflow, and Cloud Storage
+- [ ] B. Cloud Pub/Sub, Cloud Dataflow, and Local SSD
+- [ ] C. Cloud Pub/Sub, Cloud SQL, and Cloud Storage
+- [ ] D. Cloud Load Balancing, Cloud Dataflow, and Cloud Storage
+
+Correct Answer: C Section: (none) Explanation
+Explanation/Reference:
+
+## QUESTION 14
+
+Flowlogistic Case Study
+
+**Company Overview**
+
+Flowlogistic is a leading logistics and supply chain provider. They help businesses throughout the world manage their resources and transport them to their final destination. The company has grown rapidly, expanding their offerings to include rail, truck, aircraft, and oceanic shipping.
+
+**Company Background**
+
+The company started as a regional trucking company, and then expanded into other logistics market. Because they have not updated their infrastructure, managing and tracking orders and shipments has become a bottleneck. To improve operations, Flowlogistic developed proprietary technology for tracking shipments in real time at the parcel level. However, they are unable to deploy it because their technology stack, based on Apache Kafka, cannot support the processing volume. In addition, Flowlogistic wants to further analyze their orders and shipments to determine how best to deploy their resources.
+
+**Solution Concept**
+
+Flowlogistic wants to implement two concepts using the cloud:
+- Use their proprietary technology in a real-time inventory-tracking system that indicates the location of their loads
+- Perform analytics on all their orders and shipment logs, which contain both structured and unstructured data, to determine how best to deploy resources, which markets to expand info. They also want to use predictive analytics to learn earlier when a shipment will be delayed.
+
+**Existing Technical Environment**
+
+Flowlogistic architecture resides in a single data center:
+
+Databases
+- 8 physical servers in 2 clusters
+  - SQL Server – user data, inventory, static data 3 physical servers
+  - Cassandra – metadata, tracking messages
+- 10 Kafka servers – tracking message aggregation and batch insert
+
+Application servers – customer front end, middleware for order/customs 60 virtual machines across 20 physical servers
+- Tomcat – Java services - Nginx – static content
+- Batch servers
+
+Storage appliances
+- iSCSI for virtual machine (VM) hosts
+- Fibre Channel storage area network (FC SAN) – SQL server storage
+- Network-attached storage (NAS) image storage, logs, backups
+
+10 Apache Hadoop /Spark servers
+               - Core Data Lake
+- Data analysis workloads 20 miscellaneous servers
+- Jenkins, monitoring, bastion hosts,
+
+**Business Requirements**
+
+- Build a reliable and reproducible environment with scaled panty of production.
+- Aggregate data in a centralized Data Lake for analysis
+- Use historical data to perform predictive analytics on future shipments
+- Accurately track every shipment worldwide using proprietary technology
+- Improve business agility and speed of innovation through rapid provisioning of new resources Analyze and optimize architecture for performance in the cloud
+Migrate fully to the cloud if all other requirements are met
+
+**Technical Requirements**
+- Handle both streaming and batch data
+- Migrate existing Hadoop workloads
+- Ensure architecture is scalable and elastic to meet the changing demands of the company.
+- Use managed services whenever possible
+- Encrypt data flight and at rest
+- Connect a VPN between the production data center and cloud environment
+
+**SEO Statement**
+
+We have grown so quickly that our inability to upgrade our infrastructure is really hampering further growth and efficiency. We are efficient at moving shipments around the world, but we are inefficient at moving data around.
+We need to organize our information so we can more easily understand where our customers are and what they are shipping.
+
+**CTO Statement**
+
+IT has never been a priority for us, so as our data has grown, we have not invested enough in our technology. I have a good staff to manage IT, but they are so busy managing our infrastructure that I cannot get them to do the things that really matter, such as organizing our data, building the analytics, and figuring out how to implement the CFO’ s tracking technology.
+
+**CFO Statement**
+
+Part of our competitive advantage is that we penalize ourselves for late shipments and deliveries. Knowing where out shipments are at all times has a direct correlation to our bottom line and profitability. Additionally, I don’t want to commit capital to building out a server environment.
+
+Flowlogistic’s CEO wants to gain rapid insight into their customer base so his sales team can be better informed in the field. This team is not very technical, so they’ve purchased a visualization tool to simplify the creation of BigQuery reports. However, they’ve been overwhelmed by all the data in the table, and are spending a lot of money on queries trying to find the data they need. You want to solve their problem in the most cost-effective way. What should you do?
+- [ ] A. Export the data into a Google Sheet for virtualization.
+- [ ] B. Create an additional table with only the necessary columns.
+- [ ] C. Create a view on the table to present to the virtualization tool.
+- [ ] D. Create identity and access management (IAM) roles on the appropriate columns, so only they appear in a query.
+
+Correct Answer: C Section: (none) Explanation
+Explanation/Reference:
+
+## QUESTION 15
+Flowlogistic Case Study
+
+**Company Overview**
+
+Flowlogistic is a leading logistics and supply chain provider. They help businesses throughout the world manage their resources and transport them to their final destination. The company has grown rapidly, expanding their offerings to include rail, truck, aircraft, and oceanic shipping.
+
+**Company Background**
+
+The company started as a regional trucking company, and then expanded into other logistics market. Because they have not updated their infrastructure, managing and tracking orders and shipments has become a bottleneck. To improve operations, Flowlogistic developed proprietary technology for tracking shipments in real time at the parcel level. However, they are unable to deploy it because their technology stack, based on Apache Kafka, cannot support the processing volume. In addition, Flowlogistic wants to further analyze their orders and shipments to determine how best to deploy their resources.
+
+**Solution Concept**
+
+Flowlogistic wants to implement two concepts using the cloud:
+Use their proprietary technology in a real-time inventory-tracking system that indicates the location of their loads
+Perform analytics on all their orders and shipment logs, which contain both structured and unstructured data, to determine how best to deploy resources, which markets to expand info. They also want to use predictive analytics to learn earlier when a shipment will be delayed.
+
+**Existing Technical Environment**
+
+Flowlogistic architecture resides in a single data center:
+
+Databases
+- 8 physical servers in 2 clusters
+  - SQL Server – user data, inventory, static data
+- 3 physical servers
+  - Cassandra – metadata, tracking messages
+10 Kafka servers – tracking message aggregation and batch insert
+Application servers – customer front end, middleware for order/customs 60 virtual machines across 20 physical servers
+- Tomcat – Java services - Nginx – static content
+- Batch servers
+Storage appliances
+- iSCSI for virtual machine (VM) hosts
+- Fibre Channel storage area network (FC SAN) – SQL server storage - Network-attached storage (NAS) image storage, logs, backups
+10 Apache Hadoop /Spark servers - Core Data Lake
+- Data analysis workloads
+20 miscellaneous servers
+- Jenkins, monitoring, bastion hosts,
+
+**Business Requirements**
+
+Build a reliable and reproducible environment with scaled panty of production.
+Aggregate data in a centralized Data Lake for analysis
+Use historical data to perform predictive analytics on future shipments
+Accurately track every shipment worldwide using proprietary technology
+Improve business agility and speed of innovation through rapid provisioning of new resources Analyze and optimize architecture for performance in the cloud
+Migrate fully to the cloud if all other requirements are met
+
+**Technical Requirements**
+
+Handle both streaming and batch data
+Migrate existing Hadoop workloads
+Ensure architecture is scalable and elastic to meet the changing demands of the company. Use managed services whenever possible
+Encrypt data flight and at rest
+Connect a VPN between the production data center and cloud environment
+
+**SEO Statement**
+
+
+
+
 
 
