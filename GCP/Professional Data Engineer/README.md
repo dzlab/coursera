@@ -16,6 +16,11 @@ https://towardsdatascience.com/how-i-passed-google-professional-data-engineer-ex
 
 https://github.com/GoogleCloudPlatform/training-data-analyst
 
+### Exam Guide
+- Data Engineer Certification Exam Guide - [link](https://cloud.google.com/certification/guides/data-engineer/#certificate-exam-guide)
+- Key points to study - [link](https://kennycontreras.medium.com/how-i-pass-the-gcp-data-engineer-exam-key-points-to-study-and-personal-experience-4eec4d7d3396)
+
+### Training
 - **Qwiklabs Quest** Engineer Data in Google Cloud - [link](https://www.qwiklabs.com/quests/132)
 - Data Engineer learning path -[link](https://cloud.google.com/training/data-engineering-and-analytics#data-engineer-learning-path)
 
