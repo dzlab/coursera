@@ -13,7 +13,6 @@ Before taking the Google Professional Data Engineer exam, I recommend reading th
 - https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions
 - https://cloud.google.com/bigquery/docs/gis-intro
 - Accessing historical data using time travel https://cloud.google.com/bigquery/docs/time-travel
-- Basic roles for datasets https://cloud.google.com/bigquery/docs/access-control-basic-roles#dataset-basic-roles
 - How to manage BigQuery flat-rate slots within a project https://cloud.google.com/blog/products/data-analytics/how-to-manage-bigquery-flat-rate-slots-within-a-project
 - SQL MERGE examples https://cloud.google.com/bigquery/docs/reference/standard-sql/dml-syntax#merge_statement
 - Bigquery. Know what a federated table is. While you are at it, learn also about clustered tables.
@@ -26,9 +25,11 @@ https://cloud.google.com/bigquery/query-plan-explanation
 - Syntax for wildcards in big query names. And in legacy SQL?
 https://cloud.google.com/bigquery/docs/querying-wildcard-tables
 - partitioning tables. Based on what are they partitioned — ingestion time, timestamp, date. How are they named? How are they then accessed in queries? Using _PARTITIONTIME. https://cloud.google.com/bigquery/docs/partitioned-tables
+
+#### Security
+- Basic roles for datasets https://cloud.google.com/bigquery/docs/access-control-basic-roles#dataset-basic-roles
 - access at Table level.
 https://cloud.google.com/blog/products/data-analytics/introducing-table-level-access-controls-in-bigquery
-
 
 #### BigQuery Data Transfer Service
 
