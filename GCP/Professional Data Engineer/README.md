@@ -20,6 +20,7 @@ https://github.com/GoogleCloudPlatform/training-data-analyst
 - Data Engineer Certification Exam Guide - [link](https://cloud.google.com/certification/guides/data-engineer/#certificate-exam-guide)
 - Key points to study - [link](https://kennycontreras.medium.com/how-i-pass-the-gcp-data-engineer-exam-key-points-to-study-and-personal-experience-4eec4d7d3396)
 - Google Cloud Certified Professional Data Engineer - 2019 Updated exam - [link](https://deploy.live/blog/google-cloud-certified-professional-data-engineer/)
+- Awesome gcp certifications - [link](https://github.com/ddneves/awesome-gcp-certifications)
 
 ### Training
 - **Qwiklabs Quest** Engineer Data in Google Cloud - [link](https://www.qwiklabs.com/quests/132)
