@@ -21,10 +21,10 @@ https://cloud.google.com/bigquery/external-data-sources
 https://cloud.google.com/bigquery/external-data-cloud-storage
 - BigQuery query plan. BigQuery allows you to see the query plan and execution profile for queries that you run. Know the phases, difference between average and max time, why there can be skew in the plan, and how to optimize for it.
 https://cloud.google.com/bigquery/query-plan-explanation
-- table date range for bq. Accessing tables with dates and partitioned tables with functions like TABLE_DATE_RANGE, _TABLE_SUFFIX, TABLE_QUERY. https://stackoverflow.com/questions/22641894/bigquery-wildcard-using-table-date-range
+- table date range for bq. Accessing tables with dates and partitioned tables with functions like `TABLE_DATE_RANGE`, `_TABLE_SUFFIX`, `TABLE_QUERY`. https://stackoverflow.com/questions/22641894/bigquery-wildcard-using-table-date-range
 - Syntax for wildcards in big query names. And in legacy SQL?
 https://cloud.google.com/bigquery/docs/querying-wildcard-tables
-- partitioning tables. Based on what are they partitioned — ingestion time, timestamp, date. How are they named? How are they then accessed in queries? Using _PARTITIONTIME. https://cloud.google.com/bigquery/docs/partitioned-tables
+- partitioning tables. Based on what are they partitioned — ingestion time, timestamp, date. How are they named? How are they then accessed in queries? Using `_PARTITIONTIME`. https://cloud.google.com/bigquery/docs/partitioned-tables
 
 #### Security
 - Basic roles for datasets https://cloud.google.com/bigquery/docs/access-control-basic-roles#dataset-basic-roles
@@ -50,15 +50,53 @@ https://cloud.google.com/spanner/docs/secondary-indexes
 
 ### Cloud Bigtable
 
-- https://cloud.google.com/bigtable/docs/keyvis-overview
-- row key scheme. What are the recommended ways for creating the row key? How do you avoid hotspotting? Should you use timestamp, and where? https://cloud.google.com/bigtable/docs/schema-design
-- ways to optimize https://cloud.google.com/bigtable/docs/performance
+- Understand architecture - [link](https://cloud.google.com/bigtable/docs/overview)
+- key reasons for high performance and ways to optimize - [link](https://cloud.google.com/bigtable/docs/performance)
+- Know Key Visualiser - [link](https://cloud.google.com/bigtable/docs/keyvis-overview)
+- Know when to scale BigTable - [link](https://cloud.google.com/bigtable/docs/scaling)
+- Know performant key/schema design: row key scheme. What are the recommended ways for creating the row key? How do you avoid hotspotting? Should you use timestamp, and where? https://cloud.google.com/bigtable/docs/schema-design
+- Scaling up BigTable - [link](https://cloud.google.com/bigtable/docs/modifying-instance)
+- If you need to double your reads for a prolonged period, what can you do to guarantee the same read latency?
+- Dev to Prod cluster promotion
+- HDD to SSD data migration
+
 
 ### Cloud Datastore
 
 - multiple indexes for datastore. Default indexes. Syntax for creating custom, composite indexes. https://cloud.google.com/datastore/docs/concepts/indexes
 - https://cloud.google.com/datastore/docs/concepts/indexes
 - https://cloud.google.com/datastore/docs/export-import-entities
+
+### Data migrations
+
+- Know when to use **Data Transfer Appliance**. Hint - slow network, huge dataset, no in-between refreshes. - [link](https://cloud.google.com/transfer-appliance/)
+- When to use **Transfer Service** and what are its limitations. - [link](https://cloud.google.com/storage-transfer/docs/)
+- Know the cost of storage and availability for various products: BigQuery, BigTable, Cloud SQL, GCS to be able to find the cheapest product for a set of availability/durability criteria.
+- How **Dedicated Interconnect** impacts your data transfer decisions? - [link](https://cloud.google.com/interconnect/docs/concepts/dedicated-overview)
+- How to **continuously sync** data between on-prem and GCP - [link](https://cloud.google.com/storage/docs/gsutil/commands/rsync)
+
+
+## Processing
+
+
+### Cloud Dataflow
+- Understand Apache Beam building blocks - Pipeline, PCollection, PTransform, ParDO - [link](https://beam.apache.org/documentation/programming-guide/)
+- Know Side Inputs - [link](https://beam.apache.org/documentation/programming-guide/#side-inputs)
+- Exactly once processing of PubSub messages - [link](https://cloud.google.com/blog/products/gcp/after-lambda-exactly-once-processing-in-cloud-dataflow-part-3-sources-and-sinks)
+- Handling invalid inputs - [link](https://cloud.google.com/blog/products/gcp/handling-invalid-inputs-in-dataflow)
+- Templates https://cloud.google.com/dataflow/docs/guides/templates/overview
+- Dataflow developer mode. https://cloud.google.com/dataflow/docs/concepts/access-control
+
+
+### Cloud Dataproc
+
+- Preemptible workers - [link](https://cloud.google.com/dataproc/docs/concepts/compute/preemptible-vms)
+- Scaling clusters - [link](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters)
+- Cloud Storage connector: usage of gcs instead of existing file system. It is a best practice to use Google Cloud Storage instead of using HDFS. You can destroy the compute nodes after data crunching and save cost on them.
+- https://cloud.google.com/dataproc/docs/concepts/connectors/cloud-storage
+- Dataproc: how to control scaling? Configure autoscaling?
+https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/autoscaling
+
 
 ## Other
 
@@ -95,29 +133,21 @@ https://support.google.com/datastudio/answer/7020039?hl=en
 
 ### Pub/Sub
 
-- https://cloud.google.com/pubsub/docs/monitoring
-- At-Least-Once delivery https://cloud.google.com/pubsub/docs/subscriber#at-least-once-delivery
-- https://cloud.google.com/pubsub/docs/pull#dupes
-- https://cloud.google.com/pubsub/docs/replay-overview
-
-### Cloud Dataflow
-
-- Side inputs https://beam.apache.org/documentation/programming-guide/#side-inputs
-- https://cloud.google.com/dataflow/docs/guides/templates/overview
-- Dataflow developer mode. https://cloud.google.com/dataflow/docs/concepts/access-control
-
-
-### Cloud Dataproc
-- usage of gcs instead of existing file system. It is a best practice to use Google Cloud Storage instead of using HDFS. You can destroy the compute nodes after data crunching and save cost on them.
-- https://cloud.google.com/dataproc/docs/concepts/connectors/cloud-storage
-- Dataproc: how to control scaling? Configure autoscaling?
-https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/autoscaling
+- Migrate from Kafka to PubSub - [link](https://cloud.google.com/blog/products/gcp/apache-kafka-for-gcp-users-connectors-for-pubsub-dataflow-and-bigquery)
+- Know potential reasons for PubSub ingesting applications being busier than initially planned
+- What PubSub metrics are available in Stackdriver and how to debug producers/consumers - [link](https://cloud.google.com/pubsub/docs/monitoring)
+- Ordering messages - [link](https://cloud.google.com/pubsub/docs/ordering)
+- Dealing with duplicate messages - [link](https://cloud.google.com/pubsub/docs/pull#dupes)
+- Monitoring - [link](https://cloud.google.com/pubsub/docs/monitoring)
+- At-Least-Once delivery  - [link](https://cloud.google.com/pubsub/docs/subscriber#at-least-once-delivery)
+- Replay - [link](https://cloud.google.com/pubsub/docs/replay-overview)
 
 ### Edge TPU
 
 - https://cloud.google.com/edge-tpu
 
 ### IAM
+- How to allow cross team data access to BigQuery and GCS in a large organisation
 - Key Management Service. Using KMS with non-GCP products. Note that there is a default key management where Google manages all the keys, then there is a customer managed encryption keys, and also a customer supplied encryption keys.
 https://cloud.google.com/kms/docs/
 
@@ -133,7 +163,7 @@ https://www.coursera.org/lecture/deep-neural-network/why-regularization-reduces-
 
 
 ### Other
-
+- Know how to backup, migrate Datastore - [link](https://cloud.google.com/datastore/docs/schedule-export)
 - Avro file format. This is a compressed format that bigquery/dataflow can work with it directly.
 https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-avro
 - https://cloud.google.com/storage/docs/gsutil/commands/rsync
