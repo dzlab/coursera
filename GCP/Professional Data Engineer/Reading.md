@@ -8,7 +8,7 @@ Before taking the Google Professional Data Engineer exam, I recommend reading th
 #### BigQuery
 
 - Moving BigQuery data between locations https://cloud.google.com/bigquery/docs/locations#moving-data
-- https://cloud.google.com/bigquery/docs/partitioned-tables
+- Partitioning tables. Based on what are they partitioned — ingestion time, timestamp, date. How are they named? How are they then accessed in queries? Using `_PARTITIONTIME`. https://cloud.google.com/bigquery/docs/partitioned-tables
 - https://cloud.google.com/bigquery/docs/clustered-tables
 - https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions
 - https://cloud.google.com/bigquery/docs/gis-intro
@@ -24,7 +24,6 @@ https://cloud.google.com/bigquery/query-plan-explanation
 - table date range for bq. Accessing tables with dates and partitioned tables with functions like `TABLE_DATE_RANGE`, `_TABLE_SUFFIX`, `TABLE_QUERY`. https://stackoverflow.com/questions/22641894/bigquery-wildcard-using-table-date-range
 - Syntax for wildcards in big query names. And in legacy SQL?
 https://cloud.google.com/bigquery/docs/querying-wildcard-tables
-- partitioning tables. Based on what are they partitioned — ingestion time, timestamp, date. How are they named? How are they then accessed in queries? Using `_PARTITIONTIME`. https://cloud.google.com/bigquery/docs/partitioned-tables
 
 #### Security
 - Basic roles for datasets https://cloud.google.com/bigquery/docs/access-control-basic-roles#dataset-basic-roles
