@@ -31,7 +31,7 @@ https://cloud.google.com/bigquery/docs/querying-wildcard-tables
 #standardSQL
 SELECT max, ROUND((max-32)*5/9,1) celsius, mo, da, year
 FROM `bigquery-public-data.noaa_gsod.gsod194*`
-WHERE max != 9999.9 # code for missing data AND ( _TABLE_SUFFIX = '0' OR _TABLE_SUFFIX = '4' )
+WHERE max != 9999.9 AND ( _TABLE_SUFFIX = '0' OR _TABLE_SUFFIX = '4' )
 ORDER BY max DESC
 ```
 
