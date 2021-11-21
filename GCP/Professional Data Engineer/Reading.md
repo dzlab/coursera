@@ -25,6 +25,16 @@ https://cloud.google.com/bigquery/query-plan-explanation
 - Syntax for wildcards in big query names. And in legacy SQL?
 https://cloud.google.com/bigquery/docs/querying-wildcard-tables
 
+##### Pseudo columns
+- `_TABLE_SUFFIX` contains the values matched by the table wildcard
+```sql
+#standardSQL
+SELECT max, ROUND((max-32)*5/9,1) celsius, mo, da, year
+FROM `bigquery-public-data.noaa_gsod.gsod194*`
+WHERE max != 9999.9 # code for missing data AND ( _TABLE_SUFFIX = '0' OR _TABLE_SUFFIX = '4' )
+ORDER BY max DESC
+```
+
 #### Security
 - Basic roles for datasets https://cloud.google.com/bigquery/docs/access-control-basic-roles#dataset-basic-roles
 - access at Table level.
