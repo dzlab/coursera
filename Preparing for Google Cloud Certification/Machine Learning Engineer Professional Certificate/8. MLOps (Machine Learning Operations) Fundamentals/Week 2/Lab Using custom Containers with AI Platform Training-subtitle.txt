@@ -1,0 +1,490 @@
+Hi, my name is Esther. I am a Machine Learning
+engineer and working as a Machine Learning TCD
+here at Google Cloud. Today I am going to
+present a solution for using custom containers, with AI platform training lab. In this lab, we are
+going to develop a multiclass classification model by using custom containers. We are going to create a train, and a relationship with [inaudible] and package our
+model as a [inaudible] image, and train it on AI
+platform training. Then we are going to
+deploy this model to AI platform prediction,
+as a rest API. Finally, we are going to set up a prediction server and get
+predictions on new data. Let's get started.
+Before we start, I am going to activate
+the cloud shell by using this button, I click "continue". It will take a couple of seconds to provision
+and connect to the environment. Here we are. Let's list first active
+account names by using gcloud, or click this commands. I authorize cloud shell, this is my active account. Now, I can display
+the projects that I have under this account by
+using gcloud config command. This is the project that I
+have under this account. Now, I'm going to enable
+some cloud services. To do that, let me
+paste this command. Basically, I'm
+setting the project Id by using cloud config command. Now I'm going to execute
+another command, to enable necessary
+cloud services that we are going
+to use in this lab. I'm going to paste here. We finished
+successfully this one, and now I'm going to add editor permission to my cloud [inaudible]
+service account. I'm going to use another
+command for this one. This will take a second, yes. Our next task is to create an instance of AI
+platform pipelines. To do that I am going to
+navigate to AI platform. I'm going to pin this one for easier access
+later in the lab. I'm going to navigate
+two pipelines, then new instance,
+then configures. I check in the access box
+here to create a cluster. This should take up to
+five minutes to complete. Therefore, you are going to see the video will
+be fast forwarded to the point where the
+process is finished. When you see this green box here, that means the
+process is finished. We can check the terms box here, and we can deploy our
+kubeflow-pipeline. This will take
+another 5-10 minutes. Let's proceed to the next step, while this installation occurs. Our next task is to create
+AI platform notebooks. I'm going to go back to
+cloud shell for that task. I'm going to navigate
+to my home directory, because I'm going to create
+a temporary workspace. In the same directory, I'm going to use
+this mkdir command, and then we get this
+temporary workspace. Then I'm going to create
+requirements that takes defile, by using gsu cp command. I'm going to use this gsu
+cp command one more time, but this time to
+create our data file. Now I'm going to build an image and push it to our projects
+container registry, and I'm going to use another
+command for that one. This will build our image. This process will take
+a couple of minutes. Therefore, you are going to see the video will be fast
+forwarded one more time. Now, we are ready to create an instance for AI
+platform notebooks. I'm going to use
+us-central1-a for my zone. Us-central1-a and
+for instance name. AI network. If you
+want to change them, you can use any other
+name that you want. I am going to paste the
+remaining part of the code. Basically, I am
+defining image family, machine type, image project, and couple of other
+variables here to create my instance for AI
+platform Notebooks. Here, I used Cloud Shell, but I could also create this instance by
+using Cloud Console. Instance creation process may take up to five to 10 minutes. You will again see the video
+will be fast forwarded. Let's check if our
+instance is ready. First, I navigate to "AI
+Platform", then "Notebooks". I can see the notebook
+instance is up and running, I click the "Open
+Jupyter Notebook" link. Here I am inside the AI platform. First, let me open the terminal. I am going to navigate
+to Jupyter directly. Now, I'm going to clone our repo in our AI platform environment. To do that, I am going to
+use git clone command. Actually, I'm going to
+paste this command. It will appear in
+the UI in a second. Then we have our
+mlops-on-gcp repo. I'm going to navigate to our lab under the
+exercise folder. I am now in the Notebook, in the Notebook interface, first I go to edit and
+clear all outputs. In this particular lab, we are going to develop a
+multiclass classification model by using custom containers. To start with, first,
+we are going to import some modules
+and libraries here. In addition to our
+standard libraries, we also have bigquery
+here that we are going to use
+for our dataset and we have
+func_to_container_op module that we import from
+kfp.components. We have couple of Scikit-learn modules that we are going
+to use for our model. Our source data is in bigquery, and we are going to use the Forest Covertype
+dataset in this experiment. Dataset is from the machine
+learning repository in University of
+California, Irvine. For this exercise,
+it has been already pre-processed and stored and
+ready to use in bigquery. We are going to use
+bigquery to prepare training and evaluation
+data splits. As the last step to
+prepare the dataset, we are just going to set up
+some environment variables. Including PROJECT_ID, all of the environment variables have already been configured here, so we don't need to
+do anything for that. Let me just run this
+cell and we have our environment
+variables ready to use. Now, I'm going to create
+bigquery datasets. Let me use this bq command
+to create the dataset. I successfully created
+the dataset here. Now, I can create the table and upload the
+Covertype CSV file. To do that, I'm just
+going to run the cell, and status is running
+right now, and it's done. Before we configure other
+environments settings, let me run this gsutil
+ls command to check which workers that we
+have created during our pipeline initialization step. We have three buckets here, the first one is for artifacts, the second one is for
+kubeflowpipeline-default, and the last one
+is for cloudbuild. Now, I can complete the
+missing part of the code. I'm not going to change region, I leave as us-central1, I just change this ARTIFACT_STORE with my ARTIFACT_STORE bucket. You need to replace your ARTIFACT_STORE from
+the previous set output, and I can run this one. The other environment
+variables are already configured for you by using PROJECT_ID
+and ARTIFACT_STORE, so you don't need to do
+anything for that one. This data is prepared
+for the task of predicting each
+page's covertype, such as the dominant
+spaces of three. After we've created datasets that we are going to
+use in this experiment, we just need to access it. To do that, we are going to use the BigQuery command
+approach here. Let's run this code to
+explore the dataset. Our given features are
+elevation in meters, aspect in degrees as a
+moat, slope in degrees, horizontal distance
+and vertical distance to the nearest surface water, horizontal distance
+to nearest roadway, and hill-shade index at 9:00 AM, at noon, and at 3:00 PM, horizontal distance to nearest
+wildfire ignition points, wilderness area designation,
+and soil type designation. As you notice, some
+of the features are brilliant indicators while others are discrete
+or continuous measurements. Our label is for this
+cover type designation. Our role in this lab is
+predicting this label, which make this a
+classification problem. We are going to use the stochastic gradient
+descent algorithm to solve this
+classification problem. Stochastic means
+random in plain terms. Basically, this
+technique is used as an optimizing
+algorithm for finding the parameters with minimal
+convex lost function. This is a good classifier to start with because it handles large datasets efficiently and training instances independently. Here we use BigQuery to split our data set for
+training and validation. Recall that, the training set is used as an input so
+machine learning models can catch the patterns
+in the future and utilize them to
+distinguish the target. The command here bq query creates the training dataset
+by using the hash function. Here are hash function and
+it stores this split into another bq query table whose
+name is specified with the destination table
+argument that we have here. Our table name here is
+covertype_dataset.training. Remember that we concatenate
+all the fields into a big string which is
+TO_JSON_STRING that we have here. It's not really meaningful. We just use this
+field to hash on it. I can understand now. Now we have our dataset tables, we can export it as CSV file into cloud storage by using
+this bq extract command. Let me do this. It's done. Now, we can
+create a validation split. Validation split is
+used to validate my model's performance
+and quantify its ability to generalize
+patterns in the new dataset. We are just copying the
+same code that we have for training to complete
+this total here. I'm going to tweak it
+just a little bit, I'm going to change table
+name as validation, and also, I'm going to change the MOD because we will use only ten percent
+as validation dataset. Now, I can reset. Status is done. Now, I can use same bq extract command to upload
+our validation table to the Cloud Storage buckets. I'm going to paste
+here and change the dataset name again, and file paths will be
+validation file paths. Now, I can run this one, and status is done. Let me upload these
+files as data frame, then we can see the shape
+of each data frame. This is our training dataset, and this is our
+validation dataset. Once we create our training
+and validation status, we are ready to develop
+our training application. The goal of the project,
+as I said earlier, is to predict seven
+different covertypes with the best accuracy, and having seven
+different class makes this problem a multi-class
+classification problem. We are going to
+solve this problem with an open-source tool for predictive data which
+we call it Cyclone. Cyclone is one of the most useful libraries for
+machine learning in Python. It contains a lot of efficient
+tools for machine learning and statistical modeling
+including classification, regression, clustering, and
+dimensionality reduction. Today we are going to use it for our multi-class
+classification problem. We need to define scikit-learn
+pipeline instance to develop our
+training application, but before that we want to add preprocessing step
+to this pipeline. That means we are going
+to define preprocessor, as we have here, and this will perform two simple
+transformations for us. As a starting point we
+always key in the input. Standardization of the data set is a common requirement for many machine learning estimators implemented in scikit-learn. The preprocessing module provides the standard scale utility
+class that I highlight here. This class implements
+the transformer API to compute the mean and standard deviation
+on a training set. Therefore, we can define our numeric and categorical
+feature indexes. Then we can use the
+transformer APIs to standardize all
+numeric features. After that, we have scale data with zero
+mean and unit variance. Another transformation
+is to apply one hot encoding to the
+categorical features. We do that by using one hot encoder class of
+preprocessing module. Here we are defining our
+pipeline object with preprocessed numeric and
+categorical features with stochastic gradient
+descent classifier a.k.a. SGD classifier. SGD classifier
+basically implements a plain SGD learning routine supporting various
+lost functions. The lost value here is a strange. It is a default value of hinge. It basically defines the
+lost function that we are going to use in
+this experiment. However, instead of
+default hinge loss, we are going to use
+the log loss here, which gives logistic regression a probabilistic classifier. Tool argument here is the tolerance for the
+stopping criteria. This one tells scikit-learn
+to stop searching for a minimum or maximum once
+tolerance is achieved, like when you are close enough. Its type is float and the
+default value is 0.0001. As you see here, we change
+the default values as 0.001. This means training will stop and the loss is bigger than best loss minus total value for a number of iterations with no
+improvement and that's it. When I run this cell, I created a pipeline with
+preprocessor and classifiers. Now we can convert all
+numeric features to float type because standard scalar
+works with flat numbers, it will automatically convert
+all our integer number to the float type and prints
+a warning message about it. Since we don't want to
+see any warning message, we do the conversion
+explicitly here. I'm going to run this
+cell to do that. To run the pipeline
+locally, first, we need to set the values of the hyper parameters
+before training. This is what we are doing here. We are adding those values
+by calling the pipeline that sets perimeter method
+on the pipeline object. As a parameter we have
+classifier Alpha, which is actually
+actual regularization and the number of
+[inaudible] which is determined by
+classifier_max_iter parameters. Scikit-learn provides an SGD classifier
+module to implement SGD classification and
+we are going to use this module with the
+pipeline that fits method, which basically
+takes training data and returns the target value. Here we are pursuing the futures in x_train and labels
+in y_train here. I'm going to run this
+cell and this it. We have our pipeline locally now. After we run our
+pipeline locally, we can calculate the
+local model's accuracy. Here, we evaluate the
+model performances on the validation split using the method pipeline that score. Here we have our method. Recall that from the lecture, features from the
+validations that are pursed in x-validation and labels are pursed
+in the y-validation. Accuracy which is the
+percentage of correctly predicted cover types
+out of all cover types, is the evaluation metric
+for this project. Now we can establish a baseline metric with
+accuracy by running this cell. We are going to use AI
+platform training to turn hyper perimeters and
+train scikit-learn model. To do so we need to
+package our model into a python file on which we are going to launch a training
+on the AI platform. Let's first create
+TRAINING_APP directory. We will have our model and
+all the packaging statements here in this directory. Now we can write our training script by using this right file, base comment. We are going to
+write our model and turning script in train.py
+file in TRAINING_APP_FOLDER. Let me check the
+train.py file here, we see the model
+that we want to use and scale it on the AI platform. As I mentioned earlier, our training code
+uses, scikit-learn, for data preprocessing
+and modeling. The code has been
+instrumented using the hypertuned
+package so we can use it with AI platform
+hyperparameter tuning, and we write our code
+are into a python model. The model itself will be implemented in train
+evaluate function. The function takes a
+couple of arguments, we have job directly training and validation data set parts. We have Alpha, max iter, and we have hptune fleg. After we define [inaudible]
+from the data sets here by using train and
+validation CSV files, we are defining our numeric
+and categorical featuring indexes and preprocessing
+our features here. Then we are defining
+the pipeline by using preprocessor and
+classifier,with SGDC. Again we are converting
+all numeric features into float type and setting
+the parameters here, with Alpha and classify
+the max iteration. The main part of the function is this pipeline.fix method. This points out the model
+with our training data sets. When we launch a
+training job through this file it can be
+done in two modes. The first one is hptune mode, there we are tuning
+hyper parameters. In this case, we need to
+fleg of hptune to be on. Searching for the
+best combination of model parameters is called
+hyper parameter tuning, which can dramatically improve
+the model's performance. Let me complete the
+missing part by copying and pasting this part, then I'm going to
+explain each part of it. Here first, I defines our
+validation data sets, then I edit accuracy. Hyper perimeter tuning optimizes metric values across
+a series of trials, that means we are going to
+select some combination of the parameters and compare the defined score
+with iterations. For our problem we are going
+to check the accuracy value, so we capture this accuracy metric with hypertune
+object and we send it to the hypertuning engine so it can notify the
+value of that metric. If we do our training
+in hptune mode, that means that we use
+a hypertune library. That's why I created
+hpt instance here. Also, that is why I imported hypertune
+package at the beginning of this code to capture the tuning metrics through the hpt instance of
+the hypertuned class, we are going to capture
+the metric that we want the hypertuning engine to find
+the best combination for. Behind the scenes hypertune writes this metric on
+the file system but the training container
+is executed and the location that AI platform training can
+all stretch through. Therefore, AI platform training can compare the various
+rounds of the training. Therefore, I am setting this
+metric value as accuracy. One important thing
+here is that we don't save the train model
+during the hypertune test, which is here, this
+will save us some time. The second mode that we
+have is not hptune mode, when have the right value
+of hyper perimeters, we don't need hptune fleg
+to be turned on any mode. That means we are happy with our train model and we want
+to save and export it. That's what this code does here. We take our train model and
+we pickle that on this key. We have pickled that
+instruction here. After the model is
+sterilized as a pickle, we export it to clusters, by using the GSCP
+command as we have here, which will invite only subprocess column
+that we have here. That's it, we are saving
+model through this code. One important thing,
+which is really well to highlight here
+that we have fire library. This is a very nice tool and
+it basically allows us to take a function and use the fire library
+on that function, then expose our arguments
+on that function as a command line argument
+so we don't have to write extra code and pass
+the command line arguments. This python fire library that we import at the
+beginning of the code, will turn any python
+component into a command line interface with
+just a single call to fire. If you go back to our train_evaluate function
+that we have here, when we do fire on this function and when
+we mock the script, with python script,
+the fire library takes all these parameters
+that we have here. I mean, the fire library reaches all these
+values and passes them to the function and [inaudible]
+train_evaluate, function. Also, we need to package
+the training code into its own fire to be able to train its scale on
+the AI platform. That's it. Now I can write our training script
+by just running this up. We have our train.py file. Now we can containerize
+the code and to do that, we just need to
+write a Dockerfile. To do this again, I'm going to use, write file base commands. With this Dockerfile, I'm building an image with
+this custom environment dependencies such as fire, cloudml-hypertune,
+Scikit-learn Pandas. If you use tensor
+flow as a framework, then you would use tensor
+flow here instead of Scikit-learn it's
+necessary version. Dockerfile is all about the
+creation of containers. We just create a container and include the libraries
+that are Python file, in this case train.py
+needs to be done. The Dockerfile specifies
+which operating system to be used in the first statement, which is from statement. This statement must be the
+first one in the Dockerfile. Then we have run statement, which is followed by standard base command
+that we have here, to install any tools and
+libraries that we need to run the training code but it may also be any
+other base command. We have some to do here. Let's complete this code and
+then write our Dockerfile. I'm just going to add
+working directory here with forward slash app and then I'm going
+to copy my train.py file with all contents and then I'm going to
+enter my entry point, which is python
+and train.py file. That's it. We just need to run this code block from
+the directory that contains the Dockerfile
+in the train.py. Then we need to specify
+the container imagery. Let's do this. First, I'm
+going to write this file. Then we are going to
+define image name, image tag, and image URI. The container is created
+by using the Dockerfile, we can push it to our
+project's container registry. To do so first, we are updating our
+image URI here, by using image name
+and image tag. The target points to our
+project container registry. After I run this one, now I can build the
+image and push it to our container registry. I will use the Cloud built submit command to perform this task. Therefore, I will not need a local
+installation of Docker. Let me simply run the
+cell to accomplish this. Building the trainer image should take up to five minutes. You will see the video
+will be fast forwarded to the point where the
+trainer image is built. It has been almost five minutes. Let's check if our
+trainer image is ready. I see the status here,
+which is success, that means we can submit an AI platform
+hyperpameter tuning job. But before that we are
+going to create our config.yaml file by using
+this write file base command. Then we can submit the
+hyperparameter tuning job. First, I'm going to complete the missing
+part of the code, then I can explain
+every part of it. In this config.yaml file, we specify the hyperperimeters to be tuned and also the range of the values that we
+are going to search. We already mentioned that we
+want to use max iteration and Alpha as our parameters in the earlier part of the line. For the max iteration parameters, I choose discrete type and also I entered
+some values here. These are representing the range that I want to make my search. If you want to try
+any other numbers, please feel free to choose. Also I have Alpha as parameter, its type is double, and I entered Min and Max
+value for this parameter. I also choose scale
+type as a linear scale. If you want to choose
+the log scale, you can also enter that one here. The important part
+of the code here is hyperparameter metric
+tag, which is accuracy. This should be exactly the
+same name with the tag that we entered in the
+earlier part of the line. This should be exactly the same, if we make any typo here, then it may create some bug in our code so be
+mindful about that. Now I can run these codes. Now we have our config.yaml file ready and we can start
+hyperparameter tuning job. As we already executed our
+training package locally, we know that everything is
+working and we can submit the training job using this gcloud ai-platform
+jobs submit command. Let's start with
+complete the code, I'm going to add a couple
+of parameters here. I'm going to use
+environmental variables, to complete the code, and I'm going to add
+to the directory, and IMAGE_URI and SCALE_TIER. All of them have
+already been defined. That's why I'm using
+those moments variables. For competing argument, I'm going to add
+the training that. Which is
+TRAINING_APP_FOLDER/. Let me copy a file name from here. Then I'm going to copy and paste the remaining
+part of the code, then I'm going to
+explain each item. After I copy, let me
+just delete these parts. After I copy region,
+job directory, and image uri, I
+chose scalled here. I choose Basic for this one, which is in one standard
+form, virtual machine. For config arguments, I provided the path to
+the config.yaml file, which includes all the information about
+our hyperparameters. The second part of the code after this slash is for
+our training jobs. We can add additional settings, additional parameters to our training job
+such as training, and validation file path. The most important
+part is hptune flag. This defines whether we want to use Iber parameter tuning or not, since we are starting the
+hyperparameter tuning job here. We have the hptune flag on. Now we can run this sun. Let me run this one more time. Now the job is
+launched and we can retrieve all the
+information regarding, the job by using ai-platform jobs describe
+command that we have here. This shows all the related
+information regarding our job. We can monitor the stream logs, by using this gcloud ai-platform jobs
+stream locks command. Let me run this one first, ai-platform jobs
+stream logs will take approximately 5-10
+minutes to display. Therefore, the video will be fast forwarded to the point
+when we see the logs. Now our logs are visible and now we can
+retrieve hptune results. We can either retrieve
+the best type, or perimeter's through
+Google cloud console, or as we do here. We can get them
+programmatically by using AI Platform Training
+REST endpoint. AI Platform Training REST
+endpoint is basically, an API that controls
+API platform. I'm going to run this cell to retrieve all the
+hyperparameter results. In the response here, we have all the information regarding the hypertuning job and here we are extracting
+the best results. Let me run this code. Since all the results are sorted, we just need to retrieve
+the first element. That's why I'm just getting
+the zeroth index here. This is the first element in this list and these
+are our best values. Now we can configure, and run an interstate
+training job. We launch again the
+same training job, but with the best
+hyperparameters at this time. In this case, we are
+not searching for the best values of
+alpha and max_iter. That's why we are setting
+those values here. We are retreating down from the response object
+that we had here. Setting those values to
+our hyperparameter's here. The most important part is that we no longer
+need a config.yaml file. As you can see from here, we don't have any
+conflig.yaml here, and we are not tuning anymore. We are just passing the
+best hyperparameter values, through the command line as arguments to the training job. Therefore, we set the
+hptune fleche to nohptune. I am going to run this set, before that, I need to
+set alpha and max_iter. That is why I had error because
+I did not run this set. I will re-run. Again, we can stream the logs to monitor
+our training jump. I am also going to run this set. This will take another
+5-10 minutes to display. That means we will see
+in a couple of minutes. Now our job is completed. We can see that one
+from our log records. When the training is completed, we can check the
+exported model on the cloud storage
+buckets by using gsutil ls command
+with job directory. Let me run this code. The important note here, we are using cyclone
+as a framework. Therefore, exported. It is not safe model as
+we have in terms of log. Here we are going to save
+our models as a pkl file, therefore our store model will be the pkl file in the back code. Let me complete this code
+by pasting this value here, our command to save our model is gcloud ai-platform
+models create, and we are going to
+use model name as parameter region and labels. We already define our
+model name and labels at the beginning of our code. Now I can run this up. Our ai-platform model
+has been created. The important point here, we are validating our
+model's performance against the
+performance threshold. If the model meets or exceeds
+the performance threshold, it is deployed as
+an online service using ai-platform prediction. If it does not exceed the threshold then we
+keep our current model. Currently on the ai-platform
+model and we deploy a model. There are two steps. First, we are creating a model resource which is model itself that
+we created here. The second step is when we
+actually deploy the model, which is creating a version
+using the original flag. We are going to
+complete this command here to create our
+modern version. Basically, we are using
+gcloud ai-platform versions, create command here and then we are passing
+model version name, which we define here and
+then model name origin, which is our job directory,
+runtime version, framework. In our case, this
+is scikit learn, Python version and
+region which is global. Then, we can run this commands and we are
+creating our version, which will take a
+couple of minutes. Now, our model actually deployed because the state is done and we can use our model
+to get some predictions. To do that, we are just
+setting some data points by using this JSON format's file. We are going to prepare
+this JSON file here. I'm going to just create
+this file and we can display what we have
+inside the file. As you see, those are our
+features and we are going to create some prediction
+based on those features. Basically, we are
+going to predict which covered types
+these features indicate? To invoke the code, we need to complete this part of the code and we are going to use gcloud ai-platform,
+predicts command. It is a couple of arguments. We complete those ones. We are going to give middle name. Then, we are going
+to give our version. With modern version perimeters. Then, we are going to
+give our JSON input file. Finally, I am going
+to define region, what is prediction,
+it will be global. They said, I can run the
+set to get results and basically for these five
+different set of features, we have five different
+predictions. This wraps up our using
+custom continuous with ai-platform training
+live. Thanks for watching.
