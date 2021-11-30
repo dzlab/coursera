@@ -29,18 +29,24 @@
 - Optimizing models for serving - [link](https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning#optimizing_models_for_serving)
 - Optimize the frequency of retraining the model - [link](https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost#optimize_the_frequency_of_retraining_the_model)
 
+## Model design, performance and tuning
+
+### Regularization
+- Regularization methods — what is L0, L1, L2 regularization? When would you use them? (https://developers.google.com/machine-learning/crash-course/regularization-for-simplicity/l2-regularization)
+- Develop the ability to look at a scenario and see what kind of regularization to apply.
+
 ## AI Explanations
+- Explainable AI — what is this? When would you use this? w(https://cloud.google.com/explainable-ai)
 with tabular data, you can use Shapely or integrated ingredients for large feature spaces; with images, you can use integrated gradients for pixel-level explanations or XRAI for region-level explanations.
 
 - Introduction to AI Explanations for AI Platform - [link](https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview)
+- WhatIf Tool — when do you use it? How do you use it? How do you discover different outcomes? How do you conduct experiments? (https://pair-code.github.io/what-if-tool/)
 
 ## MLOps
 - MLOps: Continuous delivery and automation pipelines in machine learning - [link](https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
 - Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build - [link](https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build)
 - When to use Kubeflow over TFX? When you need PyTorch, XGBoost or if you want to dockerize every step of the flow
 - End to end hybrid and multi-cloud ML workloads - [link](https://www.kubeflow.org/docs/about/use-cases/#end-to-end-hybrid-and-multi-cloud-ml-workloads)
-
-
 
 ## BigQuery ML
 - It supports the following types of model: linear regression, binary and multiclass logistic regression, k-means, matrix factorization, time series, boosted trees, deep neural networks, AutoML models and imported TensorFlow models
