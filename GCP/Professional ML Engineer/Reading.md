@@ -45,6 +45,9 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 ## BigQuery ML
 - It supports the following types of model: linear regression, binary and multiclass logistic regression, k-means, matrix factorization, time series, boosted trees, deep neural networks, AutoML models and imported TensorFlow models
 - Use it for quick and easy models, prototyping etc.
+- BigQuery ML — BigQuery by itself is important. All the ML you can do with BQML is also very important. What all can you do with BQML? What are its limitations. (https://cloud.google.com/bigquery-ml/docs/introduction)
+- BQML — Can it work with other ML libraries? Can you import models from tf, scipy, etc.?
+- BQML available algorithms (https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-create)
 
 ## Accelerators
 - Choosing between CPUs, TPUs and GPUs:
