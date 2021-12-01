@@ -1,5 +1,17 @@
 # Reading
 
+Exam focuses on the following areas:
+- Knowledge of ML concepts and related tools — Tensorflow, Keras, XGB
+- Knowledge of GCP ML services — AI Platform, ML APIs, BQML
+- Knowledge of MLOps and related tools — TFX, Kubeflow, Best practices
+
+How to engineer an ML solution:
+- Start with GCP ML APIs to check any existing API that can be leveraged
+- Else AutoML Training
+- Else AI Platform Inbuilt algo
+- Else AI Platform Custom Training on TF
+- Else AI Platform Custom Training on Containers (e.g. for pytorch or XGBoost models)
+
 - Identifying Good Problems for ML - [link](https://developers.google.com/machine-learning/problem-framing/good)
 - Don’t be afraid to launch a product without machine learning - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_1_don%E2%80%99t_be_afraid_to_launch_a_product_without_machine_learning)
 - Using ML Output - [link](https://developers.google.com/machine-learning/problem-framing/framing?authuser=0#using-the-output)
