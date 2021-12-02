@@ -5,6 +5,7 @@ https://cloud.google.com/certification/machine-learning-engineer
 - Official Exam Guide - [link](https://cloud.google.com/certification/guides/machine-learning-engineer)
 - Awesome gcp certifications - [link](https://github.com/sathishvj/awesome-gcp-certifications/blob/master/professional-machine-learning-engineer.md)
 - GCPCertification reddit thread - [link](https://www.reddit.com/r/GCPCertification/)
+- Google Cloud Professional Machine Learning Engineer Certification Preparation Guide - [link](https://deploy.live/blog/google-cloud-professional-machine-learning-engineer-certification-preparation-guide/)
 
 ## Sample Questions
 - Google Professional Machine Learning Engineer Exam Dumps - [link](https://www.passcert.com/news_Google-Professional-Machine-Learning-Engineer-Exam-Dumps_756.html)
