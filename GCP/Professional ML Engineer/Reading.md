@@ -42,6 +42,8 @@ How to engineer an ML solution:
 - Optimizing models for serving - [link](https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning#optimizing_models_for_serving)
 - Optimize the frequency of retraining the model - [link](https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost#optimize_the_frequency_of_retraining_the_model)
 
+- machine learning guides - [link](https://developers.google.com/machine-learning/guides)
+
 ## Model design, performance and tuning
 
 ### Regularization
