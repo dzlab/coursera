@@ -96,13 +96,15 @@ You have to be able to understand the sequential model architecture, what layers
 
 Use the Sequential API by default. If you have multiple inputs or outputs, layer sharing or a non-linear topology, change to the Functional API, unless you have a RNN. If that is the case, Keras Subclasses instead
 
-### distributed training.
+### Distributed training
 The general answer is that GPU training is faster than CPU training, and GPU usually doesn’t require any additional setup. TPUs are faster than GPUs but have their limitations. Besides, make sure what replica roles mean: master, worker, parameter server, evaluator, and how many of each you can get.
 
 If you need to optimize the distributed training, the default answers are:
 1. use the tf.data.Dataset API for the input;
 2. interleave the pipeline steps by enabling parallelism;
 3. Keras API has better support for distributed training than Estimator API.
+
+Know the differences between the different Distributed training strategies in Tensorflow [link](https://www.tensorflow.org/guide/distributed_training).
 
 |Strategy|Synchronous / Asynchronous|Number of nodes|Number of GPUs/TPUs per node|How model parameters are stored|
 |-|-|-|-|-|
