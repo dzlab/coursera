@@ -66,11 +66,13 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 - End to end hybrid and multi-cloud ML workloads - [link](https://www.kubeflow.org/docs/about/use-cases/#end-to-end-hybrid-and-multi-cloud-ml-workloads)
 
 ## BigQuery ML
+- BigQuery ML. The default answer is that if your data is already in BigQuery and you want the output to also be there, you should use BigQuery ML for your modeling. But be aware of the limitations. 
 - It supports the following types of model: linear regression, binary and multiclass logistic regression, k-means, matrix factorization, time series, boosted trees, deep neural networks, AutoML models and imported TensorFlow models
 - Use it for quick and easy models, prototyping etc.
-- BigQuery ML — BigQuery by itself is important. All the ML you can do with BQML is also very important. What all can you do with BQML? What are its limitations. (https://cloud.google.com/bigquery-ml/docs/introduction)
+- BigQuery ML — BigQuery by itself is important. All the ML you can do with BQML is also very important. What all can you do with BQML? What are its limitations. [link](https://cloud.google.com/bigquery-ml/docs/introduction)
 - BQML — Can it work with other ML libraries? Can you import models from tf, scipy, etc.?
-- BQML available algorithms (https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-create)
+- BQML available algorithms - [link](https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-create)
+- Example of training with BigQuery ML - [link](https://towardsdatascience.com/lessons-learned-using-google-cloud-bigquery-ml-dfd4763463c)
 
 ## Accelerators
 - Choosing between CPUs, TPUs and GPUs:
