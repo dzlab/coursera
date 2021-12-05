@@ -14,6 +14,7 @@ How to engineer an ML solution:
 
 ## Resources
 - Identifying Good Problems for ML - [link](https://developers.google.com/machine-learning/problem-framing/good)
+- Cloud Architecture Center - Machine learning and artificial intelligence (ML/AI) - [link](https://cloud.google.com/architecture?category=aiandmachinelearning)
 - Don’t be afraid to launch a product without machine learning - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_1_don%E2%80%99t_be_afraid_to_launch_a_product_without_machine_learning)
 - Using ML Output - [link](https://developers.google.com/machine-learning/problem-framing/framing?authuser=0#using-the-output)
 - Identify Your Data Sources - [link](https://developers.google.com/machine-learning/problem-framing/formulate?authuser=0#identify-your-data-sources)
