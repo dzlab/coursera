@@ -59,6 +59,7 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 - WhatIf Tool — when do you use it? How do you use it? How do you discover different outcomes? How do you conduct experiments? (https://pair-code.github.io/what-if-tool/)
 
 ## MLOps
+- TensorFlow Extended, or TFX. You have to know the components and how to build the pipeline out of them.
 - MLOps: Continuous delivery and automation pipelines in machine learning - [link](https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
 - Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build - [link](https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build)
 - When to use Kubeflow over TFX? When you need PyTorch, XGBoost or if you want to dockerize every step of the flow
@@ -119,6 +120,11 @@ Know the differences between the different Distributed training strategies in Te
 ### Feature column
 Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/python/tf/feature_column) to perform feature engineering in TensorFlow and how to produce the following features: numerical, categorical one-hot encoded/embedded/hashed, bucketized one-hot encoded/embedded/hashed, crossed.
 
+## AI Platform
+- AI Platform distributed training with containers. The default answer is if you have a distributed training app, you can package each component in a separate container (master, worker, parameter server) and deploy it on the AI Platform.
+- AI Platform distributed training. This is essentially the union of TensorFlow distributed training topics and AI Platform containers distributed training. However, note that distributed training is not supported for models using scikit-learn (may have guessed) or XGBoost environments.
+- AI Platform Hyperparameter tuning. Might be useful to know that Bayesian optimization is used under the hood.
+- AI Platform built-in algorithms. This is something in-between AutoML and custom code: you still have to do the data preprocessing, feature engineering, and hyperparameter tuning, but the model itself is already implemented. Be aware that built-in algorithms do not support distributed training.
 
 ## Evaluation
 - Classification: ROC Curve and AUC - [link](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
