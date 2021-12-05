@@ -90,7 +90,33 @@ For multiclass classification, if:
 - labels are not mutually exclusive, use `sigmoid_cross_entropy_with_logits`
 
 ## Tensorflow
-Keras: use the Sequential API by default. If you have multiple inputs or outputs, layer sharing or a non-linear topology, change to the Functional API, unless you have a RNN. If that is the case, Keras Subclasses instead
+
+### Keras API.
+You have to be able to understand the sequential model architecture, what layers actually define parameters, like dense layers, what are dropout layers, what are convolutional layers.
+
+Use the Sequential API by default. If you have multiple inputs or outputs, layer sharing or a non-linear topology, change to the Functional API, unless you have a RNN. If that is the case, Keras Subclasses instead
+
+### distributed training.
+The general answer is that GPU training is faster than CPU training, and GPU usually doesn’t require any additional setup. TPUs are faster than GPUs but have their limitations. Besides, make sure what replica roles mean: master, worker, parameter server, evaluator, and how many of each you can get.
+
+If you need to optimize the distributed training, the default answers are:
+1. use the tf.data.Dataset API for the input;
+2. interleave the pipeline steps by enabling parallelism;
+3. Keras API has better support for distributed training than Estimator API.
+
+|Strategy|Synchronous / Asynchronous|Number of nodes|Number of GPUs/TPUs per node|How model parameters are stored|
+|-|-|-|-|-|
+|MirroredStrategy|Synchronous|one|many|On each GPU|
+|TPUStrategy|Synchronous|one|many|On each TPU|
+|MultiWorkerMirroredStrategy|Synchronous|many|many|On each GPU on each node|
+|ParameterServerStrategy|Asynchronous|many|one|On the Parameter Server|
+|CentralStorageStrategy|Synchronous|one|many|On CPU, could be placed on GPU if there is only one|
+|Default Strategy|no distribution|one|one|on any GPU picked by TensorFlow|
+|OneDeviceStrategy|no distribution|one|one|on the specified GPU|
+
+### Feature column
+Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/python/tf/feature_column) to perform feature engineering in TensorFlow and how to produce the following features: numerical, categorical one-hot encoded/embedded/hashed, bucketized one-hot encoded/embedded/hashed, crossed.
+
 
 ## Evaluation
 - Classification: ROC Curve and AUC - [link](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
