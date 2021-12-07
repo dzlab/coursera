@@ -1,0 +1,26 @@
+# Reading
+
+- Super administrator account best practices https://cloud.google.com/resource-manager/docs/super-admin-best-practices
+- Automate user provisioning across cloud apps https://cloud.google.com/identity/solutions/automate-user-provisioning
+- Audit logs for service accounts https://cloud.google.com/iam/docs/audit-logging/examples-service-accounts
+- Help keep your Google Cloud service account keys safe https://cloud.google.com/blog/products/identity-security/help-keep-your-google-cloud-service-account-keys-safe
+- Deleting and recreating service accounts https://cloud.google.com/iam/docs/understanding-service-accounts#deleting_and_recreating_service_accounts
+- Enforce and monitor password requirements for users https://support.google.com/cloudidentity/answer/139399?hl=en
+- Using constraints https://cloud.google.com/resource-manager/docs/organization-policy/using-constraints
+- Service perimeter details and configuration https://cloud.google.com/vpc-service-controls/docs/service-perimeters
+- DNS Security (DNSSEC) https://cloud.google.com/dns/docs/dnssec
+- Identity-Aware Proxy overview https://cloud.google.com/iap/docs/concepts-overview
+- Types of de-identification techniques https://cloud.google.com/dlp/docs/transformations-reference#types_of_de-identification_techniques
+- Pseudonymization https://cloud.google.com/dlp/docs/pseudonymization
+- Using customer-managed encryption keys https://cloud.google.com/storage/docs/encryption/using-customer-managed-keys#gsutil
+- Confidential Computing https://cloud.google.com/confidential-computing
+- Disaster recovery scenarios for data https://cloud.google.com/solutions/dr-scenarios-for-data
+- Implementing Binary Authorization using Cloud Build and GKE https://cloud.google.com/solutions/binary-auth-with-cloud-build-and-gke
+- Container security https://cloud.google.com/containers/security
+- Managed base images https://cloud.google.com/container-registry/docs/managed-base-images
+- Container analysis and vulnerability scanning https://cloud.google.com/container-registry/docs/container-analysis
+- Overview of logs exports https://cloud.google.com/logging/docs/export
+- Forseti Security Architecture https://forsetisecurity.org/docs/v2.24/concepts/architecture.html
+- Retention policies and retention policy locks https://cloud.google.com/storage/docs/bucket-lock
+- PCI DSS antivirus mechanisms https://cloud.google.com/solutions/pci-dss-and-gke-guide#requirement_5_3
+- Google Cloud’s shared responsibility model https://cloud.google.com/blog/products/containers-kubernetes/exploring-container-security-the-shared-responsibility-model-in-gke-container-security-shared-responsibility-model-gke
