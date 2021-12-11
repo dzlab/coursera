@@ -111,6 +111,17 @@ An engineer alerts you that a production application on a web server VM seems to
 There is another ingress firewall rule that allows traffic with a target of the development VM, a source of the production VM, a priority of 1000. For an “allow” rule to override a “deny” rule, it must have a lower integer value for priority, indicating a higher priority rule, and the target and source machines for the ingress traffic must be identified properly, matching the situation in the question, “[a target of the production VM, a source of the development VM]”.
 https://cloud.google.com/vpc/docs/using-firewalls
 
+### 10
+An executive is giving demonstrations of an application on-site at a conference. He has informed you that he will be using his laptop as he moves from meeting to meeting between rooms with different networks. He wants to know if he will need to begin a new session at every location since the IP addresses will change. You assure him that the current external load balancers provide session affinity that will mitigate any disruption. Which session affinity would make sure the executive remains within his active session as he moves between networks?
+
+- [x] Generated cookie affinity
+
+**Explanation**
+
+Generated cookie affinity lets the load balancer recognize subsequent connections from that client instead of treating the connection as new. The load balancer generates a cookie upon the first request, and each request after with the same cookie is directed to the same backend VM.
+
+https://cloud.google.com/load-balancing/docs/backend-service
+
 ### 11
 An app dev team has reached out to their IT department because they need access to VMs in us-west1 region and us-central1 region. They currently have an established VPN tunnel to us-west1, and they would like to gain additional access to the VMs in us-central1. They want a robust and reliable solution that can maintain their application’s availability in the event of a regional failure. The IT department offers to set up a second static connection to us-central1. However, the app dev team is concerned about maintaining multiple static routes that might be error-prone and disruptive to their workflow. Which Cloud Router routing configuration best resolves the request from the development team?
 
@@ -122,6 +133,28 @@ Global Dynamic Routing is the correct answer - with this configuration, Cloud Ro
 
 https://cloud.google.com/network-connectivity/docs/router/concepts/overview#redundant-tunnels
 
+### 12
+You are troubleshooting SSH access for a user who is attempting to access a Linux instance. The user cannot connect to the instance using their project-wide public SSH keys. They are in the correct project, and they are only having trouble with this one instance. Which two of the following solutions might solve this user’s problem?
+- [x] The user’s public SSH key must be added to the instance metadata.
+- [x] Select the instance in the Cloud Console, and Under SSH Keys, clear “Block Project-wide SSH keys”
+
+**Explanation**
+
+5th answer: Make sure the user is a compute instance admin who has access to edit public SSH key metadata. This scenario points to an instance that is blocking project-wide public ssh keys. This issue can be resolved by either changing the setting for the instance in the Cloud Console or adding the user’s project-wide public SSH key to the metadata of the specified instance.
+
+https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#block-project-keys
+
+### 13
+You have established multiple static routes for the 192.168.168.0/24 destination. The current highest priority route has gone down. Which choice from the list below will Cloud Router select as the most likely next hop?
+
+- [x] Priority is 750, and the next hop Cloud VPN tunnel is up.
+
+**Explanation**
+
+For Cloud Router to even consider a route, the next hop must be up. Once that is established, the next hop is chose based on priority. The lower the priority value, the higher the priority.
+
+https://cloud.google.com/network-connectivity/docs/vpn/concepts/order-of-routes
+
 ### 14
 During your Cloud Router configuration, you receive the following error message while attempting to establish a BGP session: ERROR: (gcloud.compute.forwarding-rules.create) Could not fetch resource: - Invalid value for field resource.bgp.asn: xxxxx. Local ASN conflicts with peer ASN specified by a router in the same region and network. What could this error message mean?
 - [x] There might be an on-premise device that has the same ASN as the Cloud Router. Cloud Router will not be able to establish a BGP session until you change the ASN on one of the devices.
@@ -131,6 +164,106 @@ During your Cloud Router configuration, you receive the following error message 
 The correct answer is “There might be an on-premise device that has the same ASN as the Cloud Router. Cloud Router will not be able to establish a BGP session until you change the ASN on one of the devices.” All of the other answers can cause routing issues, but they will not trigger this specific error message.
 https://cloud.google.com/network-connectivity/docs/router/support/troubleshooting
 
+### 15
+You have configured a network endpoint group specifically as a backend service for deploying containers on VMs. This also gives you granularity in distributing traffic to applications on the VM. This NEG works perfectly as a backend to an external HTTP(S) load balancer. Which type of network endpoint group have you configured?
+
+- [x] Zonal Neg
+
+**Explanation**
+
+5th choice: TCP Proxy The Zonal NEG’s primary use case is deploying containers to VMs to run services in, and it allows granularity in traffic distribution to apps on the VM.It also works well as a backend to an External HTTP(S) load balancer.
+https://cloud.google.com/load-balancing/docs/negs/zonal-neg-concepts
+
+### 16
+You have configured your Cloud Routers for high availability. The Cloud Routers in us-central1 are advertising subnets in two different regions us-central1 and us-west1. VMs in each of the VPC Network regions learn about on-premises hosts automatically. How would you describe this Cloud Routing mode and configuration?
+- [x] This represents Cloud Router Global Dynamic Routing
+
+**Explanation**
+
+Because the VMs in both regions can learn about the on-premises hosts automatically, this is dynamic routing. Because the Cloud Router has visibility in all regions is this Global Routing. This represents Cloud Router Global Dynamic Routing
+https://cloud.google.com/network-connectivity/docs/router/concepts/overview
+
+### 17
+You have Endpoint-Independent Mapping enable on Cloud NAT, and you have deployed a TURN server for NAT traversal. How would you explain how a TURN server permits communication between two VMs behind NAT?
+
+- [x] The VMs behind the NAT connect to the external IP address of a third server, and that server relays communication between the two VMs.
+
+**Explanation**
+
+TURN NAT traversal makes use of the external IP address of a third server to communicate behind NAT. STUN, not TURN, Traversal requires an open communication channel between the VMs. Permitting connections between existing VMs requires one to drain external IP addresses associated with NAT is true, but irrelevant to the topic of NAT traversal.
+
+https://cloud.google.com/nat/docs/using-nat
+
+### 18
+
+During routine maintenance you are attempting to calculate network throughput on a single VM with iPerf3. The iPerf3 server and the cm are not able to connect to perform the test. Which of the following problems may be preventing the successful test?
+
+- [x] The firewall rules must allow ingress and egress traffic to and from the VM.
+
+**Explanation**
+
+For iPerf3 to perform a throughput test on a VM, the firewalls on the VM need to be set to allow all ingress and egress traffic.
+
+https://cloud.google.com/community/tutorials/network-throughput
+
+### 19
+You run the following command to customize the cache keys: gcloud compute backend-services update backend_service_dev1 \ --no-cache-key-include-protocol --cache-key-include-host \ --no-cache-key-include-query-string You follow up by viewing the logs to ensure that Cloud CDN is serving responses from the cache. Based on the change made to the cache keys by the command above, which of the following objects does not resolve to this cache key: “example.com/images/robot.jpg”?
+
+- [x] https://example2.com/images/cat.jpg
+
+**Explanation**
+
+The URI https://example2.com/images/cat.jpg is the only choice that does not resolve to the specified cache key because the host was changed. In the others, only the protocol and the query string were adjusted.
+
+https://cloud.google.com/cdn/docs/caching
+
+### 20
+You have created a Cloud Armor allowlisting rule intended to only allow IPs from a specified CIDR range access to external HTTP(S) Load balancers. You have not created a denylisting rule. Which of the following statements about your Cloud Armor rule are false?
+
+- [x] Allowlisting rules automatically block any source IP address or CIDR range not defined in the rule.
+
+**Explanation**
+
+It is not true that allowlisting rules automatically block any source IP address or CIDR range not defined in the rule. There must be an accompanying Denylisting rule for any traffic to be blocked based on IP address or CIDR range.
+
+https://cloud.google.com/armor/docs/security-policy-overview
+
+### 21
+
+A development team has launched a vital application on a regional managed instance group that must have nearly zero downtime. To ensure high availability, you now have to configure a global load balancer to direct HTTP traffic across multiple zones. After configuring the backend then the frontend of the load balancer, you click Review and Finalize. Assuming you have configured the load balancer correctly, what backend settings do you see upon review?
+
+- [x] The Backend service is web-app-backend. The Endpoint protocol is HTTP. The Health check is web-app-load-balancer-check. The Instance group is load-balancing-web-app-group.
+
+**Explanation**
+
+Upon review, the backend setting for a high availability global load balancer to direct HTTP traffic across multiple zones will be as follows: The Backend service is web-app-backend. The Endpoint protocol is HTTP. The Health check is web-app-load-balancer-check. The Instance group is load-balancing-web-app-group. In the other answers, either the protocol is incorrect [TCP] or the Health Check and Instance Groups settings have been switched.
+
+https://cloud.google.com/compute/docs/tutorials/high-availability-load-balancing#simulating_a_zonal_outage
+
+### 22
+You have set up VPC Flow Logs specifically for forensic analysis on a sensitive project. Based on current SLAs, your client requires that your team be able to produce the logs for up to two years after the timestamp of any action on this subnet. What steps should you take to ensure that the VPC flow logs are kept for at least 2 years?
+
+- [x] The VPC Flow logs are only kept in Logging for 30 days. To keep them for any longer than that, they must be exported and stored elsewhere.
+
+**Explanation**
+
+The VPC Flow logs are only kept in Logging for 30 days. To keep them for any longer than that, they must be exported and stored elsewhere. This is not a configurable setting. The logs will be lost if not removed after 30 days. This has nothing to do with the sample rate.
+
+https://cloud.google.com/vpc/docs/using-flow-logs
+
+### 23
+Your organization has deployed resources in a shared VPC. Now you need to peer it with another shared VPC that is used by a distributed team. The additional shared VPC will contain pooled resources for a large project. However, you quickly discover that peering between the shared VPCs as they are is impossible. What could have happened during the setup of these shared VPCs that would keep you from connecting them now?
+
+- [x] The analyst who built the shared VPCs may have set them up as Auto Mode Shared VPCs. 
+
+**Explanation**
+
+Auto mode shared VPC subnets share the same set of default IP Address ranges, and network with overlapping IP address ranges cannot be connected through VPN or peering. To peer between shared VPCs, they must have been created in Custom Mode during setup with distinct IP Address ranges for subnets.
+
+It is true that options to import and export custom routes when peering must be configured before any route exchanges will take place, but this is unrelated to the requirements for peering between VPCs.
+
+https://cloud.google.com/vpc/docs/vpc#subnet-ranges
+
 ### 24
 Most of the users in your organization are working remotely. It is vital that their VPN connections to the on-site network resources are very reliable. Which of the following Cloud VPN strategies give the highest reliability?
 - [x] Redundant routers and BGP sessions combined with on-premises devices that support grace restart.
@@ -139,6 +272,32 @@ Most of the users in your organization are working remotely. It is vital that th
 
 The best combination for VPN reliability is redundant routers and BGP sessions combined with on-premises devices that support grace restart. The other answers are either irrelevant to the VPN question or mutually incompatible configurations (e.g., BGP and static routing)
 https://cloud.google.com/network-connectivity/docs/router/concepts/overview#redundant-tunnels
+
+### 25
+You’ve just created a new Google Cloud Project and you have enabled the Cloud DNS API. For this VPC network, you have been asked to ensure that inbound DNS forwarding is permitted, and that outbound DNS forwarding is implemented on the same network. How would you go about handling this request?
+
+- [x] Since the VPC Network cannot reference more than one DNS server policy, both the inbound DNS forwarding and the outbound DNS forwarding must be defined within one policy.
+
+**Explanation**
+
+The correct answer is: Since the VPC Network cannot reference more than one DNS server policy, both the inbound DNS forwarding and the outbound DNS forwarding must be defined within one policy. It is possible for a policy to be both an inbound and outbound policy if it implements both. An outbound DNS policy is just one method of implementing outbound DNS forwarding, but no other valid options were given in the answer choices.
+
+https://cloud.google.com/dns/docs/overview#dns-server-policy
+
+### 26
+A customer-facing team would like to try out a new 3rd party tool. You need to configure a VPC firewall to allow VMs in that particular network to receive packets from a specific range of IPs. This firewall policy must only apply to this team and no one else at the organization. Which firewall configuration settings most closely align with the request?
+- [x]
+  Priority: 100
+  Logs: On
+  Direction of traffic: Ingress
+  Action on match: Allow
+  Source IP: [Specific range of IPs]
+
+**Explanation**
+
+The request specifies that this will be incoming traffic (Ingress), allow the traffic if it matches, and specify a source IP rather than a target IP.
+
+https://cloud.google.com/vpc/docs/using-firewall-policies
 
 ### 27
 Remote engineers working on a vital project need a service-level availability well above 99% for their VPN Connection. Which of the two following statements are correct regarding a Cloud VPN configuration that provides this level of high availability? (Choose 2 answers)
