@@ -318,6 +318,98 @@ They should be:
 
 https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview
 
+### 28
+You have been tasked with designing an aggressive disaster recovery plan for business-critical applications. You are specifically looking for something that will give you an RTO in minutes and an RPO that is nearly zero. Which disaster recovery plan below meets those requirements?
+
+- [x]
+  Database: Synchronous replication
+  File Shares: Synchronous replication
+  App Servers: Restore from a persistent disk snapshot
+
+**Explanation**
+
+The correct disaster recovery plan is:
+
+Database: Synchronous replication
+
+File Shares: Synchronous replication
+
+App Servers: Restore from a persistent disk snapshot
+
+This is the only plan that ensures the target systems and the source systems are both active and configured to the same size. This allows for almost immediate automatic failover to the recovery systems.
+
+https://cloud.google.com/solutions/dr-scenarios-planning-guide
+
+### 29
+A security admin is configuring an ingress rule on the firewall for all VM instances on the network.  The new ingress rule should ensure that traffic from a specific project cannot access a designated VPC network. There are multiple ways to specify the source of traffic for an ingress rule. What two possible option can the security admin select to define the traffic’s source? (Choose 2 answers)
+
+- [x] Source IP Ranges
+- [x] Source Service Accounts
+
+**Explanation**
+
+IP Ranges and Service Accounts are two ways in which the source for an ingress rule can be defined. A third possible source is Source Tags, but this was not an option to select in this question.
+
+Additional link: https://cloud.google.com/vpc/docs/using-firewalls
+
+https://cloud.google.com/vpc/docs/firewalls#sources_or_destinations_for_the_rule
+
+### 30
+You run the command in the gcloud command-line tool to create a new VPC-native Kubernetes Cluster. It returns a Managed Instance Group error, and you suspect that there is not enough free space in the Pod IP Address range for the requested nodes. How would you fix this problem so the cluster can be created successfully?
+
+- [x] You will need to replace the cluster. Go back over your planning, appropriately resizing the primary and secondary IP ranges. Then run the create command again.
+
+**Explanation**
+
+The only correct answer is “You will need to replace the cluster. Go back over your planning, appropriately resizing the primary and secondary IP ranges. Then run the create command again.” The other three answers describe solutions for other situations.
+
+https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-shared-vpc
+
+### 31
+You are an administrator working on a project on a shared VPC network. The project (Project_1234) consists of three production instances (Prod_001, Prod_002, and Prod_003) and one development instance (DEV_001). You have an alert set in Cloud Monitoring that is supposed to email an alert to all network administrators when any of the three production environment VMs stay above 95% CPU usage for more than 5 minutes. Even though your logs confirm that this condition has been met on multiple occasions, no alerts have been issued from Cloud Monitoring. You need to adjust the configuration of the alert. Which configuration below will give you the desired result?
+
+- [x]
+  Resource type: VM Instance
+  Metric: CPU Utilization project_id=”Project_1234” instance_name!=”DEV_0001”
+  Period: 1 Minute
+  Condition: is above
+  Threshold: .95
+  For: 5 Minutes
+
+**Explanation**
+
+The correct configuration is:
+
+- Resource type: VM Instance
+- Metric: CPU Utilization project_id=”Project_1234” instance_name!=”DEV_0001”
+- Period: 1 Minute Condition: is above
+- Threshold: .95
+- For: 5 Minutes
+
+The incorrect answers either had an incorrect value for the “instance_name” filter or configured the time for the condition threshold incorrectly. The “Period” field could be confusing because it designates the amount of time that data is collected for each data point, not the time threshold configuration for the condition.
+
+https://cloud.google.com/logging
+
+### 32
+A network administrator for a particular VPC has noted that a service is pushing up against the CIDR block range for a given service. To resolve this issue, she will expand the CIDR range for this service. She runs the following command within the gcloud command-line tool: $ gcloud compute networks subnets expand-ip-range acmeco-hr-comp-eu-we1-dev --prefix-length=16 What is the outcome?
+- [x] The IP range of the subnet acmeco-hr-comp-eu-we1-dev is expanded to /16.
+
+**Explanation**
+
+The IP range of the subnet acmeco-hr-comp-eu-we1-dev is expanded to /16 is the correct outcome. The subnet is acmeco-hr-comp-eu-we1-dev, and the --prefix-length= flag defines the new CIDR range.
+
+https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/expand-ip-range
+
+### 33
+Your company is running a client-facing web application on Cloud Run, and you are tasked with enabling Cloud CDN for the service to optimize caching. What would be the best way to enable Cloud CDN for this application?
+- [x] Run the gcloud compute backend-services update command for the service with the --enable-cdn flag.
+
+**Explanation**
+
+Running the gcloud compute backend-services update command for the service with the --enable-cdn flag is the correct way to enable Cloud CDN. One would not run the gcloud compute backend-services create command for an existing service.
+
+https://cloud.google.com/cdn/docs/setting-up-cdn-with-bucket
+
 ### 34
 You have recently migrated data to the Google Cloud Platform, and you are ready to connect your on-premise networks to Google Cloud. Review the requirements below and choose the best connection option. Guaranteed Network Availability and High Bandwidth: low Private Network connection: Not required Custom Routing: Not required Google Workspace Access: Required Budget to establish connection: None Which option fits the requirements best?
 - [x] Direct Peering
@@ -348,6 +440,25 @@ The correct command includes all of the correct parameters for setting up a VLAN
 Additional link: https://cloud.google.com/network-connectivity/docs/interconnect/how-to/dedicated/using-interconnects-other-projects
 
 https://cloud.google.com/network-connectivity/docs/interconnect/how-to/dedicated/creating-vlan-attachments
+
+### 36
+An admin used gcloud to manually create all SSH keys for the team members on a specific project. During testing and configuration, you realize that all of the public SSH keys have been wiped out. Which action could have caused this?
+- [x] A team member made an improperly specified API call.
+
+**Explanation**
+
+An improperly specified API call can wipe out the manually created SSH keys on a VM. This is why it is recommended to generate the keys with the Compute Engine tools if not up to the task of managing the keys. None of the other actions list would have deleted the SSH keys.
+
+https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys#risks
+
+### 37
+The executives in your organization come to you as the network administrator because they believe that Google Cloud Premium Tier is not necessary for the company’s purposes. They are trying to make a final decision, and they want you to explain the difference between the load balancing options at the Premium Tier and what you would get at the Standard Tier. How would you best explain it?
+- [x] The Standard Tier offers regional load balancing, while the Global tier offers the ability to deploy Global Load Balancing of any single anycast IPv4 or IPv6 IP.
+
+**Explanation**
+
+The Standard Tier offers regional load balancing, while the Global tier offers the ability to deploy Global Load Balancing of any single anycast IPv4 or IPv6 IP. Network load balancing requires a regional external IP at both tiers.
+https://cloud.google.com/network-tiers#tab2
 
 ### 38
 You've recently configured a new developer’s role in Cloud IAM. They've come back to you because they cannot access a resource they need to begin work. What three pieces of information do you need from the developer to troubleshoot their issue?
@@ -387,6 +498,31 @@ This configuration Is the only one that correctly creates a MIG with 3 named zon
 gcloud compute instance-groups managed create example-rmig \ --template example-template \ --size 30 \ --zones us-east1-a,us-east1-b,us-east1-c 
 https://cloud.google.com/compute/docs/instance-groups/distributing-instances-with-regional-instance-groups
 
+### 41
+
+Due to a recent expansion in business, an application that had been running on a fixed number of instances with predictably efficient performance has started causing problems as tasks are being queued and users are reporting timeout errors. To solve this problem, you have configured the app engine with automatic scaling. Which of the following scenarios accurately describes how the automatically scaled instances are created and shut down as requests are received?
+- [x] Instances are automatically created and turned down as needed to handle requests.
+
+**Explanation**
+
+When automatic scaling is on, Instances are automatically created and turned down as needed to handle requests. All of the other answers relate to either Manual or Basic scaling, not automatic scaling.
+
+https://cloud.google.com/compute/docs/load-balancing-and-autoscaling
+
+### 42
+Your employer has decided to switch from your current DNS provider to Cloud DNS, and you have been tasked with migrating the existing domain to Cloud DNS. You have already created a managed zone to contain your DNS records. You also have the exported DNS configuration file in YAML records format from the current provider. What is the next step in the migration process?
+
+- [x] The next step is to import the DNS configuration record sets into your managed zone. In the gcloud command-line tool, you will use the dns record-sets import command without the --zone-file-format flag.
+
+**Explanation**
+
+5th: The next step is to update your registrar’s name server records. You will do this by logging into your registrar provider and changing the authoritative name servers to point to the new ones. The next step after exporting the DNS configuration records from the current DNS provider is to import the DNS configuration record sets into your managed zone.
+
+In the gcloud command-line tool, one will use the DNS record-sets import command without the --zone-file-format flag. The --zone-file-format flag is only necessary for BIND zone formatted record sets, otherwise YAML is the expected record-set format. The other answers are later steps in the migration process that cannot be completed until the configuration records have been imported into the correct managed zone.
+
+https://cloud.google.com/dns/docs/migrating
+
+
 ### 43
 Within your organization, there is a Business Manager position that exists in every department. Everyone with this job is supposed to have access to a specific set of software tools that nobody else needs. They are distributed, on different projects in different regions. What is the most efficient, accurate, and easily reversible way to go about giving all of those people access to those resources without giving them to those that do not need them?
 
@@ -398,6 +534,30 @@ The Business Manager Solution is the most efficient, accurate, and reversible. U
 
 https://cloud.google.com/iam/docs/overview
 
+### 44
+Your company wants to set up a Partner Interconnect connection but has concerns about the availability and reliability of the service provider's network. What option will reduce your dependence on the service provider's network?
+- [x] Establish your connection on Layer 2.
+
+**Explanation**
+
+For layer 2 connections, traffic passes through the service provider's network to reach the VPC or on-premises network. BGP is configured between the on-premises router and a Cloud Router in the VPC network, as shown in the following diagram:
+
+For layer 3 connections, traffic is passed to the service provider's network, and then their network routes the traffic to the correct destination, either to the on-premises network or to the VPC network. Connectivity between the on-premises and service provider networks depends on the service provider. For example, they might request that you establish a BGP session with them or configure a static default route to their network.
+
+https://cloud.google.com/interconnect/docs/concepts/partner-overview
+
+### 45
+
+You are configuring Cloud Router for a multi-NIC VM, and you note that every NIC gets a different route. Each Network Connectivity is creating custom dynamic routes in the VPC network. What has happened? What should you do?
+- [x] This is working as it should. You do not need to fix anything.
+
+**Explanation**
+
+This is working as it should. You do not need to fix anything. Each NIC is configured in a unique VPC. The routes learned by one Cloud router are only for one NIC.
+
+https://cloud.google.com/network-connectivity/docs/router/support/troubleshooting
+
+
 ### 46
 You receive a request from an engineer to update his IAM role. He will be working within Cloud SQL, and he needs to be able to run queries and manipulate the data within the existing instance. Considering the policy of Least Privilege, which IAM role would be best suited for this Engineer?
 - [x] Cloud SQL Editor
@@ -408,6 +568,48 @@ The correct roll is Cloud SQL Editor. Editor and Cloud SQL Admin both allow too 
 
 https://cloud.google.com/iam/docs/permissions-reference
 
+### 47
+A project admin has reached out to you for help resolving a problem with the user accounts on a project. All of the users seem to have admin permissions on every service within the project, even things they are not working on. Users have been creating new instances and accessing folders that should be behind firewalls. Nothing about their permissions has changed since the beginning of the project, but they seem to automatically have access to even brand new projects that they could not have been given IAM roles for. Which of the following scenarios could cause what the project admin is experiencing?
+- [x] The users have all been granted the Service Account User role at the project level.
 
+**Explanation**
 
+Users who have been granted the Service Account User role can indirectly access anything to which the service account has access. Users with the Service Account User role at the project level have access to all service accounts in the project and everything to which those service accounts have access.
 
+https://cloud.google.com/solutions/best-practices-vpc-design
+
+### 48
+The network administrator has asked you to migrate a DNSSEC-signed zone to Cloud DNS. You realize before you get too far into the process that Cloud DNS does not support the same KSK algorithm that is currently in use. How will you safely, and properly migrate the zone to Cloud DNS?
+
+- [x] Deactivate the DNSSEC at the domain registrar before you migrate the zone and update the name server records to us Cloud DNS.
+
+**Explanation**
+
+The only correct answer is “Deactivate the DNSSEC at the domain registrar before you migrate the zone and update the name server records to us Cloud DNS.” The other answers are just parts of later steps in the process. The only way to properly migrate the signed zone is to deactivate DNSSEC first.
+
+https://cloud.google.com/dns/docs/dnssec-config#migrating
+
+### 49
+The network admin runs the following command in the gcloud command-line tool to create a new VPC network: gcloud compute networks create sampleco-prod-1 \ --subnet-mode=auto \ --bgp-routing-mode=global \ --mtu=1460 Which two of the following IP addresses would be available within VPC subnets automatically created by this command? (Choose 2 answers)
+
+- [x] 10.255.4.68
+- [x] 10.172.4.82
+
+**Explanation**
+
+The correct responses were: 10.255.4.68 and 10.172.4.82
+
+When a VPC network is created in auto mode, IP ranges for the automatically created subnets fit within the 10.128.0.0/9 CIDR block.
+
+https://cloud.google.com/vpc/docs/vpc
+
+### 50
+Your organization has partially migrated to the cloud, and many of your servers are maintained in an on-premises data center. You have noticed increased throughput latency when application components on the cloud and the corporate data center communicate. You have confirmed that load balancers are in place and configured correctly. How might you adjust the configuration of this hybrid environment to minimize latency and improve application performance?
+
+- [x] Enable window-size scaling from the command line to increase bandwidth.
+
+**Explanation**
+
+Due to legacy uses of TCP, TCP window size - the amount of data that can be sent at once might be configured too conservatively. Increasing this window size can dramatically improve bandwidth. Enabling Round-Trip Time optimization is incorrect because RTT is a fixed value in this scenario. Doing nothing hints at the legacy application of TCP but is incorrect when using modern hardware.
+
+https://cloud.google.com/solutions/tcp-optimization-for-network-performance-in-gcp-and-hybrid
