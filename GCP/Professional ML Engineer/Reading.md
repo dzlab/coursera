@@ -111,7 +111,7 @@ Know the differences between the different Distributed training strategies in Te
 
 |Strategy|Synchronous / Asynchronous|Number of nodes|Number of GPUs/TPUs per node|How model parameters are stored|
 |-|-|-|-|-|
-|MirroredStrategy|Synchronous|one|many|On each GPU|
+|[MirroredStrategy](https://www.tensorflow.org/guide/distributed_training#mirroredstrategy)|Synchronous|one|many|On each GPU|
 |TPUStrategy|Synchronous|one|many|On each TPU|
 |MultiWorkerMirroredStrategy|Synchronous|many|many|On each GPU on each node|
 |ParameterServerStrategy|Asynchronous|many|one|On the Parameter Server|
