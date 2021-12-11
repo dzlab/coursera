@@ -44,6 +44,15 @@ How to engineer an ML solution:
 - Optimize the frequency of retraining the model - [link](https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost#optimize_the_frequency_of_retraining_the_model)
 
 - machine learning guides - [link](https://developers.google.com/machine-learning/guides)
+- Machine Learning Glossary - [link](https://developers.google.com/machine-learning/glossary)
+
+### Google Cloud Solutions
+
+- Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build
+- Best practices for performance and cost optimization for machine learning https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost
+- Building production-ready data pipelines using Dataflow: Overview https://cloud.google.com/solutions/building-production-ready-data-pipelines-using-dataflow-overview
+- Minimizing real-time prediction serving latency in machine learning https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning
+
 
 ## Model design, performance and tuning
 
@@ -59,11 +68,17 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 - WhatIf Tool — when do you use it? How do you use it? How do you discover different outcomes? How do you conduct experiments? (https://pair-code.github.io/what-if-tool/)
 
 ## MLOps
-- TensorFlow Extended, or TFX. You have to know the components and how to build the pipeline out of them.
 - MLOps: Continuous delivery and automation pipelines in machine learning - [link](https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
-- Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build - [link](https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build)
-- When to use Kubeflow over TFX? When you need PyTorch, XGBoost or if you want to dockerize every step of the flow
 - End to end hybrid and multi-cloud ML workloads - [link](https://www.kubeflow.org/docs/about/use-cases/#end-to-end-hybrid-and-multi-cloud-ml-workloads)
+
+### TFX
+- TensorFlow Extended, or TFX. You have to know the components and how to build the pipeline out of them.
+- TFX on Cloud AI Platform Pipelines - [link](https://www.tensorflow.org/tfx/tutorials/tfx/cloud-ai-platform-pipelines)
+- TFX pipelines and components — https://www.tensorflow.org/tfx/guide/understanding_tfx_pipelines
+- Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build - [link](https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build)
+
+### Kubeflow
+- When to use Kubeflow over TFX? When you need PyTorch, XGBoost or if you want to dockerize every step of the flow
 
 ## BigQuery ML
 - BigQuery ML. The default answer is that if your data is already in BigQuery and you want the output to also be there, you should use BigQuery ML for your modeling. But be aware of the limitations. 
@@ -72,6 +87,7 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 - BigQuery ML — BigQuery by itself is important. All the ML you can do with BQML is also very important. What all can you do with BQML? What are its limitations. [link](https://cloud.google.com/bigquery-ml/docs/introduction)
 - BQML — Can it work with other ML libraries? Can you import models from tf, scipy, etc.?
 - BQML available algorithms - [link](https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-create)
+- BQML Syntaxes and types of Algos — https://cloud.google.com/bigquery-ml/docs/tutorials
 - Example of training with BigQuery ML - [link](https://towardsdatascience.com/lessons-learned-using-google-cloud-bigquery-ml-dfd4763463c)
 
 ## Accelerators
@@ -122,11 +138,25 @@ Know the differences between the different Distributed training strategies in Te
 ### Feature column
 Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/python/tf/feature_column) to perform feature engineering in TensorFlow and how to produce the following features: numerical, categorical one-hot encoded/embedded/hashed, bucketized one-hot encoded/embedded/hashed, crossed.
 
+### Other
+- TF Profiler — https://www.tensorflow.org/guide/profiler
+
 ## AI Platform
 - AI Platform distributed training with containers. The default answer is if you have a distributed training app, you can package each component in a separate container (master, worker, parameter server) and deploy it on the AI Platform.
 - AI Platform distributed training. This is essentially the union of TensorFlow distributed training topics and AI Platform containers distributed training. However, note that distributed training is not supported for models using scikit-learn (may have guessed) or XGBoost environments.
 - AI Platform Hyperparameter tuning. Might be useful to know that Bayesian optimization is used under the hood.
 - AI Platform built-in algorithms. This is something in-between AutoML and custom code: you still have to do the data preprocessing, feature engineering, and hyperparameter tuning, but the model itself is already implemented. Be aware that built-in algorithms do not support distributed training.
+
+
+- GCP AutoML Training — https://cloud.google.com/automl/docs
+- GCP ML APIs — Natural Language API, Vision API, Audio API
+- AI Platform Training — https://cloud.google.com/ai-platform/training/docs
+- AI Platform Built-in algos — https://cloud.google.com/ai-platform/training/docs/algorithms
+- AI Platform Prediction — https://cloud.google.com/ai-platform/prediction/docs
+- AI Platform DL containers — https://cloud.google.com/ai-platform/deep-learning-containers/docs
+- AI Platform explanation — https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview
+- Continuous evaluation — https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation
+- AI Platform pipelines — https://cloud.google.com/ai-platform/pipelines/docs
 
 ## Evaluation
 - Classification: ROC Curve and AUC - [link](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
