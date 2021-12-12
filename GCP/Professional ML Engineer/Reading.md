@@ -37,8 +37,6 @@ How to engineer an ML solution:
 - Training-Serving Skew - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#training-serving_skew)
 - Training Neural Networks: Best Practices - [link](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices)
 - Classification: Prediction Bias - [link](https://developers.google.com/machine-learning/crash-course/classification/prediction-bias)
-- Reducing memory usage - [link](https://cloud.google.com/tpu/docs/troubleshooting#memory-usage)
-- Improving training speed - [link](https://cloud.google.com/tpu/docs/troubleshooting#training-speed)
 - Making and serving predictions - [link](https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning#making_and_serving_predictions)
 - Optimizing models for serving - [link](https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning#optimizing_models_for_serving)
 - Optimize the frequency of retraining the model - [link](https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost#optimize_the_frequency_of_retraining_the_model)
@@ -52,7 +50,7 @@ How to engineer an ML solution:
 - Best practices for performance and cost optimization for machine learning https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost
 - Building production-ready data pipelines using Dataflow: Overview https://cloud.google.com/solutions/building-production-ready-data-pipelines-using-dataflow-overview
 - Minimizing real-time prediction serving latency in machine learning https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning
-
+- Considerations for Sensitive Data within Machine Learning Datasets https://cloud.google.com/architecture/sensitive-data-and-ml-datasets
 
 ## Model design, performance and tuning
 
@@ -89,6 +87,7 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 - BQML available algorithms - [link](https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-create)
 - BQML Syntaxes and types of Algos — https://cloud.google.com/bigquery-ml/docs/tutorials
 - Example of training with BigQuery ML - [link](https://towardsdatascience.com/lessons-learned-using-google-cloud-bigquery-ml-dfd4763463c)
+- How to do online prediction with BigQuery ML - [link](https://towardsdatascience.com/how-to-do-online-prediction-with-bigquery-ml-db2248c0ae5)
 
 ## Accelerators
 - Choosing between CPUs, TPUs and GPUs:
@@ -96,6 +95,12 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 > Use CPUs for quick prototypes, simple/small models or if you have many C++ custom operations; use GPU if you have some custom C++ operations and/or medium to large models; use TPUs for big matrix computations, no custom TensorFlow operations and/or very large models that train for weeks or months
 
 - To improve performance on TPUs: if data pre-processing is a bottleneck, do it offline as a one-time cost; choose the larges batch size that fits in memory; keep the per-core batch size the same
+
+### TPU
+
+- Reducing memory usage - [link](https://cloud.google.com/tpu/docs/troubleshooting#memory-usage)
+- Improving training speed - [link](https://cloud.google.com/tpu/docs/troubleshooting#training-speed)
+
 
 ## Neural networks
 Common pitfalls in backpropagation and their solutions:
@@ -149,6 +154,7 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 
 
 - GCP AutoML Training — https://cloud.google.com/automl/docs
+- GCP AutoML Prediction — https://cloud.google.com/vision/automl/docs/predict
 - GCP ML APIs — Natural Language API, Vision API, Audio API
 - AI Platform Training — https://cloud.google.com/ai-platform/training/docs
 - AI Platform Built-in algos — https://cloud.google.com/ai-platform/training/docs/algorithms
