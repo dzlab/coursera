@@ -97,7 +97,7 @@ You work for a manufacturing company that owns a high-value machine which has se
 - [ ] A. Data preparation: Daily max value feature engineering; Model training: AutoML classification with BQML
 - [ ] B. Data preparation: Daily min value feature engineering; Model training: Logistic regression with BQML and AUTO_CLASS_WEIGHTS set to True
 - [ ] C. Data preparation: Rolling average feature engineering; Model training: Logistic regression with BQML and AUTO_CLASS_WEIGHTS set to False
-- [ ] D. Data preparation: Rolling average feature engineering; Model training: Logistic regression with BQML and AUTO_CLASS_WEIGHTS set to True
+- [x] D. Data preparation: Rolling average feature engineering; Model training: Logistic regression with BQML and AUTO_CLASS_WEIGHTS set to True
  
 **Feedback**
 ```diff
@@ -158,9 +158,9 @@ A. Load data into BigQuery and use the ARIMA model type on BigQuery ML.
 
 You need to build an object detection model for a small startup company to identify if and where the company’s logo appears in an image. You were given a large repository of images, some with logos and some without. These images are not yet labelled. You need to label these pictures, and then train and deploy the model. What should you do?
 - [x] A. Use Google Cloud’s Data Labelling Service to label your data. Use AutoML Object Detection to train and deploy the model.
-- [x] B. Use Vision API to detect and identify logos in pictures and use it as a label. Use AI Platform to build and train a convolutional neural network.
-- [x] C. Create two folders: one where the logo appears and one where it doesn’t. Manually place images in each folder. Use AI Platform to build and train a convolutional neural network.
-- [x] D. Create two folders: one where the logo appears and one where it doesn’t. Manually place images in each folder. Use AI Platform to build and train a real time object detection model.
+- [ ] B. Use Vision API to detect and identify logos in pictures and use it as a label. Use AI Platform to build and train a convolutional neural network.
+- [ ] C. Create two folders: one where the logo appears and one where it doesn’t. Manually place images in each folder. Use AI Platform to build and train a convolutional neural network.
+- [ ] D. Create two folders: one where the logo appears and one where it doesn’t. Manually place images in each folder. Use AI Platform to build and train a real time object detection model.
 
 **Feedback**
 ```diff
