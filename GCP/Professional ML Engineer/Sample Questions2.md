@@ -1,5 +1,8 @@
 # Sample Questions
 
+
+**Question**
+
 You work for a textile manufacturer and have been asked to build a model to detect and classify fabric defects. You trained a machine learning model with high recall based on high resolution images taken at the end of the production line. You want quality control inspectors to gain trust in your model. Which technique should you use to understand the rationale of your classifier?
 
 - [ ] A. Use K-fold cross validation to understand how the model performs on different test datasets.
@@ -17,6 +20,7 @@ You work for a textile manufacturer and have been asked to build a model to dete
 - https://storage.googleapis.com/cloud-ai-whitepapers/AI%20Explainability%20Whitepaper.pdf
 - https://cloud.google.com/ml-engine/docs/ai-explanations/overview
 
+**Question**
 
 You need to write a generic test to verify whether Dense Neural Network (DNN) models automatically released by your team have a sufficient number of parameters to learn the task for which they were built. What should you do?
 - [ ] A. Train the model for a few iterations, and check for NaN values.
@@ -33,7 +37,8 @@ You need to write a generic test to verify whether Dense Neural Network (DNN) mo
 ```
 - https://developers.google.com/machine-learning/testing-debugging/pipeline/deploying#testing-for-algorithmic-correctness
 
- 
+**Question**
+
 Your team is using a TensorFlow Inception-v3 CNN model pretrained on ImageNet for an image classification prediction challenge on 10,000 images. You will use AI Platform to perform the model training. What TensorFlow distribution strategy and AI Platform training job configuration should you use to train the model and optimize for wall-clock time?
 
 - [ ] A. Default Strategy; Custom tier with a single master node and four v100 GPUs.
@@ -50,6 +55,7 @@ Your team is using a TensorFlow Inception-v3 CNN model pretrained on ImageNet fo
 ```
 - https://www.tensorflow.org/guide/distributed_training
 
+**Question**
 
 You work on a team where the process for deploying a model into production starts with data scientists training different versions of models in a Kubeflow pipeline. The workflow then stores the new model artifact into the corresponding Cloud Storage bucket. You need to build the next steps of the pipeline after the submitted model is ready to be tested and deployed in production on AI Platform. How should you configure the architecture before deploying the model to production?
 - [x] A. Deploy model in test environment -> Evaluate and test model -> Create a new AI Platform model version
@@ -66,6 +72,7 @@ You work on a team where the process for deploying a model into production start
 ```
 - https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build
 
+**Question**
 
 You work for a maintenance company and have built and trained a deep learning model that identifies defects based on thermal images of underground electric cables. Your dataset contains 10,000 images, 100 of which contain visible defects. How should you evaluate the performance of the model on a test dataset?
 - [x] A. Calculate the Area Under the Curve (AUC) value.
@@ -83,7 +90,8 @@ You work for a maintenance company and have built and trained a deep learning mo
 - https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc
 - https://developers.google.com/machine-learning/clustering/algorithm/advantages-disadvantages
 
- 
+**Question**
+
 You work for a manufacturing company that owns a high-value machine which has several machine settings and multiple sensors. A history of the machine’s hourly sensor readings and known failure event data are stored in BigQuery. You need to predict if the machine will fail within the next 3 days in order to schedule maintenance before the machine fails. Which data preparation and model training steps should you take?
 
 - [ ] A. Data preparation: Daily max value feature engineering; Model training: AutoML classification with BQML
@@ -106,6 +114,7 @@ You work for a manufacturing company that owns a high-value machine which has se
 - https://en.wikipedia.org/wiki/Sensitivity_and_specificity
 - https://en.wikipedia.org/wiki/Moving_average
 
+**Question**
 
 You are an ML engineer at a media company. You want to use machine learning to analyze video content, identify objects, and alert users if there is inappropriate content. Which Google Cloud products should you use to build this project?
 - [ ] A. Pub/Sub, Cloud Function, Cloud Vision API
@@ -122,7 +131,8 @@ You are an ML engineer at a media company. You want to use machine learning to a
 ```
 - https://cloud.google.com/solutions/processing-user-generated-content-using-video-intelligence
 
- 
+**Question**
+
 You work for a large retailer. You want to use ML to forecast future sales leveraging 10 years of historical sales data. The historical data is stored in Cloud Storage in Avro format. You want to rapidly experiment with all the available data. How should you build and train your model for the sales forecast?
 - [x] A. Load data into BigQuery and use the ARIMA model type on BigQuery ML.
 - [ ] B. Convert the data into CSV format and create a regression model on AutoML Tables.
@@ -144,7 +154,8 @@ A. Load data into BigQuery and use the ARIMA model type on BigQuery ML.
 - https://towardsdatascience.com/how-to-do-time-series-forecasting-in-bigquery-af9eb6be8159
 - https://cloud.google.com/bigquery/external-data-sources
 
- 
+**Question**
+
 You need to build an object detection model for a small startup company to identify if and where the company’s logo appears in an image. You were given a large repository of images, some with logos and some without. These images are not yet labelled. You need to label these pictures, and then train and deploy the model. What should you do?
 - [x] A. Use Google Cloud’s Data Labelling Service to label your data. Use AutoML Object Detection to train and deploy the model.
 - [x] B. Use Vision API to detect and identify logos in pictures and use it as a label. Use AI Platform to build and train a convolutional neural network.
@@ -160,7 +171,8 @@ You need to build an object detection model for a small startup company to ident
 ```
 - https://cloud.google.com/ai-platform/data-labeling/docs
 
- 
+**Question**
+
 You work for a large financial institution that is planning to use Dialogflow to create a chatbot for the company’s mobile app. You have reviewed old chat logs and tagged each conversation for intent based on each customer’s stated intention for contacting customer service. About 70% of customer inquiries are simple requests that are solved within 10 intents. The remaining 30% of inquiries require much longer and more complicated requests. Which intents should you automate first?
 - [ ] A. Automate a blend of the shortest and longest intents to be representative of all intents.
 - [ ] B. Automate the more complicated requests first because those require more of the agents’ time.
@@ -177,7 +189,8 @@ You work for a large financial institution that is planning to use Dialogflow to
 
 - https://cloud.google.com/blog/products/ai-machine-learning/discover-card-how-we-designed-an-experiment-to-evaluate-conversational-experience-platforms
 
- 
+**Question**
+
 You work for a gaming company that develops and manages a popular massively multiplayer online (MMO) game. The game’s environment is open-ended, and a large number of positions and moves can be taken by a player. Your team has developed an ML model with TensorFlow that predicts the next move of each player. Edge deployment is not possible, but low-latency serving is required. How should you configure the deployment?
 - [ ] A. Use a Cloud TPU to optimize model training speed.
 - [x] B. Use AI Platform Prediction with a NVIDIA GPU to make real-time predictions.
@@ -189,10 +202,10 @@ You work for a gaming company that develops and manages a popular massively mult
 
 **Feedback**
 ```diff
-A is not correct because changing the training will not improve the prediction latency.
-B is correct because using a VM with a GPU and NVIDIA drivers enables you to use TensorRT. NVIDIA has developed TensorRT (an inference optimization library) for high-performance inference on GPUs. Google Cloud’s Deep Learning VMs are ideal for this case because they have everything you need pre-installed.
-B is not correct because batch jobs do not satisfy the low-latency requirements for an online multiplayer game.
-D is not correct because batch jobs do not satisfy the low-latency requirements for an online multiplayer game.
+- A is not correct because changing the training will not improve the prediction latency.
++ B is correct because using a VM with a GPU and NVIDIA drivers enables you to use TensorRT. NVIDIA has developed TensorRT (an inference optimization library) for high-performance inference on GPUs. Google Cloud’s Deep Learning VMs are ideal for this case because they have everything you need pre-installed.
+- B is not correct because batch jobs do not satisfy the low-latency requirements for an online multiplayer game.
+- D is not correct because batch jobs do not satisfy the low-latency requirements for an online multiplayer game.
 ```
 
 - https://cloud.google.com/blog/products/ai-machine-learning/train-fast-on-tpu-serve-flexibly-on-gpu-switch-your-ml-infrastructure-to-suit-your-needs
