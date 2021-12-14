@@ -25,7 +25,7 @@ How to engineer an ML solution:
 - Considerations for Sensitive Data within Machine Learning Datasets - [link](https://cloud.google.com/solutions/sensitive-data-and-ml-datasets)
 - Prototyping models in AI Platform Notebooks - [link](https://codelabs.developers.google.com/codelabs/prototyping-caip-notebooks/#0)
 - Cloud Dataprep Quickstart - [link](https://cloud.google.com/dataprep/docs/quickstarts/quickstart-dataprep)
-- Preprocess the data once and save it as a TFRecord file - [link](https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost#preprocess_the_data_once_and_save_it_as_a_tfrecord_file)
+
 
 - Data Split Example - [link](https://developers.google.com/machine-learning/data-prep/construct/sampling-splitting/example)
 - Introduction to Transforming Data - [link](https://developers.google.com/machine-learning/data-prep/transform/introduction)
@@ -51,10 +51,12 @@ How to engineer an ML solution:
 - Considerations for Sensitive Data within Machine Learning Datasets https://cloud.google.com/architecture/sensitive-data-and-ml-datasets
 - Data preprocessing for machine learning: options and recommendations - [link](https://cloud.google.com/architecture/data-preprocessing-for-ml-with-tf-transform-pt1)
 
-
 ### Rules of ML
 - Don’t be afraid to launch a product without machine learning - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_1_don%E2%80%99t_be_afraid_to_launch_a_product_without_machine_learning)
 - Training-Serving Skew - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#training-serving_skew)
+
+### Best practices for ML
+- Preprocess the data once and save it as a TFRecord file - [link](https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost#preprocess_the_data_once_and_save_it_as_a_tfrecord_file)
 
 
 ## Model design, performance and tuning
