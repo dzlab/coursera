@@ -27,6 +27,7 @@ How to engineer an ML solution:
 - Cloud Dataprep Quickstart - [link](https://cloud.google.com/dataprep/docs/quickstarts/quickstart-dataprep)
 
 
+
 - Data Split Example - [link](https://developers.google.com/machine-learning/data-prep/construct/sampling-splitting/example)
 - Introduction to Transforming Data - [link](https://developers.google.com/machine-learning/data-prep/transform/introduction)
 - Imbalanced Data - [link](https://developers.google.com/machine-learning/data-prep/construct/sampling-splitting/imbalanced-data)
@@ -50,6 +51,7 @@ How to engineer an ML solution:
 - Minimizing real-time prediction serving latency in machine learning https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning
 - Considerations for Sensitive Data within Machine Learning Datasets https://cloud.google.com/architecture/sensitive-data-and-ml-datasets
 - Data preprocessing for machine learning: options and recommendations - [link](https://cloud.google.com/architecture/data-preprocessing-for-ml-with-tf-transform-pt1)
+- Data and model validation - [link](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning#data_and_model_validation)
 
 ### Rules of ML
 - Don’t be afraid to launch a product without machine learning - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_1_don%E2%80%99t_be_afraid_to_launch_a_product_without_machine_learning)
