@@ -15,7 +15,7 @@ How to engineer an ML solution:
 ## Resources
 - Identifying Good Problems for ML - [link](https://developers.google.com/machine-learning/problem-framing/good)
 - Cloud Architecture Center - Machine learning and artificial intelligence (ML/AI) - [link](https://cloud.google.com/architecture?category=aiandmachinelearning)
-- Don’t be afraid to launch a product without machine learning - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_1_don%E2%80%99t_be_afraid_to_launch_a_product_without_machine_learning)
+
 - Using ML Output - [link](https://developers.google.com/machine-learning/problem-framing/framing?authuser=0#using-the-output)
 - Identify Your Data Sources - [link](https://developers.google.com/machine-learning/problem-framing/formulate?authuser=0#identify-your-data-sources)
 
@@ -34,7 +34,6 @@ How to engineer an ML solution:
 
 - Continuous evaluation overview - [link](https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation)
 - Access control - [link](https://cloud.google.com/ai-platform/training/docs/access-control)
-- Training-Serving Skew - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#training-serving_skew)
 - Training Neural Networks: Best Practices - [link](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices)
 - Classification: Prediction Bias - [link](https://developers.google.com/machine-learning/crash-course/classification/prediction-bias)
 - Making and serving predictions - [link](https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning#making_and_serving_predictions)
@@ -45,13 +44,18 @@ How to engineer an ML solution:
 - Machine Learning Glossary - [link](https://developers.google.com/machine-learning/glossary)
 
 ### Google Cloud Solutions
-
 - Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build
 - Best practices for performance and cost optimization for machine learning https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost
 - Building production-ready data pipelines using Dataflow: Overview https://cloud.google.com/solutions/building-production-ready-data-pipelines-using-dataflow-overview
 - Minimizing real-time prediction serving latency in machine learning https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning
 - Considerations for Sensitive Data within Machine Learning Datasets https://cloud.google.com/architecture/sensitive-data-and-ml-datasets
 - Data preprocessing for machine learning: options and recommendations - [link](https://cloud.google.com/architecture/data-preprocessing-for-ml-with-tf-transform-pt1)
+
+
+### Rules of ML
+- Don’t be afraid to launch a product without machine learning - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_1_don%E2%80%99t_be_afraid_to_launch_a_product_without_machine_learning)
+- Training-Serving Skew - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#training-serving_skew)
+
 
 ## Model design, performance and tuning
 
