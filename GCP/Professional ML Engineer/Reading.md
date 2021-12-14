@@ -51,6 +51,7 @@ How to engineer an ML solution:
 - Building production-ready data pipelines using Dataflow: Overview https://cloud.google.com/solutions/building-production-ready-data-pipelines-using-dataflow-overview
 - Minimizing real-time prediction serving latency in machine learning https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning
 - Considerations for Sensitive Data within Machine Learning Datasets https://cloud.google.com/architecture/sensitive-data-and-ml-datasets
+- Data preprocessing for machine learning: options and recommendations - [link](https://cloud.google.com/architecture/data-preprocessing-for-ml-with-tf-transform-pt1)
 
 ## Model design, performance and tuning
 
