@@ -162,6 +162,7 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 - AI Platform built-in algorithms. This is something in-between AutoML and custom code: you still have to do the data preprocessing, feature engineering, and hyperparameter tuning, but the model itself is already implemented. Be aware that built-in algorithms do not support distributed training.
 
 
+- AI Platform Data Labeling Service - https://cloud.google.com/ai-platform/data-labeling/docs
 - GCP AutoML Training — https://cloud.google.com/automl/docs
 - GCP AutoML Prediction — https://cloud.google.com/vision/automl/docs/predict
 - GCP ML APIs — Natural Language API, Vision API, Audio API
