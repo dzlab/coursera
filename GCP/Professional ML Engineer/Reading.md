@@ -56,6 +56,9 @@ How to engineer an ML solution:
 ### Rules of ML
 - Don’t be afraid to launch a product without machine learning - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_1_don%E2%80%99t_be_afraid_to_launch_a_product_without_machine_learning)
 - Training-Serving Skew - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#training-serving_skew)
+- Turn heuristics into features, or handle them externally - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_7_turn_heuristics_into_features_or_handle_them_externally).
+- Start with directly observed and reported features as opposed to learned features - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_17_start_with_directly_observed_and_reported_features_as_opposed_to_learned_features).
+
 
 ### Best practices for ML
 - Preprocess the data once and save it as a TFRecord file - [link](https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost#preprocess_the_data_once_and_save_it_as_a_tfrecord_file)
