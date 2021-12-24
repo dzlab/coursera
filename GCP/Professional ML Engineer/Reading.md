@@ -53,6 +53,9 @@ How to engineer an ML solution:
 - Data preprocessing for machine learning: options and recommendations - [link](https://cloud.google.com/architecture/data-preprocessing-for-ml-with-tf-transform-pt1)
 - Data and model validation - [link](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning#data_and_model_validation)
 
+#### End to end application
+- Machine learning with structured data: Data analysis and preparation (Part 1) - [link](https://cloud.google.com/architecture/ml-on-structured-data-analysis-prep-1)
+
 ### Rules of ML
 - Don’t be afraid to launch a product without machine learning - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_1_don%E2%80%99t_be_afraid_to_launch_a_product_without_machine_learning)
 - Training-Serving Skew - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#training-serving_skew)
