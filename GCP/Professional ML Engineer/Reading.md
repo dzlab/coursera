@@ -209,7 +209,7 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 - AI Platform DL containers - [link](https://cloud.google.com/ai-platform/deep-learning-containers/docs)
 - AI Platform explanation - [link](https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview)
 - Continuous evaluation - [link](https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation)
-- AI Platform pipelines - [link](https://cloud.google.com/ai-platform/pipelines/docs
+- AI Platform pipelines - [link](https://cloud.google.com/ai-platform/pipelines/docs)
 
 ## Evaluation
 - Classification: ROC Curve and AUC - [link](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
