@@ -14,7 +14,6 @@ How to engineer an ML solution:
 
 ## Resources
 - Identifying Good Problems for ML - [link](https://developers.google.com/machine-learning/problem-framing/good)
-- Cloud Architecture Center - Machine learning and artificial intelligence (ML/AI) - [link](https://cloud.google.com/architecture?category=aiandmachinelearning)
 
 - Using ML Output - [link](https://developers.google.com/machine-learning/problem-framing/framing?authuser=0#using-the-output)
 - Identify Your Data Sources - [link](https://developers.google.com/machine-learning/problem-framing/formulate?authuser=0#identify-your-data-sources)
@@ -46,11 +45,12 @@ How to engineer an ML solution:
 - Google Cloud samples demonstrating the usage of Google Cloud products - [link](https://cloud.google.com/docs/samples)
 
 ### Google Cloud Solutions
-- Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build
-- Best practices for performance and cost optimization for machine learning https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost
-- Building production-ready data pipelines using Dataflow: Overview https://cloud.google.com/solutions/building-production-ready-data-pipelines-using-dataflow-overview
-- Minimizing real-time prediction serving latency in machine learning https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning
-- Considerations for Sensitive Data within Machine Learning Datasets https://cloud.google.com/architecture/sensitive-data-and-ml-datasets
+- Cloud Architecture Center - Machine learning and artificial intelligence (ML/AI) - [link](https://cloud.google.com/architecture?category=aiandmachinelearning)
+- Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build - [link](https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build)
+- Best practices for performance and cost optimization for machine learning - [link](https://cloud.google.com/solutions/machine-learning/best-practices-for-ml-performance-cost)
+- Building production-ready data pipelines using Dataflow: Overview - [link](https://cloud.google.com/solutions/building-production-ready-data-pipelines-using-dataflow-overview)
+- Minimizing real-time prediction serving latency in machine learning - [link](https://cloud.google.com/solutions/machine-learning/minimizing-predictive-serving-latency-in-machine-learning)
+- Considerations for Sensitive Data within Machine Learning Datasets - [link](https://cloud.google.com/architecture/sensitive-data-and-ml-datasets)
 - Data preprocessing for machine learning: options and recommendations - [link](https://cloud.google.com/architecture/data-preprocessing-for-ml-with-tf-transform-pt1)
 - Data and model validation - [link](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning#data_and_model_validation)
 
@@ -198,18 +198,18 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 - AI Platform built-in algorithms. This is something in-between AutoML and custom code: you still have to do the data preprocessing, feature engineering, and hyperparameter tuning, but the model itself is already implemented. Be aware that built-in algorithms do not support distributed training.
 
 
-- AI Platform Data Labeling Service - https://cloud.google.com/ai-platform/data-labeling/docs
-- GCP AutoML Training — https://cloud.google.com/automl/docs
-- GCP AutoML Prediction — https://cloud.google.com/vision/automl/docs/predict
+- AI Platform Data Labeling Service - [link](https://cloud.google.com/ai-platform/data-labeling/docs)
+- GCP AutoML Training - [link](https://cloud.google.com/automl/docs)
+- GCP AutoML Prediction - [link](https://cloud.google.com/vision/automl/docs/predict)
 - GCP ML APIs — Natural Language API, Vision API, Audio API
-- AI Platform Training — https://cloud.google.com/ai-platform/training/docs
-- AI Platform Built-in algos — https://cloud.google.com/ai-platform/training/docs/algorithms
-- AI Platform Training Monitoring — https://cloud.google.com/ai-platform/training/docs/monitor-training
-- AI Platform Prediction — https://cloud.google.com/ai-platform/prediction/docs
-- AI Platform DL containers — https://cloud.google.com/ai-platform/deep-learning-containers/docs
-- AI Platform explanation — https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview
-- Continuous evaluation — https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation
-- AI Platform pipelines — https://cloud.google.com/ai-platform/pipelines/docs
+- AI Platform Training - [link](https://cloud.google.com/ai-platform/training/docs)
+- AI Platform Built-in algos - [link](https://cloud.google.com/ai-platform/training/docs/algorithms)
+- AI Platform Training Monitoring - [link](https://cloud.google.com/ai-platform/training/docs/monitor-training)
+- AI Platform Prediction - [link](https://cloud.google.com/ai-platform/prediction/docs)
+- AI Platform DL containers - [link](https://cloud.google.com/ai-platform/deep-learning-containers/docs)
+- AI Platform explanation - [link](https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview)
+- Continuous evaluation - [link](https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation)
+- AI Platform pipelines - [link](https://cloud.google.com/ai-platform/pipelines/docs
 
 ## Evaluation
 - Classification: ROC Curve and AUC - [link](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
