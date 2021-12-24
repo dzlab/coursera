@@ -43,6 +43,7 @@ How to engineer an ML solution:
 
 - machine learning guides - [link](https://developers.google.com/machine-learning/guides)
 - Machine Learning Glossary - [link](https://developers.google.com/machine-learning/glossary)
+- Google Cloud samples demonstrating the usage of Google Cloud products - [link](https://cloud.google.com/docs/samples)
 
 ### Google Cloud Solutions
 - Architecture for MLOps using TFX, Kubeflow Pipelines, and Cloud Build https://cloud.google.com/solutions/machine-learning/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build
@@ -70,8 +71,24 @@ How to engineer an ML solution:
 ## Model design, performance and tuning
 
 ### Regularization
-- Regularization methods — what is L0, L1, L2 regularization? When would you use them? (https://developers.google.com/machine-learning/crash-course/regularization-for-simplicity/l2-regularization)
+
+Overfitting - Training Performance Excedes Test Performance:
+- Can apply regularization to penalize model complexity, .i.e. generalize.
+- Is the overfitting a result of class imbalance? Combating this may require some data engineering solutions.
 - Develop the ability to look at a scenario and see what kind of regularization to apply.
+
+
+Regularization methods:
+— what is L0, L1, L2 regularization? When would you use them? (https://developers.google.com/machine-learning/crash-course/regularization-for-simplicity/l2-regularization)
+- L1 Regularization - A type of regularization that penalizes weights in proportion to the sum of the absolute values of the weights. In models relying on sparse features, L1 regularization helps drive the weights of irrelevant or barely relevant features to exactly 0, which removes those features from the model.
+- L2 Regularization - A type of regularization that penalizes weights in proportion to the sum of the squares of the weights. L2 regularization helps drive outlier weights (those with high positive or low negative values) closer to 0 but not quite to 0. L2 regularization always improves generalization in linear models.
+- [Dropout Regularization](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices#dropout-regularization) -Randomly shut off neurons for a training step thus preventing preventing training. The more you drop out, the stronger the regularization. Helps with Overfitting, too much can lead to underfitting. 
+- Other methods include: Early stopping, Max-norm regularization, Dataset Augmentation, Noise robustness, Sparse representation.
+
+### Troubleshooting
+- [Vanishing Gradients](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices#vanishing-gradients) - The gradients for the lower layers (closer to the input) can become very small. When the gradients vanish toward 0 for the lower layers, these layers train very slowly, or not at all. The ReLU activation function can help prevent vanishing gradients.
+- [Exploding Gradients](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices#exploding-gradients) - If the weights in a network are very large, then the gradients for the lower layers involve products of many large terms. In this case you can have exploding gradients: gradients that get too large to converge. Batch normalization can help prevent exploding gradients, as can lowering the learning rate.
+- [Dead ReLU Units](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices#dead-relu-units) - Once the weighted sum for a ReLU unit falls below 0, the ReLU unit can get stuck. It outputs 0 activation, contributing nothing to the network’s output, and gradients can no longer flow through it during backpropagation. With a source of gradients cut off, the input to the ReLU may not ever change enough to bring the weighted sum back above 0.. Lowering the learning rate can help keep ReLU units from dying. !!Leaky-Relu can help to address this, as can choice of optimiser eg. ADAM!!
 
 ## AI Explanations
 - Explainable AI — what is this? When would you use this? w(https://cloud.google.com/explainable-ai)
@@ -79,6 +96,7 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 
 - Introduction to AI Explanations for AI Platform - [link](https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview)
 - WhatIf Tool — when do you use it? How do you use it? How do you discover different outcomes? How do you conduct experiments? (https://pair-code.github.io/what-if-tool/)
+
 
 ## MLOps
 - MLOps: Continuous delivery and automation pipelines in machine learning - [link](https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
@@ -92,6 +110,13 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 
 ### Kubeflow
 - When to use Kubeflow over TFX? When you need PyTorch, XGBoost or if you want to dockerize every step of the flow
+- https://www.kubeflow.org/docs/pipelines/overview/pipelines-overview/
+- How to carry out CI/CD in Machine Learning (“MLOps”) using Kubeflow ML pipelines (#3) - [link](https://medium.com/google-cloud/how-to-carry-out-ci-cd-in-machine-learning-mlops-using-kubeflow-ml-pipelines-part-3-bdaf68082112)
+- Kubeflow (kfctl) GitHub Action for AI/ML CI/CD - [link](https://github.com/marketplace/actions/kubeflow-for-ci-cd)
+
+### CI/CD
+- AB and Canary testing
+- Split traffic in production with small portion going to a new version of the model and verify that all metrics are as expcted, gradually increase the traffic split or rollback.
 
 ## BigQuery ML
 - BigQuery ML. The default answer is that if your data is already in BigQuery and you want the output to also be there, you should use BigQuery ML for your modeling. But be aware of the limitations. 
@@ -129,6 +154,11 @@ For multiclass classification, if:
 - labels are not mutually exclusive, use `sigmoid_cross_entropy_with_logits`
 
 ## Tensorflow
+
+For TensorFlow - `tf.estimator.train_and_evaluate(estimator, ...)` You’ll need an estimator, `RunConfig`, `TrainSpec` and `EvalSpec`.
+- `RunConfig` - tells the estimator where and how often to write Checkpoints and Tensorboard logs (“summaries”) `tf.estimator.RunConfig(model_dir=output_dir, save_summary_steps=100,save_checkpoint_steps=2000)`
+- `TrainSpec` - tells the estimator how to get training data `tf.estimator.TrainSpec(input_fn=train_input_fn, max_steps=50000)`
+- `EvalSpec` - controls the evaluation and the checkpointing of the model since they happen at the same time `tf.estimator.EvalSpec(input_fn=eval_input_fn, steps=100, throttle_secs=600, exporters=…)`
 
 ### Keras API.
 You have to be able to understand the sequential model architecture, what layers actually define parameters, like dense layers, what are dropout layers, what are convolutional layers.
@@ -174,6 +204,7 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 - GCP ML APIs — Natural Language API, Vision API, Audio API
 - AI Platform Training — https://cloud.google.com/ai-platform/training/docs
 - AI Platform Built-in algos — https://cloud.google.com/ai-platform/training/docs/algorithms
+- AI Platform Training Monitoring — https://cloud.google.com/ai-platform/training/docs/monitor-training
 - AI Platform Prediction — https://cloud.google.com/ai-platform/prediction/docs
 - AI Platform DL containers — https://cloud.google.com/ai-platform/deep-learning-containers/docs
 - AI Platform explanation — https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview
@@ -182,3 +213,5 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 
 ## Evaluation
 - Classification: ROC Curve and AUC - [link](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
+- Precision - (True Positives) / (All Positive Predictions) - When model said “positive” class, was it right?
+- Recall - (True Positives) / (All Actual Positives) - Out of all possible positives, how many did the model correctly identify?
