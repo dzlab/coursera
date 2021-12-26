@@ -20,7 +20,7 @@ How to engineer an ML solution:
 
 - Success and Failure Metrics - [link](https://developers.google.com/machine-learning/problem-framing/framing?authuser=0#success-and-failure-metrics)
 - Fairness: Types of Bias - [link](https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias)
-- AutoML Tables Quickstart - [link](https://cloud.google.com/automl-tables/docs/quickstart)
+
 - Considerations for Sensitive Data within Machine Learning Datasets - [link](https://cloud.google.com/solutions/sensitive-data-and-ml-datasets)
 - Prototyping models in AI Platform Notebooks - [link](https://codelabs.developers.google.com/codelabs/prototyping-caip-notebooks/#0)
 - Cloud Dataprep Quickstart - [link](https://cloud.google.com/dataprep/docs/quickstarts/quickstart-dataprep)
@@ -32,7 +32,6 @@ How to engineer an ML solution:
 - Imbalanced Data - [link](https://developers.google.com/machine-learning/data-prep/construct/sampling-splitting/imbalanced-data)
 - What is transfer learning? - [link](https://www.tensorflow.org/js/tutorials/transfer/what_is_transfer_learning)
 
-- Continuous evaluation overview - [link](https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation)
 - Access control - [link](https://cloud.google.com/ai-platform/training/docs/access-control)
 - Training Neural Networks: Best Practices - [link](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices)
 - Classification: Prediction Bias - [link](https://developers.google.com/machine-learning/crash-course/classification/prediction-bias)
@@ -197,11 +196,11 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 - AI Platform Hyperparameter tuning. Might be useful to know that Bayesian optimization is used under the hood.
 - AI Platform built-in algorithms. This is something in-between AutoML and custom code: you still have to do the data preprocessing, feature engineering, and hyperparameter tuning, but the model itself is already implemented. Be aware that built-in algorithms do not support distributed training.
 
-
 - AI Platform Data Labeling Service - [link](https://cloud.google.com/ai-platform/data-labeling/docs)
 - GCP AutoML Training - [link](https://cloud.google.com/automl/docs)
 - GCP AutoML Prediction - [link](https://cloud.google.com/vision/automl/docs/predict)
 - GCP ML APIs — Natural Language API, Vision API, Audio API
+- AutoML Tables Quickstart - [link](https://cloud.google.com/automl-tables/docs/quickstart)
 - AI Platform Training - [link](https://cloud.google.com/ai-platform/training/docs)
 - AI Platform Built-in algos - [link](https://cloud.google.com/ai-platform/training/docs/algorithms)
 - AI Platform Training Monitoring - [link](https://cloud.google.com/ai-platform/training/docs/monitor-training)
