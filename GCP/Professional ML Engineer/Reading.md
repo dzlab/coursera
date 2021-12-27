@@ -78,9 +78,9 @@ Overfitting - Training Performance Excedes Test Performance:
 
 
 Regularization methods:
-— what is L0, L1, L2 regularization? When would you use them? (https://developers.google.com/machine-learning/crash-course/regularization-for-simplicity/l2-regularization)
+— what is L0, L1, L2 regularization? When would you use them? 
 - L1 Regularization - A type of regularization that penalizes weights in proportion to the sum of the absolute values of the weights. In models relying on sparse features, L1 regularization helps drive the weights of irrelevant or barely relevant features to exactly 0, which removes those features from the model.
-- L2 Regularization - A type of regularization that penalizes weights in proportion to the sum of the squares of the weights. L2 regularization helps drive outlier weights (those with high positive or low negative values) closer to 0 but not quite to 0. L2 regularization always improves generalization in linear models.
+- [L2 Regularization](https://developers.google.com/machine-learning/crash-course/regularization-for-simplicity/l2-regularization) - A type of regularization that penalizes weights in proportion to the sum of the squares of the weights. L2 regularization helps drive outlier weights (those with high positive or low negative values) closer to 0 but not quite to 0. L2 regularization always improves generalization in linear models.
 - [Dropout Regularization](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices#dropout-regularization) -Randomly shut off neurons for a training step thus preventing preventing training. The more you drop out, the stronger the regularization. Helps with Overfitting, too much can lead to underfitting. 
 - Other methods include: Early stopping, Max-norm regularization, Dataset Augmentation, Noise robustness, Sparse representation.
 
