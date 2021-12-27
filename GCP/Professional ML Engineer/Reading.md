@@ -195,20 +195,41 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 - AI Platform distributed training. This is essentially the union of TensorFlow distributed training topics and AI Platform containers distributed training. However, note that distributed training is not supported for models using scikit-learn (may have guessed) or XGBoost environments.
 - AI Platform Hyperparameter tuning. Might be useful to know that Bayesian optimization is used under the hood.
 - AI Platform built-in algorithms. This is something in-between AutoML and custom code: you still have to do the data preprocessing, feature engineering, and hyperparameter tuning, but the model itself is already implemented. Be aware that built-in algorithms do not support distributed training.
-
-- AI Platform Data Labeling Service - [link](https://cloud.google.com/ai-platform/data-labeling/docs)
-- GCP AutoML Training - [link](https://cloud.google.com/automl/docs)
-- GCP AutoML Prediction - [link](https://cloud.google.com/vision/automl/docs/predict)
 - GCP ML APIs — Natural Language API, Vision API, Audio API
-- AutoML Tables Quickstart - [link](https://cloud.google.com/automl-tables/docs/quickstart)
+
 - AI Platform Training - [link](https://cloud.google.com/ai-platform/training/docs)
 - AI Platform Built-in algos - [link](https://cloud.google.com/ai-platform/training/docs/algorithms)
 - AI Platform Training Monitoring - [link](https://cloud.google.com/ai-platform/training/docs/monitor-training)
 - AI Platform Prediction - [link](https://cloud.google.com/ai-platform/prediction/docs)
 - AI Platform DL containers - [link](https://cloud.google.com/ai-platform/deep-learning-containers/docs)
 - AI Platform explanation - [link](https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview)
-- Continuous evaluation - [link](https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation)
+- AI Platform continuous evaluation - [link](https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation)
 - AI Platform pipelines - [link](https://cloud.google.com/ai-platform/pipelines/docs)
+
+## NLP
+- Natural Language API - [link](https://cloud.google.com/natural-language/docs/reference/rest)
+- AutoML Natural Language API - [link](https://cloud.google.com/natural-language/automl/docs/tutorial)
+
+### AutoML API
+Train your own high-quality machine learning custom models to classify, extract, and detect sentiment with minimum effort and machine learning expertise using Vertex AI for natural language, powered by AutoML. You can use the AutoML UI to upload your training data and test your custom model without a single line of code. - [link](https://cloud.google.com/natural-language/automl/docs/quickstart)
+- AutoML Healthcare - [link](https://cloud.google.com/natural-language/automl/docs/automl-healthcare)
+- Vertex AI - [link](https://cloud.google.com/vertex-ai/docs/tutorials/text-classification-automl)
+
+### Natural Language API
+The powerful pre-trained models of the Natural Language API empowers developers to easily apply natural language understanding (NLU) to their applications with features including sentiment analysis, entity analysis, entity sentiment analysis, content classification, and syntax analysis. - [link](https://cloud.google.com/natural-language/docs/quickstarts)
+
+### Healthcare Natural Language AI
+Gain real-time analysis of insights stored in unstructured medical text. Healthcare Natural Language API allows you to distill machine-readable medical insights from medical documents, while AutoML Entity Extraction for Healthcare makes it simple to build custom knowledge extraction models for healthcare and life sciences apps—no coding skills required. - [link](https://cloud.google.com/healthcare/docs/how-tos/nlp)
+
+
+## Other
+- AI Platform Data Labeling Service - [link](https://cloud.google.com/ai-platform/data-labeling/docs)
+- GCP AutoML Training - [link](https://cloud.google.com/automl/docs)
+- GCP AutoML Prediction - [link](https://cloud.google.com/vision/automl/docs/predict)
+
+- AutoML Tables Quickstart - [link](https://cloud.google.com/automl-tables/docs/quickstart)
+
+
 
 ## Evaluation
 - Classification: ROC Curve and AUC - [link](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
