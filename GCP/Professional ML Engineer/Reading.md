@@ -89,6 +89,12 @@ Regularization methods:
 - [Exploding Gradients](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices#exploding-gradients) - If the weights in a network are very large, then the gradients for the lower layers involve products of many large terms. In this case you can have exploding gradients: gradients that get too large to converge. Batch normalization can help prevent exploding gradients, as can lowering the learning rate.
 - [Dead ReLU Units](https://developers.google.com/machine-learning/crash-course/training-neural-networks/best-practices#dead-relu-units) - Once the weighted sum for a ReLU unit falls below 0, the ReLU unit can get stuck. It outputs 0 activation, contributing nothing to the network’s output, and gradients can no longer flow through it during backpropagation. With a source of gradients cut off, the input to the ReLU may not ever change enough to bring the weighted sum back above 0.. Lowering the learning rate can help keep ReLU units from dying. !!Leaky-Relu can help to address this, as can choice of optimiser eg. ADAM!!
 
+
+Common pitfalls in backpropagation and their solutions:
+- vanishing gradients -> use ReLu
+- exploding gradients -> use batch normalization
+- ReLu layers are dying -> lower learning rates
+
 ## AI Explanations
 - Explainable AI — what is this? When would you use this? w(https://cloud.google.com/explainable-ai)
 with tabular data, you can use Shapely or integrated ingredients for large feature spaces; with images, you can use integrated gradients for pixel-level explanations or XRAI for region-level explanations.
@@ -141,23 +147,18 @@ with tabular data, you can use Shapely or integrated ingredients for large featu
 - Improving training speed - [link](https://cloud.google.com/tpu/docs/troubleshooting#training-speed)
 
 
-## Neural networks
-Common pitfalls in backpropagation and their solutions:
-- vanishing gradients -> use ReLu
-- exploding gradients -> use batch normalization
-- ReLu layers are dying -> lower learning rates
-
-For multiclass classification, if:
-- labels and probabilities are mutually exclusive, use `softmax_cross_entropy_with_logits_v2`
-- labels are mutually exclusive, but not probabilities, use `sparse_softmax_cross_entropy_with_logits`
-- labels are not mutually exclusive, use `sigmoid_cross_entropy_with_logits`
-
 ## Tensorflow
 
 For TensorFlow - `tf.estimator.train_and_evaluate(estimator, ...)` You’ll need an estimator, `RunConfig`, `TrainSpec` and `EvalSpec`.
 - `RunConfig` - tells the estimator where and how often to write Checkpoints and Tensorboard logs (“summaries”) `tf.estimator.RunConfig(model_dir=output_dir, save_summary_steps=100,save_checkpoint_steps=2000)`
 - `TrainSpec` - tells the estimator how to get training data `tf.estimator.TrainSpec(input_fn=train_input_fn, max_steps=50000)`
 - `EvalSpec` - controls the evaluation and the checkpointing of the model since they happen at the same time `tf.estimator.EvalSpec(input_fn=eval_input_fn, steps=100, throttle_secs=600, exporters=…)`
+
+For multiclass classification, if:
+- labels and probabilities are mutually exclusive, use `softmax_cross_entropy_with_logits_v2`
+- labels are mutually exclusive, but not probabilities, use `sparse_softmax_cross_entropy_with_logits`
+- labels are not mutually exclusive, use `sigmoid_cross_entropy_with_logits`
+
 
 ### Keras API.
 You have to be able to understand the sequential model architecture, what layers actually define parameters, like dense layers, what are dropout layers, what are convolutional layers.
@@ -190,12 +191,13 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 ### Other
 - TF Profiler — https://www.tensorflow.org/guide/profiler
 
-## AI Platform
+## Google Cloud Products
+GCP ML APIs — Natural Language API, Vision API, Audio API
+### AI Platform
 - AI Platform distributed training with containers. The default answer is if you have a distributed training app, you can package each component in a separate container (master, worker, parameter server) and deploy it on the AI Platform.
 - AI Platform distributed training. This is essentially the union of TensorFlow distributed training topics and AI Platform containers distributed training. However, note that distributed training is not supported for models using scikit-learn (may have guessed) or XGBoost environments.
 - AI Platform Hyperparameter tuning. Might be useful to know that Bayesian optimization is used under the hood.
 - AI Platform built-in algorithms. This is something in-between AutoML and custom code: you still have to do the data preprocessing, feature engineering, and hyperparameter tuning, but the model itself is already implemented. Be aware that built-in algorithms do not support distributed training.
-- GCP ML APIs — Natural Language API, Vision API, Audio API
 
 - AI Platform Training - [link](https://cloud.google.com/ai-platform/training/docs)
 - AI Platform Built-in algos - [link](https://cloud.google.com/ai-platform/training/docs/algorithms)
@@ -206,31 +208,41 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 - AI Platform continuous evaluation - [link](https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation)
 - AI Platform pipelines - [link](https://cloud.google.com/ai-platform/pipelines/docs)
 
-## Text
+### Natural Language
 - Natural Language API - [link](https://cloud.google.com/natural-language/docs/reference/rest)
 - AutoML Natural Language API - [link](https://cloud.google.com/natural-language/automl/docs/tutorial)
 
-### AutoML API
+#### AutoML API
 Train your own high-quality machine learning custom models to classify, extract, and detect sentiment with minimum effort and machine learning expertise using Vertex AI for natural language, powered by AutoML. You can use the AutoML UI to upload your training data and test your custom model without a single line of code. - [link](https://cloud.google.com/natural-language/automl/docs/quickstart)
 - AutoML Healthcare - [link](https://cloud.google.com/natural-language/automl/docs/automl-healthcare)
 - Vertex AI - [link](https://cloud.google.com/vertex-ai/docs/tutorials/text-classification-automl)
 
-### Natural Language API
+#### Natural Language API
 The powerful pre-trained models of the Natural Language API empowers developers to easily apply natural language understanding (NLU) to their applications with features including sentiment analysis, entity analysis, entity sentiment analysis, content classification, and syntax analysis. - [link](https://cloud.google.com/natural-language/docs/quickstarts)
 
-### Healthcare Natural Language AI
+#### Healthcare Natural Language AI
 Gain real-time analysis of insights stored in unstructured medical text. Healthcare Natural Language API allows you to distill machine-readable medical insights from medical documents, while AutoML Entity Extraction for Healthcare makes it simple to build custom knowledge extraction models for healthcare and life sciences apps—no coding skills required. - [link](https://cloud.google.com/healthcare/docs/how-tos/nlp)
 
-## Image
-- AutoML Vision Prediction - [link](https://cloud.google.com/vision/automl/docs/predict)
+### Translation
+Cloud Translation API helps: Translating text, Discovering supported languages, Detecting language of Text, Creating and using glossaries when translating.
+- How-to Guides [link](https://cloud.google.com/translate/docs/how-to)
+- AutoML Translation - [link](https://cloud.google.com/translate/automl/docs/quickstart)
 
-## Other
+### Vision AI
+Create a dataset of images, train a custom AutoML for Cloud or Edge, then deploy it. If Edge is target you can then export the model in TF Lite, TF.js, CoreML, or Coral Edge TPU.
+
+- Cloud-hosted model quickstart - [link](https://cloud.google.com/vision/automl/docs/quickstart)
+- Edge device model quickstart - [link](https://cloud.google.com/vision/automl/docs/edge-quickstart)
+- AutoML Vision Prediction: [individual](https://cloud.google.com/vision/automl/docs/predict) and [batch](https://cloud.google.com/vision/automl/docs/predict-batch)
+
+### Video AI
+- Video Intelligence API: Face detection, Detect people, Detect shot changes, Explicit Content Detection, Object tracking, Recognize logos(detect, track, and recognize the presence of over 100,000 brands and logos in video content), Text Detection performs Optical Character Recognition (OCR), audio track transcription - [link](https://cloud.google.com/video-intelligence/docs/quickstarts)
+- AutoML Video Intelligence: train custom model for classification and object tracking - [link](https://cloud.google.com/video-intelligence/automl/docs/quickstart)
+
+### Other
+- AutoML: Natural Language, Tables, Translation, Video Intelligence, Vision - [link](https://cloud.google.com/automl/docs)
 - AI Platform Data Labeling Service - [link](https://cloud.google.com/ai-platform/data-labeling/docs)
-- GCP AutoML Training - [link](https://cloud.google.com/automl/docs)
-
 - AutoML Tables Quickstart - [link](https://cloud.google.com/automl-tables/docs/quickstart)
-
-
 
 ## Evaluation
 - Classification: ROC Curve and AUC - [link](https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc)
