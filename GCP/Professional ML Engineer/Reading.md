@@ -206,7 +206,7 @@ Know how to use TF [feature column API](https://www.tensorflow.org/api_docs/pyth
 - AI Platform continuous evaluation - [link](https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation)
 - AI Platform pipelines - [link](https://cloud.google.com/ai-platform/pipelines/docs)
 
-## NLP
+## Text
 - Natural Language API - [link](https://cloud.google.com/natural-language/docs/reference/rest)
 - AutoML Natural Language API - [link](https://cloud.google.com/natural-language/automl/docs/tutorial)
 
@@ -221,11 +221,12 @@ The powerful pre-trained models of the Natural Language API empowers developers 
 ### Healthcare Natural Language AI
 Gain real-time analysis of insights stored in unstructured medical text. Healthcare Natural Language API allows you to distill machine-readable medical insights from medical documents, while AutoML Entity Extraction for Healthcare makes it simple to build custom knowledge extraction models for healthcare and life sciences apps—no coding skills required. - [link](https://cloud.google.com/healthcare/docs/how-tos/nlp)
 
+## Image
+- AutoML Vision Prediction - [link](https://cloud.google.com/vision/automl/docs/predict)
 
 ## Other
 - AI Platform Data Labeling Service - [link](https://cloud.google.com/ai-platform/data-labeling/docs)
 - GCP AutoML Training - [link](https://cloud.google.com/automl/docs)
-- GCP AutoML Prediction - [link](https://cloud.google.com/vision/automl/docs/predict)
 
 - AutoML Tables Quickstart - [link](https://cloud.google.com/automl-tables/docs/quickstart)
 
