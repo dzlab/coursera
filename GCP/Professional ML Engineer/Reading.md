@@ -96,11 +96,11 @@ Common pitfalls in backpropagation and their solutions:
 - ReLu layers are dying -> lower learning rates
 
 ## AI Explanations
-- Explainable AI — what is this? When would you use this? w(https://cloud.google.com/explainable-ai)
+- Explainable AI — what is this? When would you use this? [link](https://cloud.google.com/explainable-ai)
 with tabular data, you can use Shapely or integrated ingredients for large feature spaces; with images, you can use integrated gradients for pixel-level explanations or XRAI for region-level explanations.
 
 - Introduction to AI Explanations for AI Platform - [link](https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview)
-- WhatIf Tool — when do you use it? How do you use it? How do you discover different outcomes? How do you conduct experiments? (https://pair-code.github.io/what-if-tool/)
+- WhatIf Tool — when do you use it? How do you use it? How do you discover different outcomes? How do you conduct experiments? [link](https://pair-code.github.io/what-if-tool/)
 
 
 ## MLOps
@@ -200,13 +200,18 @@ GCP ML APIs — Natural Language API, Vision API, Audio API
 - AI Platform built-in algorithms. This is something in-between AutoML and custom code: you still have to do the data preprocessing, feature engineering, and hyperparameter tuning, but the model itself is already implemented. Be aware that built-in algorithms do not support distributed training.
 
 - AI Platform Training - [link](https://cloud.google.com/ai-platform/training/docs)
-- AI Platform Built-in algos - [link](https://cloud.google.com/ai-platform/training/docs/algorithms)
-- AI Platform Training Monitoring - [link](https://cloud.google.com/ai-platform/training/docs/monitor-training)
+  - Built-in algos - [link](https://cloud.google.com/ai-platform/training/docs/algorithms)
+  - Machine types and scale tiers - [link](https://cloud.google.com/ai-platform/training/docs/machine-types)
+  - Monitoring - [link](https://cloud.google.com/ai-platform/training/docs/monitor-training)
+  - Training and prediction with TF Estimator - [link](https://cloud.google.com/ai-platform/docs/getting-started-keras)
+  - Training with scikit-learn and XGBoost - [link](https://cloud.google.com/s/results/?q=scikit-learn&p=%2Fml-engine%2Fdocs%2F).
 - AI Platform Prediction - [link](https://cloud.google.com/ai-platform/prediction/docs)
 - AI Platform DL containers - [link](https://cloud.google.com/ai-platform/deep-learning-containers/docs)
 - AI Platform explanation - [link](https://cloud.google.com/ai-platform/prediction/docs/ai-explanations/overview)
 - AI Platform continuous evaluation - [link](https://cloud.google.com/ai-platform/prediction/docs/continuous-evaluation)
 - AI Platform pipelines - [link](https://cloud.google.com/ai-platform/pipelines/docs)
+- AI Platform Vizier: black-box optimization service that helps tune hyperparameters in complex ML models - [link](https://cloud.google.com/ai-platform/optimizer/docs)
+
 
 ### Natural Language
 - Natural Language API - [link](https://cloud.google.com/natural-language/docs/reference/rest)
