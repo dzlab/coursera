@@ -13,14 +13,6 @@ How to engineer an ML solution:
 - Else AI Platform Custom Training on Containers (e.g. for pytorch or XGBoost models)
 
 ## Resources
-- Identifying Good Problems for ML - [link](https://developers.google.com/machine-learning/problem-framing/good)
-
-- Using ML Output - [link](https://developers.google.com/machine-learning/problem-framing/framing?authuser=0#using-the-output)
-- Identify Your Data Sources - [link](https://developers.google.com/machine-learning/problem-framing/formulate?authuser=0#identify-your-data-sources)
-
-- Success and Failure Metrics - [link](https://developers.google.com/machine-learning/problem-framing/framing?authuser=0#success-and-failure-metrics)
-- Fairness: Types of Bias - [link](https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias)
-
 - Considerations for Sensitive Data within Machine Learning Datasets - [link](https://cloud.google.com/solutions/sensitive-data-and-ml-datasets)
 - Prototyping models in AI Platform Notebooks - [link](https://codelabs.developers.google.com/codelabs/prototyping-caip-notebooks/#0)
 - Cloud Dataprep Quickstart - [link](https://cloud.google.com/dataprep/docs/quickstarts/quickstart-dataprep)
@@ -55,6 +47,17 @@ How to engineer an ML solution:
 
 #### End to end application
 - Machine learning with structured data: Data analysis and preparation (Part 1) - [link](https://cloud.google.com/architecture/ml-on-structured-data-analysis-prep-1)
+
+## Machine Learning
+### Crash Course
+- Identifying Good Problems for ML - [link](https://developers.google.com/machine-learning/problem-framing/good)
+
+- Using ML Output - [link](https://developers.google.com/machine-learning/problem-framing/framing?authuser=0#using-the-output)
+- Identify Your Data Sources - [link](https://developers.google.com/machine-learning/problem-framing/formulate?authuser=0#identify-your-data-sources)
+
+- Success and Failure Metrics - [link](https://developers.google.com/machine-learning/problem-framing/framing?authuser=0#success-and-failure-metrics)
+- Fairness: Types of Bias - [link](https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias)
+
 
 ### Rules of ML
 - Don’t be afraid to launch a product without machine learning - [link](https://developers.google.com/machine-learning/guides/rules-of-ml#rule_1_don%E2%80%99t_be_afraid_to_launch_a_product_without_machine_learning)
