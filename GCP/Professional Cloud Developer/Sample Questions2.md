@@ -8,6 +8,19 @@ Your team has developed a mobile web application where global users vote on popu
 - [ ] C. Publish the votes to Pub/Sub, and use Cloud Functions to insert the data into Cloud Storage. Display the results in Google Data Studio.
 - [ ] D. Use Firebase to authenticate the mobile users, and publish the data directly to the database. Export the data to a CSV file, and import it into Sheets for reporting.
 
+**Feedback**
+```diff
+- A. Incorrect. Memorystore is an in-memory database not suitable for data analysis.
++ B. Correct. Pub/Sub supports the ingestion of millions of records per second and guarantees the delivery of the messages. BigQuery should be used for analysis.
+- C. Incorrect. Cloud Functions is event-driven and is not meant for long-running tasks. Also storing analytics in a blob store vs BigQuery is not optimal.
+- D. Incorrect. Given the high number of votes, writing the votes to Pub/Sub is a better choice. Additionally, exporting the data would be a one-time action vs being able to analyze data in BigQuery over time.
+```
+- https://cloud.google.com/pubsub/docs/publisher
+- https://cloud.google.com/sql/docs/mysql/create-instance
+- https://cloud.google.com/memorystore/ 
+- https://cloud.google.com/bigquery/docs/visualize-data-studio
+
+
 ## 2
 ![image](https://user-images.githubusercontent.com/1645304/163494343-f3617bc3-df9c-4b23-9832-530bdf2b84ee.png)
 - [ ] A. Migrate the database to Cloud SQL. Then import the session data into Cloud Bigtable.
@@ -15,12 +28,40 @@ Your team has developed a mobile web application where global users vote on popu
 - [x] C. Migrate the database to Cloud SQL. Then import the session data into Firestore in Native mode.
 - [ ] D. Create a Compute Engine virtual machine instance in Google Cloud, and install PostgreSQL and MongoDB Server software. Migrate the database to the new PostgreSQL, and then migrate the session data to MongoDB.
 
+**Feedback**
+```diff
+- A is incorrect. Bigtable is a bit of an overkill for this test - this NoSQL DB is more performant and stores data in a unique way which can help with time-series data (such as Financial market data).
+- B is incorrect. BigQuery is a data warehouse. It has limited update/delete capabilities for inserted rows and hence is a bad choice for user session data, which changes as the session with the user progresses.
++ C is correct. Cloud SQL is the managed PostgreSQL database and migration will not require any schema changes. Firestore in Native mode is recommended for storing user-session information and is a natural choice for this test.
+- D is incorrect. This doesn’t use any managed service and will increase testing time since it will require database server management.
+```
+- https://cloud.google.com/bigtable/docs/overview
+- https://cloud.google.com/solutions/building-scalable-web-apps-with-cloud-datastore
+- https://cloud.google.com/bigquery/docs/loading-data-cloud-firestore
+- https://cloud.google.com/sql/docs/postgres/import-export/importing
+- https://cloud.google.com/solutions/migrating-postgresql-to-gcp
+
+
 ## 3
 Your development team uses GitHub to manage their code. You need to perform debugging tasks to resolve an error that was recently reported by the QA team. What should you do?
 - [ ] A. Ask a reviewer to analyze the code in the GitHub pull request.
 - [x] B. Set up Cloud Debugger, create a snapshot, and set log points.
 - [ ] C. Pull your code from GitHub, and troubleshoot with Cloud Trace.
 - [ ] D. Set up Cloud Profiler, pull your code from GitHub, and create snapshots.
+
+**Feedback**
+```diff
+- A is not correct because this is a manual process and does not actually perform debugging
++ B is correct because Cloud Debugger allows you to:
++ - take debug snapshots, which lets you view the state of local variables and the call stack in your app at specific points in your code
++ - add log-points to your code, which lets you inject logging into a running service without restarting it or interfering with its normal function.
+- C is not correct because Cloud Trace does not natively provide debugging capabilities but it’s used for tracking down performance issues.
+- D is not correct because Cloud Profiler does not perform debugging, but analyzes running services.
+```
+- https://cloud.google.com/source-repositories/docs/debug-overview
+- https://cloud.google.com/source-repositories/docs/debug-snapshots
+- https://cloud.google.com/debugger/docs/source-options#github
+
 
 ## 4
 You have written a Cloud Function in Node.js with source code stored in a Git repository. You want any committed changes to the source to be automatically tested. You write a Cloud Build configuration that pushes the source to a uniquely named Cloud Function, then calls the function as a test, and then deletes the Cloud Function as cleanup. You discover that if the test fails, the Cloud Function is not deleted. What should you do?
