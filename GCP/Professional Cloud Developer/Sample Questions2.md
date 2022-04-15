@@ -75,7 +75,142 @@ How should HipLocal improve their software release velocity without significantl
 
 HipLocal is migrating the user state data to Cloud SQL. Cloud SQL will be deployed in the same region as the application. What connection strategy should they implement to meet the requirements while following Google-recommended best practices?
 - [ ] A. Connect the application to the private IP address.
-- [ ] B. Deploy and configure the Cloud SQL proxy. Connect the application to the proxy.
+- [x] B. Deploy and configure the Cloud SQL proxy. Connect the application to the proxy.
 - [ ] C. Run MySQL client along with the application. Configure the application to call the MySQL client to connect to the database.
 - [ ] D. Configure a public IP address on Cloud SQL, and configure Cloud SQL to require SSL for connections. Connect the application to the public IP address.
 
+## 11
+
+> For this question, refer to the HipLocal case study: [goo.gl/NpR3y2](https://services.google.com/fh/files/blogs/master_case_study_hiplocal.pdf)
+
+Which architecture should HipLocal use for log analysis?
+- [ ] A. Use Cloud Spanner to store each event.
+- [ ] B. Start storing key metrics in Memorystore.
+- [x] C. Use Cloud Logging with a BigQuery sink.
+- [ ] D. Use Cloud Logging with a Cloud Storage sink.
+
+## 12
+You are analyzing your application’s performance. You observe that certain Cloud Bigtable tables in your cluster are used much more than others, causing inconsistent application performance for end users. You discover that some tablets have large sections of similarly named row keys and are heavily utilized, while other tablets are running idle. You discover that a user’s ZIP code is the first component of the row key, and your application is being heavily used by profiles originating from that ZIP code. You want to change how you generate row keys so that they are human readable and so that Cloud Bigtable demand is more evenly distributed within the cluster. What should you do?
+- [ ] A. Use serially generated integer values.
+- [x] B. Use a subset of the MD5 hash of the row contents.
+- [ ] C. Use a concatenation of multiple human-readable attributes.
+- [ ] D. Use UNIX epoch-styled timestamps represented in milliseconds.
+
+## 13
+Your company has a successful multi-player game that has become popular in the US. Now, it wants to expand to other regions. It is launching a new feature that allows users to trade points. This feature will work for users across the globe. Your company’s current MySQL backend is reaching the limit of the Compute Engine instance that hosts the game. Your company wants to migrate to a different database that will provide global consistency and high availability across the regions. Which database should they choose?
+- [ ] A. BigQuery
+- [ ] B. Cloud SQL
+- [x] C. Cloud Spanner
+- [ ] D. Cloud Bigtable
+
+## 14
+Your company plans to expand their analytics use cases. One of the new use cases requires your data analysts to analyze events using SQL on a near real–time basis. You expect rapid growth and want to use managed services as much as possible. What should you do?
+- [x] A. Create a Pub/Sub topic and a subscription. Stream your events from the source into the Pub/Sub topic. Leverage Dataflow to ingest these events into BigQuery.
+- [ ] B. Create a Pub/Sub topic and a subscription. Stream your events from the source into the Pub/Sub topic. Leverage Dataflow to ingest these events into Cloud Storage.
+- [ ] C. Create a Pub/Sub topic and a subscription. Stream your events from the source into the Pub/Sub topic. Leverage Dataflow to ingest these events into Firestore in Datastore mode.
+- [ ] D. Create a Kafka instance on a large Compute Engine instance. Stream your events from the source into a Kafka pipeline. Leverage Dataflow to ingest these events into Cloud Storage.
+
+## 15
+Your organization develops and tests multiple applications on Compute Engine virtual machine instances across 3 environments; Test, Staging, and Production. The separate development teams for each application require minimal access to Production but broad access in Test and Staging. You need to design the Resource Manager structure to support your organization in following least-privilege best practices. What should you do?
+- [ ] A. Create one project per environment per application. Assign the application team members an IAM role at the project level.
+- [ ] B. Create one project per environment. Assign the application team members an Identity Access Management (IAM) role at the project level.
+- [ ] C. Create one project per environment. Group each application team member into a Google Group. Assign the application team’s Google Group an IAM role at the project level.
+- [x] D. Create one project per environment per application. Group each application team member into a Google Group. Assign the application team’s Google Group an IAM role at the project level.
+
+## 16
+Your application that is deployed in the App Engine standard environment receives a large amount of traffic. You are concerned that deploying changes to the application could affect all users negatively. You want to avoid full-scale load testing due to cost concerns, but you still want to deploy new features as quickly as possible. Which approach should you take?
+- [ ] A. Schedule weekly load tests against the production application.
+- [ ] B. Use the local development environment to perform load testing outside Google Cloud.
+- [ ] C. Before allowing users to access new features, deploy as a new version and perform smoke tests. Then enable all users to access the new features.
+- [x] D. Use App Engine traffic splitting to have a smaller part of the users test out new features, and slowly adjust traffic splitting until all users get the new features.
+
+## 17
+You have two tables in Cloud SQL with identical columns that you need to quickly combine into a single table, removing duplicate rows from the result set. What should you do?
+- [ ] A. Use the JOIN operator in SQL to combine the tables.
+- [ ] B. Use nested WITH statements to combine the tables.
+- [x] C. Use the UNION operator in SQL to combine the tables.
+- [ ] D. Query the tables from a Linux shell, combine the results into a single CSV, and re-import the rows into the database. Use the UNION ALL operator in SQL to combine the tables.
+
+## 18
+Your website is deployed on Compute Engine. Your marketing team wants to test conversion rates between 3 different website designs. You are not able to make changes to your application code. What should you do?
+- [x] A. Deploy website on App Engine and use traffic splitting.
+- [ ] B. Deploy website on App Engine as three separate services.
+- [ ] C. Deploy website on Cloud Functions as three separate functions.
+- [ ] D. Deploy website on Cloud Functions and implement custom code to show different designs.
+
+
+## 19
+You are building a storage layer for an analytics Hadoop cluster in a region for your company. This cluster will run multiple jobs on a nightly basis, and you need to access the data frequently. You want to use Cloud Storage for this purpose. What is the most cost effective option?
+- [ ] A. Regional Coldline storage
+- [ ] B. Regional Nearline storage
+- [x] C. Regional Standard storage
+- [ ] D. Multi-regional Standard storage
+
+
+## 20
+You have an application that accepts inputs from users. The application needs to kick off different background tasks based on these inputs. You want to allow for automated asynchronous execution of these tasks as soon as input is submitted by the user. Which product should you use?
+- [ ] A. Pub/Sub
+- [x] B. Cloud Tasks
+- [ ] C. Cloud Bigtable
+- [ ] D. Cloud Composer
+
+
+## 21
+You have a data warehouse built on BigQuery that contains a table with array fields. To analyze the data for a specific use case using Standard SQL, you need to read all elements from the array and write them with all other non-array fields in a table. You don’t want to lose any records if they don’t match records in the array fields. What should you do?
+- [ ] A. Perform SELECT * FROM tablename.
+- [x] B. Perform UNNEST and JOIN with the table to get these results.
+- [ ] C. Perform UNNEST and INNER JOIN with the table to get these results.
+- [ ] D. Perform UNNEST and CROSS JOIN with the table to get these results.
+
+
+## 22
+You have deployed your website in a managed instance group. The managed instance group is configured to have a size of three instances and to perform an HTTP health check on port 80. When the managed instance group is created, three instances are created and started. When you connect to the instance using SSH, you confirm that the website is running and available on port 80. However, the managed instance group is re-creating the instances when they fail verification. What should you do?
+- [ ] A. Change the type to an unmanaged instance group.
+- [ ] B. Disable autoscaling on the managed instance group.
+- [x] C. Increase the initial delay timeout to ensure that the instance is created.
+- [ ] D. Check the firewall rules and ensure that the probes can access the instance.
+
+## 23
+Your team is using App Engine to write every Pub/Sub message to both a Cloud Storage object and a BigQuery table. You want to minimize operational overhead. Which architecture should you implement?
+
+![image](https://user-images.githubusercontent.com/1645304/163509280-e87cbe93-3800-4ad7-9f62-d2377f73c197.png)
+
+- [ ] A.
+- [ ] B.
+- [x] C.
+- [ ] D.
+
+## 24
+As your organization has grown, new teams need access to manage network connectivity within and across projects. You are now seeing intermittent timeout errors in your application. You want to find the cause of the problem. What should you do?
+- [x] A. Configure VPC flow logs for each of the subnets in your VPC.
+- [ ] B. Configure firewall rules logging for each of the firewalls in your VPC.
+- [ ] C. Set up wireshark on each Google Cloud Virtual Machine instance.
+- [ ] D. Review the instance admin activity logs in Cloud Logging for the application instances.
+
+## 25
+Your application starts on the virtual machine (VM) as a systemd service. Your application outputs its log information to stdout. You want to review the application logs. What should you do?
+- [ ] A. Review the application logs from the Compute Engine VM instance activity logs in Cloud Logging.
+- [ ] B. Review the application logs from the Compute Engine VM instance data access logs in Cloud Logging.
+- [x] C. Install Cloud Logging Agent. Review the application logs from the Compute Engine VM instance syslog logs in Cloud Logging.
+- [ ] D. Install Cloud Logging Agent. Review the application logs from the Compute Engine VM instance system event logs in Cloud Logging.
+
+## 26
+You are capturing important audit activity in Cloud Logging. You need to read the information from Cloud Logging to perform real-time analysis of the logs. You will have multiple processes performing different types of analysis on the logging data. What should you do?
+- [ ] A. Read the logs directly from the Cloud Logging API.
+- [ ] B. Set up a Cloud Logging sync to Pub/Sub, and read the logs from a Pub/Sub topic.
+- [x] C. Set up a Cloud Logging sync to BigQuery, and read the logs from the BigQuery table.
+- [ ] D. Set up a Cloud Logging sync to Cloud Storage, and read the logs from a Cloud Storage bucket.
+
+## 27
+You want to upload files from an on-premises virtual machine to Cloud Storage as part of a data migration. These files will be consumed by a Dataproc Hadoop cluster in a Google Cloud environment. Which command should you use?
+- [x] A. `gsutil cp [LOCAL_OBJECT] gs://[DESTINATION_BUCKET_NAME]/`
+- [ ] B. `gcloud cp [LOCAL_OBJECT] gs://[DESTINATION_BUCKET_NAME]/`
+- [ ] C. `hadoop fs cp [LOCAL_OBJECT] gs://[DESTINATION_BUCKET_NAME]/`
+- [ ] D. `gcloud dataproc cp [LOCAL_OBJECT] gs://[DESTINATION_BUCKET_NAME]/`
+
+## 28
+You are writing an API endpoint to process orders from a web application and save the data into a Datastore collection. During application testing, you notice that when your application encounters an HTTP 5xx server error from the Datastore API, it catches this error and returns an HTTP 200 OK response code to the client, but does not store the data within Datastore. You want the consumers of your API endpoint to know that the write request was unsuccessful. What should you do?
+- [ ] A. Return an HTTP 204 No Content response.
+- [ ] B. Return an HTTP 406 Not Acceptable response.
+- [x] C. Return an HTTP 500 Internal Server Error response.
+- [ ] D. Retry the Datastore API with exponential backoff until Datastore returns a HTTP 2xx response.
