@@ -96,6 +96,8 @@
 - Practicing the principle of least privilege https://cloud.google.com/blog/products/identity-security/dont-get-pwned-practicing-the-principle-of-least-privilege
 - Key rotation in Cloud Key Management Service https://cloud.google.com/kms/docs/key-rotation
 - Container analysis and vulnerability scanning https://cloud.google.com/container-registry/docs/container-analysis
+- https://cloud.google.com/container-analysis/docs
+
 
 ### Permission
 - https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations
