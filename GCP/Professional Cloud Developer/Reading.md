@@ -18,6 +18,8 @@
 - https://cloud.google.com/appengine
 - https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration
 
+### Cloud Endpoints
+- https://cloud.google.com/endpoints/docs
 
 ### GKE
 - GKE - Custom and external metrics https://cloud.google.com/kubernetes-engine/docs/concepts/custom-and-external-metrics
