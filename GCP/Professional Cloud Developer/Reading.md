@@ -16,8 +16,10 @@
 
 ### AppEngine
 - https://cloud.google.com/appengine
-- https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration
 - https://cloud.google.com/appengine/docs/flexible/python/splitting-traffic
+
+### Cloud Run
+- https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration
 
 ### Cloud Endpoints
 - https://cloud.google.com/endpoints/docs
