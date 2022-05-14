@@ -71,6 +71,18 @@
 - https://meet.google.com/linkredirect?authuser=0&dest=https%3A%2F%2Fcloud.google.com%2Fstorage%2Fdocs%2Fstorage-classes%23available_storage_classes
 - https://meet.google.com/linkredirect?authuser=0&dest=https%3A%2F%2Fcloud.google.com%2Fstorage%2Fdocs%2Fstorage-classes%23standard-availability
 
+Storage classes for any workload
+Save costs without sacrificing performance by storing data across different storage classes. You can start with a class that matches your current use, then reconfigure for cost savings.
+
+|Class | Storage Cost | Access Frequency |
+| - | - | - |
+|Standard | High | Hot or Frequently accessed data: websites, streaming videos, and mobile apps.|
+|Nearline | Low | Data stored for at least 30 days, including data backup and long-tail multimedia content.|
+|Coldline | Very low | Data stored for at least 90 days, including disaster recovery.|
+|Archive | Lowest | Data stored for at least 365 days, including regulatory archives.|
+
+
+
 ### BigTable
 - https://cloud.google.com/bigtable/docs/overview
 - https://cloud.google.com/bigtable/docs/schema-design#types_of_row_keys
