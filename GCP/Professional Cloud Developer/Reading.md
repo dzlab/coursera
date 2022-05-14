@@ -18,6 +18,12 @@
 - https://cloud.google.com/appengine
 - https://cloud.google.com/appengine/docs/flexible/python/splitting-traffic
 
+### Compute Engine
+- Managed Instance Group https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#monitoring_groups
+
+### Cloud Functions
+Cloud Functions is event-driven and is not meant for long-running tasks.
+
 ### Cloud Run
 - https://cloud.google.com/run/docs/fit-for-run
 - https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration
@@ -41,6 +47,14 @@
 - https://cloud.google.com/build/docs/build-config
 - https://cloud.google.com/solutions/continuous-delivery/
 
+#### Good to know
+There is a persistent file system that is shared between steps in a Cloud Build. We change the story to be:
+1. Deploy the Cloud Function.
+2. Save the results of calling the Cloud Function to a file.
+3. Delete the Cloud Function.
+4. Test the content of the file.
+Since step 2 can now never fail, step 3 is executed and step 4 defines the outcome of the build as a whole.
+
 ### Cloud Debugger
 - https://cloud.google.com/source-repositories/docs/debug-overview
 - https://cloud.google.com/source-repositories/docs/debug-snapshots
@@ -50,9 +64,21 @@
 - https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#monitoring_groups
 
 ### BigQuery
+BigQuery is a data warehouse. It has limited update/delete capabilities for inserted rows and hence is a bad choice for user session data, which changes as the session with the user progresses.
 - https://cloud.google.com/solutions/building-scalable-web-apps-with-cloud-datastore
 - https://cloud.google.com/bigquery/docs/loading-data-cloud-firestore
-- https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join-types
+
+#### Syntax
+- JOIN types https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join_types
+
+| Join | Description | Example |
+| - | - | - |
+|[INNER] JOIN | An INNER JOIN, or simply JOIN, effectively calculates the Cartesian product of the two from_items and discards all rows that do not meet the join condition.| `FROM A INNER JOIN B ON A.w = B.y` |
+| CROSS JOIN | returns the Cartesian product of the two from_items. In other words, it combines each row from the first from_item with each row from the second from_item.| `FROM A CROSS JOIN B` |
+| FULL [OUTER] JOIN | A FULL OUTER JOIN (or simply FULL JOIN) returns all fields for all rows in both from_items that meet the join condition.| `FROM A FULL OUTER JOIN B ON A.w = B.y`|
+| LEFT [OUTER] JOIN | A LEFT OUTER JOIN (or simply LEFT JOIN) for two from_items always retains all rows of the left from_item in the JOIN operation, even if no rows in the right from_item satisfy the join predicate. | `FROM A LEFT OUTER JOIN B ON A.w = B.y` |
+| RIGHT [OUTER] JOIN | A RIGHT OUTER JOIN (or simply RIGHT JOIN) is similar and symmetric to that of LEFT OUTER JOIN. | `FROM A RIGHT OUTER JOIN B ON A.w = B.y` |
+
 
 ### Anthos
 - Introduction to Anthos https://cloud.google.com/anthos
@@ -67,6 +93,10 @@
 #### Cloud SQL Proxy
 - https://cloud.google.com/sql/docs/mysql/external-connection-methods
 
+#### Migration
+- https://cloud.google.com/solutions/migrating-postgresql-to-gcp
+- https://cloud.google.com/sql/docs/postgres/import-export/importing
+
 ### Cloud Storage
 - https://meet.google.com/linkredirect?authuser=0&dest=https%3A%2F%2Fcloud.google.com%2Fstorage%2Fdocs%2Fstorage-classes%23available_storage_classes
 - https://meet.google.com/linkredirect?authuser=0&dest=https%3A%2F%2Fcloud.google.com%2Fstorage%2Fdocs%2Fstorage-classes%23standard-availability
@@ -74,23 +104,45 @@
 Storage classes for any workload
 Save costs without sacrificing performance by storing data across different storage classes. You can start with a class that matches your current use, then reconfigure for cost savings.
 
-|Class | Storage Cost | Access Frequency |
-| - | - | - |
-|Standard | High | Hot or Frequently accessed data: websites, streaming videos, and mobile apps.|
-|Nearline | Low | Data stored for at least 30 days, including data backup and long-tail multimedia content.|
-|Coldline | Very low | Data stored for at least 90 days, including disaster recovery.|
-|Archive | Lowest | Data stored for at least 365 days, including regulatory archives.|
-
+|Class | Storage Cost | Access Frequency | Description |
+| - | - | - | - |
+|Standard | High | Access data frequently | Hot or Frequently accessed data: websites, streaming videos, and mobile apps.|
+|Nearline | Low | Access data only once a month | Data stored for at least 30 days, including data backup and long-tail multimedia content.|
+|Coldline | Very low | Access data only once a year. | Data stored for at least 90 days, including disaster recovery.|
+|Archive | Lowest | | Data stored for at least 365 days, including regulatory archives.|
+| Multi-Regional Storage| High | Access data frequently | Equivalent to Standard Storage, except it can only be used for objects stored in multi-regions or dual-regions. |
 
 
 ### BigTable
+Bigtable is a NoSQL DB is more performant and stores data in a unique way which can help with time-series data (such as Financial market data).
 - https://cloud.google.com/bigtable/docs/overview
 - https://cloud.google.com/bigtable/docs/schema-design#types_of_row_keys
 - https://cloud.google.com/bigtable/docs/schema-design-time-series#ensure_that_your_row_key_avoids_hotspotting
 
+### Firestore
+Firestore in Native mode is recommended for storing user-session information and is a natural choice for this test.
+- https://cloud.google.com/architecture/building-scalable-web-apps-with-cloud-datastore
+
+### Memorystore
+Memorystore is an in-memory database not suitable for data analysis.
 
 ### Logging
-- https://cloud.google.com/logging/docs/export/configure_export_v2
+- Setup https://cloud.google.com/logging/docs/agent/installation
+- Quotas https://cloud.google.com/logging/quotas
+
+#### Audit
+| Log Type | Description | Documentation |
+| - | - | - |
+| Admin activity| show destroy, create, modify, etc. events for a VM instance. | [link](https://cloud.google.com/logging/docs/audit/#admin-activity) |
+| Data access| Show read activities. | [link](https://cloud.google.com/logging/docs/audit/#data-access)
+| Syslog | A service running in systemd that outputs to stdout will have logs in syslog and will be scraped by the logging agent. | [link](https://github.com/GoogleCloudPlatform/fluentd-catch-all-config/tree/master/configs/config.d) |
+| System event| Tell you about live migration, etc. | [link](https://cloud.google.com/logging/docs/audit/#system-event)|
+| VPC flow logs | uses the substrate specific logging to capture everything. | [link](https://cloud.google.com/vpc/docs/using-flow-logs) [course](https://cloudacademy.com/course/implementing-a-gcp-virtual-private-cloud-1224/vpc-flow-logs/)
+
+#### Export
+- Configuration https://cloud.google.com/logging/docs/export/configure_export_v2
+- Sinks https://cloud.google.com/logging/docs/export/using_exported_logs
+
 
 
 ### Error Reporting
