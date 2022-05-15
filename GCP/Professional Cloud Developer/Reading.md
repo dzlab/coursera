@@ -8,6 +8,8 @@
 - Best practices: Cloud Storage https://cloud.google.com/storage/docs/best-practices
 - Best Practices: Datastore https://cloud.google.com/datastore/docs/best-practices
 - Best Practices: Firestore https://cloud.google.com/firestore/docs/best-practices
+- https://cloud.google.com/architecture/best-practices-vpc-design
+
 
 ## Services
 - Overview of Google Cloud services https://cloud.google.com/docs/overview/cloud-platform-services
