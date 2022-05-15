@@ -140,6 +140,10 @@ Memorystore is an in-memory database not suitable for data analysis.
 | VPC flow logs | uses the substrate specific logging to capture everything. | [link](https://cloud.google.com/vpc/docs/using-flow-logs) [course](https://cloudacademy.com/course/implementing-a-gcp-virtual-private-cloud-1224/vpc-flow-logs/)
 
 #### Export
+Logging retains app and audit logs for a limited period of time. You might need to retain logs for longer periods to meet compliance obligations. Alternatively, you might want to keep logs for historical analysis.
+
+You can route logs to Cloud Storage, BigQuery, and Pub/Sub. Using filters, you can include or exclude resources from the export. For example, you can export all Compute Engine logs but exclude high-volume logs from Cloud Load Balancing.
+
 - Configuration https://cloud.google.com/logging/docs/export/configure_export_v2
 - Sinks https://cloud.google.com/logging/docs/export/using_exported_logs
 
@@ -170,8 +174,11 @@ Memorystore is an in-memory database not suitable for data analysis.
 
 
 ### Permission
-A general recommendation is to have one project per application per environment.
-- https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations
+See https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations
+
+- A general recommendation is to have one project per application per environment.
+- We recommend collecting users with the same responsibilities into groups and assigning IAM roles to the groups rather than to individual users. 
+- We recommend that you use service accounts for server-to-server interactions.
 
 ## Other
 - https://www.restapitutorial.com/httpstatuscodes.html
