@@ -8,8 +8,22 @@
 - Best practices: Cloud Storage https://cloud.google.com/storage/docs/best-practices
 - Best Practices: Datastore https://cloud.google.com/datastore/docs/best-practices
 - Best Practices: Firestore https://cloud.google.com/firestore/docs/best-practices
+
+## Networking
 - https://cloud.google.com/architecture/best-practices-vpc-design
 
+### Cloud Interconnect
+Cloud Interconnect extends your on-premises network to Google's network through a highly available, low latency connection. You can use Dedicated Interconnect to connect directly to Google or use Partner Interconnect to connect to Google through a supported service provider.
+
+- https://cloud.google.com/network-connectivity/docs/interconnect
+- https://cloud.google.com/network-connectivity/docs/how-to/choose-product
+- https://cloud.google.com/network-connectivity/docs/interconnect/concepts/choosing-colocation-facilities
+
+
+|Solution|Capacity|Description|Connectivity|
+|-|-|-|-|
+|Dedicated Interconnect|10-Gbps or 100-Gbps circuits with flexible VLAN attachment capacities from 50 Mbps to 50 Gbps.|A direct connection to Google, must meet Google's network in colocation facility |not through the public internet.|
+|Partner Interconnect|Flexible capacities from 50 Mbps to 50 Gbps.| connectivity through one of our supported service providers.|not through the public internet.|
 
 ## Services
 - Overview of Google Cloud services https://cloud.google.com/docs/overview/cloud-platform-services
