@@ -153,6 +153,8 @@ Bigtable is a NoSQL DB is more performant and stores data in a unique way which 
 - https://cloud.google.com/bigtable/docs/schema-design-time-series#ensure_that_your_row_key_avoids_hotspotting
 
 ### Firestore
+Firestore is the next generation of Datastore. Easily develop rich applications using a fully managed, scalable, and serverless document database.
+
 Firestore in Native mode is recommended for storing user-session information and is a natural choice for this test.
 - https://cloud.google.com/architecture/building-scalable-web-apps-with-cloud-datastore
 
