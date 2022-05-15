@@ -62,7 +62,21 @@ Cloud Run is a managed compute platform that enables you to run containers that 
 - https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration
 
 ### Cloud Endpoints
+Endpoints is an API management system that helps you secure, monitor, analyze, and set quotas on your APIs using the same infrastructure Google uses for its own APIs. 
+
+Depending on where your API is hosted and the type of communications protocol your API uses:
+
+|Option|Limitation|
+|-|-|
+|OpenAPI||
+|gRPC|Not supported on App Engine or Cloud Functions|
+|Endpoints Frameworks|Supported only on App Engine standard Python 2.7 and Java 8|
+
+
 - https://cloud.google.com/endpoints/docs
+
+### 
+- https://cloud.google.com/resource-manager/docs
 
 ### GKE
 - GKE - Custom and external metrics https://cloud.google.com/kubernetes-engine/docs/concepts/custom-and-external-metrics
@@ -242,6 +256,10 @@ https://cloud.google.com/profiler/
 - Container analysis and vulnerability scanning https://cloud.google.com/container-registry/docs/container-analysis
 - https://cloud.google.com/container-analysis/docs
 
+### Resource Manager
+Google Cloud provides container resources such as organizations and projects that allow you to group and hierarchically organize other Google Cloud resources. This hierarchical organization helps you manage common aspects of your resources, such as access control and configuration settings. The Resource Manager API enables you to programmatically manage these container resources.
+
+https://cloud.google.com/resource-manager/docs
 
 ### Permission
 See https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations
