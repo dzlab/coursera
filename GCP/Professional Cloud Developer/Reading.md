@@ -170,6 +170,7 @@ Memorystore is an in-memory database not suitable for data analysis.
 
 
 ### Permission
+A general recommendation is to have one project per application per environment.
 - https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations
 
 ## Other
