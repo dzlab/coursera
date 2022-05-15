@@ -83,6 +83,12 @@ BigQuery is a data warehouse. It has limited update/delete capabilities for inse
 ### Anthos
 - Introduction to Anthos https://cloud.google.com/anthos
 
+Migration types [https://cloud.google.com/architecture/migration-to-gcp-getting-started]
+
+- Lift and shift: you move workloads from a source environment to a target environment with minor or no modifications or refactoring.
+- Improve and move: modernize the workload while migrating it.
+- Remove and replace (or rip and replace): you decommission an existing app and completely redesign and rewrite it as a cloud-native app.
+
 ### Cloud Sql
 - https://cloud.google.com/sql/docs/
 - https://cloud.google.com/sql/docs/postgres/import-export/importing
@@ -164,6 +170,8 @@ You can route logs to Cloud Storage, BigQuery, and Pub/Sub. Using filters, you c
 - Introduction to Prometheus https://cloud.google.com/stackdriver/docs/solutions/gke/prometheus
 - Introduction to OpenTelemetry https://cloud.google.com/learn/what-is-opentelemetry
 
+## DevOps
+- https://spinnaker.io/
 
 ## Security
 - Securing Cloud Functions https://cloud.google.com/functions/docs/securing
