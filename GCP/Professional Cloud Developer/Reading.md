@@ -197,6 +197,23 @@ You can route logs to Cloud Storage, BigQuery, and Pub/Sub. Using filters, you c
 - Introduction to Prometheus https://cloud.google.com/stackdriver/docs/solutions/gke/prometheus
 - Introduction to OpenTelemetry https://cloud.google.com/learn/what-is-opentelemetry
 
+https://www.youtube.com/watch?v=CjGv1bDy9rI
+
+### Cloud Trace
+- Cloud Trace is a distributed tracing system that collects latency data from your applications and displays it in the Google Cloud Console. You can track how requests propagate through your application and receive detailed near real-time performance insights.
+- All Cloud Run, Cloud Functions and App Engine standard applications are automatically traced and libraries are available to trace applications running elsewhere after minimal setup.
+
+https://cloud.google.com/trace/images/quickstart-waterfall-example.png
+
+https://cloud.google.com/trace
+
+### Cloud Profiler
+Cloud Profiler is a statistical, low-overhead profiler that continuously gathers CPU usage and memory-allocation information from your production applications. It attributes that information to the application's source code, helping you identify the parts of the application consuming the most resources, and otherwise illuminating the performance characteristics of the code.
+
+https://cloud.google.com/profiler/docs/images/profiler-quickstart-filtered.png
+
+https://cloud.google.com/profiler/
+
 ## DevOps
 - https://spinnaker.io/
 
