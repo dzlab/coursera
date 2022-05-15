@@ -22,9 +22,26 @@
 - Managed Instance Group https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#monitoring_groups
 
 ### Cloud Functions
-Cloud Functions is event-driven and is not meant for long-running tasks.
+- Run your code in the cloud with no servers or containers to manage. Cloud Functions is a scalable, pay-as-you-go functions as a service (FaaS) product to help you build and connect event driven services with simple, single purpose code.
+- Cloud Functions is event-driven and is not meant for long-running tasks.
+
+https://cloud.google.com/functions
+
+### Cloud Tasks
+- Distributed task queues
+- Cloud Tasks is a fully managed service that allows you to manage the execution, dispatch, and delivery of a large number of distributed tasks. Using Cloud Tasks, you can perform work asynchronously outside of a user or service-to-service request.
+
+
+https://cloud.google.com/tasks
+
+### Cloud Scheduler
+Cloud Scheduler is a fully managed enterprise-grade cron job scheduler. It allows you to schedule virtually any job, including batch, big data jobs, cloud infrastructure operations, and more. You can automate everything, including retries in case of failure to reduce manual toil and intervention. Cloud Scheduler even acts as a single pane of glass, allowing you to manage all your automation tasks from one place.
+
+https://cloud.google.com/scheduler
 
 ### Cloud Run
+Cloud Run is a managed compute platform that enables you to run containers that are invocable via requests or events. Cloud Run is serverless: it abstracts away all infrastructure management, so you can focus on what matters most — building great applications.
+
 - https://cloud.google.com/run/docs/fit-for-run
 - https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration
 
@@ -42,6 +59,8 @@ Cloud Functions is event-driven and is not meant for long-running tasks.
 - https://cloud.google.com/kubernetes-engine/docs/how-to/scaling-apps
 
 ### Cloud Build
+With Cloud Build, continuously build, test, and deploy software across all languages and in multiple environments
+
 - https://cloud.google.com/build/docs/configuring-builds/configure-build-step-order
 - https://cloud.google.com/build/docs/configuring-builds/create-basic-configuration
 - https://cloud.google.com/build/docs/build-config
