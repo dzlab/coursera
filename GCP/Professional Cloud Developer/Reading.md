@@ -86,6 +86,8 @@ Since step 2 can now never fail, step 3 is executed and step 4 defines the outco
 BigQuery is a data warehouse. It has limited update/delete capabilities for inserted rows and hence is a bad choice for user session data, which changes as the session with the user progresses.
 - https://cloud.google.com/solutions/building-scalable-web-apps-with-cloud-datastore
 - https://cloud.google.com/bigquery/docs/loading-data-cloud-firestore
+- https://cloud.google.com/blog/topics/developers-practitioners/how-migrate-premises-data-warehouse-bigquery-google-cloud
+
 
 #### Syntax
 - JOIN types https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#join_types
