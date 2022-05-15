@@ -89,6 +89,12 @@ Migration types [https://cloud.google.com/architecture/migration-to-gcp-getting-
 - Improve and move: modernize the workload while migrating it.
 - Remove and replace (or rip and replace): you decommission an existing app and completely redesign and rewrite it as a cloud-native app.
 
+Migration tools
+- [Kf](https://cloud.google.com/migrate/kf/docs/2.9/getting-started) offers developers the Cloud Foundry experience while empowering operators to adopt declarative Kubernetes practice. It makes migrating Cloud Foundry workloads to Kubernetes straightforward, and most importantly, avoids major changes to developer workflows. 
+- https://cloud.google.com/solutions/modernize-apps-with-anthos
+
+
+
 ### Cloud Sql
 - https://cloud.google.com/sql/docs/
 - https://cloud.google.com/sql/docs/postgres/import-export/importing
