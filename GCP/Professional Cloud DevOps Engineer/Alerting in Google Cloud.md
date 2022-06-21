@@ -124,36 +124,40 @@ python3 main.py
 ## Task 2: Deploy an application to App Engine
 Now that we know the application works, let's deploy it to the App Engine.
 
-Switch to (or reopen) the Cloud Shell code editor. Expand the `training-data-analyst/courses/design-process/deploying-apps-to-gcp` folder in the explorer tree on the left.
+1. Switch to (or reopen) the Cloud Shell code editor. Expand the `training-data-analyst/courses/design-process/deploying-apps-to-gcp` folder in the explorer tree on the left.
 
-From the File menu, select New File and name the file app.yaml.
+2. From the File menu, select New File and name the file app.yaml.
 
-Paste the following into the file you just created.
-
+3. Paste the following into the file you just created.
+```
 runtime: python37
-Copied!
-To make sure the file is saved, select File | Save.
+```
+4. To make sure the file is saved, select `File | Save`.
 
-Every project needs to first create an App Engine application before it can be used. This is done just once per project using the Console, or the gcloud app create command. Either way, you need to specify the region where you want the app to be created. Execute the following command in your Cloud Shell terminal. You may have to Authorize Cloud Shell to make such a change:
-
+5. Every project needs to first create an App Engine application before it can be used. This is done just once per project using the Console, or the gcloud app create command. Either way, you need to specify the region where you want the app to be created. Execute the following command in your Cloud Shell terminal. You may have to Authorize Cloud Shell to make such a change:
+```
 gcloud app create --region=us-central
-Copied!
-Deploy the basic application to App Engine. The following command looks in the current directory for the application. It sees the app.yaml file declaring it a Python application and it assumes the rest of the folder contains the application itself, with a starting point in main.py. It loads the dependencies, packages the application, and deploys into the App Engine as a Service.
+```
 
+6. Deploy the basic application to App Engine. The following command looks in the current directory for the application. It sees the app.yaml file declaring it a Python application and it assumes the rest of the folder contains the application itself, with a starting point in main.py. It loads the dependencies, packages the application, and deploys into the App Engine as a Service.
+```
 gcloud app deploy --version=one --quiet
-Copied!
-Wait for the application to finish deploying, then in the Google Cloud Console window, use the Navigation menu (console_nav_small.png) to navigate to App Engine | Dashboard.
+```
 
-In the upper right of the dashboard, you see a link to your application similar to what is shown below.
+7. Wait for the application to finish deploying, then in the Google Cloud Console window, use the Navigation menu (console_nav_small.png) to navigate to `App Engine | Dashboard`.
 
-App Engine Link
+8. In the upper right of the dashboard, you see a link to your application similar to what is shown below.
 
-Note: By default, the URL to an App Engine is the form of https://project-id.appspot.com.
-Click the link to test your newly deployed app. It should function exactly like it did when we ran it in Cloud Shell.
+![image](https://user-images.githubusercontent.com/1645304/174703931-2d3896d1-2e76-4077-8fd4-e284b3e1a7ba.png)
 
-Click refresh a number of times so Google Cloud can gather some sample data.
 
-Task 3: Examine the App Engine Logs
+> Note: By default, the URL to an App Engine is the form of https://project-id.appspot.com.
+
+9. Click the link to test your newly deployed app. It should function exactly like it did when we ran it in Cloud Shell.
+
+10. Click refresh a number of times so Google Cloud can gather some sample data.
+
+## Task 3: Examine the App Engine Logs
 Switch back to the Console and on the left side under App Engine, click the Versions link.
 
 Open the Tools dropdown in the Diagnose column of the table and then select Logs.
