@@ -82,3 +82,61 @@ You are deploying an application to a Kubernetes cluster that requires a usernam
 ```
 
 https://kubernetes.io/docs/concepts/configuration/secret/
+
+## 5
+Several teams in your company want to use Cloud Build to deploy to their own Google Kubernetes Engine (GKE) clusters. The clusters are in projects that are dedicated to each team. The teams only have access to their own projects. One team should not have access to the cluster of another team. You are in charge of designing the Cloud Build setup, and want to follow Google-recommended practices. What should you do?
+
+- [ ] A. Limit each team member’s access so that they only have access to their team’s clusters. Ask each team member to install the gcloud CLI and to authenticate themselves by running “gcloud init”. Ask each team member to execute Cloud Build builds by using “gcloud builds submit”.
+- [ ] B. Create a single project for Cloud Build that all the teams will use. List the service accounts in this project and identify the one used by Cloud Build. Grant the Kubernetes Engine Developer IAM role to that service account in each team’s project.
+- [x] C. In each team’s project, list the service accounts and identify the one used by Cloud Build for each project. In each project, grant the Kubernetes Engine Developer IAM role to the service account used by Cloud Build. Ask each team to execute Cloud Build builds in their own project.
+- [ ] D. In each team’s project, create a service account, download a JSON key for that service account, and grant the Kubernetes Engine Developer IAM role to that service account in that project. Create a single project for Cloud Build that all the teams will use. In that project, encrypt all the service account keys by using Cloud KMS. Grant the Cloud KMS CryptoKey Decrypter IAM role to Cloud Build’s service account. Ask each team to include in their “cloudbuild.yaml” files a step that decrypts the key of their service account, and use that key to connect to their cluster.
+
+**Feedback**
+```diff
+- A is not correct because, even if you authenticated yourself with the gcloud CLI, Cloud Build runs with its own service account, and not your identity.
+- B is not correct because this grants access to all the clusters, for all the teams.
++ C is correct because this ensures that each team cannot execute builds that touch another team’s cluster.
+- D is not correct because this grants access to all the clusters, for all the teams.
+```
+https://cloud.google.com/cloud-build/docs/securing-builds/configure-access-control
+
+## 6
+
+You have an application deployed on Google Kubernetes Engine (GKE). The application logs are captured by Cloud Logging. You need to remove sensitive data before it reaches the Cloud Logging API. What should you do?
+
+- [ ] A. Write the log information to the container file system. Execute a second process inside the container that will filter the sensitive information before writing to Standard Output.
+- [x] B. Customize the GKE clusters’ Fluentd configuration with a filter rule. Update the Fluentd Config Map and Daemon Set in the GKE cluster.
+- [ ] C. Configure a filter in the Cloud Logging UI to exclude the logs with sensitive data.
+- [ ] D. Configure BigQuery as a sink for the logs from Cloud Logging, and then create a Data Loss Prevention job.
+
+**Feedback**
+```diff
+- A is incorrect because you cannot modify the behavior of the logging.
++ B is correct because you can configure the Fluentd logging behavior.
+- C is incorrect because this does not prevent the data from arriving in Cloud Logging.
+- D is incorrect because this does not prevent the data from arriving in Cloud Logging.
+```
+https://cloud.google.com/solutions/customizing-stackdriver-logs-fluentd
+
+## 7
+You have a Compute Engine instance that uses the default Debian image. The application hosted on this instance recently suffered a series of crashes that you weren’t able to debug in real time: the application process died suddenly every time. The application usually consumes 50% of the instance’s memory, and normally never more than 70%, but you suspect that a memory leak was responsible for the crashes. You want to validate this hypothesis. What should you do?
+
+- [ ] A. Go to Metrics Explorer and look for the “compute.googleapis.com/guest/system/problem_count” metric for that instance. Examine its value for when the application crashed in the past.
+- [ ] B. In Cloud Monitoring, create an uptime check for your application. Create an alert policy for that uptime check to be notified when your application crashes. When you receive an alert, use your usual debugging tools to investigate the behavior of the application in real time.
+- [x] C. Install the Cloud Monitoring agent on the instance. Go to Metrics Explorer and look for the “agent.googleapis.com/memory/percent_used” metric for that instance. Examine its value for when the application crashed in the past.
+- [ ] D. Install the Cloud Monitoring agent on the instance. Create an alert policy on the “agent.googleapis.com/memory/percent_used” metric for that instance to be alerted when the memory used is higher than 75%. When you receive an alert, use your usual debugging tools to investigate the behavior of the application in real time.
+
+Correct answer
+- [x] D. Install the Cloud Monitoring agent on the instance. Create an alert policy on the “agent.googleapis.com/memory/percent_used” metric for that instance to be alerted when the memory used is higher than 75%. When you receive an alert, use your usual debugging tools to investigate the behavior of the application in real time.
+
+**Feedback**
+```diff
+- A is not correct because this metric doesn’t help you debug the issue.
+- B is not correct because it doesn’t allow you to investigate the issue in real time.
+- C is not correct because the agent won’t retroactively send monitoring data.
++ D is correct because it allows you to investigate the issue in real time.
+```
+- https://cloud.google.com/monitoring/uptime-checks/
+- https://cloud.google.com/monitoring/api/metrics_agent
+- https://cloud.google.com/monitoring/api/metrics_gcp
+
