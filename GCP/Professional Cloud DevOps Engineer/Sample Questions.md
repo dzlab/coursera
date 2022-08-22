@@ -140,3 +140,99 @@ Correct answer
 - https://cloud.google.com/monitoring/api/metrics_agent
 - https://cloud.google.com/monitoring/api/metrics_gcp
 
+## 8
+You are running a production application on Compute Engine. You want to monitor the key metrics of CPU, Memory, and Disk I/O time. You want to ensure that the metrics are visible by the team and will be explorable if an issue occurs. What should you do? (Choose 2)
+- [ ] A. Set up logs-based metrics based on your application logs to identify errors.
+- [ ] B. Export key metrics to a Google Cloud Function and then analyze them for outliers.
+- [x] C. Set up alerts in Cloud Monitoring for key metrics breaching defined thresholds.
+- [x] D. Create a Dashboard with key metrics and indicators that can be viewed by the team.
+- [ ] E. Export key metrics to BigQuery and then run hourly queries on the metrics to identify outliers.
+
+**Feedback**
+```diff
+- A is incorrect because this will not identify all issues; instead, it will identify a specific issue.
+- B is incorrect because this will introduce significant overhead.
++ C is correct because alerts allow reaction to issues that have not been previously identified.
++ D is correct because dashboards are a powerful tool to identify issues early.
+- E is incorrect because this will introduce significant delay.
+```
+
+- https://cloud.google.com/blog/products/management-tools/stackdriver-tips-and-tricks-understanding-metrics-and-building-charts
+- https://cloud.google.com/monitoring/charts/dashboards
+- https://cloud.google.com/monitoring/alerts/
+
+## 9
+You support a Python application running in production on Compute Engine. You want to debug some of the application code by inspecting the value of a specific variable. What should you do?
+- [ ] A. Create a Cloud Debugger logpoint with the variable at a specific line location in your application's source code, and view the value in the Logs Viewer.
+- [ ] B. Use your local development environment and code editor to set up a breakpoint in the source code, run the application locally, and then inspect the value of the variable.
+- [ ] C. Modify the source code of the application to log the value of the variable, deploy to the development environment, and then run the application to capture the value in Cloud Logging.
+- [x] D. Create a Cloud Debugger snapshot at a specific line location in your application's source code, and view the value of the variable in the Google Cloud Console.
+
+**Feedback**
+```diff
+- A is not correct because, although it is a good option, it requires the additional step of viewing the logs in Logs Viewer.
+- B is not correct because the state of the local application might be very different from the state of the production application.
+- C is not correct because it is the option with the most effort and is prone to errors.
++ D is correct. This is the recommended approach.
+```
+
+- https://cloud.google.com/debugger/docs/using/snapshots
+- https://cloud.google.com/debugger/docs/using/logpoints
+
+
+## 10
+You work with a video rendering application that publishes small tasks as messages to a Cloud Pub/Sub topic. You need to deploy the application that will execute these tasks on multiple virtual machines (VMs). Each task takes less than 1 hour to complete. The rendering is expected to be completed within a month. You need to minimize rendering costs. What should you do?
+- [ ] A. Deploy the application as a managed instance group.
+- [ ] B. Deploy the application as a managed instance group. Configure a Committed Use Discount for the amount of CPU and memory required.
+- [x] C. Deploy the application as a managed instance group with Preemptible VMs. 
+- [ ] D. Deploy the application as a managed instance group with Preemptible VMs. Configure a Committed Use Discount for the amount of CPU and memory required.
+
+**Feedback**
+```diff
+- A is incorrect. This is not the cheapest method.
+- B is incorrect because CUDs are for a 1-year minimum, so you would be overbilled for 11 months.
++ C is correct because Preemptible VMs are the cheapest way of running a VM. Running them in a MIG will start new instances when some are terminated.
+- D is incorrect because CUDs are for a 1-year minimum, so you would be overbilled for 11 months.
+```
+
+- https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#creating_groups_of_preemptible_instances
+- https://cloud.google.com/compute/sole-tenant-gpu-pricing#nodes
+
+## 11
+
+You support a website with a global audience. The website has a frontend web service and a backend database service that runs on different clusters. All clusters are scaled to handle at least ⅓ of the total user traffic. You use 4 different regions in Google Cloud and Cloud Load Balancing to direct traffic to a region closer to the user. You are applying a critical security patch to the backend database. You successfully patch the database in the first 2 regions, but you make a configuration error while patching Region 3. The unsuccessful patching causes 50% of user requests to Region 3 to time out. You want to mitigate the impact of unsuccessful patching on users. What should you do?  
+- [ ] A. Add more capacity to the frontend of Region 3.
+- [ ] B. Revert the Region 3 backend database and run it without the patch.
+- [x] C. Drain the requests to Region 3 and redirect new requests to other regions.
+- [ ] D. Back up the database in the backend of Region 3 and restart the database.
+
+**Feedback**
+```diff
+- A is incorrect because adding more Frontend servers will not fix the backend configuration problem.
+- B is incorrect because running a backend without the critical security patch is a big risk.
++ C is correct because the remaining 3 regions can handle the total traffic load, which gives you time to fix the configuration error in Region 3 and then apply the patch.
+- D is incorrect because backing up the database will not help at this point, and the additional load on the server could make the problem worse.
+```
+
+- https://cloud.google.com/load-balancing/docs/enabling-connection-draining
+- https://cloud.google.com/compute/docs/tutorials/robustsystems#distribute
+- https://landing.google.com/sre/sre-book/chapters/addressing-cascading-failures/
+
+## 12
+
+You have a service running on Compute Engine virtual machine instances behind a global load balancer. You need to ensure that when an instance fails, it is recovered. What should you do?
+- [ ] A. Set up health checks in the load balancer configuration.
+- [ ] B. Deploy a service to the instances to notify you when they fail.
+- [ ] C. Use Cloud Logging alerts to trigger a workflow to reboot the instance.
+- [x] D. Set up health checks in the managed instance group configuration.
+
+**Feedback**
+```diff
+- A is not correct because the load balancer health check will not recover the instance. The load balancer health check will exclude the instance from receiving traffic.
+- B is not correct because a service on the instance may not work when the instance fails.
+- C is not correct because this is not the platform-idiomatic way of recovering failed instances.
++ D is correct because the managed instance group health check will recreate the instance when it fails, and this is the platform-native way to satisfy this use case.
+```
+
+- https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#monitoring_groups)
+
