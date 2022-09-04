@@ -51,7 +51,17 @@ See sections https://cloud.google.com/certification/guides/cloud-devops-engineer
   - Cloud Audit Logs (data access logs) - [link](https://cloud.google.com/logging/docs/audit)
   - VPC flow logs - [link](https://cloud.google.com/vpc/docs/using-flow-logs)
   - logs-based metrics - [link](https://cloud.google.com/logging/docs/logs-based-metrics)
-  - logging exclusion - [link](https://cloud.google.com/logging/docs/routing/overview)
+  - logging exclusion - [link](https://cloud.google.com/logging/docs/routing/overview#exclusions)
+  - logging export - [link](https://cloud.google.com/logging/docs/export/configure_export_v2)
+  - resource hierarchy - [link](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy)
+  - project-level / org-level export
+  - export logs in Cloud Storage and BigQuery 
+  - restrict access to audit logs - [link](https://cloud.google.com/logging/docs/audit/configure-data-access)
+  - restrict export configuration - [link](https://cloud.google.com/compute/docs/images/restricting-image-access)
+
+### Section 4. Optimizing service performance
+- Operation Suite:
+  - Google Cloud’s operations suite - [link](https://cloud.google.com/blog/topics/developers-practitioners/introduction-google-clouds-operations-suite)
 
 ## Resources
 https://ivam-luz.medium.com/how-to-pass-the-google-professional-cloud-devops-engineer-certification-ea809d69b0e5
