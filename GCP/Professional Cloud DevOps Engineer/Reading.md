@@ -33,6 +33,25 @@ See sections https://cloud.google.com/certification/guides/cloud-devops-engineer
   - https://ermetic.com/blog/gcp/introduction-to-iam-in-google-cloud-platform-gcp/
 
 ## Section 3. Implementing service monitoring strategies
+- Cloud Logging - [link](https://cloud.google.com/logging)
+  - Configure the Logging agent https://cloud.google.com/logging/docs/agent/logging/configuration
+  - Customizing Cloud Logging logs for Google Kubernetes Engine with Fluentd - [link](https://cloud.google.com/architecture/customizing-stackdriver-logs-fluentd)
+  - Cloud Logging API https://cloud.google.com/logging/docs/apis
+- Cloud Monitoring - [link](https://cloud.google.com/monitoring)
+  - How to guides https://cloud.google.com/monitoring/docs/how-to
+  - Kubernetes monitoring - [link](https://cloud.google.com/stackdriver/docs/solutions/gke/observing)
+  - Metrics Explorer: create charts - [link](https://cloud.google.com/monitoring/charts/metrics-explorer)
+  - Metrics Explorer: select metrics - [link](https://cloud.google.com/monitoring/charts/metrics-selector)
+  - Alerts - [link](https://cloud.google.com/monitoring/alerts)
+  - Deliver Cloud Monitoring notifications to third-party services - [link](https://cloud.google.com/community/tutorials/delivering-cloud-monitoring-notifications-to-third-party-services)
+  - Cloud Monitoring integrations - [link](https://cloud.google.com/monitoring/agent/integrations)
+  - Multiple projects - [link](https://cloud.google.com/monitoring/settings)
+  - Metrics Scope - [link](https://cloud.google.com/monitoring/settings/manage-api)
+- Cloud Logging Platform
+  - Cloud Audit Logs (data access logs) - [link](https://cloud.google.com/logging/docs/audit)
+  - VPC flow logs - [link](https://cloud.google.com/vpc/docs/using-flow-logs)
+  - logs-based metrics - [link](https://cloud.google.com/logging/docs/logs-based-metrics)
+  - logging exclusion - [link](https://cloud.google.com/logging/docs/routing/overview)
 
 ## Resources
 https://ivam-luz.medium.com/how-to-pass-the-google-professional-cloud-devops-engineer-certification-ea809d69b0e5
