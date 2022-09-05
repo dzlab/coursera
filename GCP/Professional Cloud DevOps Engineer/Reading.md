@@ -1,6 +1,10 @@
 # Professional Cloud DevOps Engineer
 See sections https://cloud.google.com/certification/guides/cloud-devops-engineer
 
+Kubernetes Concepts:
+- https://kubernetes.io/docs/concepts/
+- https://www.mirantis.com/blog/kubernetes-cheat-sheet/
+
 ## Section 2. Building and implementing CI/CD pipelines for a service
 - Artifact Registry
   - https://cloud.google.com/artifact-registry
