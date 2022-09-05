@@ -60,8 +60,21 @@ See sections https://cloud.google.com/certification/guides/cloud-devops-engineer
   - restrict export configuration - [link](https://cloud.google.com/compute/docs/images/restricting-image-access)
 
 ### Section 4. Optimizing service performance
-- Operation Suite:
+- Identify performance issues:
   - Google Cloud’s operations suite - [link](https://cloud.google.com/blog/topics/developers-practitioners/introduction-google-clouds-operations-suite)
+  - Cloud Trace - [link](https://cloud.google.com/trace)
+  - Cloud Profiler - [link](https://cloud.google.com/profiler/docs)
+  - Troubleshoot issues with the image/OS - [link](https://cloud.google.com/artifact-registry/docs/docker/troubleshoot)
+  - Troubleshooting Virtual Machine Networking Issues on GCP - [link](https://cloudacademy.com/course/troubleshooting-virtual-machine-networking-issues-gcp-2801/ssh-errors/)
+  - Troubleshoot network issues (e.g., VPC flow logs, firewall logs, latency, view network details)
+  - Compute networking issues: - [link](https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-networking)
+  - Cloud Debugger - [link](https://cloud.google.com/debugger/docs)
+  - App Engine local development server - [link](https://cloud.google.com/appengine/docs/legacy/standard/python/tools/using-local-server)
+- Optimize resource utilization
+  - Identify resource utilization levels - [link](https://cloudacademy.com/course/optimizing-resource-utilization-on-gcp-1466/identifying-resource-utilization-levels/)
+  - Manage preemptible VMs - [link](https://cloud.google.com/compute/docs/instances/preemptible)
+ 
+### Section 5. Managing service incidents
 
 ## Resources
 https://ivam-luz.medium.com/how-to-pass-the-google-professional-cloud-devops-engineer-certification-ea809d69b0e5
