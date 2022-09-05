@@ -9,8 +9,9 @@ Kubernetes Concepts:
 ## Section 2. Building and implementing CI/CD pipelines for a service
 - Artifact Registry
   - https://cloud.google.com/artifact-registry
-  - Cloud build integration: https://cloud.google.com/artifact-registry/docs/configure-cloud-build
-  - Container analysis and vulnerability scanning https://cloud.google.com/artifact-registry/docs/analysis
+  - Software supply chain security - [link](https://cloud.google.com/software-supply-chain-security/docs/overview)
+  - Cloud build integration - [link](https://cloud.google.com/artifact-registry/docs/configure-cloud-build)
+  - Container analysis and vulnerability scanning - [link](https://cloud.google.com/artifact-registry/docs/analysis)
 - Spinnaker:
   - Concepts: https://spinnaker.io/docs/concepts/
   - Kubernetes: https://spinnaker.io/docs/guides/user/kubernetes-v2/
