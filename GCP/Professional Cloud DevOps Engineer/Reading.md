@@ -16,7 +16,8 @@ Kubernetes Concepts:
   - Cloud build integration - [link](https://cloud.google.com/artifact-registry/docs/configure-cloud-build)
   - Container analysis and vulnerability scanning - [link](https://cloud.google.com/artifact-registry/docs/analysis)
   - VPC service controls - [link](https://cloud.google.com/vpc-service-controls/docs/overview)
-  - Binary Authorization - [link](https://cloud.google.com/binary-authorization/docs/overview)
+  - Binary Authorization in GCP - [link](https://cloud.google.com/binary-authorization/docs/overview)
+  - Binary Authorization Kritis (open source) - [link](https://github.com/grafeas/kritis/blob/master/docs/binary-authorization.md)
 - Spinnaker:
   - Concepts: https://spinnaker.io/docs/concepts/
   - Kubernetes: https://spinnaker.io/docs/guides/user/kubernetes-v2/
