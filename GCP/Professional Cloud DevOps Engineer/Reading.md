@@ -10,8 +10,13 @@ Kubernetes Concepts:
 - Artifact Registry
   - https://cloud.google.com/artifact-registry
   - Software supply chain security - [link](https://cloud.google.com/software-supply-chain-security/docs/overview)
+  - region vs multi-region locations - [link](https://cloud.google.com/artifact-registry/docs/repositories/repo-locations)
+  - Cloud Run deploy from Source - [link](https://cloud.google.com/run/docs/deploying-source-code)
+  - GKE image streaming - [link](https://cloud.google.com/kubernetes-engine/docs/how-to/image-streaming)
   - Cloud build integration - [link](https://cloud.google.com/artifact-registry/docs/configure-cloud-build)
   - Container analysis and vulnerability scanning - [link](https://cloud.google.com/artifact-registry/docs/analysis)
+  - VPC service controls - [link](https://cloud.google.com/vpc-service-controls/docs/overview)
+  - Binary Authorization - [link](https://cloud.google.com/binary-authorization/docs/overview)
 - Spinnaker:
   - Concepts: https://spinnaker.io/docs/concepts/
   - Kubernetes: https://spinnaker.io/docs/guides/user/kubernetes-v2/
@@ -38,7 +43,8 @@ Kubernetes Concepts:
   - https://www.strongdm.com/blog/gcp-iam-roles
   - policies: https://cloud.google.com/iam/docs/policies
   - https://ermetic.com/blog/gcp/introduction-to-iam-in-google-cloud-platform-gcp/
-
+- Cloud Deploy
+  - Overview - [link](https://cloud.google.com/deploy/docs/overview)
 ## Section 3. Implementing service monitoring strategies
 - Cloud Logging - [link](https://cloud.google.com/logging)
   - Configure the Logging agent https://cloud.google.com/logging/docs/agent/logging/configuration
