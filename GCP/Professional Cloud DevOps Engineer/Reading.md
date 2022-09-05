@@ -56,6 +56,7 @@ Kubernetes Concepts:
   - Configure the Logging agent https://cloud.google.com/logging/docs/agent/logging/configuration
   - Customizing Cloud Logging logs for Google Kubernetes Engine with Fluentd - [link](https://cloud.google.com/architecture/customizing-stackdriver-logs-fluentd)
   - Cloud Logging API https://cloud.google.com/logging/docs/apis
+  - https://blog.spinnaker.io/spinnaker-echo-google-cloud-functions-stackdriver-logging-spinnaker-audit-log-81139f084db9
 - Cloud Monitoring - [link](https://cloud.google.com/monitoring)
   - How to guides https://cloud.google.com/monitoring/docs/how-to
   - Kubernetes monitoring - [link](https://cloud.google.com/stackdriver/docs/solutions/gke/observing)
