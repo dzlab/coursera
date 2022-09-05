@@ -25,6 +25,10 @@ Kubernetes Concepts:
   - Deployment Strategies: https://spinnaker.io/docs/guides/user/kubernetes-v2/rollout-strategies/ 
   - https://cloud.google.com/blog/products/gcp/guest-post-multi-cloud-continuous-delivery-using-spinnaker-at-waze
   - Route Traffic During a Deployment (Blue/Green) - [link](https://spinnaker.io/docs/guides/user/kubernetes-v2/traffic-management/#route-traffic-during-a-deployment-bluegreen)
+
+![Deployment strategies](https://user-images.githubusercontent.com/1645304/188506941-cc3b57fc-6a08-4ebb-bc82-b40ec1d9bcd6.png)
+
+
 - Anthos:
   - https://cloud.google.com/anthos
   - https://cloud.netapp.com/blog/hybrid-deployment-with-google-anthos-an-intro-gc-cvo-blg
