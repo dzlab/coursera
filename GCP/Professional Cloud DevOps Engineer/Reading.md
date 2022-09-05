@@ -13,7 +13,7 @@ Kubernetes Concepts:
   - region vs multi-region locations - [link](https://cloud.google.com/artifact-registry/docs/repositories/repo-locations)
   - Cloud Run deploy from Source - [link](https://cloud.google.com/run/docs/deploying-source-code)
   - GKE image streaming - [link](https://cloud.google.com/kubernetes-engine/docs/how-to/image-streaming)
-  - Cloud build integration - [link](https://cloud.google.com/artifact-registry/docs/configure-cloud-build)
+  - Cloud build integration: how to grant build write access to registery for same project (by default build has access) or for different project (need to add permission on the project containing registery) - [link](https://cloud.google.com/artifact-registry/docs/configure-cloud-build)
   - Container analysis and vulnerability scanning - [link](https://cloud.google.com/artifact-registry/docs/analysis)
   - VPC service controls - [link](https://cloud.google.com/vpc-service-controls/docs/overview)
   - Binary Authorization in GCP - [link](https://cloud.google.com/binary-authorization/docs/overview)
