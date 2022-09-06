@@ -40,7 +40,9 @@ Kubernetes Concepts:
   - what it is and what its not - [link](https://medium.com/fourcast-premier-google-cloud-partner/laying-my-hands-on-anthos-what-it-is-and-what-its-not-b4a2efbe6d67)
   - Migrate to containers - [link](https://cloud.google.com/migrate/containers)
 - Cloud Build:
-  - CI and CD with Cloud Build: https://cloud.google.com/build
+  - CI and CD with Cloud Build: - [link](https://cloud.google.com/build)
+  - Build configuration file schema - [link](https://cloud.google.com/build/docs/build-config-file-schema)
+  - Community-contributed builders and custom builders - [link](https://cloud.google.com/build/docs/configuring-builds/use-community-and-custom-builders)
   - CI/CD pipeline triggers with Cloud Source Repositories, external SCM, and Pub/Sub [link](https://cloud.google.com/build/docs/automating-builds/create-manage-triggers#whats_next)
   - Managing secrets: https://cloud.google.com/build/docs/securing-builds/use-secrets
 - Skafold:
