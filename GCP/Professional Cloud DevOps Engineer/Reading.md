@@ -28,17 +28,17 @@ Kubernetes Concepts:
   - Deployment Strategies: https://spinnaker.io/docs/guides/user/kubernetes-v2/rollout-strategies/ 
   - https://cloud.google.com/blog/products/gcp/guest-post-multi-cloud-continuous-delivery-using-spinnaker-at-waze
   - Route Traffic During a Deployment (Blue/Green) - [link](https://spinnaker.io/docs/guides/user/kubernetes-v2/traffic-management/#route-traffic-during-a-deployment-bluegreen)
-- Blue/Green deployments on k8s: Given that edits to Deployment objects trigger rollouts, the only way to carry out Blue/Green deployments without editing the Service object directly is using Replica Sets, which are safely edited in-place by Spinnaker.
+  - Blue/Green deployments on k8s: Given that edits to Deployment objects trigger rollouts, the only way to carry out Blue/Green deployments without editing the Service object directly is using Replica Sets, which are safely edited in-place by Spinnaker.
 
 
 ![Deployment strategies](https://user-images.githubusercontent.com/1645304/188506941-cc3b57fc-6a08-4ebb-bc82-b40ec1d9bcd6.png)
-
 
 - Anthos:
   - https://cloud.google.com/anthos
   - https://cloud.netapp.com/blog/hybrid-deployment-with-google-anthos-an-intro-gc-cvo-blg
   - Binary Autorization https://cloud.google.com/binary-authorization/docs
   - what it is and what its not - [link](https://medium.com/fourcast-premier-google-cloud-partner/laying-my-hands-on-anthos-what-it-is-and-what-its-not-b4a2efbe6d67)
+  - Migrate to containers - [link](https://cloud.google.com/migrate/containers)
 - Cloud Build:
   - CI and CD with Cloud Build: https://cloud.google.com/build
   - CI/CD pipeline triggers with Cloud Source Repositories, external SCM, and Pub/Sub [link](https://cloud.google.com/build/docs/automating-builds/create-manage-triggers#whats_next)
