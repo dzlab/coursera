@@ -38,6 +38,7 @@ Kubernetes Concepts:
   - https://cloud.google.com/anthos
   - https://cloud.netapp.com/blog/hybrid-deployment-with-google-anthos-an-intro-gc-cvo-blg
   - Binary Autorization https://cloud.google.com/binary-authorization/docs
+  - what it is and what its not - [link](https://medium.com/fourcast-premier-google-cloud-partner/laying-my-hands-on-anthos-what-it-is-and-what-its-not-b4a2efbe6d67)
 - Cloud Build:
   - CI and CD with Cloud Build: https://cloud.google.com/build
   - CI/CD pipeline triggers with Cloud Source Repositories, external SCM, and Pub/Sub [link](https://cloud.google.com/build/docs/automating-builds/create-manage-triggers#whats_next)
