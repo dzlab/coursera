@@ -26,3 +26,19 @@ Table 2-1. Potential SLIs for different types of components
 |Storage|Durability|The proportion of records written that can be successfully read. Take particular care with durability SLIs: the data that the user wants may be only a small portion of the data that is stored. For example, if you have 1 billion records for the previous 10 years, but the user wants only the records from today (which are unavailable), then they will be unhappy even though almost all of their data is readable.
 
 SLOs and SLIs for Game Service https://sre.google/workbook/slo-document/
+
+## Cloud Build
+Cloud Build service account requires the Compute Engine Instance Admin role to be able to build VM images
+
+1. Locate the Cloud Build service account (it has the role `roles/cloudbuild.builds.builder`)
+```shell
+CLOUD_BUILD_ACCOUNT=$(gcloud projects get-iam-policy $PROJECT --filter="(bindings.role:roles/cloudbuild.builds.builder)"  --flatten="bindings[].members" --format="value(bindings.members[])")
+```
+2. Add Compute Engine Instance Admin role (i.e. `roles/compute.instanceAdmin`) to the service account:
+
+```shell
+gcloud projects add-iam-policy-binding $PROJECT \
+  --member $CLOUD_BUILD_ACCOUNT \
+  --role roles/compute.instanceAdmin
+```
+Source https://cloud.google.com/build/docs/building/build-vm-images-with-packer
