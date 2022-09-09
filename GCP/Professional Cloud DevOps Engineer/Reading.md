@@ -50,6 +50,7 @@ Kubernetes Concepts:
 - Skafold:
   - https://cloud.google.com/skaffold
   - https://cloud.google.com/deploy/docs/using-skaffold
+  - https://cloud.google.com/architecture/app-development-and-delivery-with-cloud-code-gcb-cd-and-gke
   - Skafold https://cloud.google.com/blog/products/application-development/kubernetes-development-simplified-skaffold-is-now-ga
 - Cloud Code:
   - https://cloud.google.com/code
