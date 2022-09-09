@@ -43,7 +43,9 @@ Kubernetes Concepts:
   - CI and CD with Cloud Build: - [link](https://cloud.google.com/build)
   - Build configuration file schema - [link](https://cloud.google.com/build/docs/build-config-file-schema)
   - Community-contributed builders and custom builders - [link](https://cloud.google.com/build/docs/configuring-builds/use-community-and-custom-builders)
+  - Build triggers - [link](https://cloud.google.com/build/docs/automating-builds/create-manage-triggers)
   - CI/CD pipeline triggers with Cloud Source Repositories, external SCM, and Pub/Sub [link](https://cloud.google.com/build/docs/automating-builds/create-manage-triggers#whats_next)
+  - https://cloud.google.com/build/docs/cloud-build-service-account
   - Managing secrets: https://cloud.google.com/build/docs/securing-builds/use-secrets
 - Skafold:
   - https://cloud.google.com/skaffold
