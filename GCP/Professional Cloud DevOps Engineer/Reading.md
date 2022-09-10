@@ -48,11 +48,13 @@ Kubernetes Concepts:
   - https://cloud.google.com/build/docs/cloud-build-service-account
   - Managing secrets: https://cloud.google.com/build/docs/securing-builds/use-secrets
 - Skafold:
+  - https://skaffold.dev/
   - https://cloud.google.com/skaffold
   - https://cloud.google.com/deploy/docs/using-skaffold
   - https://cloud.google.com/architecture/app-development-and-delivery-with-cloud-code-gcb-cd-and-gke
   - Skafold https://cloud.google.com/blog/products/application-development/kubernetes-development-simplified-skaffold-is-now-ga
 - Cloud Code:
+  - powered by Skafold
   - https://cloud.google.com/code
 - Binary Autorization
   - https://cloud.google.com/binary-authorization
