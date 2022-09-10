@@ -62,6 +62,8 @@ Kubernetes Concepts:
   - https://ermetic.com/blog/gcp/introduction-to-iam-in-google-cloud-platform-gcp/
 - Cloud Deploy
   - Overview - [link](https://cloud.google.com/deploy/docs/overview)
+  - Architecture - [link](https://cloud.google.com/deploy/docs/architecture)
+
 ## Section 3. Implementing service monitoring strategies
 - Cloud Logging - [link](https://cloud.google.com/logging)
   - Configure the Logging agent https://cloud.google.com/logging/docs/agent/logging/configuration
