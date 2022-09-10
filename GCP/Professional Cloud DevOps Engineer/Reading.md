@@ -56,6 +56,7 @@ Kubernetes Concepts:
 - Cloud Code:
   - powered by Skafold
   - https://cloud.google.com/code
+  - https://cloud.google.com/blog/topics/developers-practitioners/develop-and-debug-kubernetes-microservice-applications-fast-with-google-cloud
 - Binary Autorization
   - https://cloud.google.com/binary-authorization
 - IAM:
