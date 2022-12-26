@@ -1,5 +1,7 @@
 # Reading
 
+- CLOUD ONAIR Preparing for the Cloud Architect Certification exam - [link](https://cloudonair.withgoogle.com/events/cloud-architect-certification)
+
 Before taking the Google Professional Cloud Architect exam, I recommend reading the documentation at the following links:
 
 - Cloud cost optimization - [link](https://cloud.google.com/blog/topics/cost-management/principles-of-cloud-cost-optimization)
